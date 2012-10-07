@@ -1,0 +1,15 @@
+bibentry(
+  bibtype="Article",
+  title = "{MALDI}quant: a versatile {R} package for the analysis of mass spectrometry data",
+  author = c(person("Sebastian", "Gibb", role=c("aut", "cre"), email="mail@sebastiangibb.de"),
+             person("Korbinian", "Strimmer", role="ths")),
+  volume = "28",
+  number = "17",
+  pages = "2270-2271",
+  year = "2012",
+  doi = "10.1093/bioinformatics/bts447", 
+  url = "http://bioinformatics.oxfordjournals.org/content/28/17/2270.abstract",
+  eprint = "http://bioinformatics.oxfordjournals.org/content/28/17/2270.full.pdf+html",
+  journal = "Bioinformatics",
+  key = "MALDIquant"
+);

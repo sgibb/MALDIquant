@@ -1,0 +1,93 @@
+RELEASE HISTORY OF THE "MALDIquant" PACKAGE
+===========================================
+
+Version 1.3 [2012-09-16]:
+- Add trim and [ methods.
+- Fix isMassSpectrumList.
+- detectPeaks: add error message if windowSize >= length.
+- determineWarpingFunctions: add error message if it could not match any peak to
+  reference peaks.
+- labelPeaks: add avoidOverlap argument to avoid overlapping of peak labels.
+- labelPeaks: change default value for verticalOffset argument.
+- labelPeaks: remove family argument.
+- Update DESCRIPTION file to use Authors@R and depends on R>=2.14 now.
+- Add CITATION file.
+
+Version 1.2 [2012-07-18]:
+- determineWarpingFunctions: stop with an error if reference MassPeaks
+  object is empty.
+- .doByLabel: preserve list order (affects filterPeaks).
+- Replace some sapply calls by lapply.
+
+Version 1.1 [2012-05-06]:
+- detectPeaks: remove localMaxima argument.
+- detectPeaks: replace noise argument by fun.
+- removeBaseline: replace baseline argument by fun.
+- labelPeaks: use par("usr") to calculate default verticalOffset.
+- labelPeaks: add absoluteVerticalPos argument.
+- plot: change "sub" for merged spectra/peaks.
+- intensityMatrix: remove argument replaceByNa.
+- determineWarpingFunctions, warpMassSpectra, warpMassPeaks now require
+  lists as arguments and return a list.
+- calibrate: works only on matrices now.
+- Add totalIonCurrent method (replacement for calibrate function on 
+  MassSpectrum objects).
+- Add methods accepting lists as arguments: transformIntensity, removeBaseline,
+  detectPeaks.
+- Replace all lapply calls by new methods in demonstration scripts.
+- Allow only numeric values for intensity<- and mass<-.
+- Rename findLocalMaxima to .findLocalMaxima and hide by NAMESPACE.
+- Rename dataset spectra in fiedler2009subset.
+- Remove peaks dataset.
+
+Version 1.0 [2012-03-28]:
+- Add demonstration scripts.
+- Add functions: binPeaks, determineWarpingFunctions, filterPeaks,
+  isMassObject, isMassPeaks, isMassSpectrum, mergeMassPeaks, mergeMassSpectra,
+  referencePeaks, warpMassPeaks, warpMassSpectra.
+- Change NAMESPACE.
+- Hide imputeMass method because it fails on Bruker Daltonics' CompassXport
+  32bit output.
+- Add \keyword{internal} to estimateBasline*-functions.Rd.
+- Rename labelPeaks' argument massTolerance into tolerance.
+- Replace dataset sA1/pA1 by spectra/peaks (containing 16 example spectra).
+
+Version 0.5 [2012-01-18]:
+- Add imputeMass method.
+- Rewrite intensityMatrix function (little speed improvement).
+
+Version 0.4 [2011-08-04]:
+- Add functions: isMassObjectList, isMassPeaksList, isMassSpectrumList,
+  findEmptyMassObjects, removeEmptyMassObjects, intensityMatrix and calibrate
+  (only TIC supported up to now).
+- Change default value for verticalOffset argument in labelPeaks.
+- Add mass and massTolerance argument to labelPeaks.
+- Rename AbstractMassSpectrumData to AbstractMassObject.
+- Add pA1 dataset.
+
+Version 0.3 [2011-05-28]:
+- Add transformIntensity, estimateNoise, findLocalMaxima, detectPeaks and 
+  points method.
+- Add createMassPeaks constructor.
+- Replace .estimateBaselineMovingEstimator by .estimateBaselineMedian (uses 
+  runmed instead of an own slow movingEstimator function).
+- Remove fdrtool dependency and rewrite .estimateBaselineConvexHull in C.
+- Rename SingleSpectrum class to MassSpectrum.
+- Rename SinglePeakList class to MassPeaks.
+- Rewrite labelPeaks (some arguments changed).
+- Move importing functions to the following R-packages: readBrukerFlexData,
+  readMzXmlData.
+- Bugfix: change .C(..., DUP=F) to .C(..., DUP=T) in .estimateBaselineSnip
+  to avoid changes of global variables.
+
+Version 0.2 [2011-03-29]:
+- Add baseline correction algorithm SNIP (implemented in C) [default].
+- Add MovingEstimator and ConvexHull baseline estimation algorithm.
+- Add as.matrix, intensity, length, lines, mass and metaData methods.
+- Add basic SinglePeakList class, adopt plot and lines, add labelPeaks
+  (still useless).
+
+Version 0.1 [2011-02-22]:
+- First public release.
+- Up to now only importing and plotting of a single mass spectrum are supported.
+

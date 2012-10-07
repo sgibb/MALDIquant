@@ -1,0 +1,5 @@
+MALDIquant  MALDIquant Demonstration
+baseline    Demonstrate different baseline estimation methods.
+peaks       Demonstrate peak detection. 
+warping     Demonstrate influence of warping.
+workflow    Complete example workflow (no graphical output).
