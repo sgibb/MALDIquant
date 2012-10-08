@@ -23,7 +23,7 @@ if (is.null(getGeneric("standardizeTotalIonCurrent")))
 
 ## matrix
 if (is.null(getGeneric("calibrate")))
-    setGeneric("calibrate", function(x) standardGeneric("calibrate"));
+    setGeneric("calibrate", function(x, ...) standardGeneric("calibrate"));
 ## end of matrix
 
 ## AbstractMassObject
