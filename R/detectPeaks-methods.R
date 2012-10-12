@@ -35,7 +35,7 @@ setMethod(f="detectPeaks",
         fun <- match.fun(fun);
         noise <- fun(object@mass, object@intensity, ...);
     } else {
-        noise <- estimateNoise(object);
+        noise <- estimateNoise(object, ...);
     }
 
     localMaxima <- .findLocalMaxima(object=object,
