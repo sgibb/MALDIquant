@@ -28,7 +28,7 @@
 ##
 setMethod(f="calibrate",
     signature=signature(x="matrix"),
-    definition=function(x) {
+    definition=function(x, ...) {
 
     ## create "reference" spectrum/peak list
     r <- apply(x, 2, median, na.rm=TRUE);
