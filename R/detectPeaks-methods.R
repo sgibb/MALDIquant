@@ -42,21 +42,16 @@ setMethod(f="detectPeaks",
                                     halfWindowSize=halfWindowSize);
 
     ## wrong noise argument given?
-    isCorrectNoise <- (is.matrix(noise) || is.numeric(noise)) &&
-                      ((nrow(noise) == length(object) && ncol(noise) == 2) ||
-                      (length(noise) == 1));
+    isCorrectNoise <- is.matrix(noise) &&
+                      (nrow(noise) == length(object) && ncol(noise) == 2);
 
     if (!isCorrectNoise) {
         stop("The noise argument is not valid.");
     }
 
     ## include only local maxima which are above the noise
-    if (is.matrix(noise)) {
-        noiseIndex <- noise[, 1] %in% localMaxima[, 1];
-        peakIndex <- localMaxima[, 2] > (SNR * noise[noiseIndex, 2]);
-    } else {
-        peakIndex <- localMaxima[, 2] > (SNR * noise);
-    }
+    noiseIndex <- noise[, 1] %in% localMaxima[, 1];
+    peakIndex <- localMaxima[, 2] > (SNR * noise[noiseIndex, 2]);
     
     return(createMassPeaks(mass=localMaxima[peakIndex, 1],
                                 intensity=localMaxima[peakIndex, 2],

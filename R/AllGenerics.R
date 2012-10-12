@@ -78,7 +78,7 @@ if (is.null(getGeneric("detectPeaks")))
 if (is.null(getGeneric("estimateBaseline")))
     setGeneric("estimateBaseline", function(object, method=c("SNIP", "ConvexHull", "Median"), ...) standardGeneric("estimateBaseline"));
 if (is.null(getGeneric("estimateNoise")))
-    setGeneric("estimateNoise", function(object) standardGeneric("estimateNoise"));
+    setGeneric("estimateNoise", function(object, ...) standardGeneric("estimateNoise"));
 if (is.null(getGeneric(".findLocalMaxima")))
     setGeneric(".findLocalMaxima", function(object, halfWindowSize=20) standardGeneric(".findLocalMaxima"));
 if (is.null(getGeneric("imputeMass")))
