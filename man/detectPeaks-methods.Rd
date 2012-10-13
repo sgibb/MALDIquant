@@ -27,7 +27,8 @@ A peak is a local maximum above a user defined noise threshold.
     \item{SNR}{single numeric value. \code{SNR} is an abbreviation for
         \emph{s}ignal-to-\emph{n}oise-\emph{r}atio. A local maximum has to 
         be higher than \code{SNR*noise} to be recognize as peak.}
-    \item{\dots}{arguments to be passed to \code{fun}}
+    \item{\dots}{arguments to be passed to \code{fun} or to
+        \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}}.}
 }
 \details{
     \code{fun}: A user-defined function to estimate the noise of a
