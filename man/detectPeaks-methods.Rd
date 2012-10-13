@@ -49,12 +49,15 @@ A peak is a local maximum above a user defined noise threshold.
     a single numeric value.
     \cr
     \preformatted{
-## e.g. estimate noise using Friedman's 'super smoother'
-estimateNoiseSuperSmoother <- function(x, y, ...) {
-    s <- supsmu(x=x, y=y, ...);
+## e.g. estimate noise using lowess (?lowess)
+estimateNoiseLowess <- function(x, y, ...) {
+    n <- stats::lowess(x=x, y=y, ...);
 
-    return(cbind(x, s$y));
+    return(cbind(mass=x, intensity=n$y));
 }
+
+## use it
+p <- detectPeaks(spectra, fun=estimateNoiseLowess) 
     }
 }
 \value{

@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2012 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
