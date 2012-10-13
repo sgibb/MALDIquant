@@ -29,6 +29,7 @@
 \alias{.testLabelOverlap}
 \alias{.textLabelRects}
 \alias{.validAbstractMassObject}
+\alias{.validMassPeaks}
 \alias{.warp}
 \alias{.warpingFunctionCubic}
 \alias{.warpingFunctionLowess}

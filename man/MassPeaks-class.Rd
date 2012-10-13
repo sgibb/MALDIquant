@@ -3,6 +3,8 @@
 \docType{class}
 \alias{MassPeaks}
 \alias{MassPeaks-class}
+\alias{[,MassPeaks,logical,missing-method}
+\alias{[,MassPeaks,numeric,missing-method}
 \alias{snr}
 \alias{snr,MassPeaks-method}
 
