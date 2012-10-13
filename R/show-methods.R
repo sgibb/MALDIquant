@@ -47,7 +47,13 @@ setMethod(f="show",
     }
 
     if (!is.null(object@metaData$name)) {
-        groups <- c(groups, "Name");    
+        n <- length(object@metaData$name);
+
+        if (n > 1) {
+            groups <- c(groups, paste("Name", 1:n, sep=""));
+        } else {
+            groups <- c(groups, "Name");
+        }
         values <- c(values, object@metaData$name);
     }
 
