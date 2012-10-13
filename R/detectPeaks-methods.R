@@ -38,9 +38,6 @@ setMethod(f="detectPeaks",
         noise <- estimateNoise(object, ...);
     }
 
-    localMaxima <- .findLocalMaxima(object=object,
-                                    halfWindowSize=halfWindowSize);
-
     ## wrong noise argument given?
     isCorrectNoise <- is.matrix(noise) &&
                       (nrow(noise) == length(object) && ncol(noise) == 2);
@@ -49,13 +46,19 @@ setMethod(f="detectPeaks",
         stop("The noise argument is not valid.");
     }
 
+    ## find local maxima
+    localMaxima <- .findLocalMaximaLogical(object,
+                                           halfWindowSize=halfWindowSize);
+
     ## include only local maxima which are above the noise
-    noiseIndex <- noise[, 1] %in% localMaxima[, 1];
-    peakIndex <- localMaxima[, 2] > (SNR * noise[noiseIndex, 2]);
-    
-    return(createMassPeaks(mass=localMaxima[peakIndex, 1],
-                                intensity=localMaxima[peakIndex, 2],
-                                metaData=object@metaData));
+    aboveNoise <- object@intensity > (SNR * noise[, 2])
+
+    isPeak <- aboveNoise & localMaxima
+
+    return(createMassPeaks(mass=object@mass[isPeak],
+                           intensity=object@intensity[isPeak],
+                           snr=object@intensity[isPeak]/noise[isPeak, 2],
+                           metaData=object@metaData));
 });
 
 ## list

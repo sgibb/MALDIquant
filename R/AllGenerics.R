@@ -81,6 +81,8 @@ if (is.null(getGeneric("estimateNoise")))
     setGeneric("estimateNoise", function(object, ...) standardGeneric("estimateNoise"));
 if (is.null(getGeneric(".findLocalMaxima")))
     setGeneric(".findLocalMaxima", function(object, halfWindowSize=20) standardGeneric(".findLocalMaxima"));
+if (is.null(getGeneric(".findLocalMaximaLogical")))
+    setGeneric(".findLocalMaximaLogical", function(object, halfWindowSize=20) standardGeneric(".findLocalMaximaLogical"));
 if (is.null(getGeneric("imputeMass")))
     setGeneric("imputeMass", function(object, verbose=FALSE) standardGeneric("imputeMass"));
 if (is.null(getGeneric("removeBaseline")))
@@ -96,6 +98,8 @@ if (is.null(getGeneric("labelPeaks")))
                                       adj=c(0.5, 0), cex=0.7, avoidOverlap=FALSE,
                                       arrowLength=0, arrowLwd=0.5, arrowCol=1,
                                       ...) standardGeneric("labelPeaks"));
+if (is.null(getGeneric("snr")))
+    setGeneric("snr", function(object) standardGeneric("snr"));
 if (is.null(getGeneric(".calculateLabelPositions")))
     setGeneric(".calculateLabelPositions", function(object, ...) standardGeneric(".calculateLabelPositions"));
 if (is.null(getGeneric(".testLabelOverlap")))

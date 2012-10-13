@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.3.4 [2012-10-13]:
+- Add slot "snr" to MassPeaks.
+- detectPeaks: change internal snr handling.
+
 Version 1.3.3 [2012-10-12]:
 - estimateNoise: add method argument, change return value to two column matrix.
 - Add .estimateNoiseMad (same implementation as old estimateNoise method),

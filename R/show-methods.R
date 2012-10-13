@@ -40,6 +40,12 @@ setMethod(f="show",
                                  scientific=TRUE), sep=""));
     }
 
+    if (isMassPeaks(object)) {
+      groups <- c(groups, "Range of snr values:");
+      values <- c(values,
+                  paste(round(range(object@snr), digits=3), collapse=" - "));
+    }
+
     if (!is.null(object@metaData$name)) {
         groups <- c(groups, "Name");    
         values <- c(values, object@metaData$name);

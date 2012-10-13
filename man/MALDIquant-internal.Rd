@@ -8,11 +8,13 @@
 \alias{.doByLabels}
 \alias{.filterPeaks}
 \alias{.findLocalMaxima}
+\alias{.findLocalMaximaLogical}
 \alias{.grouperRelaxedHighestAtReference}
 \alias{.grouperStrict}
 \alias{.isArgument}
 \alias{.isFunctionList}
 \alias{.labelOverlap}
+\alias{.localMaxima}
 \alias{.lowerConvexHullR}
 \alias{.merge}
 \alias{.mergeMassPeaks}
