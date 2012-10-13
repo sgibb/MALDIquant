@@ -19,6 +19,7 @@
 \alias{.merge}
 \alias{.mergeMassPeaks}
 \alias{.mergeMassSpectra}
+\alias{.mergeMetaData}
 \alias{.removeArguments}
 \alias{.replaceNonEmptyMassObjects}
 \alias{.snipR}
