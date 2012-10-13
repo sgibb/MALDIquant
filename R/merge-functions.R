@@ -74,10 +74,13 @@ mergeMassSpectra <- function(l, labels, fun=mean, ...) {
     ## merge intensities
     intensity <- .merge(m, fun=fun, ...);
 
+    ## merge snr
+    snr <- .merge(m, fun=fun, ...);
+
     metaData <- list();
     metaData$file <- unname(.unlist(lapply(l, function(x)x@metaData$file)));
 
-    return(createMassPeaks(mass=mass, intensity=intensity, metaData=metaData));
+    return(createMassPeaks(mass=mass, intensity=intensity, snr=snr, metaData=metaData));
 }
 
 ## .mergeMassSpectra
