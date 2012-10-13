@@ -75,10 +75,13 @@ mergeMassSpectra <- function(l, labels, fun=mean, ...) {
     intensity <- .merge(m, fun=fun, ...);
 
     ## merge snr
+    for (i in seq(along=l)) {
+      m[i, !is.na(m[i, ]) ] <- l[[i]]@snr
+    }
     snr <- .merge(m, fun=fun, ...);
 
-    metaData <- list();
-    metaData$file <- unname(.unlist(lapply(l, function(x)x@metaData$file)));
+    ## merge metaData
+    metaData <- .mergeMetaData(lapply(l, function(x)x@metaData));
 
     return(createMassPeaks(mass=mass, intensity=intensity, snr=snr, metaData=metaData));
 }
@@ -114,10 +117,41 @@ mergeMassSpectra <- function(l, labels, fun=mean, ...) {
     ## merge intensities
     intensity <- .merge(m, fun=fun, ...);
 
-    metaData <- list();
-    metaData$file <- unname(.unlist(lapply(l, function(x)x@metaData$file)));
+    ## merge metaData
+    metaData <- .mergeMetaData(lapply(l, function(x)x@metaData));
 
     return(createMassSpectrum(mass=mass, intensity=intensity, metaData=metaData));
+}
+
+## .mergeMetaData
+## merge different metaData by equal list names
+##
+## params
+##  m: list of metaData
+##
+## returns:
+##  merged list
+##
+.mergeMetaData <- function(m) {
+
+    .flat <- function(x) {return(unname(unlist(x)))}
+    
+    nm <- names(m[[1]]);
+    names(nm) <- nm
+    m <- lapply(nm, function(n) {
+        cur <- m[[1]][[n]]
+        all <- lapply(m, function(x)x[[n]])
+    
+        if (!all(.flat(cur) == .flat(all))) {
+            if (!is.list(cur)) {
+                all <- unlist(all)
+            }
+            return(unname(all))
+        } else {
+            return(cur)
+        }
+    })
+    return(m)
 }
 
 ## .merge
@@ -154,3 +188,4 @@ mergeMassSpectra <- function(l, labels, fun=mean, ...) {
     }
     return(m);
 }
+
