@@ -20,7 +20,7 @@ setMethod(f="labelPeaks",
     signature=signature(object="MassPeaks"),
     definition=function(object, 
         index,
-        mass, tolerance=0.002,
+        mass,
         digits=3,
         underline=TRUE, 
         ## verticalOffset ca. 0.01 of plot height
@@ -32,15 +32,7 @@ setMethod(f="labelPeaks",
         ...) {
 
     if (!missing(mass) && is.numeric(mass)) {
-        massIndex <- .unlist(sapply(mass, function(x) {
-            return(.which.nearby(object@mass, x, tolerance=tolerance));
-        }));
-
-        if (!all(!is.na(massIndex))) {
-            warning("No peak(s) found at mass: ",
-                    paste(mass[is.na(massIndex)], collapse=", "));
-            massIndex <- massIndex[!is.na(massIndex)];
-        }
+        massIndex <- .which.closest(mass, object@mass)
 
         if (!missing(index)) {
             if (is.logical(index)) {

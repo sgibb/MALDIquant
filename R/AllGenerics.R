@@ -91,7 +91,7 @@ if (is.null(getGeneric("removeBaseline")))
 
 ## MassPeaks
 if (is.null(getGeneric("labelPeaks")))
-    setGeneric("labelPeaks", function(object, index, mass, tolerance=0.002,
+    setGeneric("labelPeaks", function(object, index, mass, 
                                       digits=3, underline=TRUE, 
                                       verticalOffset=abs(diff(par("usr")[3:4]))*0.0125,
                                       absoluteVerticalPos,
