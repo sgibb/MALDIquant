@@ -2,6 +2,8 @@
 
 \alias{approxfun}
 \alias{show}
+\alias{[,MassPeaks,logical,missing-method}
+\alias{[,MassPeaks,numeric,missing-method}
 
 \alias{.binPeaks}
 \alias{.calculateLabelPositions}
@@ -33,7 +35,7 @@
 \alias{.warp}
 \alias{.warpingFunctionCubic}
 \alias{.warpingFunctionLowess}
-\alias{.which.nearby}
+\alias{.which.closest}
 
 \title{Internal MALDIquant Functions}
 \description{
