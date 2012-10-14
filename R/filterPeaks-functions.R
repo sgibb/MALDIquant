@@ -65,6 +65,7 @@ filterPeaks <- function(l, minFrequency, labels) {
                        e <- x@mass %in% exclude;
                        x@mass <- x@mass[!e];
                        x@intensity <- x@intensity[!e];
+                       x@snr <- x@snr[!e];
                        return(x);
     });
 

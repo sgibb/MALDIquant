@@ -38,3 +38,26 @@ setMethod("[",
   return(x)
 })
 
+setMethod("[", 
+  signature=signature(x="MassPeaks", i="numeric", j="missing"), 
+  definition=function(x, i, j, ..., drop=TRUE) { 
+  
+  x@mass <- x@mass[i]
+  x@intensity <- x@intensity[i]
+  x@snr <- x@snr[i]
+
+  return(x)
+})
+
+## AbstractMassObject 
+setMethod("[", 
+  signature=signature(x="MassPeaks", i="logical", j="missing"), 
+  definition=function(x, i, j, ..., drop=TRUE) { 
+  
+  x@mass <- x@mass[i]
+  x@intensity <- x@intensity[i]
+  x@snr <- x@snr[i]
+
+  return(x)
+})
+

@@ -16,33 +16,25 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## .which.nearby 
-##  a relaxed version of which
+## .which.closest
+##  a relaxed version of which (returns the nearest index)
 ##
 ## params:
-##  x: vector
-##  y: single
+##  x: numeric key value to look for
+##  vec: numeric, has to be sorted
 ##
 ## returns:
-##  a vector of indices refer to empty AbstractMassObject objects
+##  a vector of indices
 ##
-.which.nearby <- function(x, y, tolerance=0.001) {
+.which.closest <- function(x, vec) {
     
-    ## test parameters
-    if (!is.numeric(x)) {
-        stop(sQuote("x"), " has to be numeric!");
-    }
+  ## find left interval
+  lIdx <- findInterval(x, vec, rightmost.closed=FALSE, all.inside=TRUE)
+  rIdx <- lIdx+1
 
-    if (!is.numeric(y)) {
-        stop(sQuote("y"), " has to be numeric!");
-    }
-
-    if (length(y) != 1) {
-        stop("length of ", sQuote("y"), " hast to be 1!");
-    }
-
-    diff <- abs(x-y);
-    minDiffIdx <- which.min(diff);
-
-    return(ifelse((diff[minDiffIdx]/y) <= tolerance, minDiffIdx, NA));    
+  ## calculate differences for left and right
+  lDiff <- abs(vec[lIdx]-x)
+  rDiff <- abs(vec[rIdx]-x)
+  
+  return(ifelse(lDiff == pmin(lDiff, rDiff), lIdx, rIdx))
 }

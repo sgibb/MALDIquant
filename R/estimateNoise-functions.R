@@ -16,21 +16,32 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## basic class for all spectra based information
-setClass("AbstractMassObject",
-    representation=representation(mass="vector", intensity="vector",
-        metaData="list", .cache="environment"),
-    prototype=prototype(mass=vector(mode="numeric"), 
-        intensity=vector(mode="numeric"), metaData=list()),
-    contains="VIRTUAL");
+## estimateNoiseMad
+##  estimate noise by calculating mad over intensity values 
+##
+## params:
+##  x: vector of x values
+##  y: vector of y values
+##
+## returns:
+##  a matrix of the estimate noise (col1: mass; col2: intensity)
+##
+.estimateNoiseMad <- function(x, y) {
+    return(cbind(x, rep(mad(y), times=length(x))));
+}
 
-## represent a spectrum
-setClass("MassSpectrum",
-    contains="AbstractMassObject");
-
-## represent a peak list from a single spectrum
-setClass("MassPeaks",
-    representation=representation(snr="vector"),
-    prototype=prototype(snr=vector(mode="numeric")),
-    contains="AbstractMassObject");
+## estimateNoiseSuperSmoother
+##  estimate noise by using Friedman's super smoother
+##
+## params:
+##  x: vector of x values
+##  y: vector of y values
+##  ...: further arguments to passed to supsmu
+##
+## returns:
+##  a matrix of the estimate noise (col1: mass; col2: intensity)
+##
+.estimateNoiseSuperSmoother <- function(x, y, ...) {
+    return(cbind(x, stats::supsmu(x=x, y=y, ...)$y));
+}
 

@@ -23,7 +23,7 @@ if (is.null(getGeneric("standardizeTotalIonCurrent")))
 
 ## matrix
 if (is.null(getGeneric("calibrate")))
-    setGeneric("calibrate", function(x) standardGeneric("calibrate"));
+    setGeneric("calibrate", function(x, ...) standardGeneric("calibrate"));
 ## end of matrix
 
 ## AbstractMassObject
@@ -78,9 +78,11 @@ if (is.null(getGeneric("detectPeaks")))
 if (is.null(getGeneric("estimateBaseline")))
     setGeneric("estimateBaseline", function(object, method=c("SNIP", "ConvexHull", "Median"), ...) standardGeneric("estimateBaseline"));
 if (is.null(getGeneric("estimateNoise")))
-    setGeneric("estimateNoise", function(object) standardGeneric("estimateNoise"));
+    setGeneric("estimateNoise", function(object, ...) standardGeneric("estimateNoise"));
 if (is.null(getGeneric(".findLocalMaxima")))
     setGeneric(".findLocalMaxima", function(object, halfWindowSize=20) standardGeneric(".findLocalMaxima"));
+if (is.null(getGeneric(".findLocalMaximaLogical")))
+    setGeneric(".findLocalMaximaLogical", function(object, halfWindowSize=20) standardGeneric(".findLocalMaximaLogical"));
 if (is.null(getGeneric("imputeMass")))
     setGeneric("imputeMass", function(object, verbose=FALSE) standardGeneric("imputeMass"));
 if (is.null(getGeneric("removeBaseline")))
@@ -89,13 +91,15 @@ if (is.null(getGeneric("removeBaseline")))
 
 ## MassPeaks
 if (is.null(getGeneric("labelPeaks")))
-    setGeneric("labelPeaks", function(object, index, mass, tolerance=0.002,
+    setGeneric("labelPeaks", function(object, index, mass, 
                                       digits=3, underline=TRUE, 
                                       verticalOffset=abs(diff(par("usr")[3:4]))*0.0125,
                                       absoluteVerticalPos,
                                       adj=c(0.5, 0), cex=0.7, avoidOverlap=FALSE,
                                       arrowLength=0, arrowLwd=0.5, arrowCol=1,
                                       ...) standardGeneric("labelPeaks"));
+if (is.null(getGeneric("snr")))
+    setGeneric("snr", function(object) standardGeneric("snr"));
 if (is.null(getGeneric(".calculateLabelPositions")))
     setGeneric(".calculateLabelPositions", function(object, ...) standardGeneric(".calculateLabelPositions"));
 if (is.null(getGeneric(".testLabelOverlap")))

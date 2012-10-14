@@ -19,12 +19,30 @@
 ## MassSpectrum 
 setMethod(f="estimateNoise",
     signature=signature(object="MassSpectrum"),
-    definition=function(object) {
+    definition=function(object,
+                        method=c("MAD", "SuperSmoother"),
+                        ...) {
         
     if (.isEmptyWarning(object)) {
         return(0);
     }
 
-    return(mad(object@intensity));
+    method=match.arg(method, several.ok=FALSE);
+
+    n <- switch(method,
+                "MAD" = {
+                    .estimateNoiseMad(object@mass, object@intensity);
+                },
+                "SuperSmoother" = {
+                    .estimateNoiseSuperSmoother(object@mass, object@intensity,
+                                                ...);
+                },
+                {
+                    stop("Unknown ", sQuote("method"), ".");
+                }
+    );
+
+    colnames(n) <- c("mass", "intensity");
+    return(n);
 });
 

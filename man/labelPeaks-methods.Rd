@@ -10,7 +10,7 @@ peaks stored in a \code{\linkS4class{MassPeaks}} object to a plot.
 \usage{
 \S4method{labelPeaks}{MassPeaks}(object, 
     index,
-    mass, tolerance=0.002,
+    mass,
     digits=3, underline=TRUE, 
     verticalOffset=abs(diff(par("usr")[3:4]))*0.01,
     absoluteVerticalPos,
@@ -23,9 +23,6 @@ peaks stored in a \code{\linkS4class{MassPeaks}} object to a plot.
     \item{object}{\code{\linkS4class{MassPeaks}} object.}
     \item{index}{\code{vector}, indices of peaks to label.}
     \item{mass}{\code{vector}, mass of peaks to label.}
-    \item{tolerance}{
-        \code{double}, maximal deviation of a peak position (mass) to be
-        considered.}
     \item{digits}{\code{integer}, number of decimal places.}
     \item{underline}{logical, underline peak values?}
     \item{verticalOffset}{\code{numeric}, move label vertically (relative to

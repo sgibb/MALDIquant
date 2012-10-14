@@ -8,14 +8,14 @@ This function calibrates intensities of an intensity matrix created by
 \code{\link[MALDIquant]{intensityMatrix}}.
 }
 \usage{
-calibrate(x)
+calibrate(x, \dots)
 }
 \arguments{
     \item{x}{
         \code{matrix}, an intensity matrix created by
         \code{\link[MALDIquant]{intensityMatrix}}. (Rows have to
-        contain samples and columns features (peaks).)
-    }
+        contain samples and columns features (peaks).)}
+    \item{\dots}{arguments to be passed to other functions (unneeded until now).}
 }
 \details{
 First a \emph{median spectrum/feature list} is calculated to be used as
