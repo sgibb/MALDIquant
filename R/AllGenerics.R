@@ -39,6 +39,8 @@ if (is.null(getGeneric("plot")))
     setGeneric("plot", function(x, y, ...) standardGeneric("plot"));
 if (is.null(getGeneric("points")))
     setGeneric("points", function(x, ...) standardGeneric("points"));
+if (is.null(getGeneric(".prepareShow")))
+    setGeneric(".prepareShow", function(object) standardGeneric(".prepareShow"));
 if (is.null(getGeneric("rtrim")))
     setGeneric("rtrim", function(object, maxMass) standardGeneric("rtrim"));
 if (is.null(getGeneric("transformIntensity")))

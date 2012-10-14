@@ -9,7 +9,7 @@ shouldn't called by the user. Try
 \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}} instead.
 }
 \usage{
-createMassPeaks(mass, intensity, snr=rep(0, length(intensity)), metaData=list())
+createMassPeaks(mass, intensity, snr=rep(NA, length(intensity)), metaData=list())
 }
 \arguments{
     \item{mass}{
