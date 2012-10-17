@@ -49,11 +49,12 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
     if (missing(reference)) {
         arguments <- list(l=l, tolerance=tolerance);
 
-        if (.isArgument("minFrequency", optArgs)) {
-            arguments$minFrequency <- optArgs$minFrequency;
-            optArgs <- .removeArguments("minFrequency", optArgs);
-        } 
-
+        for (i in c("method", "minFrequency")) {
+            if (.isArgument(i, optArgs)) {
+                arguments[[i]] <- optArgs[[i]];
+                optArgs <- .removeArguments(i, optArgs);
+            }
+        }
         reference <- do.call(referencePeaks, arguments);
     }
 
@@ -71,7 +72,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
             if (.isArgument(i, optArgs)) {
                 plotArgs[[i]] <- optArgs[[i]];
                 optArgs <- .removeArguments(i, optArgs);
-             }
+            }
         }
     }
 

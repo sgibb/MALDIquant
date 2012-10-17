@@ -8,12 +8,16 @@ This function looks for similar peaks (mass) across
 \code{\linkS4class{MassPeaks}} objects and equalizes their mass.
 }
 \usage{
-binPeaks(l, tolerance=0.002)
+binPeaks(l, method=c("strict", "relaxed"), tolerance=0.002)
 }
 \arguments{
     \item{l}{
         \code{list}, list of \code{\linkS4class{MassPeaks}} objects.
     }
+    \item{method}{
+        bin creation rule. \code{"strict"} creates bins never containing two
+        or more peaks of the sampe sample. \code{"relaxed"} allows multiple
+        peaks of the same sample in one bin.}
     \item{tolerance}{
         \code{double}, maximal deviation of a peak position (mass) to be
         considered as identical.
@@ -29,7 +33,8 @@ The algorithm is based on the following workflow:
     \item{Rerun step 3 for the left and/or the right bin if they don't fulfill
         the two criteria:
         \itemize{
-            \item{The bin doesn't contain two or more peaks of the same sample.}
+            \item{The bin doesn't contain two or more peaks of the same sample
+            (\code{method == "strict"}).}
             \item{All peaks in a bin are near to the mean 
                 (\code{abs(mass-meanMass)/meanMass < tolerance}).}
         }

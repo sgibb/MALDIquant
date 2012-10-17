@@ -11,12 +11,15 @@ Generally it is a combination of \code{\link[MALDIquant]{binPeaks}} and
 \code{\link[MALDIquant]{filterPeaks}}
 }
 \usage{
-referencePeaks(l, minFrequency=0.9, tolerance=0.002)
+referencePeaks(l, method=c("strict", "relaxed"), minFrequency=0.9, tolerance=0.002)
 }
 \arguments{
     \item{l}{
         \code{list}, list of \code{\linkS4class{MassPeaks}} objects.
     }
+    \item{method}{
+        bin creation rule (see \code{\link[MALDIquant]{binPeaks}}).
+    } 
     \item{minFrequency}{
         \code{double}, remove all peaks which occur in less than
         \code{minFrequency*length(l)} \code{\linkS4class{MassPeaks}}
