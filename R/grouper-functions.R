@@ -81,14 +81,10 @@
 
         noDup <- !duplicated(samples);
 
-        ## order mass
-        mass <- mass[s$ix];
+        noDup[s$ix] <- noDup
 
         ## replace mass corresponding to highest intensity
-        mass[noDup] <- meanMass;
-
-        ## reorder mass
-        mass[s$ix] <- mass;
+        mass[noDup] <- mean(mass[noDup]);
 
         return(mass);
     } else {
