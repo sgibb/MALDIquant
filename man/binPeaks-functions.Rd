@@ -60,10 +60,8 @@ Sebastian Gibb
 library("MALDIquant");
 
 ## create two MassPeaks objects
-p <- list(createMassPeaks(mass=seq(100, 500, 100),
-                          intensity=1:5),
-          createMassPeaks(mass=c(seq(100.2, 300.2, 100), 395),
-                          intensity=1:4));
+p <- list(createMassPeaks(mass=seq(100, 500, 100), intensity=1:5),
+          createMassPeaks(mass=c(seq(100.2, 300.2, 100), 395), intensity=1:4));
 
 ## only keep peaks which occur in all MassPeaks objects
 binnedPeaks <- binPeaks(p, tolerance=0.002);
@@ -85,6 +83,14 @@ iM3 <- intensityMatrix(binnedPeaks);
 all(dim(iM3) == c(2, 5)); # TRUE
 
 show(iM3);
+
+## differences between "strict" and "relaxed"
+p <- c(createMassPeaks(mass=c(1, 1.01, 3), intensity=c(2, 1, 1)),
+       createMassPeaks(mass=c(0.99, 3), intensity=rep(1, 2)),
+       createMassPeaks(mass=c(1.02, 3), intensity=rep(1, 2)));
+
+intensityMatrix(binPeaks(p, method="strict", tolerance=0.05));
+intensityMatrix(binPeaks(p, method="relaxed", tolerance=0.05));
 }
 \keyword{methods}
 
