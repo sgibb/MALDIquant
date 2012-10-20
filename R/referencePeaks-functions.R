@@ -21,19 +21,23 @@
 ##
 ## params:
 ##  l: list of MassPeaks objects
-##  labels: factor, labels for samples
+##  method: character, grouper to used (strict: don't allow multiple peaks of
+##          the same sample in the same bin, relaxed: allow them)
+##  minFrequency: double, minimal frequency of a peak to be not removed 
 ##  tolerance: double, maximal deviation of a peak position to be
 ##             considered as same peak
 ##
 ## returns:
 ##  a new MassPeaks object
 ##
-referencePeaks <- function(l, minFrequency=0.9, tolerance=0.002) {
+referencePeaks <- function(l, method=c("strict", "relaxed"), minFrequency=0.9,
+                           tolerance=0.002) {
 
     .stopIfNotMassPeaksList(l);
 
     ## find reference peaks by binning and filtering
-    referencePeaks <- filterPeaks(binPeaks(l, tolerance=tolerance),
+    referencePeaks <- filterPeaks(binPeaks(l, method=method, 
+                                           tolerance=tolerance),
                                   minFrequency=minFrequency);
 
     iM <- intensityMatrix(referencePeaks);

@@ -23,24 +23,27 @@
 ##
 ## params:
 ##  l: list of MassPeaks objects
+##  method: character, grouper to used (strict: don't allow multiple peaks of
+##          the same sample in the same bin, relaxed: allow them)
 ##  tolerance: double, maximal deviation of a peak position to be
 ##             considered as same peak
 ##
 ## returns:
 ##  a list of adjusted MassPeaks objects
 ##
-binPeaks <- function(l, tolerance=0.002) {
-
+binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
 
     ## test arguments
     .stopIfNotMassPeaksList(l);
+
+    method <- match.arg(method, c("strict", "relaxed"), several.ok=FALSE);
 
     ## fetch all mass
     mass <- unname(.unlist(lapply(l, function(x)x@mass)));
 
     ## fetch all intensities
     intensities <- .unlist(lapply(l, function(x)x@intensity));
-    
+
     ## store original mass sample number/id
     samples <- .unlist(lapply(1:length(l), function(x) {
         return(rep(x, length(l[[x]])));
@@ -52,10 +55,31 @@ binPeaks <- function(l, tolerance=0.002) {
     mass <- s$x;
     intensities <- intensities[s$ix];
     samples <- samples[s$ix];
+
+    ## select grouper
+    grouper <- switch(method,
+                      "strict"  = { 
+                          .grouperStrict
+                      },
+                      "relaxed" = {
+                          .grouperRelaxed
+                      },
+                      {
+                          stop("Unknown ", sQuote("method"), ".");
+                      }
+    );
  
     ## binning
     mass <- .binPeaks(mass=mass, intensities=intensities, samples=samples,
-                      tolerance=tolerance);
+                      tolerance=tolerance, grouper=grouper);
+
+    ## resort mass (order could change if "relaxed" is used)
+    if (method == "relaxed") {
+        s <- sort(mass, method="quick", index.return=TRUE);
+        mass <- s$x;
+        intensities <- intensities[s$ix];
+        samples <- samples[s$ix];
+    }
 
     ## group mass/intensities by sample ids
     lIdx <- tapply(X=1:length(mass), INDEX=samples, FUN=function(x) {
