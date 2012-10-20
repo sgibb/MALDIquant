@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.3.9 [2012-10-20]:
+- binPeaks/referencePeaks: add argument method=c("strict", "relaxed"); "relaxed"
+  allows multiple peaks of the same spectrum in a bin.
+
 Version 1.3.8 [2012-10-14]:
 - show: rewrite (OO design)
 
