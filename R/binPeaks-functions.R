@@ -73,6 +73,14 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
     mass <- .binPeaks(mass=mass, intensities=intensities, samples=samples,
                       tolerance=tolerance, grouper=grouper);
 
+    ## resort mass (order could change if "relaxed" is used)
+    if (method == "relaxed") {
+        s <- sort(mass, method="quick", index.return=TRUE);
+        mass <- s$x;
+        intensities <- intensities[s$ix];
+        samples <- samples[s$ix];
+    }
+
     ## group mass/intensities by sample ids
     lIdx <- tapply(X=1:length(mass), INDEX=samples, FUN=function(x) {
         return(x);
