@@ -44,6 +44,9 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
     ## fetch all intensities
     intensities <- .unlist(lapply(l, function(x)x@intensity));
 
+    ## fetch all snr 
+    snr <- .unlist(lapply(l, function(x)x@snr));
+
     ## store original mass sample number/id
     samples <- .unlist(lapply(1:length(l), function(x) {
         return(rep(x, length(l[[x]])));
@@ -54,6 +57,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
     
     mass <- s$x;
     intensities <- intensities[s$ix];
+    snr <- snr[s$ix];
     samples <- samples[s$ix];
 
     ## select grouper
@@ -78,10 +82,11 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
         s <- sort(mass, method="quick", index.return=TRUE);
         mass <- s$x;
         intensities <- intensities[s$ix];
+        snr <- snr[s$ix];
         samples <- samples[s$ix];
-    }
+    } 
 
-    ## group mass/intensities by sample ids
+    ## group mass/intensities/snr by sample ids
     lIdx <- tapply(X=1:length(mass), INDEX=samples, FUN=function(x) {
         return(x);
     });
@@ -90,6 +95,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
     l <- mapply(FUN=function(p, i) {
         p@mass <- mass[i];
         p@intensity <- intensities[i];
+        p@snr <- snr[i];
         return(p);
     }, p=l, i=lIdx);
 
