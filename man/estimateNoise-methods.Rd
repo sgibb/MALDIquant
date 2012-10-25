@@ -18,7 +18,7 @@ This method estimates the noise of mass spectrometry data
         \code{\link[MALDIquant]{.estimateNoiseMad}},
         \code{\link[MALDIquant]{.estimateNoiseSuperSmoother}}
     }
-    \item{\dots}{arguments to be passed to \code{method}}.
+    \item{\dots}{arguments to be passed to \code{method}.}
 }
 \value{
 Returns a two column matrix (first column: mass, second column: intensity)
