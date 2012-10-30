@@ -14,7 +14,7 @@ Version 1.4 [2012-10-30]:
   .estimateNoiseSuperSmoother.
 - estimateNoise: add method argument, change return value to two column matrix.
 - show: rewrite (OO design).
-- calibrate: add ... to generic definiton of calibrate.
+- calibrate: add ... to generic definition of calibrate.
 
 Version 1.3 [2012-09-16]:
 - Add trim and [ methods.
