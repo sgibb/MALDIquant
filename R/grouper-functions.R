@@ -49,6 +49,49 @@
     return(meanMass);
 }
 
+## .grouperRelaxed
+##  relaxed grouping function (more than one peak of one sample per bin possible)
+##  choose highest peak in range.
+##
+## params:
+##  mass: double, sorted mass
+##  intensities: double, corresponding intensities
+##  samples: double, corresponding sample id numbers
+##  tolerance: double, maximal deviation of a peak position to be
+##             considered as same peak
+##  meanMass: double, mean of mass (new peak position)
+##
+## returns:
+##  NA if further splitting is needed;
+##  meanMass (double) if all criteria are matched
+##
+.grouperRelaxed <- function(mass, intensities, samples, tolerance) {
+    meanMass <- mean(mass);
+
+    ## all peaks in range?
+    if (any(abs(mass-meanMass)/meanMass > tolerance)) {
+        return(NA);
+    }
+
+    ## choose highest peak in duplicates
+    if (any(duplicated(samples))) {
+        s <- sort(intensities, method="quick", decreasing=TRUE, 
+                  index.return=TRUE);
+        samples <- samples[s$ix];
+
+        noDup <- !duplicated(samples);
+
+        noDup[s$ix] <- noDup
+
+        ## replace mass corresponding to highest intensity
+        mass[noDup] <- mean(mass[noDup]);
+
+        return(mass);
+    } else {
+        return(meanMass);
+    }
+}
+
 ## .grouperRelaxedHighestAtReference
 ##  relaxed grouping function (more than one peak of one sample per bin possible)
 ##  Choose highest test sample peaks in range around a reference peak.
@@ -101,3 +144,4 @@
         return(meanMass);
     }
 }
+

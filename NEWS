@@ -1,6 +1,21 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.4 [2012-10-30]:
+- Add slot "snr" to MassPeaks.
+- Change demo licences.
+- binPeaks/referencePeaks: add argument method=c("strict", "relaxed"); "relaxed"
+  allows multiple peaks of the same spectrum in a bin.
+- labelPeaks: remove tolerance argument (now always select the closest one).
+- mergeMassPeaks/mergeMassSpectra: merge metaData, too.
+- detectPeaks: new example for a custom noise estimation function.
+- detectPeaks: change internal snr handling.
+- Add .estimateNoiseMad (same implementation as old estimateNoise method),
+  .estimateNoiseSuperSmoother.
+- estimateNoise: add method argument, change return value to two column matrix.
+- show: rewrite (OO design).
+- calibrate: add ... to generic definiton of calibrate.
+
 Version 1.3 [2012-09-16]:
 - Add trim and [ methods.
 - Fix isMassSpectrumList.

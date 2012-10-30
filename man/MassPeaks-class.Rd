@@ -3,6 +3,8 @@
 \docType{class}
 \alias{MassPeaks}
 \alias{MassPeaks-class}
+\alias{snr}
+\alias{snr,MassPeaks-method}
 
 \title{Class "MassPeaks"}
 \description{
@@ -15,6 +17,12 @@ spectrum of a MALDI/TOF mass spectrometry measurement.
 }
 \section{Extends}{
 Class \code{\linkS4class{AbstractMassObject}}, directly.
+}
+\section{Slots}{
+\describe{
+    \item{\code{snr}:}{\code{vector}, \emph{s}ignal-to-\emph{n}oise
+      \emph{r}atio}
+}
 }
 \section{Methods}{
 \describe{
@@ -32,6 +40,7 @@ Sebastian Gibb
 }
 \seealso{
 \code{\link[MALDIquant]{createMassPeaks}},
+\code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}},
 \code{\link[MALDIquant]{labelPeaks,MassPeaks-method}},
 \code{\linkS4class{AbstractMassObject}}
 }

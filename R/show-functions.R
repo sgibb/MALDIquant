@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2012 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,33 +16,26 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## .which.nearby 
-##  a relaxed version of which
+## .prepareShowGroupName
+##  prepares a group name for show (appends numbers to name if needed)
 ##
 ## params:
 ##  x: vector
-##  y: single
+##  name: group name
 ##
 ## returns:
-##  a vector of indices refer to empty AbstractMassObject objects
 ##
-.which.nearby <- function(x, y, tolerance=0.001) {
-    
-    ## test parameters
-    if (!is.numeric(x)) {
-        stop(sQuote("x"), " has to be numeric!");
+.prepareShowGroupName <- function(x, name) {
+    if (!is.null(x)) {
+        n <- length(x);
+
+        if (n > 1) {
+            name <- paste(name, 1:n, sep="");
+        }
+
+    } else {
+        name <- NULL
     }
 
-    if (!is.numeric(y)) {
-        stop(sQuote("y"), " has to be numeric!");
-    }
-
-    if (length(y) != 1) {
-        stop("length of ", sQuote("y"), " hast to be 1!");
-    }
-
-    diff <- abs(x-y);
-    minDiffIdx <- which.min(diff);
-
-    return(ifelse((diff[minDiffIdx]/y) <= tolerance, minDiffIdx, NA));    
+    return(name)
 }

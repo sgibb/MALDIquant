@@ -16,21 +16,25 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## basic class for all spectra based information
-setClass("AbstractMassObject",
-    representation=representation(mass="vector", intensity="vector",
-        metaData="list", .cache="environment"),
-    prototype=prototype(mass=vector(mode="numeric"), 
-        intensity=vector(mode="numeric"), metaData=list()),
-    contains="VIRTUAL");
+## .which.closest
+##  a relaxed version of which (returns the nearest index)
+##
+## params:
+##  x: numeric key value to look for
+##  vec: numeric, has to be sorted
+##
+## returns:
+##  a vector of indices
+##
+.which.closest <- function(x, vec) {
+    
+  ## find left interval
+  lIdx <- findInterval(x, vec, rightmost.closed=FALSE, all.inside=TRUE)
+  rIdx <- lIdx+1
 
-## represent a spectrum
-setClass("MassSpectrum",
-    contains="AbstractMassObject");
-
-## represent a peak list from a single spectrum
-setClass("MassPeaks",
-    representation=representation(snr="vector"),
-    prototype=prototype(snr=vector(mode="numeric")),
-    contains="AbstractMassObject");
-
+  ## calculate differences for left and right
+  lDiff <- abs(vec[lIdx]-x)
+  rDiff <- abs(vec[rIdx]-x)
+  
+  return(ifelse(lDiff == pmin(lDiff, rDiff), lIdx, rIdx))
+}

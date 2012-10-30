@@ -2,21 +2,28 @@
 
 \alias{approxfun}
 \alias{show}
+\alias{[,MassPeaks,logical,missing-method}
+\alias{[,MassPeaks,numeric,missing-method}
 
 \alias{.binPeaks}
 \alias{.calculateLabelPositions}
 \alias{.doByLabels}
 \alias{.filterPeaks}
 \alias{.findLocalMaxima}
+\alias{.findLocalMaximaLogical}
 \alias{.grouperRelaxedHighestAtReference}
 \alias{.grouperStrict}
 \alias{.isArgument}
 \alias{.isFunctionList}
 \alias{.labelOverlap}
+\alias{.localMaxima}
 \alias{.lowerConvexHullR}
 \alias{.merge}
 \alias{.mergeMassPeaks}
 \alias{.mergeMassSpectra}
+\alias{.mergeMetaData}
+\alias{.prepareShow}
+\alias{.prepareShowGroupName}
 \alias{.removeArguments}
 \alias{.replaceNonEmptyMassObjects}
 \alias{.snipR}
@@ -26,10 +33,11 @@
 \alias{.testLabelOverlap}
 \alias{.textLabelRects}
 \alias{.validAbstractMassObject}
+\alias{.validMassPeaks}
 \alias{.warp}
 \alias{.warpingFunctionCubic}
 \alias{.warpingFunctionLowess}
-\alias{.which.nearby}
+\alias{.which.closest}
 
 \title{Internal MALDIquant Functions}
 \description{

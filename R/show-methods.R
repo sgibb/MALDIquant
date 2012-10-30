@@ -21,6 +21,25 @@ setMethod(f="show",
     signature=signature(object="AbstractMassObject"),
     definition=function(object) {
     
+    l <- .prepareShow(object);
+
+    isFilename <- grepl(pattern="^File.*", x=l$groups);
+
+    ## to avoid newlines in other values don't format filenames
+    ## (they could be very long)
+    l$values[!isFilename] <- format(l$values[!isFilename], justify="left");
+
+    l$groups <- format(l$groups, justify="left");
+
+    for (i in seq(along=l$groups)) {
+        cat(l$groups[i], ": ", l$values[i], "\n", sep="");
+    }
+});
+
+setMethod(f=".prepareShow",
+    signature=signature(object="AbstractMassObject"),
+    definition=function(object) {
+ 
     groups <- c("S4 class type",
                 "Number of m/z values", 
                 "Range of m/z values",
@@ -40,31 +59,32 @@ setMethod(f="show",
                                  scientific=TRUE), sep=""));
     }
 
-    if (!is.null(object@metaData$name)) {
-        groups <- c(groups, "Name");    
-        values <- c(values, object@metaData$name);
-    }
+    groups <- c(groups, .prepareShowGroupName(object@metaData$name, "Name"));
+    values <- c(values, object@metaData$name);
 
-    groups <- format(groups, justify="left");
-    values <- format(values, justify="left");
+    groups <- c(groups, .prepareShowGroupName(object@metaData$file, "File"));
+    values <- c(values, object@metaData$file);
 
-    if (!is.null(object@metaData$file)) {
-        n <- length(object@metaData$file);
-
-        if (n > 1) {
-            groups <- c(groups, paste("File", 1:n, sep=""));
-        } else {
-            groups <- c(groups, "File");
-        }
-        groups <- format(groups, justify="left");
-
-        ## to avoid newlines in other values don't format filenames
-        ## (they could be very long)
-        values <- c(values, object@metaData$file);
-    }
-
-    for (i in seq(along=groups)) {
-        cat(groups[i], ": ", values[i], "\n", sep="");
-    }
+    return(list(groups=groups, values=values))
 });
 
+setMethod(f=".prepareShow",
+    signature=signature(object="MassPeaks"),
+    definition=function(object) {
+
+    l <- callNextMethod(object)
+
+    groups <- "Range of snr values:";
+
+    if (isEmpty(object)) {
+        values <- NA;
+    } else {
+        values <- paste(round(range(object@snr), digits=3), collapse=" - ");
+    }
+    
+    ## append snr info after intensity
+    l$groups <- append(l$groups, groups, after=4);
+    l$values <- append(l$values, values, after=4);
+
+    return(list(groups=l$groups, values=l$values))
+});

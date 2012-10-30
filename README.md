@@ -17,3 +17,11 @@ Please visit: http://strimmerlab.org/software/maldiquant/
 install.packages("MALDIquant")
 ```
 
+## Install development version (not recommended)
+
+```R
+install.packages("devtools")
+library("devtools")
+install_github("MALDIquant", "sgibb", "dev")
+```
+
