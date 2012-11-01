@@ -27,14 +27,29 @@
 ## returns:
 ##  logical vector of local maxima 
 ##
+
+## C version
 .localMaxima <- function(y, halfWindowSize=1) {
+    y <- c(rep(0, halfWindowSize), y, rep(0, halfWindowSize))
+    n <- length(y);
+    return(.C("R_localMaxima",
+            as.double(y),
+            as.integer(n),
+            as.integer(halfWindowSize),
+            output=logical(n),
+            DUP=TRUE,
+            MALDIquant="MALDIquant")$output[(halfWindowSize+1):(n-halfWindowSize)]);
+}
+
+## R only: obsolete because too slow and too much memory usage
+.localMaximaR <- function(y, halfWindowSize=1) {
     ## based on a posting of Brian Ripley on r-help mailinglist
     ## https://stat.ethz.ch/pipermail/r-help/2001-January/010704.html
     windowSize <- 2*halfWindowSize+1;
 
     windows <- embed(c(rep(0, halfWindowSize), y, rep(0, halfWindowSize)), 
                      windowSize);
-    localMaxima <- max.col(windows, "first") == halfWindowSize+1;
+    localMaxima <- max.col(windows, "last") == halfWindowSize+1;
 
     return(localMaxima)
 }
