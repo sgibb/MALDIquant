@@ -26,7 +26,8 @@ setMethod(f=".findLocalMaxima",
         return(matrix(ncol=2, dimnames=list(list(), list("mass", "intensity"))));
     }
 
-    localMaxima <- .localMaxima(object@intensity, halfWindowSize=halfWindowSize)
+    localMaxima <- .findLocalMaximaLogical(object@intensity,
+                                           halfWindowSize=halfWindowSize)
 
     m <- cbind(object@mass, object@intensity)[localMaxima,];
     
@@ -48,9 +49,9 @@ setMethod(f=".findLocalMaximaLogical",
         stop(sQuote("halfWindowSize"), "=", halfWindowSize, " is too small!");
     }
 
-    if (halfWindowSize*2+1 >= length(object)) {
+    if (halfWindowSize*2+1 > length(object)) {
         stop(sQuote("halfWindowSize"), " is too large! ",
-             "(window size (", halfWindowSize*2+1, ") >= number of ",
+             "(window size (", halfWindowSize*2+1, ") > number of ",
              " intensity values (", length(object), "))");
     }
 
