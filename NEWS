@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.4.3 [2012-11-15]:
+- Add movingAverage.
+
 Version 1.4.2 [2012-11-03]:
 - detectPeaks: only throw an error if windowSize > length (windowSize == length
   is no error anymore).

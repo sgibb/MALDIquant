@@ -15,8 +15,7 @@ data("fiedler2009subset", package="MALDIquant");
 spectra <- transformIntensity(fiedler2009subset, sqrt);
 
 ## simple 5 point moving average for smoothing spectra
-movingAverage <- function(y) {return( filter(y, rep(1, 5)/5, sides=2) );}
-spectra <- transformIntensity(spectra, movingAverage);
+spectra <- transformIntensity(spectra, movingAverage, halfWindowSize=2);
 
 ## remove baseline
 spectra <- removeBaseline(spectra);
