@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.4.4 [2012-11-15]:
+- labelPeaks: add labels argument.
+
 Version 1.4.3 [2012-11-15]:
 - Add movingAverage.
 

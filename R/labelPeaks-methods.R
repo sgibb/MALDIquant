@@ -21,6 +21,7 @@ setMethod(f="labelPeaks",
     definition=function(object, 
         index,
         mass,
+        labels,
         digits=3,
         underline=TRUE, 
         ## verticalOffset ca. 0.01 of plot height
@@ -31,38 +32,48 @@ setMethod(f="labelPeaks",
         arrowLength=0, arrowLwd=0.5, arrowCol=1,
         ...) {
 
-    if (!missing(mass) && is.numeric(mass)) {
-        massIndex <- .which.closest(mass, object@mass)
+    ## index
+    if (missing(index) && missing(mass)) {
+        index <- seq_along(object@mass);
+    } else if (!missing(index) && is.logical(index)) {
+        index <- which(index);
+    } 
 
-        if (!missing(index)) {
-            if (is.logical(index)) {
-                warning("Could not handle a logical ", sQuote("index"), 
-                        " and a numeric ", sQuote("mass"), " vector. ",
-                        "Replacing ", sQuote("index"), " by ", sQuote("mass"),
-                        ".");
-                index <- massIndex;
-            } else {
-                index <- c(index, massIndex);
-            }
+    if (!missing(mass) && is.numeric(mass)) {
+        massIdx <- .which.closest(mass, object@mass);
+
+        if (missing(index)) {
+            index <- massIdx;
         } else {
-            index <- massIndex;
+            index <- c(index, massIdx);
         }
         
         ## remove duplicated indices
         index <- unique(index);
-    } else if (missing(mass) && missing(index)) {
-        index <- 1:length(object@mass);
-    }
+    } 
 
     isValidIndex <- length(index) >= 1 && 
-                    length(index) <= length(object@mass) && 
-                    ((min(index) >= 1 && max(index) <= length(object@mass)) ||
-                      is.logical(index));
+                    length(index) <= length(object@mass) &&
+                    (min(index) >= 1 && max(index) <= length(object@mass));
+
     if (!isValidIndex) {
         stop("No valid ", sQuote("index"), " nor ", sQuote("mass"), " given.");
     }
 
     x <- object@mass[index];
+
+    ## labels
+    if (missing(labels)) {
+        labels <- round(x=x, digits=digits);
+    } else if (!missing(labels) && length(index) != length(labels)) {
+        stop("Lenghts of ", sQuote("index"), "/", sQuote("mass"), " and ",
+             sQuote("labels"), " have to be equal.")
+    }
+
+    if (underline) {
+        labels <- as.expression(sapply(labels, 
+            function(x)substitute(underline(a), list(a=x))));
+    }
 
     if (missing(absoluteVerticalPos)) {
         y <- object@intensity[index]+verticalOffset;
@@ -70,16 +81,9 @@ setMethod(f="labelPeaks",
         y <- absoluteVerticalPos;
     }
 
-    peakLabels <- round(x=x, digits=digits);
-
-    if (underline) {
-        peakLabels <- as.expression(sapply(peakLabels,
-                function(x)substitute(underline(a), list(a=x))));
-    }
-
     if (avoidOverlap) {
       ## inspired by Ian Fellows' wordcloud::wordlayout
-      p <- .calculateLabelPositions(object, x, y, peakLabels, adj=adj, cex=cex)
+      p <- .calculateLabelPositions(object, x, y, labels, adj=adj, cex=cex)
 
       ## create arrows from label to peak
       arrows(x0=p$x, y0=p$y, x1=x, y1=y, col=arrowCol, length=arrowLength,
@@ -90,6 +94,6 @@ setMethod(f="labelPeaks",
       x <- p$x
       y <- p$y
     }
-    text(x=x, y=y, labels=peakLabels, adj=adj, cex=cex,...);
+    text(x=x, y=y, labels=labels, adj=adj, cex=cex,...);
 });
 
