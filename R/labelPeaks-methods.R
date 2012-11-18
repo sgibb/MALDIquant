@@ -94,6 +94,6 @@ setMethod(f="labelPeaks",
       x <- p$x
       y <- p$y
     }
-    text(x=x, y=y, labels=labels, adj=adj, cex=cex,...);
+    text(x=x, y=y, labels=labels, adj=adj, cex=cex, ...);
 });
 
