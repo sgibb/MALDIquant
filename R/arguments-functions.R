@@ -16,20 +16,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## .isArgument
-##  test whether a (argument) list contains a special name
-##
-## params:
-##  x: character, single argument name
-##  arguments: list, arguments
-##
-## returns:
-##  TRUE/FALSE
-##
-.isArgument <- function(x, arguments) {
-    return(x %in% names(arguments));
-}
-
 ## .removeArguments
 ##  removes arguments from argument list
 ##
@@ -41,6 +27,6 @@
 ##  reduced argument list
 ##
 .removeArguments <- function(x, arguments) {
-    keep <- !na.omit(names(arguments) %in% x);
-    return(arguments[seq(along=arguments)[keep]]);
+    keep <- charmatch(x=names(arguments), table=x, nomatch=0) == 0;
+    return(arguments[keep]);
 }

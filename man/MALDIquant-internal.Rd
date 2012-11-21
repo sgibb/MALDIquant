@@ -13,7 +13,6 @@
 \alias{.findLocalMaximaLogical}
 \alias{.grouperRelaxedHighestAtReference}
 \alias{.grouperStrict}
-\alias{.isArgument}
 \alias{.isFunctionList}
 \alias{.labelOverlap}
 \alias{.localMaxima}

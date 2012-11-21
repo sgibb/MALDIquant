@@ -48,13 +48,11 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
     ## find reference peaks
     if (missing(reference)) {
         arguments <- list(l=l, tolerance=tolerance);
+        argumentNames <- c("method", "minFrequency");
 
-        for (i in c("method", "minFrequency")) {
-            if (.isArgument(i, optArgs)) {
-                arguments[[i]] <- optArgs[[i]];
-                optArgs <- .removeArguments(i, optArgs);
-            }
-        }
+        arguments <- modifyList(arguments, optArgs[argumentNames]);
+        optArgs <- .removeArguments(argumentNames, optArgs);
+
         reference <- do.call(referencePeaks, arguments);
     }
 
@@ -64,16 +62,11 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
 
     ## fetch plot.default arguments (debug plot)
     if (plot) {
-        plotNames <- c("xlim", "ylim", "xlab", "ylab", "main", "sub", "lwd");
-        plotArgs <- vector("list", length=length(plotNames));
-        names(plotArgs) <- plotNames;
+        plotNames <- c("xlim", "ylim", "xlab", "ylab", "type", "lwd", "col",
+                       "col.sub", "cex.main", "cex.sub", "main", "sub");
 
-        for (i in plotNames) {
-            if (.isArgument(i, optArgs)) {
-                plotArgs[[i]] <- optArgs[[i]];
-                optArgs <- .removeArguments(i, optArgs);
-            }
-        }
+        givenPlotArgs <- optArgs[plotNames];
+        optArgs <- .removeArguments(plotNames, optArgs);
     }
 
     ## reference has to become sample no 1
@@ -159,12 +152,14 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
                                  ylim=range(d, na.rm=TRUE),
                                  xlab="mass",
                                  ylab="difference",
-                                 lwd=1);
-        for (i in plotNames) {
-            if (is.null(plotArgs[[i]])) {
-                plotArgs[[i]] <- plotArgsDefaults[[i]];
-            }
-        }
+                                 type="p",
+                                 lwd=1,
+                                 col=1,
+                                 cex.main=0.8,
+                                 cex.sub=0.75,
+                                 col.sub="#808080");
+
+        plotArgs <- modifyList(plotArgsDefaults, givenPlotArgs);
 
         nReference <- length(reference);
         x <- plotArgs$xlim[1]:plotArgs$xlim[2];
@@ -180,28 +175,23 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
             notNA <- !is.na(binnedMass[lIdx[[i+1]]]);
 
             if (is.null(plotArgs$main)) {
-                main <- paste("sample ", i, " vs reference\n",
-                               "(matched peaks: ", sum(notNA), "/", 
-                               nReference, ")", sep="");
-            } else {
-                main <- plotArgs$main;
-            }
+                plotArgs$main <- paste("sample ", i, " vs reference\n",
+                                       "(matched peaks: ", sum(notNA), "/", 
+                                       nReference, ")", sep="");
+            } 
 
             if (is.null(plotArgs$sub)) {
-                sub <- l[[i]]@metaData$file;
-            } else {
-                sub <- plotArgs$sub;
-            }
+                plotArgs$sub <- l[[i]]@metaData$file;
+            } 
 
             ## plot reference vs sample
-            plot(l[[i]]@mass[notNA], d[lIdx[[i+1]]][notNA], type="p",
-                 xlim=plotArgs$xlim, ylim=plotArgs$ylim, 
-                 xlab=plotArgs$xlab, ylab=plotArgs$ylab,
-                 cex.main=0.8, main=main, sub=sub,
-                 lwd=plotArgs$lwd, cex.sub=0.75, col.sub="#808080");
+            plotArgs$x <- l[[i]]@mass[notNA];
+            plotArgs$y <- d[lIdx[[i+1]]][notNA];
+            do.call(plot.default, plotArgs);
 
             ## draw warping function
-            lines(x, warpingFunctions[[i]](x), lwd=plotArgs$lwd);
+            lines(x, warpingFunctions[[i]](x), lwd=plotArgs$lwd,
+                  col=plotArgs$col);
         }
 
         if (!isNonInteractivePlot && !plotInteractive) {
