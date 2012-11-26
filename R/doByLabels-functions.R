@@ -35,6 +35,9 @@
     FUN <- match.fun(FUN);
 
     if (!missing(labels)) {
+        ## drop unused levels
+        labels <- droplevels(labels);
+
         if (length(labels) != length(l)) {
             stop("For each item in ", sQuote("l"), 
                  " there must be a label in ", sQuote("labels"), "!");
