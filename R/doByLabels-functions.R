@@ -35,8 +35,8 @@
     FUN <- match.fun(FUN);
 
     if (!missing(labels)) {
-        ## drop unused levels
-        labels <- droplevels(labels);
+        ## drop unused levels and turn argument into factor
+        labels <- factor(labels);
 
         if (length(labels) != length(l)) {
             stop("For each item in ", sQuote("l"), 

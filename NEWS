@@ -2,7 +2,7 @@ RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
 Version 1.4.5 [2012-11-26]:
-- .doByLabels: drop unused levels of argument "labels" (type: factor);
+- .doByLabels: drop unused levels of argument "labels";
   affected functions: filterPeaks, mergeMassPeaks, mergeMassSpectra.
 
 Version 1.4.4 [2012-11-15]:
