@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.5.1 [2013-01-24]:
+- .doByLabels: fix an error that occurred if all labels were unique (fixes #1);
+  affected functions: filterPeaks, mergeMassPeaks, mergeMassSpectra.
+
 Version 1.5 [2012-12-06]:
 - Add movingAverage.
 - labelPeaks: add labels argument.

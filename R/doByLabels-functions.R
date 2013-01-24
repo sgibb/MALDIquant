@@ -38,7 +38,9 @@
         ## drop unused levels and turn argument into factor
         labels <- factor(labels);
 
-        if (length(labels) != length(l)) {
+        n <- length(l);
+
+        if (length(labels) != n) {
             stop("For each item in ", sQuote("l"), 
                  " there must be a label in ", sQuote("labels"), "!");
         }
@@ -46,8 +48,9 @@
         ## replace tapply by split to preserve order 
         tmp <- lapply(split(unlist(l), labels), FUN=FUN, ...);
 
-        k <- unlist(tmp)
-        if (length(k) == length(l)) {
+        k <- unlist(tmp);
+
+        if (length(k) == n && length(tmp) != n) {
             k <- unsplit(tmp, labels);
         }
     } else {
