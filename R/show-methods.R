@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -31,9 +31,7 @@ setMethod(f="show",
 
     l$groups <- format(l$groups, justify="left");
 
-    for (i in seq(along=l$groups)) {
-        cat(l$groups[i], ": ", l$values[i], "\n", sep="");
-    }
+    cat(paste(l$groups, ": ", l$values, sep="", collapse="\n"), sep="\n")
 });
 
 setMethod(f=".prepareShow",
