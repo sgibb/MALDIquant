@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,59 +16,55 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## MassSpectrum 
+## MassSpectrum
 setMethod(f="detectPeaks",
-    signature=signature(object="MassSpectrum"),
-    definition=function(object, 
-                        halfWindowSize=20, fun,  SNR=2,
-                        ...) {
+          signature=signature(object="MassSpectrum"),
+          definition=function(object, halfWindowSize=20, fun, SNR=2, ...) {
 
-    ## empty spectrum?
-    if (.isEmptyWarning(object)) {
-        return(createMassPeaks(mass=object@mass,
-                               intensity=object@intensity,
-                               metaData=object@metaData));
-    }
+  ## empty spectrum?
+  if (.isEmptyWarning(object)) {
+    return(createMassPeaks(mass=object@mass, intensity=object@intensity,
+                           metaData=object@metaData))
+  }
 
-    ## try to use user-defined noise estimation function
-    if (!missing(fun)) {
-        fun <- match.fun(fun);
-        noise <- fun(object@mass, object@intensity, ...);
-    } else {
-        noise <- estimateNoise(object, ...);
-    }
+  ## try to use user-defined noise estimation function
+  if (!missing(fun)) {
+    fun <- match.fun(fun)
+    noise <- fun(object@mass, object@intensity, ...)
+  } else {
+    noise <- estimateNoise(object, ...)
+  }
 
-    ## wrong noise argument given?
-    isCorrectNoise <- is.matrix(noise) &&
-                      (nrow(noise) == length(object) && ncol(noise) == 2);
+  ## wrong noise argument given?
+  isCorrectNoise <- is.matrix(noise) &&
+                    (nrow(noise) == length(object) && ncol(noise) == 2)
 
-    if (!isCorrectNoise) {
-        stop("The noise argument is not valid.");
-    }
+  if (!isCorrectNoise) {
+    stop("The noise argument is not valid.")
+  }
 
-    ## find local maxima
-    localMaxima <- .findLocalMaximaLogical(object,
-                                           halfWindowSize=halfWindowSize);
+  ## find local maxima
+  localMaxima <- .findLocalMaximaLogical(object, halfWindowSize=halfWindowSize)
 
-    ## include only local maxima which are above the noise
-    aboveNoise <- object@intensity > (SNR * noise[, 2])
+  ## include only local maxima which are above the noise
+  aboveNoise <- object@intensity > (SNR * noise[, 2])
 
-    isPeak <- aboveNoise & localMaxima
+  isPeak <- aboveNoise & localMaxima
 
-    return(createMassPeaks(mass=object@mass[isPeak],
-                           intensity=object@intensity[isPeak],
-                           snr=object@intensity[isPeak]/noise[isPeak, 2],
-                           metaData=object@metaData));
-});
+  return(createMassPeaks(mass=object@mass[isPeak],
+                         intensity=object@intensity[isPeak],
+                         snr=object@intensity[isPeak]/noise[isPeak, 2],
+                         metaData=object@metaData))
+})
 
 ## list
 setMethod(f="detectPeaks",
-    signature=signature(object="list"),
-    definition=function(object, ...) {
+          signature=signature(object="list"),
+          definition=function(object, ...) {
 
-    ## test arguments
-    .stopIfNotMassSpectrumList(object);
+  ## test arguments
+  .stopIfNotMassSpectrumList(object)
 
-    return(lapply(object, detectPeaks, ...));
-});
+  return(lapply(object, detectPeaks, ...))
+})
 

@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,33 +16,31 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## MassSpectrum 
+## MassSpectrum
 setMethod(f="estimateNoise",
-    signature=signature(object="MassSpectrum"),
-    definition=function(object,
-                        method=c("MAD", "SuperSmoother"),
-                        ...) {
-        
-    if (.isEmptyWarning(object)) {
-        return(0);
-    }
+          signature=signature(object="MassSpectrum"),
+          definition=function(object, method=c("MAD", "SuperSmoother"),
+                              ...) {
 
-    method=match.arg(method, several.ok=FALSE);
+  if (.isEmptyWarning(object)) {
+    return(0)
+  }
 
-    n <- switch(method,
-                "MAD" = {
-                    .estimateNoiseMad(object@mass, object@intensity);
-                },
-                "SuperSmoother" = {
-                    .estimateNoiseSuperSmoother(object@mass, object@intensity,
-                                                ...);
-                },
-                {
-                    stop("Unknown ", sQuote("method"), ".");
-                }
-    );
+  method=match.arg(method, several.ok=FALSE)
 
-    colnames(n) <- c("mass", "intensity");
-    return(n);
-});
+  n <- switch(method,
+              "MAD" = {
+                .estimateNoiseMad(object@mass, object@intensity)
+              },
+              "SuperSmoother" = {
+                .estimateNoiseSuperSmoother(object@mass, object@intensity, ...)
+              },
+              {
+                stop("Unknown ", sQuote("method"), ".")
+              }
+  )
+
+  colnames(n) <- c("mass", "intensity")
+  return(n)
+})
 

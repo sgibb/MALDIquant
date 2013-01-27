@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,20 +16,20 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## AbstractMassObject 
+## AbstractMassObject
 setMethod(f="metaData",
-    signature=signature(object="AbstractMassObject"),
-    definition=function(object) {
-    
-    return(object@metaData);
-});
+          signature=signature(object="AbstractMassObject"),
+          definition=function(object) {
+
+  return(object@metaData)
+})
 
 ## AbstractMassObject
 setReplaceMethod(f="metaData",
-    signature=signature(object="AbstractMassObject"),
-    definition=function(object, value) {
-     
-    object@metaData <- value;
-    return(object);
-});
+                  signature=signature(object="AbstractMassObject"),
+                  definition=function(object, value) {
+
+  object@metaData <- value
+  return(object)
+})
 

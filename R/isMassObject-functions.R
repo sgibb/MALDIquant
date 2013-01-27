@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -17,13 +17,13 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 isMassObject <- function(x) {
-    return(inherits(x=x, what="AbstractMassObject"));
+  return(inherits(x=x, what="AbstractMassObject"))
 }
 
 isMassSpectrum <- function(x) {
-    return(is(object=x, class2="MassSpectrum"));
+  return(is(object=x, class2="MassSpectrum"))
 }
 
 isMassPeaks <- function(x) {
-    return(is(object=x, class2="MassPeaks"));
+  return(is(object=x, class2="MassPeaks"))
 }

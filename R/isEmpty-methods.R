@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,32 +16,31 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## AbstractMassObject 
+## AbstractMassObject
 setMethod(f="isEmpty",
-    signature=signature(x="AbstractMassObject"),
-    definition=function(x) {
-    
-    return(length(x@intensity) == 0);
-});
+          signature=signature(x="AbstractMassObject"),
+          definition=function(x) {
+
+  return(length(x@intensity) == 0)
+})
 
 setMethod(f=".isEmptyWarning",
-    signature=signature(x="AbstractMassObject"),
-    definition=function(x) {
+          signature=signature(x="AbstractMassObject"),
+          definition=function(x) {
 
-    if (isEmpty(x)) {
-        msg  <- paste(class(x)[1], " object", sep="");
+  if (isEmpty(x)) {
+    msg <- paste(class(x)[1], " object", sep="")
 
-        if (!is.null(x@metaData$file)) {
-            msg <- paste(msg, " (file: ",
-                         x@metaData$file, ")", sep="");
-        }
-
-        parentCall <- sys.call(-1);
-        warning(paste("In ", deparse(parentCall), " : ", msg, " is empty!",
-                      sep=""), call.=FALSE);
-        return(TRUE);
+    if (!is.null(x@metaData$file)) {
+      msg <- paste(msg, " (file: ", x@metaData$file, ")", sep="")
     }
 
-    return(FALSE);
-});
+    parentCall <- sys.call(-1)
+    warning(paste("In ", deparse(parentCall), " : ", msg, " is empty!",
+                  sep=""), call.=FALSE)
+    return(TRUE)
+  }
+
+  return(FALSE)
+})
 

@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -18,18 +18,10 @@
 
 ## AbstractMassObject 
 setMethod(f="as.matrix",
-    signature=signature(x="AbstractMassObject"),
-    definition=function(x, index) {
-    
-    if (missing(index)) {
-        mass <- x@mass;
-        intensity <- x@intensity;
-    } else { 
-        mass <- x@mass[index];
-        intensity <- x@intensity[index];
-    }
+          signature=signature(x="AbstractMassObject"),
+          definition=function(x, index) {
 
-    return(matrix(c(mass, intensity), ncol=2, byrow=FALSE,
-                dimnames=list(NULL, c("mass", "intensity"))));
-});
+  return(matrix(c(x@mass[index], x@intensity[index]), ncol=2, byrow=FALSE,
+                dimnames=list(NULL, c("mass", "intensity"))))
+})
 

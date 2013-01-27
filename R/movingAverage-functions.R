@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -27,8 +27,8 @@
 ##  double
 ##
 movingAverage <- function(y, halfWindowSize=2) {
-    windowSize <- halfWindowSize*2+1;
-    y <- filter(x=y, filter=rep(1, windowSize)/windowSize, sides=2);
-    attributes(y) <- NULL;
-    return(y);
+  windowSize <- halfWindowSize*2+1
+  y <- filter(x=y, filter=rep(1, windowSize)/windowSize, sides=2)
+  attributes(y) <- NULL
+  return(y)
 }

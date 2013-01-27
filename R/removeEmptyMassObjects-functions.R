@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,7 +16,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## removeEmptyMassObjects 
+## removeEmptyMassObjects
 ##  find and remove empty AbstractMassObject objects in a MassObjectsList
 ##
 ## params:
@@ -27,11 +27,11 @@
 ##
 removeEmptyMassObjects <- function(l) {
 
-    .stopIfNotMassObjectList(l);
+  .stopIfNotMassObjectList(l)
 
-    ## find empty MassPeaks objects
-    notEmpty <- !1:length(l) %in% findEmptyMassObjects(l);
+  ## find empty MassPeaks objects
+  notEmpty <- !(1:length(l) %in% findEmptyMassObjects(l))
 
-    ## exclude empty elements
-    return(l[notEmpty]);
+  ## exclude empty elements
+  return(l[notEmpty])
 }

@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,12 +16,12 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## filterPeaks 
-##  filter peaks which are not frequently represented in different samples 
+## filterPeaks
+##  filter peaks which are not frequently represented in different samples
 ##
 ## params:
 ##  l: list of MassPeaks objects
-##  minFrequency: double, minimal frequency of a peak to be not removed 
+##  minFrequency: double, minimal frequency of a peak to be not removed
 ##  labels: labelwise filtering
 ##
 ## returns:
@@ -29,45 +29,44 @@
 ##
 filterPeaks <- function(l, minFrequency, labels) {
 
-    ## test parameters
-    .stopIfNotMassPeaksList(l);
-    
-    if (minFrequency > 1) {
-        minFrequency <- 1;
-        warning(sQuote("minFrequency"), 
-                " > 1 does not make sense! Using 1 instead.");
-    }
-    
-    if (minFrequency < 0) {
-        minFrequency <- 0;
-        warning(sQuote("minFrequency"), 
-                " < 0 does not make sense! Using 0 instead.");
-    }
-    
-    return(.doByLabels(l, labels=labels, FUN=.filterPeaks,
-                       minFrequency));
+  ## test parameters
+  .stopIfNotMassPeaksList(l)
+
+  if (minFrequency > 1) {
+    minFrequency <- 1
+    warning(sQuote("minFrequency"),
+            " > 1 does not make sense! Using 1 instead.")
+  }
+
+  if (minFrequency < 0) {
+    minFrequency <- 0
+    warning(sQuote("minFrequency"),
+            " < 0 does not make sense! Using 0 instead.")
+  }
+
+  return(.doByLabels(l, labels=labels, FUN=.filterPeaks, minFrequency))
 }
 
 .filterPeaks <- function(l, minFrequency) {
-  
-    ## calculate minimal number of peaks
-    minPeakNumber <- floor(minFrequency*length(l));
 
-    ## fetch mass
-    mass <- sort(unique(.unlist(lapply(l, function(x)x@mass))), method="quick");
+  ## calculate minimal number of peaks
+  minPeakNumber <- floor(minFrequency*length(l))
 
-    ## generate peak matrix
-    pm <- intensityMatrix(l);
-    exclude <- .unlist(apply(pm, 2, function(x)(sum(!is.na(x))<minPeakNumber)));
-    exclude <- mass[exclude];
+  ## fetch mass
+  mass <- sort(unique(.unlist(lapply(l, function(x)x@mass))), method="quick")
 
-    l <- lapply(l, function(x) {
-                       e <- x@mass %in% exclude;
-                       x@mass <- x@mass[!e];
-                       x@intensity <- x@intensity[!e];
-                       x@snr <- x@snr[!e];
-                       return(x);
-    });
+  ## generate peak matrix
+  pm <- intensityMatrix(l)
+  exclude <- .unlist(apply(pm, 2, function(x)(sum(!is.na(x))<minPeakNumber)))
+  exclude <- mass[exclude]
 
-    return(l);
+  l <- lapply(l, function(x) {
+    e <- x@mass %in% exclude
+    x@mass <- x@mass[!e]
+    x@intensity <- x@intensity[!e]
+    x@snr <- x@snr[!e]
+    return(x)
+  })
+
+  return(l)
 }

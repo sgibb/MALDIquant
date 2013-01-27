@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -18,19 +18,19 @@
 
 ## basic class for all spectra based information
 setClass("AbstractMassObject",
-    representation=representation(mass="vector", intensity="vector",
-        metaData="list", .cache="environment"),
-    prototype=prototype(mass=vector(mode="numeric"), 
-        intensity=vector(mode="numeric"), metaData=list()),
-    contains="VIRTUAL");
+         representation=representation(mass="vector", intensity="vector",
+                                       metaData="list", .cache="environment"),
+         prototype=prototype(mass=vector(mode="numeric"),
+                             intensity=vector(mode="numeric"), metaData=list()),
+         contains="VIRTUAL")
 
 ## represent a spectrum
 setClass("MassSpectrum",
-    contains="AbstractMassObject");
+         contains="AbstractMassObject")
 
 ## represent a peak list from a single spectrum
 setClass("MassPeaks",
-    representation=representation(snr="vector"),
-    prototype=prototype(snr=vector(mode="numeric")),
-    contains="AbstractMassObject");
+         representation=representation(snr="vector"),
+         prototype=prototype(snr=vector(mode="numeric")),
+         contains="AbstractMassObject")
 

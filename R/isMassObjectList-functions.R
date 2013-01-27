@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -17,70 +17,65 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 isMassObjectList <- function(x) {
-    if (!is.list(x)) {
-        return(FALSE);
-    } 
+  if (!is.list(x)) {
+    return(FALSE)
+  }
 
-    areMassObjects <- length(x) > 0 &&
-                      all(unname(vapply(x, function(e) {
-                           return(isMassObject(e))}, logical(1))));
-
-    return(areMassObjects);
+  areMassObjects <- length(x) &&
+                    all(unname(vapply(x, isMassObject, logical(1))))
+  return(areMassObjects)
 }
 
 .stopIfNotMassObjectList <- function(x) {
-    if (!isMassObjectList(x)) {
-        parentCall <- sys.call(-1);
-        stop(paste("In ", parentCall, " : ", sQuote("x"), 
-                   " is no list of MALDIquant::AbstractMassObject objects!",
-                   sep=""), call.=FALSE);
-        return(FALSE);
-    }
-    return(TRUE);
+  if (!isMassObjectList(x)) {
+    parentCall <- sys.call(-1)
+    stop(paste("In ", parentCall, " : ", sQuote("x"),
+               " is no list of MALDIquant::AbstractMassObject objects!",
+               sep=""), call.=FALSE)
+    return(FALSE)
+  }
+  return(TRUE)
 }
 
 isMassSpectrumList <- function(x) {
-    if (!is.list(x)) {
-        return(FALSE);
-    } 
+  if (!is.list(x)) {
+    return(FALSE)
+  }
 
-    areMassSpectrumObjects <- length(x) > 0 &&
-                              all(unname(vapply(x, function(e) {
-                                   return(isMassSpectrum(e))}, logical(1))));
-    return(areMassSpectrumObjects);
+  areMassSpectrumObjects <- length(x) &&
+                            all(unname(vapply(x, isMassSpectrum, logical(1))))
+  return(areMassSpectrumObjects)
 }
 
 .stopIfNotMassSpectrumList <- function(x) {
-    if (!isMassSpectrumList(x)) {
-        parentCall <- sys.call(-1);
-        stop(paste("In ", deparse(parentCall), " : ", sQuote("x"), 
-                   " is no list of MALDIquant::MassSpectrum objects!", sep=""),
-             call.=FALSE);
-        return(FALSE);
-    }
-    return(TRUE);
+  if (!isMassSpectrumList(x)) {
+    parentCall <- sys.call(-1)
+    stop(paste("In ", deparse(parentCall), " : ", sQuote("x"),
+               " is no list of MALDIquant::MassSpectrum objects!", sep=""),
+               call.=FALSE)
+    return(FALSE)
+  }
+  return(TRUE)
 }
 
 isMassPeaksList <- function(x) {
-    if (!is.list(x)) {
-        return(FALSE);
-    } 
+  if (!is.list(x)) {
+    return(FALSE)
+  }
 
-    areMassPeaksObjects <- length(x) > 0 &&
-                           all(unname(vapply(x, function(e) {
-                                return(isMassPeaks(e))}, logical(1))));
-
-    return(areMassPeaksObjects);
+  areMassPeaksObjects <- length(x) &&
+                         all(unname(vapply(x, isMassPeaks, logical(1))))
+  return(areMassPeaksObjects)
 }
 
 .stopIfNotMassPeaksList <- function(x) {
-    if (!isMassPeaksList(x)) {
-        parentCall <- sys.call(-1);
-        stop(paste("In ", deparse(parentCall), " : ", sQuote("x"), 
-                   " is no list of MALDIquant::MassPeaks objects!", sep=""),
-             call.=FALSE);
-        return(FALSE);
-    }
-    return(TRUE);
+  if (!isMassPeaksList(x)) {
+    parentCall <- sys.call(-1)
+    stop(paste("In ", deparse(parentCall), " : ", sQuote("x"),
+               " is no list of MALDIquant::MassPeaks objects!", sep=""),
+               call.=FALSE)
+    return(FALSE)
+  }
+  return(TRUE)
 }
 

@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -18,9 +18,9 @@
 
 ## MassPeaks
 setMethod(f="snr",
-    signature=signature(object="MassPeaks"),
-    definition=function(object) {
-    
-    return(object@snr);
-});
+          signature=signature(object="MassPeaks"),
+          definition=function(object) {
+
+  return(object@snr)
+})
 

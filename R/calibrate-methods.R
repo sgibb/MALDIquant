@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -27,21 +27,21 @@
 ##  a calibrated numeric matrix
 ##
 setMethod(f="calibrate",
-    signature=signature(x="matrix"),
-    definition=function(x, ...) {
+          signature=signature(x="matrix"),
+          definition=function(x, ...) {
 
-    ## create "reference" spectrum/peak list
-    r <- apply(x, 2, median, na.rm=TRUE);
+  ## create "reference" spectrum/peak list
+  r <- apply(x, 2, median, na.rm=TRUE)
 
-    ## estimate scale factor
-    s <- apply(x, 1, function(y)median(y/r, na.rm=TRUE));
+  ## estimate scale factor
+  s <- apply(x, 1, function(y)median(y/r, na.rm=TRUE))
 
-    ## scale matrix
-    x <- apply(x, 2, function(y)y/s);
+  ## scale matrix
+  x <- apply(x, 2, function(y)y/s)
 
-    ## add scale attribute
-    attr(x, "scale") <- s;
+  ## add scale attribute
+  attr(x, "scale") <- s
 
-    return(x);
-});
+  return(x)
+})
 

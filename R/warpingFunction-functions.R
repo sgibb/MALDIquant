@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -35,8 +35,8 @@
 ##  function(x)
 ##
 .warpingFunctionLowess <- function(x, d, ...) {
-    lo <- lowess(x=x, y=d, ...);
-    return(approxfun(x=lo$x, y=lo$y, rule=2));
+  lo <- lowess(x=x, y=d, ...)
+  return(approxfun(x=lo$x, y=lo$y, rule=2))
 }
 
 ## .warpingFunctionCubic
@@ -51,8 +51,8 @@
 ##  function(x)
 ##
 .warpingFunctionCubic <- function(x, d, ...) {
-    l <- lm(y ~ x1+x2+x3, data=list(x1=x, x2=x^2, x3=x^3, y=d), ...);
-    co <- coef(l);
-    return(function(x) { return (co[1]+x*co[2]+x^2*co[3]+x^3*co[4]) });
+  l <- lm(y ~ x1+x2+x3, data=list(x1=x, x2=x^2, x3=x^3, y=d), ...)
+  co <- coef(l)
+  return(function(x) { return (co[1]+x*co[2]+x^2*co[3]+x^3*co[4]) })
 }
 

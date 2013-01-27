@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,7 +16,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## findEmptyMassObjects 
+## findEmptyMassObjects
 ##  find empty AbstractMassObject objects in a MassObjectsList
 ##
 ## params:
@@ -27,9 +27,9 @@
 ##
 findEmptyMassObjects <- function(l) {
 
-    .stopIfNotMassObjectList(l);
+  .stopIfNotMassObjectList(l)
 
-    isEmpty <- vapply(l, isEmpty, logical(1));
-    
-    return(which(isEmpty));
+  isEmpty <- vapply(l, isEmpty, logical(1))
+
+  return(which(isEmpty))
 }

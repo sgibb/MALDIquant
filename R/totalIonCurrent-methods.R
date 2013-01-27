@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,25 +16,25 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## AbstractMassObject 
+## AbstractMassObject
 setMethod(f="totalIonCurrent",
-    signature=signature(object="AbstractMassObject"),
-    definition=function(object) {
-    
-    return(as.double(sum(object@intensity, na.rm=TRUE)));
-});
+          signature=signature(object="AbstractMassObject"),
+          definition=function(object) {
+
+  return(as.double(sum(object@intensity, na.rm=TRUE)))
+})
 
 ## AbstractMassObject
 setReplaceMethod(f="totalIonCurrent",
-    signature=signature(object="AbstractMassObject",
-                        value="numeric"),
-    definition=function(object, value) {
+                 signature=signature(object="AbstractMassObject",
+                                     value="numeric"),
+                definition=function(object, value) {
 
-    if (length(value) != 1) {
-        stop("Length of value has to be one.");
-    }
+  if (length(value) != 1) {
+    stop("Length of ", sQuote("value"), " has to be one.")
+  }
 
-    tic <- totalIonCurrent(object);
-    return(transformIntensity(object, function(x)x*value/tic));
-});
+  tic <- totalIonCurrent(object)
+  return(transformIntensity(object, function(x)x*value/tic))
+})
 

@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -37,7 +37,7 @@
     ## extra calculation of offsets to be independend of adj
     woffset <- w*offset[1]
     hoffset <- h*offset[2]
-    return(c(x0=xc-w*adj[1]-woffset, y0=yc-h*adj[2]-hoffset, 
+    return(c(x0=xc-w*adj[1]-woffset, y0=yc-h*adj[2]-hoffset,
              x1=xc+w*(1-adj[1])+woffset, y1=yc+h*(1-adj[2])+hoffset,
              x=xc, y=yc, w=w, h=h))
   }, xc=x, yc=y, t=text)))

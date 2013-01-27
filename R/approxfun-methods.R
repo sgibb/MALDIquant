@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -18,10 +18,10 @@
 
 ## MassSpectrum
 setMethod(f="approxfun",
-    signature=signature(x="MassSpectrum"),
-    definition=function(x, y=NULL, method="linear", yleft, yright, rule=1, 
-                        f=0, ties=mean) {
-    return(approxfun(x=x@mass, y=x@intensity, method=method, yleft=yleft,
-                     yright=yright, rule=rule, f=f, ties=ties));
-});
+          signature=signature(x="MassSpectrum"),
+          definition=function(x, y=NULL, method="linear", yleft, yright,
+                              rule=1,  f=0, ties=mean) {
+  return(approxfun(x=x@mass, y=x@intensity, method=method, yleft=yleft,
+                   yright=yright, rule=rule, f=f, ties=ties))
+})
 

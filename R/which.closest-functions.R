@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -27,7 +27,7 @@
 ##  a vector of indices
 ##
 .which.closest <- function(x, vec) {
-    
+
   ## find left interval
   lIdx <- findInterval(x, vec, rightmost.closed=FALSE, all.inside=TRUE)
   rIdx <- lIdx+1
@@ -35,6 +35,6 @@
   ## calculate differences for left and right
   lDiff <- abs(vec[lIdx]-x)
   rDiff <- abs(vec[rIdx]-x)
-  
+
   return(ifelse(lDiff == pmin(lDiff, rDiff), lIdx, rIdx))
 }

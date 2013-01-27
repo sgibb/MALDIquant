@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,8 +16,8 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## intensityMatrix 
-##  convert list of AbstractMassObject objects to a matrix 
+## intensityMatrix
+##  convert list of AbstractMassObject objects to a matrix
 ##
 ## params:
 ##  l: list of AbstractMassObject objects
@@ -27,21 +27,20 @@
 ##
 intensityMatrix <- function(l) {
 
-    ## test parameters
-    .stopIfNotMassObjectList(l);
-    
-    ## fetch all mass
-    mass <- sort(x=.unlist(lapply(l, function(x)x@mass)), method="quick");
-    uMass <- unique(mass);
-  
-    ## build matrix
-    m <- do.call(rbind,
-                 lapply(l, function(x)x@intensity[
-                        match(x=uMass, table=x@mass, nomatch=NA)]));
+  ## test parameters
+  .stopIfNotMassObjectList(l)
 
-    ## set column names
-    dimnames(m) <- list(NULL, c(uMass));
-  
-    return(m);
+  ## fetch all mass
+  mass <- sort(x=.unlist(lapply(l, function(x)x@mass)), method="quick")
+  uMass <- unique(mass)
+
+  ## build matrix
+  m <- do.call(rbind, lapply(l, function(x) {
+    return(x@intensity[match(x=uMass, table=x@mass, nomatch=NA)])}))
+
+  ## set column names
+  dimnames(m) <- list(NULL, c(uMass))
+
+  return(m)
 }
 

@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -17,7 +17,7 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 ## estimateNoiseMad
-##  estimate noise by calculating mad over intensity values 
+##  estimate noise by calculating mad over intensity values
 ##
 ## params:
 ##  x: vector of x values
@@ -27,7 +27,7 @@
 ##  a matrix of the estimate noise (col1: mass; col2: intensity)
 ##
 .estimateNoiseMad <- function(x, y) {
-    return(cbind(x, rep(mad(y), times=length(x))));
+  return(cbind(x, rep(stats::mad(y), times=length(x))))
 }
 
 ## estimateNoiseSuperSmoother
@@ -42,6 +42,6 @@
 ##  a matrix of the estimate noise (col1: mass; col2: intensity)
 ##
 .estimateNoiseSuperSmoother <- function(x, y, ...) {
-    return(cbind(x, stats::supsmu(x=x, y=y, ...)$y));
+  return(cbind(x, stats::supsmu(x=x, y=y, ...)$y))
 }
 

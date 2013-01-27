@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,47 +16,45 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## MassSpectrum 
+## MassSpectrum
 setMethod(f=".findLocalMaxima",
-    signature=signature(object="MassSpectrum"),
-    definition=function(object, 
-                        halfWindowSize=20) {
-        
-    if (.isEmptyWarning(object)) {
-        return(matrix(ncol=2, dimnames=list(list(), list("mass", "intensity"))));
-    }
+          signature=signature(object="MassSpectrum"),
+          definition=function(object, halfWindowSize=20) {
 
-    localMaxima <- .findLocalMaximaLogical(object@intensity,
-                                           halfWindowSize=halfWindowSize)
+  if (.isEmptyWarning(object)) {
+    return(matrix(ncol=2, dimnames=list(list(), list("mass", "intensity"))))
+  }
 
-    m <- cbind(object@mass, object@intensity)[localMaxima,];
-    
-    colnames(m) <- c("mass", "intensity");
+  localMaxima <- .findLocalMaximaLogical(object@intensity,
+                                         halfWindowSize=halfWindowSize)
 
-    return(m);
-});
+  m <- cbind(object@mass, object@intensity)[localMaxima,]
+
+  colnames(m) <- c("mass", "intensity")
+
+  return(m)
+})
 
 setMethod(f=".findLocalMaximaLogical",
-    signature=signature(object="MassSpectrum"),
-    definition=function(object, 
-                        halfWindowSize=20) {
+          signature=signature(object="MassSpectrum"),
+          definition=function(object, halfWindowSize=20) {
 
-    if (.isEmptyWarning(object)) {
-        return(logical());
-    }
+  if (.isEmptyWarning(object)) {
+    return(logical())
+  }
 
-    if (halfWindowSize<1) {
-        stop(sQuote("halfWindowSize"), "=", halfWindowSize, " is too small!");
-    }
+  if (halfWindowSize<1) {
+    stop(sQuote("halfWindowSize"), "=", halfWindowSize, " is too small!")
+  }
 
-    if (halfWindowSize*2+1 > length(object)) {
-        stop(sQuote("halfWindowSize"), " is too large! ",
-             "(window size (", halfWindowSize*2+1, ") > number of ",
-             " intensity values (", length(object), "))");
-    }
+  if (halfWindowSize*2+1 > length(object)) {
+    stop(sQuote("halfWindowSize"), " is too large! ",
+         "(window size (", halfWindowSize*2+1, ") > number of ",
+         " intensity values (", length(object), "))")
+  }
 
-    localMaxima <- .localMaxima(object@intensity, halfWindowSize=halfWindowSize)
+  localMaxima <- .localMaxima(object@intensity, halfWindowSize=halfWindowSize)
 
-    return(localMaxima)
-});
+  return(localMaxima)
+})
 

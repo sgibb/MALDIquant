@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,26 +16,26 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## AbstractMassObject 
+## AbstractMassObject
 .validAbstractMassObject <- function(object) {
-    if (length(object@mass) != length(object@intensity)) {
-        return(paste("Lengths of mass (", length(object@mass), 
-                ") and intensity (", length(object@intensity), 
-                ") have to be equal.", sep=""));
-    }
-    return(TRUE)
+  if (length(object@mass) != length(object@intensity)) {
+    return(paste("Lengths of mass (", length(object@mass),
+                 ") and intensity (", length(object@intensity),
+                 ") have to be equal.", sep=""))
+  }
+  return(TRUE)
 }
 
-setValidity("AbstractMassObject", method=.validAbstractMassObject);
+setValidity("AbstractMassObject", method=.validAbstractMassObject)
 
 .validMassPeaks <- function(object) {
-    if (length(object@intensity) != length(object@snr)) {
-        return(paste("Lengths of intensity (", length(object@intensity), 
-                ") and snr(", length(object@snr), 
-                ") have to be equal.", sep=""));
-    }
-    return(.validAbstractMassObject(object))
+  if (length(object@intensity) != length(object@snr)) {
+    return(paste("Lengths of intensity (", length(object@intensity),
+                 ") and snr(", length(object@snr),
+                 ") have to be equal.", sep=""))
+  }
+  return(.validAbstractMassObject(object))
 }
 
-setValidity("MassPeaks", method=.validMassPeaks);
+setValidity("MassPeaks", method=.validMassPeaks)
 

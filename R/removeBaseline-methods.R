@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,48 +16,47 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## MassSpectrum 
+## MassSpectrum
 setMethod(f="removeBaseline",
-    signature=signature(object="MassSpectrum"),
-    definition=function(object, fun,
-                        ...) {
+          signature=signature(object="MassSpectrum"),
+          definition=function(object, fun, ...) {
 
-    ## empty spectrum?
-    if (.isEmptyWarning(object)) {
-        return(object);
-    }
+  ## empty spectrum?
+  if (.isEmptyWarning(object)) {
+    return(object)
+  }
 
-    ## try to use user-defined baseline estimation function
-    if (!missing(fun)) {
-        fun <- match.fun(fun);
-        baseline <- fun(object@mass, object@intensity, ...);
-    } else {
-        baseline <- estimateBaseline(object=object, ...);
-    }
+  ## try to use user-defined baseline estimation function
+  if (!missing(fun)) {
+    fun <- match.fun(fun)
+    baseline <- fun(object@mass, object@intensity, ...)
+  } else {
+    baseline <- estimateBaseline(object=object, ...)
+  }
 
-    ## wrong baseline argument given?
-    isBaselineMatrix <- is.matrix(baseline) &&
-                        nrow(baseline) == length(object) &&
-                        ncol(baseline) == 2;
+  ## wrong baseline argument given?
+  isBaselineMatrix <- is.matrix(baseline) &&
+                      nrow(baseline) == length(object) &&
+                      ncol(baseline) == 2
 
-    if (!isBaselineMatrix) {
-        stop("The baseline is not a valid matrix!");
-    }
+  if (!isBaselineMatrix) {
+    stop("The baseline is not a valid matrix!")
+  }
 
-    ## substract baseline
-    object@intensity <- object@intensity - baseline[,2];
-    
-    return(object);
-});
+  ## substract baseline
+  object@intensity <- object@intensity - baseline[,2]
+
+  return(object)
+})
 
 ## list
 setMethod(f="removeBaseline",
-    signature=signature(object="list"),
-    definition=function(object, ...) {
+          signature=signature(object="list"),
+          definition=function(object, ...) {
 
-    ## test arguments
-    .stopIfNotMassSpectrumList(object);
+  ## test arguments
+  .stopIfNotMassSpectrumList(object)
 
-    return(lapply(object, removeBaseline, ...));
-});
+  return(lapply(object, removeBaseline, ...))
+})
 

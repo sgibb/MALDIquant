@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,32 +16,32 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## AbstractMassObject 
-setMethod("[", 
-  signature=signature(x="AbstractMassObject", i="numeric", j="missing"), 
-  definition=function(x, i, j, ..., drop=TRUE) { 
-  
+## AbstractMassObject
+setMethod(f="[",
+          signature=signature(x="AbstractMassObject", i="numeric", j="missing"),
+          definition=function(x, i, j, ..., drop=TRUE) {
+
   x@mass <- x@mass[i]
   x@intensity <- x@intensity[i]
 
   return(x)
 })
 
-## AbstractMassObject 
-setMethod("[", 
-  signature=signature(x="AbstractMassObject", i="logical", j="missing"), 
-  definition=function(x, i, j, ..., drop=TRUE) { 
-  
+## AbstractMassObject
+setMethod(f="[",
+          signature=signature(x="AbstractMassObject", i="logical", j="missing"),
+          definition=function(x, i, j, ..., drop=TRUE) {
+
   x@mass <- x@mass[i]
   x@intensity <- x@intensity[i]
 
   return(x)
 })
 
-setMethod("[", 
-  signature=signature(x="MassPeaks", i="numeric", j="missing"), 
-  definition=function(x, i, j, ..., drop=TRUE) { 
-  
+setMethod(f="[",
+          signature=signature(x="MassPeaks", i="numeric", j="missing"),
+          definition=function(x, i, j, ..., drop=TRUE) {
+
   x@mass <- x@mass[i]
   x@intensity <- x@intensity[i]
   x@snr <- x@snr[i]
@@ -49,11 +49,11 @@ setMethod("[",
   return(x)
 })
 
-## AbstractMassObject 
-setMethod("[", 
-  signature=signature(x="MassPeaks", i="logical", j="missing"), 
-  definition=function(x, i, j, ..., drop=TRUE) { 
-  
+## AbstractMassObject
+setMethod(f="[",
+          signature=signature(x="MassPeaks", i="logical", j="missing"),
+          definition=function(x, i, j, ..., drop=TRUE) {
+
   x@mass <- x@mass[i]
   x@intensity <- x@intensity[i]
   x@snr <- x@snr[i]

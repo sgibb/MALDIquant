@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,7 +16,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## .doByLabels 
+## .doByLabels
 ##  run a specific function labelwise
 ##
 ## params:
@@ -27,36 +27,36 @@
 ## returns:
 ##  list of modified AbstractMassObject objects
 ##
-.doByLabels <- function(l, labels, FUN, ...) { 
-    
-    ## test parameters
-    .stopIfNotMassObjectList(l);
+.doByLabels <- function(l, labels, FUN, ...) {
 
-    FUN <- match.fun(FUN);
+  ## test parameters
+  .stopIfNotMassObjectList(l)
 
-    if (!missing(labels)) {
-        ## drop unused levels and turn argument into factor
-        labels <- factor(labels);
+  FUN <- match.fun(FUN)
 
-        n <- length(l);
+  if (!missing(labels)) {
+    ## drop unused levels and turn argument into factor
+    labels <- factor(labels)
 
-        if (length(labels) != n) {
-            stop("For each item in ", sQuote("l"), 
-                 " there must be a label in ", sQuote("labels"), "!");
-        }
+    n <- length(l)
 
-        ## replace tapply by split to preserve order 
-        tmp <- lapply(split(unlist(l), labels), FUN=FUN, ...);
-
-        k <- unlist(tmp);
-
-        if (length(k) == n && length(tmp) != n) {
-            k <- unsplit(tmp, labels);
-        }
-    } else {
-        k <- FUN(l, ...);
+    if (length(labels) != n) {
+      stop("For each item in ", sQuote("l"),
+           " there must be a label in ", sQuote("labels"), "!")
     }
 
-    return(k);
+    ## replace tapply by split to preserve order
+    tmp <- lapply(split(unlist(l), labels), FUN=FUN, ...)
+
+    k <- unlist(tmp)
+
+    if (length(k) == n && length(tmp) != n) {
+      k <- unsplit(tmp, labels)
+    }
+  } else {
+    k <- FUN(l, ...)
+  }
+
+  return(k)
 }
 

@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,26 +16,26 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## AbstractMassObject 
+## AbstractMassObject
 setMethod(f="intensity",
-    signature=signature(object="AbstractMassObject"),
-    definition=function(object) {
-    
-    return(object@intensity);
-});
+          signature=signature(object="AbstractMassObject"),
+          definition=function(object) {
+
+  return(object@intensity)
+})
 
 ## AbstractMassObject
 setReplaceMethod(f="intensity",
-    signature=signature(object="AbstractMassObject",
-                        value="numeric"),
-    definition=function(object, value) {
+                 signature=signature(object="AbstractMassObject",
+                                     value="numeric"),
+                 definition=function(object, value) {
 
-    if (length(object@intensity) == length(value)) {
-        object@intensity <- as.double(value);
-    } else {
-        stop("Lengths of intensity(", length(object@intensity), 
-             ") and value (", length(value), ") have to be equal.");
-    }
-    return(object);
-});
+  if (length(object@intensity) == length(value)) {
+    object@intensity <- as.double(value)
+  } else {
+    stop("Lengths of intensity(", length(object@intensity),
+         ") and value (", length(value), ") have to be equal.")
+  }
+  return(object)
+})
 

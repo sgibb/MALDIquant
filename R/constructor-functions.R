@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -30,8 +30,8 @@
 ##  a MassSpectrum object
 ##
 createMassSpectrum <- function(mass, intensity, metaData=list()) {
-    return(new(Class="MassSpectrum", mass=mass, intensity=intensity,
-            metaData=metaData));
+  return(new(Class="MassSpectrum", mass=mass, intensity=intensity,
+             metaData=metaData))
 }
 
 ## end of MassSpectrum
@@ -51,8 +51,8 @@ createMassSpectrum <- function(mass, intensity, metaData=list()) {
 ##
 createMassPeaks <- function(mass, intensity, snr=rep(NA, length(intensity)),
                             metaData=list()) {
-    return(new(Class="MassPeaks", mass=mass, intensity=intensity, snr=snr,
-               metaData=metaData));
+  return(new(Class="MassPeaks", mass=mass, intensity=intensity, snr=snr,
+             metaData=metaData))
 }
 
 ## end of MassPeaks

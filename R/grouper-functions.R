@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -30,23 +30,23 @@
 ##             considered as same peak
 ##
 ## returns:
-##  NA if further splitting is needed;
+##  NA if further splitting is needed
 ##  meanMass (double) if all criteria are matched
 ##
 .grouperStrict <- function(mass, intensities, samples, tolerance) {
-    ## don't accept two or more peaks of the same sample
-    if (any(duplicated(samples))) {
-        return(NA);
-    }
+  ## don't accept two or more peaks of the same sample
+  if (any(duplicated(samples))) {
+    return(NA)
+  }
 
-    meanMass <- mean(mass);
+  meanMass <- mean(mass)
 
-    ## all peaks in range?
-    if (any(abs(mass-meanMass)/meanMass > tolerance)) {
-        return(NA);
-    }
+  ## all peaks in range?
+  if (any(abs(mass-meanMass)/meanMass > tolerance)) {
+    return(NA)
+  }
 
-    return(meanMass);
+  return(meanMass)
 }
 
 ## .grouperRelaxed
@@ -62,34 +62,33 @@
 ##  meanMass: double, mean of mass (new peak position)
 ##
 ## returns:
-##  NA if further splitting is needed;
+##  NA if further splitting is needed
 ##  meanMass (double) if all criteria are matched
 ##
 .grouperRelaxed <- function(mass, intensities, samples, tolerance) {
-    meanMass <- mean(mass);
+  meanMass <- mean(mass)
 
-    ## all peaks in range?
-    if (any(abs(mass-meanMass)/meanMass > tolerance)) {
-        return(NA);
-    }
+  ## all peaks in range?
+  if (any(abs(mass-meanMass)/meanMass > tolerance)) {
+    return(NA)
+  }
 
-    ## choose highest peak in duplicates
-    if (any(duplicated(samples))) {
-        s <- sort(intensities, method="quick", decreasing=TRUE, 
-                  index.return=TRUE);
-        samples <- samples[s$ix];
+  ## choose highest peak in duplicates
+  if (any(duplicated(samples))) {
+    s <- sort(intensities, method="quick", decreasing=TRUE, index.return=TRUE)
+    samples <- samples[s$ix]
 
-        noDup <- !duplicated(samples);
+    noDup <- !duplicated(samples)
 
-        noDup[s$ix] <- noDup
+    noDup[s$ix] <- noDup
 
-        ## replace mass corresponding to highest intensity
-        mass[noDup] <- mean(mass[noDup]);
+    ## replace mass corresponding to highest intensity
+    mass[noDup] <- mean(mass[noDup])
 
-        return(mass);
-    } else {
-        return(meanMass);
-    }
+    return(mass)
+  } else {
+    return(meanMass)
+  }
 }
 
 ## .grouperRelaxedHighestAtReference
@@ -104,44 +103,43 @@
 ##             considered as same peak
 ##
 ## returns:
-##  NA if further splitting is needed;
+##  NA if further splitting is needed
 ##  meanMass (double) if all criteria are matched else 0
 ##
 .grouperRelaxedHighestAtReference <- function(mass, intensities, samples,
                                               tolerance) {
-    ## any reference peaks in current samples?
-    ref <- samples == 1;
-    nRef <- sum(ref);
-    if (nRef == 0) {
-        ## no reference peak
-        return(0);
-    } else if (nRef > 1) {
-        ## too many reference peaks => further splitting needed
-        return(NA);
-    }
+  ## any reference peaks in current samples?
+  ref <- samples == 1
+  nRef <- sum(ref)
+  if (nRef == 0) {
+    ## no reference peak
+    return(0)
+  } else if (nRef > 1) {
+    ## too many reference peaks => further splitting needed
+    return(NA)
+  }
 
-    ## only one mass should left as reference mass
-    meanMass <- mass[ref];
+  ## only one mass should left as reference mass
+  meanMass <- mass[ref]
 
-    ## all peaks in range?
-    if (any(abs(mass-meanMass)/meanMass > tolerance)) {
-        return(NA);
-    }
+  ## all peaks in range?
+  if (any(abs(mass-meanMass)/meanMass > tolerance)) {
+    return(NA)
+  }
 
-    ## choose highest peak in duplicates
-    if (any(duplicated(samples))) {
-        s <- sort(intensities, method="quick", decreasing=TRUE, 
-                  index.return=TRUE);
-        sSamples <- samples[s$ix];
+  ## choose highest peak in duplicates
+  if (any(duplicated(samples))) {
+    s <- sort(intensities, method="quick", decreasing=TRUE, index.return=TRUE)
+    sSamples <- samples[s$ix]
 
-        noDup <- !duplicated(sSamples);
-        sMass <- double(length(sSamples));
-        sMass[noDup] <- meanMass;
-        mass[s$ix] <- sMass;
+    noDup <- !duplicated(sSamples)
+    sMass <- double(length(sSamples))
+    sMass[noDup] <- meanMass
+    mass[s$ix] <- sMass
 
-        return(mass);
-    } else {
-        return(meanMass);
-    }
+    return(mass)
+  } else {
+    return(meanMass)
+  }
 }
 

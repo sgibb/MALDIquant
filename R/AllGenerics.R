@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -17,96 +17,154 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 ## list
-if (is.null(getGeneric("standardizeTotalIonCurrent")))
-    setGeneric("standardizeTotalIonCurrent", function(object, value=1) standardGeneric("standardizeTotalIonCurrent"));
+if (is.null(getGeneric("standardizeTotalIonCurrent"))) {
+  setGeneric("standardizeTotalIonCurrent",
+             function(object, value=1) {
+               standardGeneric("standardizeTotalIonCurrent")})
+}
 ## end of list
 
 ## matrix
-if (is.null(getGeneric("calibrate")))
-    setGeneric("calibrate", function(x, ...) standardGeneric("calibrate"));
+if (is.null(getGeneric("calibrate"))) {
+  setGeneric("calibrate", function(x, ...) standardGeneric("calibrate"))
+}
 ## end of matrix
 
 ## AbstractMassObject
-if (is.null(getGeneric("as.matrix")))
-    setGeneric("as.matrix", function(x, ...) standardGeneric("as.matrix"));
-if (is.null(getGeneric("length")))
-    setGeneric("length", function(x) standardGeneric("length"));
-if (is.null(getGeneric("lines")))
-    setGeneric("lines", function(x, ...) standardGeneric("lines"));
-if (is.null(getGeneric("ltrim")))
-    setGeneric("ltrim", function(object, minMass) standardGeneric("ltrim"));
-if (is.null(getGeneric("plot")))
-    setGeneric("plot", function(x, y, ...) standardGeneric("plot"));
-if (is.null(getGeneric("points")))
-    setGeneric("points", function(x, ...) standardGeneric("points"));
-if (is.null(getGeneric(".prepareShow")))
-    setGeneric(".prepareShow", function(object) standardGeneric(".prepareShow"));
-if (is.null(getGeneric("rtrim")))
-    setGeneric("rtrim", function(object, maxMass) standardGeneric("rtrim"));
-if (is.null(getGeneric("transformIntensity")))
-    setGeneric("transformIntensity", function(object, fun, na.rm=TRUE, ...) standardGeneric("transformIntensity"));
-if (is.null(getGeneric("trim")))
-    setGeneric("trim", function(object, minMass, maxMass) standardGeneric("trim"));
+if (is.null(getGeneric("as.matrix"))) {
+  setGeneric("as.matrix", function(x, ...) standardGeneric("as.matrix"))
+}
+if (is.null(getGeneric("length"))) {
+  setGeneric("length", function(x) standardGeneric("length"))
+}
+if (is.null(getGeneric("lines"))) {
+  setGeneric("lines", function(x, ...) standardGeneric("lines"))
+}
+if (is.null(getGeneric("ltrim"))) {
+  setGeneric("ltrim", function(object, minMass) standardGeneric("ltrim"))
+}
+if (is.null(getGeneric("plot"))) {
+  setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
+}
+if (is.null(getGeneric("points"))) {
+  setGeneric("points", function(x, ...) standardGeneric("points"))
+}
+if (is.null(getGeneric(".prepareShow"))) {
+  setGeneric(".prepareShow", function(object) standardGeneric(".prepareShow"))
+}
+if (is.null(getGeneric("rtrim"))) {
+  setGeneric("rtrim", function(object, maxMass) standardGeneric("rtrim"))
+}
+if (is.null(getGeneric("transformIntensity"))) {
+  setGeneric("transformIntensity",
+             function(object, fun, na.rm=TRUE, ...)
+               standardGeneric("transformIntensity"))
+}
+if (is.null(getGeneric("trim"))) {
+  setGeneric("trim",
+             function(object, minMass, maxMass) standardGeneric("trim"))
+}
 
 ## get/set slots
-if (is.null(getGeneric("mass")))
-    setGeneric("mass", function(object) standardGeneric("mass"));
-if (is.null(getGeneric("mass<-")))
-    setGeneric("mass<-", function(object, value) standardGeneric("mass<-"));
-if (is.null(getGeneric("intensity")))
-    setGeneric("intensity", function(object) standardGeneric("intensity"));
-if (is.null(getGeneric("intensity<-")))
-    setGeneric("intensity<-", function(object, value) standardGeneric("intensity<-"));
-if (is.null(getGeneric("isEmpty")))
-    setGeneric("isEmpty", function(x) standardGeneric("isEmpty"));
-if (is.null(getGeneric(".isEmptyWarning")))
-    setGeneric(".isEmptyWarning", function(x) standardGeneric(".isEmptyWarning"));
-if (is.null(getGeneric("metaData")))
-    setGeneric("metaData", function(object) standardGeneric("metaData"));
-if (is.null(getGeneric("metaData<-")))
-    setGeneric("metaData<-", function(object, value) standardGeneric("metaData<-"));
-if (is.null(getGeneric("totalIonCurrent")))
-    setGeneric("totalIonCurrent", function(object) standardGeneric("totalIonCurrent"));
-if (is.null(getGeneric("totalIonCurrent<-")))
-    setGeneric("totalIonCurrent<-", function(object, value) standardGeneric("totalIonCurrent<-"));
+if (is.null(getGeneric("mass"))) {
+  setGeneric("mass", function(object) standardGeneric("mass"))
+}
+if (is.null(getGeneric("mass<-"))) {
+  setGeneric("mass<-", function(object, value) standardGeneric("mass<-"))
+}
+if (is.null(getGeneric("intensity"))) {
+  setGeneric("intensity", function(object) standardGeneric("intensity"))
+}
+if (is.null(getGeneric("intensity<-"))) {
+  setGeneric("intensity<-",
+             function(object, value) standardGeneric("intensity<-"))
+}
+if (is.null(getGeneric("isEmpty"))) {
+  setGeneric("isEmpty", function(x) standardGeneric("isEmpty"))
+}
+if (is.null(getGeneric(".isEmptyWarning"))) {
+  setGeneric(".isEmptyWarning", function(x) standardGeneric(".isEmptyWarning"))
+}
+if (is.null(getGeneric("metaData"))) {
+  setGeneric("metaData", function(object) standardGeneric("metaData"))
+}
+if (is.null(getGeneric("metaData<-"))) {
+  setGeneric("metaData<-",
+             function(object, value) standardGeneric("metaData<-"))
+}
+if (is.null(getGeneric("totalIonCurrent"))) {
+  setGeneric("totalIonCurrent",
+             function(object) standardGeneric("totalIonCurrent"))
+}
+if (is.null(getGeneric("totalIonCurrent<-"))) {
+  setGeneric("totalIonCurrent<-",
+             function(object, value) standardGeneric("totalIonCurrent<-"))
+}
 ## end of AbstractMassObject
 
 ## MassSpectrum
-if (is.null(getGeneric("approxfun")))
-    setGeneric("approxfun", function(x, y=NULL, method="linear", yleft, yright,
-                                     rule=1, f=0, ties=mean) standardGeneric("approxfun"));
-if (is.null(getGeneric("detectPeaks")))
-    setGeneric("detectPeaks", function(object, ...) standardGeneric("detectPeaks"));
-if (is.null(getGeneric("estimateBaseline")))
-    setGeneric("estimateBaseline", function(object, method=c("SNIP", "ConvexHull", "Median"), ...) standardGeneric("estimateBaseline"));
-if (is.null(getGeneric("estimateNoise")))
-    setGeneric("estimateNoise", function(object, ...) standardGeneric("estimateNoise"));
-if (is.null(getGeneric(".findLocalMaxima")))
-    setGeneric(".findLocalMaxima", function(object, halfWindowSize=20) standardGeneric(".findLocalMaxima"));
-if (is.null(getGeneric(".findLocalMaximaLogical")))
-    setGeneric(".findLocalMaximaLogical", function(object, halfWindowSize=20) standardGeneric(".findLocalMaximaLogical"));
-if (is.null(getGeneric("imputeMass")))
-    setGeneric("imputeMass", function(object, verbose=FALSE) standardGeneric("imputeMass"));
-if (is.null(getGeneric("removeBaseline")))
-    setGeneric("removeBaseline", function(object, ...) standardGeneric("removeBaseline"));
+if (is.null(getGeneric("approxfun"))) {
+  setGeneric("approxfun",
+             function(x, y=NULL, method="linear", yleft, yright, rule=1, f=0,
+                      ties=mean)
+               standardGeneric("approxfun"))
+}
+if (is.null(getGeneric("detectPeaks"))) {
+  setGeneric("detectPeaks",
+             function(object, ...) standardGeneric("detectPeaks"))
+}
+if (is.null(getGeneric("estimateBaseline"))) {
+  setGeneric("estimateBaseline",
+             function(object, method=c("SNIP", "ConvexHull", "Median"), ...)
+               standardGeneric("estimateBaseline"))
+}
+if (is.null(getGeneric("estimateNoise"))) {
+  setGeneric("estimateNoise",
+             function(object, ...) standardGeneric("estimateNoise"))
+}
+if (is.null(getGeneric(".findLocalMaxima"))) {
+  setGeneric(".findLocalMaxima",
+             function(object, halfWindowSize=20)
+               standardGeneric(".findLocalMaxima"))
+}
+if (is.null(getGeneric(".findLocalMaximaLogical"))) {
+  setGeneric(".findLocalMaximaLogical",
+             function(object, halfWindowSize=20)
+               standardGeneric(".findLocalMaximaLogical"))
+}
+if (is.null(getGeneric("imputeMass"))) {
+  setGeneric("imputeMass",
+             function(object, verbose=FALSE) standardGeneric("imputeMass"))
+}
+if (is.null(getGeneric("removeBaseline"))) {
+  setGeneric("removeBaseline",
+             function(object, ...) standardGeneric("removeBaseline"))
+}
 ## end of MassSpectrum
 
 ## MassPeaks
-if (is.null(getGeneric("labelPeaks")))
-    setGeneric("labelPeaks", function(object, index, mass, labels,
-                                      digits=3, underline=TRUE, 
-                                      verticalOffset=abs(diff(par("usr")[3:4]))*0.0125,
-                                      absoluteVerticalPos,
-                                      adj=c(0.5, 0), cex=0.7, avoidOverlap=FALSE,
-                                      arrowLength=0, arrowLwd=0.5, arrowCol=1,
-                                      ...) standardGeneric("labelPeaks"));
-if (is.null(getGeneric("snr")))
-    setGeneric("snr", function(object) standardGeneric("snr"));
-if (is.null(getGeneric(".calculateLabelPositions")))
-    setGeneric(".calculateLabelPositions", function(object, ...) standardGeneric(".calculateLabelPositions"));
-if (is.null(getGeneric(".testLabelOverlap")))
-    setGeneric(".testLabelOverlap", function(object, ...) standardGeneric(".testLabelOverlap"));
-if (is.null(getGeneric(".labelOverlap")))
-    setGeneric(".labelOverlap", function(object, ...) standardGeneric(".labelOverlap"));
+if (is.null(getGeneric("labelPeaks"))) {
+  setGeneric("labelPeaks",
+             function(object, index, mass, labels, digits=3, underline=TRUE,
+                      verticalOffset=abs(diff(par("usr")[3:4]))*0.0125,
+                      absoluteVerticalPos, adj=c(0.5, 0), cex=0.7,
+                      avoidOverlap=FALSE, arrowLength=0, arrowLwd=0.5,
+                      arrowCol=1, ...) standardGeneric("labelPeaks"))
+}
+if (is.null(getGeneric("snr"))) {
+  setGeneric("snr", function(object) standardGeneric("snr"))
+}
+if (is.null(getGeneric(".calculateLabelPositions"))) {
+  setGeneric(".calculateLabelPositions",
+             function(object, ...) standardGeneric(".calculateLabelPositions"))
+}
+if (is.null(getGeneric(".testLabelOverlap"))) {
+  setGeneric(".testLabelOverlap",
+             function(object, ...) standardGeneric(".testLabelOverlap"))
+}
+if (is.null(getGeneric(".labelOverlap"))) {
+  setGeneric(".labelOverlap",
+             function(object, ...) standardGeneric(".labelOverlap"))
+}
 ## end of MassPeaks
 

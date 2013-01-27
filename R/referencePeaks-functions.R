@@ -1,4 +1,4 @@
-### Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -23,7 +23,7 @@
 ##  l: list of MassPeaks objects
 ##  method: character, grouper to used (strict: don't allow multiple peaks of
 ##          the same sample in the same bin, relaxed: allow them)
-##  minFrequency: double, minimal frequency of a peak to be not removed 
+##  minFrequency: double, minimal frequency of a peak to be not removed
 ##  tolerance: double, maximal deviation of a peak position to be
 ##             considered as same peak
 ##
@@ -33,19 +33,18 @@
 referencePeaks <- function(l, method=c("strict", "relaxed"), minFrequency=0.9,
                            tolerance=0.002) {
 
-    .stopIfNotMassPeaksList(l);
+  .stopIfNotMassPeaksList(l)
 
-    ## find reference peaks by binning and filtering
-    referencePeaks <- filterPeaks(binPeaks(l, method=method, 
-                                           tolerance=tolerance),
-                                  minFrequency=minFrequency);
+  ## find reference peaks by binning and filtering
+  referencePeaks <- filterPeaks(binPeaks(l, method=method,
+                                         tolerance=tolerance),
+                                minFrequency=minFrequency)
 
-    iM <- intensityMatrix(referencePeaks);
-    iM[!is.na(iM)] <- 1;
+  iM <- intensityMatrix(referencePeaks)
+  iM[!is.na(iM)] <- 1
 
-    ## set peak intensity to number of occurrence
-    intensity <- colSums(iM, na.rm=TRUE)/length(l);
+  ## set peak intensity to number of occurrence
+  intensity <- colSums(iM, na.rm=TRUE)/length(l)
 
-    return(createMassPeaks(mass=as.double(colnames(iM)),
-                           intensity=intensity));
+  return(createMassPeaks(mass=as.double(colnames(iM)), intensity=intensity))
 }

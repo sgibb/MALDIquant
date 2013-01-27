@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -26,5 +26,5 @@
 ##  see also ?unlist
 ##
 .unlist <- function(x) {
-    unlist(x, recursive=FALSE, use.names=FALSE);
+  unlist(x, recursive=FALSE, use.names=FALSE)
 }

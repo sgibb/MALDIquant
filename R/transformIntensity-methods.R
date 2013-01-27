@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,33 +16,33 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## AbstractMassObject 
+## AbstractMassObject
 setMethod(f="transformIntensity",
-    signature=signature(object="AbstractMassObject"),
-    definition=function(object, fun, na.rm=TRUE, ...) {
+          signature=signature(object="AbstractMassObject"),
+          definition=function(object, fun, na.rm=TRUE, ...) {
 
-    if (!.isEmptyWarning(object)) {
-        fun <- match.fun(fun);
+  if (!.isEmptyWarning(object)) {
+    fun <- match.fun(fun)
 
-        object@intensity <- fun(object@intensity, ...);
-    
-        if (na.rm) {
-            na <- is.na(object@intensity);
-            object@intensity <- object@intensity[!na]; 
-            object@mass <- object@mass[!na]; 
-        }
+    object@intensity <- fun(object@intensity, ...)
+
+    if (na.rm) {
+      na <- is.na(object@intensity)
+      object@intensity <- object@intensity[!na]
+      object@mass <- object@mass[!na]
     }
+  }
 
-    return(object);
-});
+  return(object)
+})
 
 ## list
 setMethod(f="transformIntensity",
-    signature=signature(object="list"),
-    definition=function(object, fun, na.rm=TRUE, ...) {
+          signature=signature(object="list"),
+          definition=function(object, fun, na.rm=TRUE, ...) {
 
-    ## test arguments
-    .stopIfNotMassObjectList(object);
+  ## test arguments
+  .stopIfNotMassObjectList(object)
 
-    return(lapply(object, transformIntensity, fun=fun, na.rm=na.rm, ...));
-});
+  return(lapply(object, transformIntensity, fun=fun, na.rm=na.rm, ...))
+})

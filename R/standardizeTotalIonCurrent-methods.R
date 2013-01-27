@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -18,12 +18,12 @@
 
 ## list
 setMethod(f="standardizeTotalIonCurrent",
-    signature=signature(object="list"),
-    definition=function(object, value=1) {
+          signature=signature(object="list"),
+          definition=function(object, value=1) {
 
-    ## test arguments
-    .stopIfNotMassObjectList(object);
+  ## test arguments
+  .stopIfNotMassObjectList(object)
 
-    return(lapply(object, "totalIonCurrent<-", value));
-});
+  return(lapply(object, "totalIonCurrent<-", value))
+})
 

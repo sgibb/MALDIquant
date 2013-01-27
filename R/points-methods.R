@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -17,10 +17,10 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 ## MassPeaks
-setMethod(f="points", 
-    signature=signature(x="AbstractMassObject"),
-    definition=function(x, ...) {
+setMethod(f="points",
+          signature=signature(x="AbstractMassObject"),
+          definition=function(x, ...) {
 
-    points(x=x@mass, y=x@intensity, ...);
-});
+  points(x=x@mass, y=x@intensity, ...)
+})
 

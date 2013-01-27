@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,7 +16,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## .replaceNonEmptyMassObjects 
+## .replaceNonEmptyMassObjects
 ##  find and replace non-empty AbstractMassObject objects in a MassObjectsList
 ##
 ## params:
@@ -28,20 +28,20 @@
 ##
 .replaceNonEmptyMassObjects <- function(l, replaceByList) {
 
-    .stopIfNotMassObjectList(l);
+  .stopIfNotMassObjectList(l)
 
-    .stopIfNotMassObjectList(replaceByList);
+  .stopIfNotMassObjectList(replaceByList)
 
-    ## find empty MassPeaks objects
-    notEmpty <- !1:length(l) %in% findEmptyMassObjects(l);
+  ## find empty MassPeaks objects
+  notEmpty <- !(1:length(l) %in% findEmptyMassObjects(l))
 
-    if (sum(notEmpty) != length(replaceByList)) {
-        stop("Length of non-empty list elements of ", sQuote("l"),
-             " and ", sQuote("replaceByList"), " have to be equal.");
-    }
+  if (sum(notEmpty) != length(replaceByList)) {
+    stop("Length of non-empty list elements of ", sQuote("l"),
+         " and ", sQuote("replaceByList"), " have to be equal.")
+  }
 
-    ## replace list (combine empty and not empty elements)
-    l[notEmpty] <- replaceByList;
+  ## replace list (combine empty and not empty elements)
+  l[notEmpty] <- replaceByList
 
-    return(l);
+  return(l)
 }

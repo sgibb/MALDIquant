@@ -1,7 +1,11 @@
-importFrom("graphics", 
-                "lines",
-                "plot",
-                "points")
+importFrom("graphics",
+              "lines",
+              "plot",
+              "points")
+
+importFrom("stats",
+              "mad",
+              "supsmu")
 
 exportClasses("MassPeaks",
               "MassSpectrum")
