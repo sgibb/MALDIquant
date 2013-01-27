@@ -23,7 +23,6 @@
 \alias{.mergeMetaData}
 \alias{.prepareShow}
 \alias{.prepareShowGroupName}
-\alias{.removeArguments}
 \alias{.replaceNonEmptyMassObjects}
 \alias{.snipR}
 \alias{.stopIfNotMassObjectList}

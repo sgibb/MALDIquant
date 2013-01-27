@@ -51,7 +51,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
         argumentNames <- c("method", "minFrequency");
 
         arguments <- modifyList(arguments, optArgs[argumentNames]);
-        optArgs <- .removeArguments(argumentNames, optArgs);
+        optArgs[argumentNames] <- NULL;
 
         reference <- do.call(referencePeaks, arguments);
     }
@@ -66,7 +66,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
                        "col.sub", "cex.main", "cex.sub", "main", "sub");
 
         givenPlotArgs <- optArgs[plotNames];
-        optArgs <- .removeArguments(plotNames, optArgs);
+        optArgs[plotNames] <- NULL;
     }
 
     ## reference has to become sample no 1
