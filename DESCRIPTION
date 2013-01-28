@@ -6,6 +6,7 @@ Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
                     email="mail@sebastiangibb.de"),
              person("Korbinian", "Strimmer", role="ths"))
 Depends: R (>= 2.14.0), methods
+Suggests: testthat
 Description: MALDIquant provides a complete analysis pipeline for MALDI-TOF
   and other mass spectrometry data. Distinctive features include baseline
   subtraction using the SNIP algorithm, peak alignment using warping

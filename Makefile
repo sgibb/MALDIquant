@@ -3,7 +3,7 @@ CUR_DIR := $(shell /bin/pwd)
 NAME := $(shell sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION)
 CHECKDIR := $(NAME).Rcheck
 LOCALDIR := .local
-TESTDIR := tests
+TESTDIR := $(NAME)/tests
 
 ## r binaries
 R_BIN=R
@@ -27,7 +27,7 @@ clean: local_remove
 	$(RM) $(NAME)/src/*.o ;\
 	$(RM) $(NAME)/src/*.so ;\
 	$(RM) $(NAME)_*.tar.gz ;\
-	$(RM) -r $(CHECKDIR) 
+	$(RM) -r $(CHECKDIR)
 
 cran: clean test testdemo check_archive
 
@@ -43,28 +43,28 @@ build:
 	cd .. ;\
 	$(R_BIN) CMD build $(NAME)
 
-install: build 
+install: build
 	cd .. ;\
 	$(R_BIN) CMD INSTALL $(NAME)_$(PACKAGE_VERSION).tar.gz
 
-remove: clean 
+remove: clean
 	$(R_BIN) CMD REMOVE -l $(R_PACKAGE_DIR) $(NAME)
 
 ape_install: build
 	cd .. ;\
 	sudo $(R_BIN) CMD INSTALL -l $(APE_R_PACKAGE_DIR) $(NAME)_$(PACKAGE_VERSION).tar.gz
 
-ape_remove: clean 
+ape_remove: clean
 	sudo $(R_BIN) CMD REMOVE -l $(APE_R_PACKAGE_DIR) $(NAME)
 
-local_install: local_remove 
+local_install: local_remove
 	cd .. ;\
 	mkdir $(LOCALDIR) ;\
 	$(R_BIN) CMD INSTALL --library=$(LOCALDIR) $(NAME)
 
 local_remove:
 	cd .. ;\
-	$(RM) -r $(LOCALDIR) 
+	$(RM) -r $(LOCALDIR)
 
 test: local_install
 	cd .. ;\
