@@ -1,10 +1,10 @@
-context("as.matrix-methods")
+context("as.matrix")
 
 m <- matrix(c(1:10, 11:20), ncol=2, dimnames=list(c(), c("mass", "intensity")))
 s <- createMassSpectrum(mass=1:10, intensity=11:20)
 p <- createMassPeaks(mass=1:10, intensity=11:20)
 
-test_that("as.matrix", {
+test_that("as.matrix works without indices", {
   expect_equal(as.matrix(s), m)
   expect_equal(as.matrix(p), m)
 })
