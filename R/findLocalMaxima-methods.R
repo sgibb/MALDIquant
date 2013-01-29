@@ -25,8 +25,7 @@ setMethod(f=".findLocalMaxima",
     return(matrix(ncol=2, dimnames=list(list(), list("mass", "intensity"))))
   }
 
-  localMaxima <- .findLocalMaximaLogical(object@intensity,
-                                         halfWindowSize=halfWindowSize)
+  localMaxima <- .findLocalMaximaLogical(object, halfWindowSize=halfWindowSize)
 
   m <- cbind(object@mass, object@intensity)[localMaxima,]
 
