@@ -73,7 +73,8 @@
   index <- index[1:(k-1)]
 
   b <- matrix(.unlist(approx(x=x[index], y=y[index], xout=x, method="linear",
-                             rule=2)), nrow=length(x), ncol=2)
+                             rule=2)), nrow=length(x), ncol=2,
+              dimnames=list(list(), list("x", "y")))
   return(b)
 }
 
@@ -93,9 +94,17 @@
     stop(sQuote("halfWindowSize"), "=", halfWindowSize, " is too small!")
   }
 
-  m <- runmed(y, k=(2*halfWindowSize+1))
+  windowSize <- halfWindowSize*2+1
 
-  return(cbind(x, m))
+  if (windowSize > length(y)) {
+    stop(sQuote("halfWindowSize"), " is too large! ",
+         "(window size (", windowSize, ") > number of ",
+         "intensity values (", length(y), "))")
+  }
+
+  y <- runmed(y, k=windowSize)
+
+  return(cbind(x, y))
 }
 
 ## estimateBaselineSnip
