@@ -22,6 +22,6 @@ install.packages("MALDIquant")
 ```R
 install.packages("devtools")
 library("devtools")
-install_github("MALDIquant", "sgibb", "dev")
+install_github("MALDIquant", "sgibb")
 ```
 
