@@ -19,7 +19,6 @@ test_that("estimateBaseline shows warnings", {
 test_that("estimateBaselineConvexHull", {
   m[, 2] <- c(10:1, rep(1, 10))
   ## C implementation
-  print(MALDIquant:::.estimateBaselineConvexHull(1:20, i), m)
   expect_identical(MALDIquant:::.estimateBaselineConvexHull(1:20, i), m)
   ## obsolete (slow) R implementation
   expect_identical(MALDIquant:::.lowerConvexHullR(1:20, i), m)
