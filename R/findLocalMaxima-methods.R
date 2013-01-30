@@ -49,7 +49,7 @@ setMethod(f=".findLocalMaximaLogical",
   if (halfWindowSize*2+1 > length(object)) {
     stop(sQuote("halfWindowSize"), " is too large! ",
          "(window size (", halfWindowSize*2+1, ") > number of ",
-         " intensity values (", length(object), "))")
+         "intensity values (", length(object), "))")
   }
 
   localMaxima <- .localMaxima(object@intensity, halfWindowSize=halfWindowSize)
