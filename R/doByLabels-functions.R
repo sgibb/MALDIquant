@@ -41,8 +41,8 @@
     n <- length(l)
 
     if (length(labels) != n) {
-      stop("For each item in ", sQuote("l"),
-           " there must be a label in ", sQuote("labels"), "!")
+      stop("For each item in ", sQuote("l"), " there must be a label in ",
+           sQuote("labels"), "!")
     }
 
     ## replace tapply by split to preserve order
