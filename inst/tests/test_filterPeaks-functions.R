@@ -8,7 +8,7 @@ test_that("filterPeaks throws errors", {
   expect_error(filterPeaks(list()), "no list of MALDIquant::MassPeaks")
 })
 
-test_that("filterPeaks shows errors", {
+test_that("filterPeaks shows warnings", {
   expect_warning(filterPeaks(l, minFrequency=2),
                  " > 1 does not make sense! Using 1 instead")
   expect_warning(filterPeaks(l, minFrequency=-1),
