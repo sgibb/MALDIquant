@@ -71,6 +71,9 @@ mergeMassSpectra <- function(l, labels, fun=mean, ...) {
 
   mass <- as.double(colnames(m))
 
+  ## avoid named intensity/snr slot
+  colnames(m) <- NULL
+
   ## merge intensities
   intensity <- .merge(m, fun=fun, ...)
 
