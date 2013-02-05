@@ -56,7 +56,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
   }
 
   if (isEmpty(reference)) {
-    stop("Reference MassPeaks Object contains no peaks!")
+    stop("Reference MassPeaks object contains no peaks!")
   }
 
   ## fetch plot.default arguments (debug plot)

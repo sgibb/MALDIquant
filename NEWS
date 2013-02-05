@@ -1,6 +1,13 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.5.3 [2013-02-05]:
+- Include tests in inst/tests.
+
+Version 1.5.2 [2013-02-05]:
+- .which.closest: rounding .5 to the next highest integer (before: to the next
+  lowest one); affected functions: labelPeaks.
+
 Version 1.5.1 [2013-01-24]:
 - .doByLabels: fix an error that occurred if all labels were unique (fixes #1);
   affected functions: filterPeaks, mergeMassPeaks, mergeMassSpectra.
@@ -17,7 +24,7 @@ Version 1.5 [2012-12-06]:
 Version 1.4 [2012-10-30]:
 - Add slot "snr" to MassPeaks.
 - Change demo licences.
-- binPeaks/referencePeaks: add argument method=c("strict", "relaxed"); 
+- binPeaks/referencePeaks: add argument method=c("strict", "relaxed");
   "relaxed" allows multiple peaks of the same spectrum in a bin.
 - labelPeaks: remove tolerance argument (now always select the closest one).
 - mergeMassPeaks/mergeMassSpectra: merge metaData, too.
@@ -33,7 +40,7 @@ Version 1.3 [2012-09-16]:
 - Add trim and [ methods.
 - Fix isMassSpectrumList.
 - detectPeaks: add error message if windowSize >= length.
-- determineWarpingFunctions: add error message if it could not match any peak 
+- determineWarpingFunctions: add error message if it could not match any peak
   to reference peaks.
 - labelPeaks: add avoidOverlap argument to avoid overlapping of peak labels.
 - labelPeaks: change default value for verticalOffset argument.
@@ -58,7 +65,7 @@ Version 1.1 [2012-05-06]:
 - determineWarpingFunctions, warpMassSpectra, warpMassPeaks now require
   lists as arguments and return a list.
 - calibrate: works only on matrices now.
-- Add totalIonCurrent method (replacement for calibrate function on 
+- Add totalIonCurrent method (replacement for calibrate function on
   MassSpectrum objects).
 - Add methods accepting lists as arguments: transformIntensity, removeBaseline,
   detectPeaks.
@@ -94,10 +101,10 @@ Version 0.4 [2011-08-04]:
 - Add pA1 dataset.
 
 Version 0.3 [2011-05-28]:
-- Add transformIntensity, estimateNoise, findLocalMaxima, detectPeaks and 
+- Add transformIntensity, estimateNoise, findLocalMaxima, detectPeaks and
   points method.
 - Add createMassPeaks constructor.
-- Replace .estimateBaselineMovingEstimator by .estimateBaselineMedian (uses 
+- Replace .estimateBaselineMovingEstimator by .estimateBaselineMedian (uses
   runmed instead of an own slow movingEstimator function).
 - Remove fdrtool dependency and rewrite .estimateBaselineConvexHull in C.
 - Rename SingleSpectrum class to MassSpectrum.
