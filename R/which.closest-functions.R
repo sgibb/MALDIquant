@@ -36,5 +36,5 @@
   lDiff <- abs(vec[lIdx]-x)
   rDiff <- abs(vec[rIdx]-x)
 
-  return(ifelse(lDiff == pmin(lDiff, rDiff), lIdx, rIdx))
+  return(ifelse(rDiff == pmin(lDiff, rDiff), rIdx, lIdx))
 }
