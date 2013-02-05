@@ -82,7 +82,7 @@ warpMassPeaks <- function(l, w) {
              return(m)
            }, m=l, wf=w, SIMPLIFY=FALSE))
   } else {
-    stop(sQuote("l"), " has to be a list of MALDIquant::MassObject objects.")
+    stop(sQuote("l"), " has to be a list of MALDIquant::AbstractMassObject objects.")
     return(l)
   }
 }

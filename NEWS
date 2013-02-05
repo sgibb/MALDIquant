@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.5.3 [2013-02-05]:
+- Include tests in inst/tests.
+
 Version 1.5.2 [2013-02-05]:
 - .which.closest: rounding .5 to the next highest integer (before: to the next
   lowest one); affected functions: labelPeaks.

@@ -49,3 +49,13 @@ test_that("removeBaseline works with SNIP", {
                                                          rep(0, 7))))
 })
 
+test_that("removeBaseline works with list of MassSpectrum objects", {
+  expect_error(removeBaseline(list(x=1, y=1)),
+               "no list of MALDIquant::MassSpectrum objects")
+  expect_error(removeBaseline(list(s, createMassPeaks(1, 1)),
+               "no list of MALDIquant::MassSpectrum objects"))
+  r <- createMassSpectrum(mass=1:20,
+                          intensity=c(rep(0, 10), 5, 5, 2.5, rep(0, 7)))
+  expect_equal(removeBaseline(list(s, s), iterations=2), list(r, r))
+})
+
