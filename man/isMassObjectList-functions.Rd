@@ -17,9 +17,9 @@ isMassSpectrumList(x)
 isMassPeaksList(x)
 }
 \arguments{
-    \item{x}{
-        object to be tested. 
-    }
+  \item{x}{
+    object to be tested.
+  }
 }
 \value{
 Returns \code{\link{TRUE}} or \code{\link{FALSE}} depending on whether its
@@ -38,24 +38,24 @@ Sebastian Gibb
 }
 \examples{
 ## load library
-library("MALDIquant");
+library("MALDIquant")
 
 ## create list
-p <- list();
+p <- list()
 
 ## test list
-isMassPeaksList(p); # returns FALSE
+isMassPeaksList(p) # returns FALSE
 
 ## create two MassPeaks objects and add them to the list
 p <- createMassPeaks(mass=1:100, intensity=1:100,
-                     metaData=list(name="example 1"));
+                     metaData=list(name="example 1"))
 p <- createMassPeaks(mass=1:100, intensity=1:100,
-                     metaData=list(name="example 2"));
+                     metaData=list(name="example 2"))
 
 ## test list
-isMassObjectList(p);   # returns TRUE 
-isMassPeaksList(p);    # returns TRUE 
-isMassSpectrumList(p); # returns FALSE
+isMassObjectList(p)   # returns TRUE
+isMassPeaksList(p)    # returns TRUE
+isMassSpectrumList(p) # returns FALSE
 }
 \keyword{methods}
 

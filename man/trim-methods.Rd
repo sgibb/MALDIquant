@@ -20,18 +20,18 @@ side (\code{ltrim}), right side (\code{rtrim}), or both sides (\code{trim}). \cr
 This is useful if some mass ranges should be excluded from further analysis.
 }
 \usage{
-\S4method{ltrim}{AbstractMassObject,numeric}(object, minMass) 
-\S4method{ltrim}{list,numeric}(object, minMass) 
-\S4method{rtrim}{AbstractMassObject,numeric}(object, maxMass) 
-\S4method{rtrim}{list,numeric}(object, maxMass) 
-\S4method{trim}{AbstractMassObject,numeric,numeric}(object, minMass, maxMass) 
-\S4method{trim}{list,numeric,numeric}(object, minMass, maxMass) 
+\S4method{ltrim}{AbstractMassObject,numeric}(object, minMass)
+\S4method{ltrim}{list,numeric}(object, minMass)
+\S4method{rtrim}{AbstractMassObject,numeric}(object, maxMass)
+\S4method{rtrim}{list,numeric}(object, maxMass)
+\S4method{trim}{AbstractMassObject,numeric,numeric}(object, minMass, maxMass)
+\S4method{trim}{list,numeric,numeric}(object, minMass, maxMass)
 }
 \arguments{
-    \item{object}{\code{\linkS4class{AbstractMassObject}} object or a 
-        \code{list} of \code{\linkS4class{AbstractMassObject}} objects.}
-    \item{minMass}{\code{numeric}, minimal mass which should included.}
-    \item{maxMass}{\code{numeric}, maximal mass which should included.}
+  \item{object}{\code{\linkS4class{AbstractMassObject}} object or a
+    \code{list} of \code{\linkS4class{AbstractMassObject}} objects.}
+  \item{minMass}{\code{numeric}, minimal mass which should included.}
+  \item{maxMass}{\code{numeric}, maximal mass which should included.}
 }
 \references{
 See website: \url{http://strimmerlab.org/software/maldiquant/}
@@ -46,10 +46,10 @@ Sebastian Gibb
 }
 \examples{
 ## load library
-library("MALDIquant");
+library("MALDIquant")
 
 ## load example data
-data("fiedler2009subset", package="MALDIquant");
+data("fiedler2009subset", package="MALDIquant")
 
 ## select only one spectrum
 s <- fiedler2009subset[[1]]

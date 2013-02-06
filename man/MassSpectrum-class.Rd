@@ -7,7 +7,7 @@
 \title{Class "MassSpectrum"}
 \description{
 \code{\linkS4class{MassSpectrum}} represents a single spectrum of a MALDI-TOF
-mass spectrometry measurement. It provides an easy framework for doing 
+mass spectrometry measurement. It provides an easy framework for doing
 some preprocessing steps like peak detection, baseline correction and
 much more. \cr
 }
@@ -20,31 +20,31 @@ Class \code{\linkS4class{AbstractMassObject}}, directly.
 }
 \section{Methods}{
 \describe{
-    \item{detectPeaks}{\code{signature(x = "MassSpectrum")}:
-        Look for local maxima and estimate noise to extract peaks out of a
-        \code{\linkS4class{MassSpectrum}} object.
-        See \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}} for 
-        details.}
-    \item{estimateBaseline}{\code{signature(x = "MassSpectrum")}:
-        Estimates the baseline of a
-        \code{\linkS4class{MassSpectrum}} object.
-        See \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}} for 
-        details.}
-    \item{estimateNoise}{\code{signature(x = "MassSpectrum")}:
-        Estimates the noise of a
-        \code{\linkS4class{MassSpectrum}} object.
-        See \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}} for 
-        details.}
-%    \item{imputeMass}{\code{signature(x = "MassSpectrum")}:
-%        Impute missing mass values to a
-%        \code{\linkS4class{MassSpectrum}} object.
-%        See \code{\link[MALDIquant]{imputeMass,MassSpectrum-method}} for 
-%        details.}
-    \item{removeBaseline}{\code{signature(x = "MassSpectrum")}:
-        Estimates and removes the baseline of a
-        \code{\linkS4class{MassSpectrum}} object.
-        See \code{\link[MALDIquant]{removeBaseline,MassSpectrum-method}} for 
-        details.}
+  \item{detectPeaks}{\code{signature(x = "MassSpectrum")}:
+    Look for local maxima and estimate noise to extract peaks out of a
+    \code{\linkS4class{MassSpectrum}} object.
+    See \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}} for
+    details.}
+  \item{estimateBaseline}{\code{signature(x = "MassSpectrum")}:
+    Estimates the baseline of a
+    \code{\linkS4class{MassSpectrum}} object.
+    See \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}} for
+    details.}
+  \item{estimateNoise}{\code{signature(x = "MassSpectrum")}:
+    Estimates the noise of a
+    \code{\linkS4class{MassSpectrum}} object.
+    See \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}} for
+    details.}
+%  \item{imputeMass}{\code{signature(x = "MassSpectrum")}:
+%    Impute missing mass values to a
+%    \code{\linkS4class{MassSpectrum}} object.
+%    See \code{\link[MALDIquant]{imputeMass,MassSpectrum-method}} for
+%    details.}
+  \item{removeBaseline}{\code{signature(x = "MassSpectrum")}:
+    Estimates and removes the baseline of a
+    \code{\linkS4class{MassSpectrum}} object.
+    See \code{\link[MALDIquant]{removeBaseline,MassSpectrum-method}} for
+    details.}
 }
 }
 \references{
@@ -64,24 +64,24 @@ Sebastian Gibb
 }
 \examples{
 ## load library
-library("MALDIquant");
+library("MALDIquant")
 
 ## create a MassSpectrum object by default constructor
 s <- createMassSpectrum(mass=1:100, intensity=rnorm(100)^2,
-                        metaData=list(name="example"));
+                        metaData=list(name="example"))
 
 ## show some details
-s;
+s
 
 ## plot spectrum
-plot(s);
+plot(s)
 
 ## modify intensity and metaData
-intensity(s)[1:50] <- 0;
-metaData(s) <- list(name="modified example");
+intensity(s)[1:50] <- 0
+metaData(s) <- list(name="modified example")
 
 ## plot again
-plot(s);
+plot(s)
 }
 \keyword{classes}
 

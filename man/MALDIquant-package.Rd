@@ -6,11 +6,11 @@
 Quantitative Analysis of Mass spectrometry Data
 }
 \description{
-MALDIquant provides a complete analysis pipeline for MALDI-TOF and other 
-mass spectrometry data. Distinctive features include baseline subtraction 
-using the SNIP algorithm, peak alignment using warping functions, 
-handling of replicated measurements as well as allowing spectra with 
-different resolutions. 
+MALDIquant provides a complete analysis pipeline for MALDI-TOF and other
+mass spectrometry data. Distinctive features include baseline subtraction
+using the SNIP algorithm, peak alignment using warping functions,
+handling of replicated measurements as well as allowing spectra with
+different resolutions.
 
 For a first overview run \code{demo("MALDIquant")}.
 }
@@ -49,13 +49,13 @@ See website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load library
-library("MALDIquant");
+library("MALDIquant")
 
 ## load example data
-data("fiedler2009subset", package="MALDIquant");
+data("fiedler2009subset", package="MALDIquant")
 
 ## choose only a smaller subset
-spectra <- fiedler2009subset[1:2];
+spectra <- fiedler2009subset[1:2]
 
 ## show some information
 spectra
@@ -63,31 +63,31 @@ spectra
 ## running typical workflow
 
 ## transform intensities
-t <- transformIntensity(spectra, fun=sqrt);
+t <- transformIntensity(spectra, fun=sqrt)
 
-s <- transformIntensity(t, fun=movingAverage);
+s <- transformIntensity(t, fun=movingAverage)
 
 ## baseline correction
-b <- removeBaseline(s);
+b <- removeBaseline(s)
 
 ## detect peaks
-p <- detectPeaks(b);
+p <- detectPeaks(b)
 
 ## plot results
-par(mfcol=c(3, length(spectra)));
+par(mfcol=c(3, length(spectra)))
 for (i in seq(along=spectra)) {
-    plot(spectra[[i]], main="raw spectrum");
-    plot(s[[i]], main="transformed (sqrt) and smoothed (ma5)");
-    plot(b[[i]], main="baseline removed and peaks detected");
-    points(p[[i]], pch=4, col=2);
+  plot(spectra[[i]], main="raw spectrum")
+  plot(s[[i]], main="transformed (sqrt) and smoothed (ma5)")
+  plot(b[[i]], main="baseline removed and peaks detected")
+  points(p[[i]], pch=4, col=2)
 }
-par(mfrow=c(1, 1));
+par(mfrow=c(1, 1))
 
 ## bin peaks
-bp <- binPeaks(p);
+bp <- binPeaks(p)
 
 ## show intensity matrix
-intensityMatrix(bp);
+intensityMatrix(bp)
 }
 \keyword{package}
 

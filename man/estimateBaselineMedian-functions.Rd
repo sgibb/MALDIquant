@@ -5,25 +5,25 @@
 This function estimates the baseline of mass spectrometry data.\cr
 The baseline estimation is based on median which is used in a
 moving window.\cr
-It is hidden by \code{NAMESPACE} because it is a private function and 
+It is hidden by \code{NAMESPACE} because it is a private function and
 \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}} should be used
 instead.
 }
 \usage{
 .estimateBaselineMedian(x, y,
-    halfWindowSize=100) 
+    halfWindowSize=100)
 }
 \arguments{
-    \item{x}{vector of x values}
-    \item{y}{vector of y values}
-    \item{halfWindowSize}{half size of the moving window for the median 
-        (based on \code{\link{runmed}})\cr 
-        The resulting window reaches from \code{mass[cur_index-halfWindowSize]}
-        to \code{mass[cur_index+halfWindowSize]}.}
+  \item{x}{vector of x values}
+  \item{y}{vector of y values}
+  \item{halfWindowSize}{half size of the moving window for the median
+    (based on \code{\link{runmed}})\cr
+    The resulting window reaches from \code{mass[cur_index-halfWindowSize]}
+    to \code{mass[cur_index+halfWindowSize]}.}
 }
 \value{
-    Returns a two column matrix (first column: mass, second column: intensity)
-    of the estimated baseline.
+  Returns a two column matrix (first column: mass, second column: intensity)
+  of the estimated baseline.
 }
 \author{
 Sebastian Gibb
@@ -35,22 +35,22 @@ Sebastian Gibb
 }
 \examples{
 ## load library
-library("MALDIquant");
+library("MALDIquant")
 
 ## load example data
-data("fiedler2009subset", package="MALDIquant");
+data("fiedler2009subset", package="MALDIquant")
 
 ## choose only the first mass spectrum
-s <- fiedler2009subset[[1]];
+s <- fiedler2009subset[[1]]
 
 ## plot spectrum
-plot(s);
+plot(s)
 
 ## estimate baseline
-b <- estimateBaseline(s, method="Median");
+b <- estimateBaseline(s, method="Median")
 
 ## draw baseline on the plot
-lines(b, col="red");
+lines(b, col="red")
 }
 \keyword{internal}
 

@@ -20,16 +20,16 @@ Class \code{\linkS4class{AbstractMassObject}}, directly.
 }
 \section{Slots}{
 \describe{
-    \item{\code{snr}:}{\code{vector}, \emph{s}ignal-to-\emph{n}oise
-      \emph{r}atio}
+  \item{\code{snr}:}{\code{vector}, \emph{s}ignal-to-\emph{n}oise
+    \emph{r}atio}
 }
 }
 \section{Methods}{
 \describe{
-    \item{labelPeaks}{\code{signature(x = "MassPeaks")}:
-        Draws peak labels to plot.
-        See \code{\link{labelPeaks,MassPeaks-method}} for 
-        details.}
+  \item{labelPeaks}{\code{signature(x = "MassPeaks")}:
+    Draws peak labels to plot.
+    See \code{\link{labelPeaks,MassPeaks-method}} for
+    details.}
 }
 }
 \references{
@@ -46,7 +46,7 @@ Sebastian Gibb
 }
 %\examples{
 %## load library
-%library("MALDIquant");
+%library("MALDIquant")
 %}
 \keyword{classes}
 

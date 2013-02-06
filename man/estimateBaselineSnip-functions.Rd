@@ -6,7 +6,7 @@ This function estimates the baseline of mass spectrometry data.\cr
 The baseline estimation is based on the Statistics-sensitive Non-linear
 Iterative Peak-clipping algorithm (SNIP) described in
 Ryan et al 1988.\cr
-It is hidden by \code{NAMESPACE} because it is a private function and 
+It is hidden by \code{NAMESPACE} because it is a private function and
 \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}} should be used
 instead.
 }
@@ -14,15 +14,15 @@ instead.
 .estimateBaselineSnip(x, y, iterations=100)
 }
 \arguments{
-    \item{x}{vector of x values (only needed to return a two-column matrix)}
-    \item{y}{vector of y values}
-    \item{iterations}{half window size\cr
-        The resulting window reaches from \code{mass[cur_index-iterations]}
-        to \code{mass[cur_index+iterations]}.}
+  \item{x}{vector of x values (only needed to return a two-column matrix)}
+  \item{y}{vector of y values}
+  \item{iterations}{half window size\cr
+    The resulting window reaches from \code{mass[cur_index-iterations]}
+    to \code{mass[cur_index+iterations]}.}
 }
 \value{
-    Returns a two column matrix (first column: mass, second column: intensity)
-    of the estimated baseline.
+  Returns a two column matrix (first column: mass, second column: intensity)
+  of the estimated baseline.
 }
 \details{
 The algorithm based on the following equation:
@@ -48,28 +48,28 @@ Sebastian Gibb
 }
 \examples{
 ## load library
-library("MALDIquant");
+library("MALDIquant")
 
 ## load example data
-data("fiedler2009subset", package="MALDIquant");
+data("fiedler2009subset", package="MALDIquant")
 
 ## choose only the first mass spectrum
-s <- fiedler2009subset[[1]];
+s <- fiedler2009subset[[1]]
 
 ## plot spectrum
-plot(s);
+plot(s)
 
 ## estimate baseline (try different parameters)
-b1 <- estimateBaseline(s, method="SNIP", iterations=75);
-b2 <- estimateBaseline(s, method="SNIP", iterations=150);
+b1 <- estimateBaseline(s, method="SNIP", iterations=75)
+b2 <- estimateBaseline(s, method="SNIP", iterations=150)
 
 ## draw baselines on the plot
-lines(b1, col=2);
-lines(b2, col=3);
+lines(b1, col=2)
+lines(b2, col=3)
 
 ## draw legend
-legend(x="topright", lwd=1, legend=paste("iterations=", c(75, 150), sep=""), 
-       col=c(2, 3));
+legend(x="topright", lwd=1, legend=paste("iterations=", c(75, 150), sep=""),
+       col=c(2, 3))
 }
 \keyword{internal}
 

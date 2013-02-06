@@ -4,7 +4,7 @@
 \description{
 This function estimates the noise of mass spectrometry data using Friedman's
 Super Smoother.
-It is hidden by \code{NAMESPACE} because it is a private function and 
+It is hidden by \code{NAMESPACE} because it is a private function and
 \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}} should be used
 instead.
 }
@@ -12,13 +12,13 @@ instead.
 .estimateNoiseSuperSmoother(x, y, \dots)
 }
 \arguments{
-    \item{x}{vector of x values}
-    \item{y}{vector of y values}
-    \item{\dots}{arguments to be passed to \code{\link[stats]{supsmu}}.}
+  \item{x}{vector of x values}
+  \item{y}{vector of y values}
+  \item{\dots}{arguments to be passed to \code{\link[stats]{supsmu}}.}
 }
 \value{
-    Returns a two column matrix (first column: mass, second column: intensity)
-    of the estimated baseline.
+  Returns a two column matrix (first column: mass, second column: intensity)
+  of the estimated baseline.
 }
 \author{
 Sebastian Gibb
@@ -26,32 +26,32 @@ Sebastian Gibb
 \seealso{
 \code{\linkS4class{MassSpectrum}},
 \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}},
-\code{\link[stats]{supsmu}}.
+\code{\link[stats]{supsmu}}
 }
 \examples{
 ## load library
-library("MALDIquant");
+library("MALDIquant")
 
 ## load example data
-data("fiedler2009subset", package="MALDIquant");
+data("fiedler2009subset", package="MALDIquant")
 
 ## choose only the first mass spectrum
-s <- fiedler2009subset[[1]];
+s <- fiedler2009subset[[1]]
 
 ## transform intensities
-s <- transformIntensity(s, sqrt);
+s <- transformIntensity(s, sqrt)
 
 ## remove baseline
-s <- removeBaseline(s);
+s <- removeBaseline(s)
 
 ## plot spectrum
-plot(s);
+plot(s)
 
-## estimate noise 
-n <- estimateNoise(s, method="SuperSmoother");
+## estimate noise
+n <- estimateNoise(s, method="SuperSmoother")
 
 ## draw noise on the plot
-lines(n, col="red");
+lines(n, col="red")
 }
 \keyword{internal}
 
