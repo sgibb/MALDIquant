@@ -6,59 +6,59 @@
 
 
 ## load necessary libraries
-library("MALDIquant");
+library("MALDIquant")
 
 ## load example spectra
-data("fiedler2009subset", package="MALDIquant");
+data("fiedler2009subset", package="MALDIquant")
 
 ## sqrt transform (for variance stabilization)
-spectra <- transformIntensity(fiedler2009subset, sqrt);
+spectra <- transformIntensity(fiedler2009subset, sqrt)
 
 ## simple 5 point moving average for smoothing spectra
-spectra <- transformIntensity(spectra, movingAverage, halfWindowSize=2);
+spectra <- transformIntensity(spectra, movingAverage, halfWindowSize=2)
 
 ## remove baseline
-spectra <- removeBaseline(spectra);
+spectra <- removeBaseline(spectra)
 
 ## run peak detection
-peaks <- detectPeaks(spectra);
+peaks <- detectPeaks(spectra)
 
 ## align spectra by warping
 ## 1. create reference peaks (could be done automatically by
-##    determineWarpingFunctions)
+##  determineWarpingFunctions)
 ## 2. calculate individual warping functions
 ## 3. warp each MassPeaks object
-refPeaks <- referencePeaks(peaks);
-warpingFunctions <- determineWarpingFunctions(peaks, reference=refPeaks);
-peaks <- warpMassPeaks(peaks, warpingFunctions);
+refPeaks <- referencePeaks(peaks)
+warpingFunctions <- determineWarpingFunctions(peaks, reference=refPeaks)
+peaks <- warpMassPeaks(peaks, warpingFunctions)
 
 ## bin peaks
-peaks <- binPeaks(peaks);
+peaks <- binPeaks(peaks)
 
 ## merge technical replicates
 ## 1. create factors for correct assignment
-nTechRep <- 2;
-nBiologicalSamples <- length(peaks)/nTechRep;
+nTechRep <- 2
+nBiologicalSamples <- length(peaks)/nTechRep
 samples <- factor(rep(1:nBiologicalSamples, each=nTechRep),
-                  levels=1:nBiologicalSamples);
+                  levels=1:nBiologicalSamples)
 
 ## 2. filter peaks which occur only in one of the replicates
-peaks <- filterPeaks(peaks, labels=samples, minFrequency=1);
+peaks <- filterPeaks(peaks, labels=samples, minFrequency=1)
 
 ## 3. merge technical replicates
-peaks <- mergeMassPeaks(peaks, labels=samples);
+peaks <- mergeMassPeaks(peaks, labels=samples)
 
 ## prepare for statistical analysis
 ## 1. get cancer/control indices
-filenames <- sapply(peaks, function(x)metaData(x)$file[1]);
-cancer <- grepl(pattern="/tumor/", x=filenames);
+filenames <- sapply(peaks, function(x)metaData(x)$file[1])
+cancer <- grepl(pattern="/tumor/", x=filenames)
 classes <- factor(ifelse(cancer, "cancer", "control"),
-                  levels=c("cancer", "control"));
+                  levels=c("cancer", "control"))
 
 ## 2. filter peaks which occur less across all samples
-peaks <- filterPeaks(peaks, minFrequency=1);
+peaks <- filterPeaks(peaks, minFrequency=1)
 
 ## 3. export MassPeaks objects as matrix
-training <- intensityMatrix(peaks);
+training <- intensityMatrix(peaks)
 
 ## 'training' and 'classes' could now used by any statistical tool e.g. sda

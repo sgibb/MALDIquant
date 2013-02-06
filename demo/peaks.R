@@ -6,30 +6,30 @@
 
 
 ## load necessary libraries
-library("MALDIquant");
+library("MALDIquant")
 
 ## load example spectra
-data("fiedler2009subset", package="MALDIquant");
+data("fiedler2009subset", package="MALDIquant")
 
 ## choose only spectrum 1
-s <- fiedler2009subset[[1]];
+s <- fiedler2009subset[[1]]
 
 ## remove baseline
-s <- removeBaseline(s);
+s <- removeBaseline(s)
 
 ## detect peaks
-p <- detectPeaks(s, SNR=10);
+p <- detectPeaks(s, SNR=10)
 
 ## plot spectrum
-plot(s, main="example spectrum 1");
+plot(s, main="example spectrum 1")
 
 ## draw vertical lines
-lines(p, col=4);
+lines(p, col=4)
 
 ## mark peaks
-points(p, col=2, pch=4);
+points(p, col=2, pch=4)
 
 ## label some peaks
-labelPeaks(p, mass=c(1020, 1206, 1350, 1466, 1616, 2660, 2932, 3191,
-                     3262, 3883, 4209, 5336, 5904, 7766, 9290));
+labelPeaks(p, mass=c(1020, 1206, 1350, 1466, 1616, 2660, 2932, 3191, 3262,
+                     3883, 4209, 5336, 5904, 7766, 9290))
 

@@ -5,9 +5,9 @@
 ## all MALDIquant demos
 
 
-library("MALDIquant");
-demo("baseline", package="MALDIquant");
-demo("peaks", package="MALDIquant");
-demo("warping", package="MALDIquant");
-message("demo(\"workflow\") produces no graphical output");
-demo("workflow", package="MALDIquant");
+library("MALDIquant")
+demo("baseline", package="MALDIquant")
+demo("peaks", package="MALDIquant")
+demo("warping", package="MALDIquant")
+message("demo(\"workflow\") produces no graphical output")
+demo("workflow", package="MALDIquant")

@@ -6,24 +6,24 @@
 
 
 ## load necessary libraries
-library("MALDIquant");
+library("MALDIquant")
 
 ## load example spectra
-data("fiedler2009subset", package="MALDIquant");
+data("fiedler2009subset", package="MALDIquant")
 
 ## choose only spectrum 1
-s <- fiedler2009subset[[1]];
+s <- fiedler2009subset[[1]]
 
 ## test different baseline estimation methods
-bSnip <- estimateBaseline(s, method="SNIP");
-plot(s, main="SNIP Baseline [default]");
-lines(bSnip, lwd=2, col=2);
+bSnip <- estimateBaseline(s, method="SNIP")
+plot(s, main="SNIP Baseline [default]")
+lines(bSnip, lwd=2, col=2)
 
-bConvexHull <- estimateBaseline(s, method="ConvexHull");
-plot(s, main="ConvexHull Baseline");
-lines(bConvexHull, lwd=2, col=2);
+bConvexHull <- estimateBaseline(s, method="ConvexHull")
+plot(s, main="ConvexHull Baseline")
+lines(bConvexHull, lwd=2, col=2)
 
-bMedian <- estimateBaseline(s, method="Median");
-plot(s, main="Median Baseline");
-lines(bMedian, lwd=2, col=2);
+bMedian <- estimateBaseline(s, method="Median")
+plot(s, main="Median Baseline")
+lines(bMedian, lwd=2, col=2)
 
