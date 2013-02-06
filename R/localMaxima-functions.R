@@ -39,7 +39,7 @@
             as.integer(halfWindowSize),
             output=logical(n),
             DUP=TRUE,
-            MALDIquant="MALDIquant")$output[i])
+            PACKAGE="MALDIquant")$output[i])
 }
 
 ## R only: obsolete because too slow and too much memory usage
