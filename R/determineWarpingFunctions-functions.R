@@ -173,13 +173,13 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
       ## fetch changed mass == aligned peaks
       notNA <- !is.na(binnedMass[lIdx[[i+1]]])
 
-      if (is.null(plotArgs$main)) {
+      if (is.null(givenPlotArgs$main)) {
         plotArgs$main <- paste("sample ", i, " vs reference\n",
                                "(matched peaks: ", sum(notNA), "/",
                                nReference, ")", sep="")
       }
 
-      if (is.null(plotArgs$sub)) {
+      if (is.null(givenPlotArgs$sub)) {
         plotArgs$sub <- l[[i]]@metaData$file
       }
 
