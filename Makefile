@@ -77,3 +77,7 @@ testdemo: local_install
 	$(R_BIN) -q -e "library(\"$(NAME)\", lib.loc=\"$(LOCALDIR)\")" \
 		   		-e "demo(\"MALDIquant\")"
 
+win-builder: check_archive
+	cd .. ;\
+	ncftpput -u anonymous -p '' win-builder.r-project.org R-devel $(NAME)_$(PACKAGE_VERSION).tar.gz
+
