@@ -72,7 +72,7 @@ setMethod(f=".prepareShow",
 
   l <- callNextMethod(object)
 
-  groups <- "Range of snr values:"
+  groups <- "Range of snr values"
 
   if (isEmpty(object)) {
     values <- NA

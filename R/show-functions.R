@@ -29,7 +29,7 @@
   if (!is.null(x)) {
     n <- length(x)
 
-    if (n) {
+    if (n > 1) {
       name <- paste(name, 1:n, sep="")
     }
 
