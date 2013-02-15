@@ -84,7 +84,7 @@ s <- fiedler2009subset[[1]]
 plot(s)
 
 ## subtract baseline
-b <- removeBaseline(s)
+b <- removeBaseline(s, method="SNIP")
 
 ## draw modified spectrum on the plot
 lines(b, col="blue")
