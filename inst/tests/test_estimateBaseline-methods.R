@@ -60,3 +60,22 @@ test_that("estimateBaselineSnip", {
   expect_equal(estimateBaseline(s), m100)
 })
 
+test_that("estimateBaselineTopHat", {
+  m[, 2] <- rep(c(rep(6, 5), 5:1), 2)
+  m1 <- m
+  m1[, 2] <- rep(c(rep(8, 3), 7:1), 2)
+  expect_identical(MALDIquant:::.estimateBaselineTopHat(1:20, i, 1), m1)
+  expect_identical(MALDIquant:::.estimateBaselineTopHat(1:20, i, 2), m)
+
+  ## user method
+  colnames(m) <- c("mass", "intensity")
+  expect_identical(estimateBaseline(s, method="TopHat", halfWindowSize=2), m)
+
+  ## halfWindowSize
+  expect_error(MALDIquant:::.estimateBaselineTopHat(1:20, i, 0),
+               "too small")
+  expect_error(MALDIquant:::.estimateBaselineTopHat(1:20, i, 20),
+               "too large")
+})
+
+

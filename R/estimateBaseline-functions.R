@@ -187,7 +187,7 @@
   e <- apply(windows, 1, min)
   windows <- embed(c(rep(0, halfWindowSize), e, rep(0, halfWindowSize)),
                    windowSize)
-  d <- apply(windows, 1, max)
-  return(cbind(x, d))
+  y <- apply(windows, 1, max)
+  return(cbind(x, y))
 }
 
