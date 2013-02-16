@@ -33,7 +33,7 @@ spectrum.\cr
 \author{
 Sebastian Gibb
 
-Maintainer: Sebastian Gibb <mail@sebastiangibb.de>
+Maintainer: Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \references{
 Gibb, S. and Strimmer, K. (2012),
