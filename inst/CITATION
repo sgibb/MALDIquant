@@ -12,5 +12,9 @@ bibentry(
   eprint = "http://bioinformatics.oxfordjournals.org/content/28/17/2270.full.pdf+html",
   journal = "Bioinformatics",
   publisher= "Oxford Univ Press",
-  key = "MALDIquant"
-);
+  key = "MALDIquant",
+  header = "To cite the MALDIquant package in publications use:",
+  textVersion = paste("S. Gibb and K. Strimmer. 2012.",
+                      "MALDIquant: a versatile R package for the analysis of mass spectrometry data.",
+                      "Bioinformatics 28, 2270-2271.")
+)
