@@ -15,21 +15,35 @@ data("fiedler2009subset", package="MALDIquant")
 spectra <- transformIntensity(fiedler2009subset, sqrt)
 
 ## simple 5 point moving average for smoothing spectra
+## (maybe you have to increase halfWindowSize if your data are very noisy)
 spectra <- transformIntensity(spectra, movingAverage, halfWindowSize=2)
 
 ## remove baseline
-spectra <- removeBaseline(spectra)
+## (maybe you have to adjust iterations to your spectra; high resolution
+## spectra need a much lower iteration number (halfWindowSize, for some other
+## baseline estimation algorithms)
+## see ?removeBaseline, ?estimateBaseline
+spectra <- removeBaseline(spectra, method="SNIP", iterations=100)
 
 ## run peak detection
-peaks <- detectPeaks(spectra)
+## (maybe you need to adjust halfWindowSize [decreasing it for high resolution
+## spectra] and SNR [a higher value increase the True-Positive-Rate but decrease
+## sensitivity])
+## see ?detectPeaks, ?estimateNoise
+peaks <- detectPeaks(spectra, method="MAD", halfWindowSize=20, SNR=2)
 
 ## align spectra by warping
 ## 1. create reference peaks (could be done automatically by
 ##  determineWarpingFunctions)
 ## 2. calculate individual warping functions
 ## 3. warp each MassPeaks object
+## (maybe you have to adjust the tolerance argument [increasing for low
+## resolution spectra with a high mass error, decreasing for high resolution
+## spectra with a small mass error])
+## see ?referencePeaks,?determineWarpingFunctions
 refPeaks <- referencePeaks(peaks)
-warpingFunctions <- determineWarpingFunctions(peaks, reference=refPeaks)
+warpingFunctions <- determineWarpingFunctions(peaks, reference=refPeaks,
+                                              tolerance=0.002)
 peaks <- warpMassPeaks(peaks, warpingFunctions)
 
 ## bin peaks
@@ -46,7 +60,7 @@ samples <- factor(rep(1:nBiologicalSamples, each=nTechRep),
 peaks <- filterPeaks(peaks, labels=samples, minFrequency=1)
 
 ## 3. merge technical replicates
-peaks <- mergeMassPeaks(peaks, labels=samples)
+peaks <- mergeMassPeaks(peaks, labels=samples, fun=mean)
 
 ## prepare for statistical analysis
 ## 1. get cancer/control indices
