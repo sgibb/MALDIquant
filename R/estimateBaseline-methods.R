@@ -1,4 +1,4 @@
-## Copyright 2011-2012 Sebastian Gibb
+## Copyright 2011-2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -19,7 +19,8 @@
 ## MassSpectrum
 setMethod(f="estimateBaseline",
           signature=signature(object="MassSpectrum"),
-          definition=function(object, method=c("SNIP", "ConvexHull", "Median"),
+          definition=function(object, method=c("SNIP", "TopHat", "ConvexHull",
+                                               "Median"),
                               ...) {
 
   ## empty spectrum?
@@ -32,6 +33,9 @@ setMethod(f="estimateBaseline",
   b <- switch(method,
               "SNIP" = {
                 .estimateBaselineSnip(object@mass, object@intensity, ...)
+              },
+              "TopHat" = {
+                .estimateBaselineTopHat(object@mass, object@intensity, ...)
               },
               "ConvexHull" = {
                 .estimateBaselineConvexHull(object@mass, object@intensity)

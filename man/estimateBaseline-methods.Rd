@@ -9,13 +9,14 @@ This method estimates the baseline of mass spectrometry data
 }
 \usage{
 \S4method{estimateBaseline}{MassSpectrum}(object,
-    method=c("SNIP", "ConvexHull", "Median"),
+    method=c("SNIP", "TopHat", "ConvexHull", "Median"),
     \dots)
 }
 \arguments{
   \item{object}{\code{\linkS4class{MassSpectrum}} object}
   \item{method}{a baseline estimation function; see
     \code{\link[MALDIquant]{.estimateBaselineSnip}},
+    \code{\link[MALDIquant]{.estimateBaselineTopHat}},
     \code{\link[MALDIquant]{.estimateBaselineConvexHull}},
     \code{\link[MALDIquant]{.estimateBaselineMedian}}
   }
@@ -31,6 +32,7 @@ Sebastian Gibb
 \seealso{
 \code{\linkS4class{MassSpectrum}},
 \code{\link[MALDIquant]{.estimateBaselineSnip}},
+\code{\link[MALDIquant]{.estimateBaselineTopHat}},
 \code{\link[MALDIquant]{.estimateBaselineConvexHull}},
 \code{\link[MALDIquant]{.estimateBaselineMedian}},
 \code{\link[MALDIquant]{removeBaseline,MassSpectrum-method}}
@@ -49,7 +51,7 @@ s <- fiedler2009subset[[1]]
 plot(s)
 
 ## estimate baseline
-b <- estimateBaseline(s)
+b <- estimateBaseline(s, method="SNIP")
 
 ## draw baseline on the plot
 lines(b, col="red")

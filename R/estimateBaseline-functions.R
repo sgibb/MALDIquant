@@ -157,3 +157,37 @@
   return(cbind(x, y))
 }
 
+## estimateBaselineTopHat
+##  estimate baseline by TopHat filter (erosion + dilation)
+##
+## params:
+##  x: vector of x values (only needed for create a matrix as return value)
+##  y: vector of y values
+##  halfWindowSize: size of local window
+##
+## returns:
+##  a matrix of the estimate baseline (col1: mass; col2: intensity)
+##
+.estimateBaselineTopHat <- function(x, y, halfWindowSize=100) {
+
+  if (halfWindowSize<1) {
+    stop(sQuote("halfWindowSize"), "=", halfWindowSize, " is too small!")
+  }
+
+  windowSize <- halfWindowSize*2+1
+
+  if (windowSize > length(y)) {
+    stop(sQuote("halfWindowSize"), " is too large! ",
+         "(window size (", windowSize, ") > number of ",
+         "intensity values (", length(y), "))")
+  }
+
+  windows <- embed(c(rep(0, halfWindowSize), y, rep(0, halfWindowSize)),
+                   windowSize)
+  e <- apply(windows, 1, min)
+  windows <- embed(c(rep(0, halfWindowSize), e, rep(0, halfWindowSize)),
+                   windowSize)
+  y <- apply(windows, 1, max)
+  return(cbind(x, y))
+}
+
