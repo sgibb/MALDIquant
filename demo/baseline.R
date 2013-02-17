@@ -19,6 +19,10 @@ bSnip <- estimateBaseline(s, method="SNIP")
 plot(s, main="SNIP Baseline [default]")
 lines(bSnip, lwd=2, col=2)
 
+bTopHat <- estimateBaseline(s, method="TopHat")
+plot(s, main="TopHat Baseline")
+lines(bTopHat, lwd=2, col=2)
+
 bConvexHull <- estimateBaseline(s, method="ConvexHull")
 plot(s, main="ConvexHull Baseline")
 lines(bConvexHull, lwd=2, col=2)
