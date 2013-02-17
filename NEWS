@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.5.5 [2013-02-17]:
+- Add interactive plot method: iplot.
+
 Version 1.5.3 [2013-02-05]:
 - Include tests in inst/tests.
 
