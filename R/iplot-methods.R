@@ -22,8 +22,9 @@ setMethod("iplot",
           definition=function(object, peaks, ...) {
   if (!missing(peaks)) {
     stopifnot(isMassPeaks(peaks))
+    peaks <- list(peaks)
   }
-  return(invisible(.iplot(spectra=list(object), peaks=list(peaks), ...)))
+  return(invisible(.iplot(spectra=list(object), peaks=peaks, ...)))
 })
 
 ## list
