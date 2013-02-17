@@ -1,3 +1,7 @@
+importFrom("grDevices",
+              "getGraphicsEvent",
+              "setGraphicsEventHandlers")
+
 importFrom("graphics",
               "lines",
               "plot",
@@ -38,6 +42,7 @@ exportMethods("as.matrix",
               "estimateNoise",
               "intensity",
               "intensity<-",
+              "iplot",
               "isEmpty",
               "labelPeaks",
               "length",
