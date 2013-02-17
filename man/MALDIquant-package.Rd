@@ -3,12 +3,12 @@
 \alias{MALDIquant}
 \docType{package}
 \title{
-Quantitative Analysis of Mass spectrometry Data
+Quantitative Analysis of Mass Spectrometry Data
 }
 \description{
 MALDIquant provides a complete analysis pipeline for MALDI-TOF and other
-mass spectrometry data. Distinctive features include baseline subtraction
-using the SNIP algorithm, peak alignment using warping functions,
+2-dimensional mass spectrometry data. Distinctive features include baseline
+subtraction using the SNIP algorithm, peak alignment using warping functions,
 handling of replicated measurements as well as allowing spectra with
 different resolutions.
 
@@ -25,70 +25,31 @@ URL: \tab http://strimmerlab.org/software/maldiquant/\cr
 
 Main classes:
 
-\code{\linkS4class{MassPeaks}}: Represents a peak list of a single
-spectrum.\cr
-\code{\linkS4class{MassSpectrum}}: Represents a single spectrum.\cr
+\itemize{
+  \item \code{\linkS4class{MassPeaks}}: Represents a peak list of a single
+  spectrum.
+  \item \code{\linkS4class{MassSpectrum}}: Represents a single spectrum.
 }
 
+The accompanying web site (see below) provides example R scripts to illustrate
+the functionality of this package, too.
+}
 \author{
 Sebastian Gibb
 
 Maintainer: Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \references{
-Gibb, S. and Strimmer, K. (2012),
-\dQuote{MALDIquant: a versatile R package for the analysis of mass spectrometry data.},
-\emph{Bioinformatics} \bold{28}: 2270-2271. \cr
-\url{http://bioinformatics.oxfordjournals.org/content/28/17/2270.abstract} \cr
+S. Gibb and K. Strimmer. 2012.
+MALDIquant: a versatile R package for the analysis of mass spectrometry data.
+Bioinformatics 28: 2270-2271.
+\url{http://bioinformatics.oxfordjournals.org/content/28/17/2270.abstract}
 
 See website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \seealso{
-\code{\linkS4class{MassPeaks}},
-\code{\linkS4class{MassSpectrum}}
+  \itemize{
+    \item Run demo files: \code{demo("MALDIquant")}.
+    \item List all available manual pages: \code{library(help="MALDIquant")}.
+  }
 }
-\examples{
-## load library
-library("MALDIquant")
-
-## load example data
-data("fiedler2009subset", package="MALDIquant")
-
-## choose only a smaller subset
-spectra <- fiedler2009subset[1:2]
-
-## show some information
-spectra
-
-## running typical workflow
-
-## transform intensities
-t <- transformIntensity(spectra, fun=sqrt)
-
-## smooth spectra
-s <- transformIntensity(t, fun=movingAverage)
-
-## baseline correction
-b <- removeBaseline(s)
-
-## detect peaks
-p <- detectPeaks(b)
-
-## plot results
-par(mfcol=c(3, length(spectra)))
-for (i in seq(along=spectra)) {
-  plot(spectra[[i]], main="raw spectrum")
-  plot(s[[i]], main="transformed (sqrt) and smoothed (ma5)")
-  plot(b[[i]], main="baseline removed and peaks detected")
-  points(p[[i]], pch=4, col=2)
-}
-par(mfrow=c(1, 1))
-
-## bin peaks
-bp <- binPeaks(p)
-
-## show intensity matrix
-intensityMatrix(bp)
-}
-\keyword{package}
-
