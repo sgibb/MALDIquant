@@ -17,10 +17,12 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 ## list
+if (is.null(getGeneric("iplot"))) {
+  setGeneric("iplot", function(object, ...) standardGeneric("iplot"))
+}
 if (is.null(getGeneric("standardizeTotalIonCurrent"))) {
-  setGeneric("standardizeTotalIonCurrent",
-             function(object, value=1) {
-               standardGeneric("standardizeTotalIonCurrent")})
+  setGeneric("standardizeTotalIonCurrent", function(object, value=1)
+               standardGeneric("standardizeTotalIonCurrent"))
 }
 ## end of list
 
