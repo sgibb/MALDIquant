@@ -87,6 +87,9 @@ s <- fiedler2009subset[[1]]
 ## transform intensities
 s <- transformIntensity(s, sqrt)
 
+## smoothing spectrum
+s <- transformIntensity(s, fun=movingAverage)
+
 ## remove baseline
 s <- removeBaseline(s)
 

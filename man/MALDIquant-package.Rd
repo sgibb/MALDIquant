@@ -65,6 +65,7 @@ spectra
 ## transform intensities
 t <- transformIntensity(spectra, fun=sqrt)
 
+## smoothing spectra
 s <- transformIntensity(t, fun=movingAverage)
 
 ## baseline correction
