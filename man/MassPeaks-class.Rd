@@ -9,7 +9,7 @@
 \title{Class "MassPeaks"}
 \description{
 \code{\linkS4class{MassPeaks}} represents extracted peaks of a single
-spectrum of a MALDI/TOF mass spectrometry measurement.
+spectrum of a MALDI-TOF mass spectrometry measurement.
 }
 \section{Objects from the Class}{
 \code{\link[MALDIquant]{createMassPeaks}}: Creates a
