@@ -31,7 +31,7 @@ Main classes:
   \item \code{\linkS4class{MassSpectrum}}: Represents a single spectrum.
 }
 
-The accompanying web site (see below) provides example R scripts to illustrate
+The accompanying website (see below) provides example R scripts to illustrate
 the functionality of this package, too.
 }
 \author{
