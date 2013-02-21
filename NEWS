@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.5.7 [2013-02-21]:
+- Rewrite localMaxima implementation: use dilation filter.
+
 Version 1.5.6 [2013-02-21]:
 - Implement TopHat baseline estimation in C.
 

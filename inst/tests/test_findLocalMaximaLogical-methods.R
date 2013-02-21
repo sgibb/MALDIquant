@@ -1,6 +1,6 @@
 context(".findLocalMaximaLogical")
 
-s <- createMassSpectrum(mass=1:5, intensity=c(1, 2, 1, 2, 1))
+s <- createMassSpectrum(mass=1:5, intensity=c(1, 3, 1, 2, 1))
 
 test_that(".findLocalMaximaLogical throws errors", {
   expect_error(MALDIquant:::.findLocalMaximaLogical(s, halfWindowSize=0),
@@ -33,7 +33,7 @@ test_that(".findLocalMaxima returns matrix", {
   expect_equal(suppressWarnings(MALDIquant:::.findLocalMaxima(
                   createMassSpectrum(mass=double(), intensity=double()),
                   halfWindowSize=1)), m)
-  m <- matrix(c(2, 2, 4, 2), ncol=2, byrow=TRUE,
+  m <- matrix(c(2, 3, 4, 2), ncol=2, byrow=TRUE,
               dimnames=list(list(), list("mass", "intensity")))
   expect_identical(MALDIquant:::.findLocalMaxima(s, halfWindowSize=1), m)
 })

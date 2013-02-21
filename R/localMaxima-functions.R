@@ -29,17 +29,21 @@
 ##
 
 ## C version
-.localMaxima <- function(y, halfWindowSize=1) {
-  y <- c(rep(0, halfWindowSize), y, rep(0, halfWindowSize))
-  n <- length(y)
-  i <- (halfWindowSize+1):(n-halfWindowSize)
-  return(.C("R_localMaxima",
-            as.double(y),
-            as.integer(n),
-            as.integer(halfWindowSize),
-            output=logical(n),
-            DUP=TRUE,
-            PACKAGE="MALDIquant")$output[i])
+.localMaxima <- function(x, halfWindowSize=1) {
+  n <- length(x)
+  windowSize <- halfWindowSize*2+1
+  f <- c(rep(x[1], halfWindowSize), x,
+         rep(tail(x, 1), (halfWindowSize+((windowSize-n)%%windowSize))))
+  o <- .C("R_localMaxima",
+          f=as.double(f),
+          fn=as.integer(length(f)),
+          n=as.integer(n),
+          k=as.integer(windowSize),
+          q=as.integer(halfWindowSize),
+          output=integer(n),
+          DUP=FALSE, ## we don't change the input vector f
+          PACKAGE="MALDIquant")$output
+  return(as.logical(o))
 }
 
 ## R only: obsolete because too slow and too much memory usage
