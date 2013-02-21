@@ -1,3 +1,4 @@
-README.md
-Makefile
-^.git*
+^README\.md$
+^Makefile$
+^\.git$
+^\.gitignore$
