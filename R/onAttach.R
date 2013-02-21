@@ -18,7 +18,7 @@
 
 .onAttach <- function(libname, pkgname) {
   packageStartupMessage(paste("\nThis is MALDIquant version ",
-    packageVersion("MALDIquant"), "\n",
+    utils::packageVersion("MALDIquant"), "\n",
     "Quantitative Analysis of Mass Spectrometry Data\n",
     " See ", sQuote("?MALDIquant"),
     " for more information about this package.\n",

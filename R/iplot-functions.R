@@ -103,8 +103,8 @@
     mtext(paste(i, "/",  n, sep=""), side=3)
   }
 
-  setGraphicsEventHandlers(onKeybd=.keyboard)
-  getGraphicsEvent(consolePrompt=.iplotUsage(n > 1))
+  grDevices::setGraphicsEventHandlers(onKeybd=.keyboard)
+  grDevices::getGraphicsEvent(consolePrompt=.iplotUsage(n > 1))
 }
 
 .iplotSingle <- function(spectrum, peaks,

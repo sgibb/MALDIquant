@@ -11,6 +11,10 @@ importFrom("stats",
               "mad",
               "supsmu")
 
+importFrom("utils",
+              "packageVersion")
+
+
 exportClasses("MassPeaks",
               "MassSpectrum")
 
