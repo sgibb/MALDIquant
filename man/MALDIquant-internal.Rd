@@ -7,7 +7,9 @@
 
 \alias{.binPeaks}
 \alias{.calculateLabelPositions}
+\alias{.dilation}
 \alias{.doByLabels}
+\alias{.erosion}
 \alias{.filterPeaks}
 \alias{.findLocalMaxima}
 \alias{.findLocalMaximaLogical}
