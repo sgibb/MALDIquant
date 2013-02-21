@@ -182,11 +182,32 @@
          "intensity values (", length(y), "))")
   }
 
-  windows <- embed(c(rep(0, halfWindowSize), y, rep(0, halfWindowSize)),
-                   windowSize)
+  e <- .erosion(y, halfWindowSize=halfWindowSize)
+  y <- .dilation(e, halfWindowSize=halfWindowSize)
+
+  return(cbind(x, y))
+}
+
+## R only: obsolete because too slow
+.topHatR <- function(x, y, halfWindowSize=100) {
+
+  if (halfWindowSize<1) {
+    stop(sQuote("halfWindowSize"), "=", halfWindowSize, " is too small!")
+  }
+
+  windowSize <- halfWindowSize*2+1
+
+  if (windowSize > length(y)) {
+    stop(sQuote("halfWindowSize"), " is too large! ",
+         "(window size (", windowSize, ") > number of ",
+         "intensity values (", length(y), "))")
+  }
+
+  windows <- embed(c(rep(y[1], halfWindowSize), y,
+                     rep(tail(y, 1), halfWindowSize)), windowSize)
   e <- apply(windows, 1, min)
-  windows <- embed(c(rep(0, halfWindowSize), e, rep(0, halfWindowSize)),
-                   windowSize)
+  windows <- embed(c(rep(e[1], halfWindowSize), e,
+                     rep(tail(e, 1), halfWindowSize)), windowSize)
   y <- apply(windows, 1, max)
   return(cbind(x, y))
 }

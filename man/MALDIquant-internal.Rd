@@ -7,7 +7,9 @@
 
 \alias{.binPeaks}
 \alias{.calculateLabelPositions}
+\alias{.dilation}
 \alias{.doByLabels}
+\alias{.erosion}
 \alias{.filterPeaks}
 \alias{.findLocalMaxima}
 \alias{.findLocalMaximaLogical}
@@ -37,6 +39,7 @@
 \alias{.stopIfNotMassSpectrumList}
 \alias{.testLabelOverlap}
 \alias{.textLabelRects}
+\alias{.topHatR}
 \alias{.validAbstractMassObject}
 \alias{.validMassPeaks}
 \alias{.warp}

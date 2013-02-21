@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.5.6 [2013-02-21]:
+- Implement TopHat baseline estimation in C.
+
 Version 1.5.5 [2013-02-17]:
 - Add interactive plot method: iplot.
 
