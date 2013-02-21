@@ -30,13 +30,11 @@ The algorithm based on the following equation:
 Where \emph{k} is increase by one until \code{iterations} is reached.
 }
 \references{
-C.G. Ryan, E. Clayton, W.L. Griffin, S.H. Sie, and D.R. Cousens. \cr
-\dQuote{Snip, a statistics-sensitive background treatment for the quantitative
- analysis of pixe spectra in geoscience applications.} \cr
-Nuclear Instruments and Methods in Physics Research Section B: \cr
-Beam Interactions with Materials and Atoms, 34(3): 396-402, 1988. \cr
-ISSN 0168-583X. doi:10.1016/0168-583X(88)90063-8. \cr
-\url{http://www.sciencedirect.com/science/article/B6TJN-46YSYTJ-30/2/e0d015ceb8ea8a7bc0702a857a19750b}
+C.G. Ryan, E. Clayton, W.L. Griffin, S.H. Sie, and D.R. Cousens. 1988.
+Snip, a statistics-sensitive background treatment for the quantitative analysis
+of pixe spectra in geoscience applications.
+Nuclear Instruments and Methods in Physics Research Section B:
+Beam Interactions with Materials and Atoms, 34(3): 396-402.
 }
 \author{
 Sebastian Gibb

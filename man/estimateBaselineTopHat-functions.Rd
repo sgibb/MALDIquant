@@ -22,6 +22,16 @@ instead.
   Returns a two column matrix (first column: mass, second column: intensity)
   of the estimated baseline.
 }
+\references{
+M. van Herk. 1992.
+A Fast Algorithm for Local Minimum and Maximum Filters on Rectangular and
+Octagonal Kernels.
+Pattern Recognition Letters 13.7: 517-521.
+
+J. Y. Gil and M. Werman. 1996.
+Computing 2-Dimensional Min, Median and Max Filters.
+IEEE Transactions: 504-507.
+}
 \author{
 Sebastian Gibb
 }
