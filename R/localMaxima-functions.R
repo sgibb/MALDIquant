@@ -38,7 +38,7 @@
             as.integer(n),
             as.integer(halfWindowSize),
             output=logical(n),
-            DUP=TRUE,
+            DUP=FALSE, ## we don't change the input vector y
             PACKAGE="MALDIquant")$output[i])
 }
 
