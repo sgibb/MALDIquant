@@ -104,7 +104,8 @@
   }
 
   grDevices::setGraphicsEventHandlers(onKeybd=.keyboard)
-  grDevices::getGraphicsEvent(consolePrompt=.iplotUsage(n > 1))
+  grDevices::getGraphicsEvent(consolePrompt=.iplotUsage(n > 1,
+                                                        !is.null(peaks[[1]])))
 }
 
 .iplotSingle <- function(spectrum, peaks,
@@ -186,7 +187,7 @@
 }
 
 ## usage
-.iplotUsage <- function(isList=FALSE) {
+.iplotUsage <- function(isList=FALSE, hasPeaks=FALSE) {
   keys <- c("q",
             "o/O", "i/I",
             "h/l",
@@ -203,17 +204,21 @@
             "toggle peak labels on/off",
             "print xlim, ylim", "reset")
 
-  keys <- format(keys, justify="left")
-
-  i <- 1:length(keys)
-
   if (!isList) {
-    i <- i[!keys %in% c("j/k", "g/G")]
+    keys[keys %in% c("j/k", "g/G")] <- NA
   }
+
+  if (!hasPeaks) {
+    keys[keys %in% c("d", "a")] <- NA
+  }
+
+  text <- text[!is.na(keys)]
+  keys <- keys[!is.na(keys)]
 
   msg <- paste("See ", sQuote("help(\"iplot\", \"MALDIquant\")"),
                " for details and more shortcuts.\n", sep="")
-  return(paste(msg, paste(keys[i], ": ", text[i], "\n", sep="", collapse=""),
+  keys <- format(keys, justify="left")
+  return(paste(msg, paste(keys, ": ", text, "\n", sep="", collapse=""),
                sep="\n"))
 }
 
