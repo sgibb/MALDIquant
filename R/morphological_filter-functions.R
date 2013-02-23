@@ -37,17 +37,16 @@
   n <- length(x)
   windowSize <- halfWindowSize*2+1
   f <- c(rep(x[1], halfWindowSize), x,
-         rep(tail(x, 1), (halfWindowSize+((windowSize-n)%%windowSize))))
-  o <- .C("R_dilation",
-          f=as.double(f),
-          fn=as.integer(length(f)),
-          n=as.integer(n),
-          k=as.integer(windowSize),
-          q=as.integer(halfWindowSize),
-          output=double(n),
-          DUP=FALSE, ## we don't change the input vector f
-          PACKAGE="MALDIquant")$output
-  return(o)
+         rep(tail(x, 1), halfWindowSize+((windowSize-n)%%windowSize)))
+  return(.C("R_dilation",
+            f=as.double(f),
+            fn=as.integer(length(f)),
+            n=as.integer(n),
+            k=as.integer(windowSize),
+            q=as.integer(halfWindowSize),
+            output=double(n),
+            DUP=FALSE, ## we don't change the input vector f
+            PACKAGE="MALDIquant")$output)
 }
 
 ## erosion
@@ -71,16 +70,15 @@
   n <- length(x)
   windowSize <- halfWindowSize*2+1
   f <- c(rep(x[1], halfWindowSize), x,
-         rep(tail(x, 1), (halfWindowSize+((windowSize-n)%%windowSize))))
-  o <- .C("R_erosion",
-          f=as.double(f),
-          fn=as.integer(length(f)),
-          n=as.integer(n),
-          k=as.integer(windowSize),
-          q=as.integer(halfWindowSize),
-          output=double(n),
-          DUP=FALSE, ## we don't change the input vector f
-          PACKAGE="MALDIquant")$output
-  return(o)
+         rep(tail(x, 1), halfWindowSize+((windowSize-n)%%windowSize)))
+  return(.C("R_erosion",
+            f=as.double(f),
+            fn=as.integer(length(f)),
+            n=as.integer(n),
+            k=as.integer(windowSize),
+            q=as.integer(halfWindowSize),
+            output=double(n),
+            DUP=FALSE, ## we don't change the input vector f
+            PACKAGE="MALDIquant")$output)
 }
 
