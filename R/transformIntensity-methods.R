@@ -42,7 +42,7 @@ setMethod(f="transformIntensity",
           definition=function(object, fun, na.rm=TRUE, ...) {
 
   ## test arguments
-  .stopIfNotMassObjectList(object)
+  .stopIfNotIsMassObjectList(object)
 
   return(lapply(object, transformIntensity, fun=fun, na.rm=na.rm, ...))
 })

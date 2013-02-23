@@ -27,7 +27,7 @@
 ##
 removeEmptyMassObjects <- function(l) {
 
-  .stopIfNotMassObjectList(l)
+  .stopIfNotIsMassObjectList(l)
 
   ## find empty MassPeaks objects
   notEmpty <- !(1:length(l) %in% findEmptyMassObjects(l))

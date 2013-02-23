@@ -31,10 +31,10 @@ setMethod("iplot",
 setMethod("iplot",
           signature=signature(object="list"),
           definition=function(object, peaks, ...) {
-  .stopIfNotMassSpectrumList(object)
+  .stopIfNotIsMassSpectrumList(object)
 
   if (!missing(peaks)) {
-    .stopIfNotMassPeaksList(peaks)
+    .stopIfNotIsMassPeaksList(peaks)
   }
   return(invisible(.iplot(spectra=object, peaks=peaks, ...)))
 })

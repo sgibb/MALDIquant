@@ -63,7 +63,7 @@ setMethod(f="detectPeaks",
           definition=function(object, ...) {
 
   ## test arguments
-  .stopIfNotMassSpectrumList(object)
+  .stopIfNotIsMassSpectrumList(object)
 
   return(lapply(object, detectPeaks, ...))
 })

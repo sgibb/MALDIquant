@@ -26,3 +26,14 @@
   return(areFunctions)
 }
 
+.stopIfNotIsFunctionList <- function(x) {
+  if (!.isFunctionList(x)) {
+    parentCall <- deparse(sys.call(-1))
+    stop(paste(parentCall, " : ", sQuote(deparse(substitute(x))),
+               " is no list of functions!", sep=""),
+               call.=FALSE)
+    return(FALSE)
+  }
+  return(TRUE)
+}
+

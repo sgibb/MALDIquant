@@ -30,7 +30,7 @@
 mergeMassPeaks <- function(l, labels, fun=mean, ...) {
 
   ## test parameters
-  .stopIfNotMassPeaksList(l)
+  .stopIfNotIsMassPeaksList(l)
 
   return(.doByLabels(l=l, labels=labels, FUN=.mergeMassPeaks, fun=fun, ...))
 }
@@ -49,7 +49,7 @@ mergeMassPeaks <- function(l, labels, fun=mean, ...) {
 mergeMassSpectra <- function(l, labels, fun=mean, ...) {
 
   ## test parameters
-  .stopIfNotMassSpectrumList(l)
+  .stopIfNotIsMassSpectrumList(l)
 
   return(.doByLabels(l=l, labels=labels, FUN=.mergeMassSpectra, fun=fun, ...))
 }

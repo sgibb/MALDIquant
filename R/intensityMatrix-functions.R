@@ -28,7 +28,7 @@
 intensityMatrix <- function(l) {
 
   ## test parameters
-  .stopIfNotMassObjectList(l)
+  .stopIfNotIsMassObjectList(l)
 
   ## fetch all mass
   mass <- sort(x=.unlist(lapply(l, function(x)x@mass)), method="quick")

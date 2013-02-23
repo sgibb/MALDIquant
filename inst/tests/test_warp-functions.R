@@ -34,12 +34,6 @@ test_that("warpMassPeaks", {
                                     snr=1:10)))
 })
 
-test_that(".warp throws errors", {
-  expect_error(MALDIquant:::.warp(s, function(x)x+1),
-               "has to be a list of MALDIquant::AbstractMassObject objects")
-  expect_error(MALDIquant:::.warp(list(s, s), function(x)x+1))
-})
-
 test_that(".warp", {
   expect_equal(MALDIquant:::.warp(list(s, s),
                                   list(function(x)1, function(x)x+1)),

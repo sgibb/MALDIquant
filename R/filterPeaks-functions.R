@@ -30,7 +30,7 @@
 filterPeaks <- function(l, minFrequency, labels) {
 
   ## test parameters
-  .stopIfNotMassPeaksList(l)
+  .stopIfNotIsMassPeaksList(l)
 
   if (minFrequency > 1) {
     minFrequency <- 1

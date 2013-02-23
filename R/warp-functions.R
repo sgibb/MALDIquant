@@ -29,13 +29,8 @@
 warpMassSpectra <- function(l, w) {
 
   ## test parameters
-  if (!isMassSpectrumList(l)) {
-    stop(sQuote("l"), " is no list of MALDIquant::MassSpectrum objects!")
-  }
-
-  if (!.isFunctionList(w)) {
-    stop(sQuote("w"), " is no list of functions!")
-  }
+  .stopIfNotIsMassSpectrumList(l)
+  .stopIfNotIsFunctionList(w)
 
   return(.warp(l, w))
 }
@@ -53,13 +48,8 @@ warpMassSpectra <- function(l, w) {
 warpMassPeaks <- function(l, w) {
 
   ## test parameters
-  if (!isMassPeaksList(l)) {
-    stop(sQuote("l"), " is no list of MALDIquant::MassPeaks objects!")
-  }
-
-  if (!.isFunctionList(w)) {
-    stop(sQuote("w"), " is no list of functions!")
-  }
+  .stopIfNotIsMassPeaksList(l)
+  .stopIfNotIsFunctionList(w)
 
   return(.warp(l, w))
 }
@@ -76,13 +66,8 @@ warpMassPeaks <- function(l, w) {
 ##  a list of warped AbstractMassObject objects
 ##
 .warp <- function(l, w) {
-  if (isMassObjectList(l)) {
-    return(mapply(function(m, wf) {
-             m@mass <- m@mass+wf(m@mass)
-             return(m)
-           }, m=l, wf=w, SIMPLIFY=FALSE))
-  } else {
-    stop(sQuote("l"), " has to be a list of MALDIquant::AbstractMassObject objects.")
-    return(l)
-  }
+  return(mapply(function(m, wf) {
+           m@mass <- m@mass+wf(m@mass)
+           return(m)
+         }, m=l, wf=w, SIMPLIFY=FALSE))
 }

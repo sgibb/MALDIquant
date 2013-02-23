@@ -22,7 +22,7 @@ setMethod(f="standardizeTotalIonCurrent",
           definition=function(object, value=1) {
 
   ## test arguments
-  .stopIfNotMassObjectList(object)
+  .stopIfNotIsMassObjectList(object)
 
   return(lapply(object, "totalIonCurrent<-", value))
 })

@@ -34,7 +34,7 @@
 binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
 
   ## test arguments
-  .stopIfNotMassPeaksList(l)
+  .stopIfNotIsMassPeaksList(l)
 
   method <- match.arg(method, c("strict", "relaxed"), several.ok=FALSE)
 

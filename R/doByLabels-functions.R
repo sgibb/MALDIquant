@@ -30,7 +30,7 @@
 .doByLabels <- function(l, labels, FUN, ...) {
 
   ## test parameters
-  .stopIfNotMassObjectList(l)
+  .stopIfNotIsMassObjectList(l)
 
   FUN <- match.fun(FUN)
 

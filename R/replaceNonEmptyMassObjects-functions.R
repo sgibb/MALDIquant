@@ -28,9 +28,9 @@
 ##
 .replaceNonEmptyMassObjects <- function(l, replaceByList) {
 
-  .stopIfNotMassObjectList(l)
+  .stopIfNotIsMassObjectList(l)
 
-  .stopIfNotMassObjectList(replaceByList)
+  .stopIfNotIsMassObjectList(replaceByList)
 
   ## find empty MassPeaks objects
   notEmpty <- !(1:length(l) %in% findEmptyMassObjects(l))

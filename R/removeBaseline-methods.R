@@ -55,7 +55,7 @@ setMethod(f="removeBaseline",
           definition=function(object, ...) {
 
   ## test arguments
-  .stopIfNotMassSpectrumList(object)
+  .stopIfNotIsMassSpectrumList(object)
 
   return(lapply(object, removeBaseline, ...))
 })
