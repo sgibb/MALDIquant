@@ -34,32 +34,29 @@ int middle(int pos, int start, int end) {
 }
 
 /* y = array of double values
- * length = length of y
+ * n = length of y
  * span = half window size
  */
-void R_localMaxima(double* y, int* length, int* span, int* output) {
-    
-    int n=*length;
+void R_localMaxima(double* y, int* n, int* span, int* output) {
+
     int windowSize=*span*2;
 
     int m=windowMaxIdx(y, 0, windowSize);
 
-    output[m]=middle(m, 0, windowSize);
+    output[m]=m==*span;
 
-    int l=0;
+    unsigned int i, l, mid;
 
-    for (int i=windowSize+1; i<n; ++i) {
-      /* i == rhs; l == lhs */
-      l=i-windowSize;
-      /* maximum out of window,
-       * calculate new maximum in current window */
+    /* i == rhs; l == lhs; mid == middle pos */
+    for (i=windowSize+1, l=i-windowSize, mid=(l+i)/2; i<*n; ++i, ++mid, ++l) {
+      /* maximum out of window, calculate new maximum in current window */
       if (m < l) {
         m=windowMaxIdx(y, l, i);
       } else if (y[i] > y[m]) {
         m=i;
       }
-      
-      if (middle(m, l, i)) {
+
+      if (m == mid) {
         output[m]=1;
       }
     }
