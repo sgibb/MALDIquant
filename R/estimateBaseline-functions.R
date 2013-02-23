@@ -90,19 +90,9 @@
 ##  a matrix of the estimate baseline (col1: mass; col2: intensity)
 ##
 .estimateBaselineMedian <- function(x, y, halfWindowSize=100) {
-  if (halfWindowSize<1) {
-    stop(sQuote("halfWindowSize"), "=", halfWindowSize, " is too small!")
-  }
+  .stopIfNotIsValidHalfWindowSize(halfWindowSize=halfWindowSize, n=length(x))
 
-  windowSize <- halfWindowSize*2+1
-
-  if (windowSize > length(y)) {
-    stop(sQuote("halfWindowSize"), " is too large! ",
-         "(window size (", windowSize, ") > number of ",
-         "intensity values (", length(y), "))")
-  }
-
-  y <- runmed(y, k=windowSize)
+  y <- runmed(y, k=2*halfWindowSize+1)
 
   return(cbind(x, y))
 }
@@ -170,17 +160,7 @@
 ##
 .estimateBaselineTopHat <- function(x, y, halfWindowSize=100) {
 
-  if (halfWindowSize<1) {
-    stop(sQuote("halfWindowSize"), "=", halfWindowSize, " is too small!")
-  }
-
-  windowSize <- halfWindowSize*2+1
-
-  if (windowSize > length(y)) {
-    stop(sQuote("halfWindowSize"), " is too large! ",
-         "(window size (", windowSize, ") > number of ",
-         "intensity values (", length(y), "))")
-  }
+  .stopIfNotIsValidHalfWindowSize(halfWindowSize=halfWindowSize, n=length(x))
 
   e <- .erosion(y, halfWindowSize=halfWindowSize)
   y <- .dilation(e, halfWindowSize=halfWindowSize)
@@ -191,17 +171,9 @@
 ## R only: obsolete because too slow
 .topHatR <- function(x, y, halfWindowSize=100) {
 
-  if (halfWindowSize<1) {
-    stop(sQuote("halfWindowSize"), "=", halfWindowSize, " is too small!")
-  }
+  .stopIfNotIsValidHalfWindowSize(halfWindowSize=halfWindowSize, n=length(x))
 
-  windowSize <- halfWindowSize*2+1
-
-  if (windowSize > length(y)) {
-    stop(sQuote("halfWindowSize"), " is too large! ",
-         "(window size (", windowSize, ") > number of ",
-         "intensity values (", length(y), "))")
-  }
+  windowSize <- 2*halfWindowSize+1
 
   windows <- embed(c(rep(y[1], halfWindowSize), y,
                      rep(tail(y, 1), halfWindowSize)), windowSize)

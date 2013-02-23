@@ -34,6 +34,7 @@
 \alias{.prepareShowGroupName}
 \alias{.replaceNonEmptyMassObjects}
 \alias{.snipR}
+\alias{.stopIfNotIsValidHalfWindowSize}
 \alias{.stopIfNotMassObjectList}
 \alias{.stopIfNotMassPeaksList}
 \alias{.stopIfNotMassSpectrumList}
