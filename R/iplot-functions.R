@@ -54,8 +54,8 @@
       "Left" =, "h" = { xlim <<- .moveXlim(-1) },
       "Right" =, "l" = { xlim <<- .moveXlim(1) },
       ## go through spectra list
-      "PgUp" =, "j" =  { i <<- ifelse(i <= 1, 1, i-1) },
-      "PgDn" =, "k" =  { i <<- ifelse(i >= n, n, i+1) },
+      "PgUp" =, "k" =  { i <<- ifelse(i <= 1, 1, i-1) },
+      "PgDn" =, "j" =  { i <<- ifelse(i >= n, n, i+1) },
       "Home" =, "g" = { i <<- 1 },
       "End" =, "G" = { i <<- n },
       ## zoom (horizontal)
@@ -191,7 +191,7 @@
   keys <- c("q",
             "o/O", "i/I",
             "h/l",
-            "j/k", "g/G",
+            "k/j", "g/G",
             "s", "d", "a",
             "p", "r")
 

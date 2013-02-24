@@ -36,8 +36,8 @@ more easily.
     \item{\sQuote{I}:}{Zoom out (intensity/y-axis).}
     \item{\sQuote{h}, \sQuote{Left Arrow}:}{Move to the left.}
     \item{\sQuote{l}, \sQuote{Right Arrow}:}{Move to the right.}
-    \item{\sQuote{j}, \sQuote{Page Up}:}{Switch to the previous spectrum.}
-    \item{\sQuote{k}, \sQuote{Page Down}:}{Switch to the next spectrum.}
+    \item{\sQuote{k}, \sQuote{Page Up}:}{Switch to the previous spectrum.}
+    \item{\sQuote{j}, \sQuote{Page Down}:}{Switch to the next spectrum.}
     \item{\sQuote{g}, \sQuote{Home}:}{Switch to the first spectrum.}
     \item{\sQuote{G}, \sQuote{End}:}{Switch to the last spectrum.}
     \item{\sQuote{s}:}{Toggle spectrum style (\code{c("l", "p", "b", "n")},
