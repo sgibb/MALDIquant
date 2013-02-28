@@ -15,4 +15,5 @@ Description: MALDIquant provides a complete analysis pipeline for MALDI-TOF
 License: GPL (>= 3)
 URL: http://strimmerlab.org/software/maldiquant/
     https://github.com/sgibb/MALDIquant/
+BugReports: https://github.com/sgibb/MALDIquant/issues
 LazyLoad: yes
