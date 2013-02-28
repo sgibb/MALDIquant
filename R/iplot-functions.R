@@ -34,8 +34,7 @@
   }
 
   if (is.null(ylim)) {
-    ylim <- c(0, ceiling(max(unlist(lapply(spectra,
-                                           function(x)max(intensity(x)))))))
+    ylim <- c(0, max(unlist(lapply(spectra, function(x)max(intensity(x))))))
   }
 
   backup <- list(xlim=xlim, ylim=ylim)
