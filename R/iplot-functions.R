@@ -136,7 +136,9 @@
 
   if (.Platform$OS.type == "unix") {
     if (names(dev.cur()) != "X11") {
-      X11(type="Xlib")
+      # Could not use X11(type="Xlib") because R CMD CHECK gives a NOTE
+      # about an unused argument (type) on windows.
+      do.call(X11, list(type="Xlib"))
       return(TRUE)
     }
   } else if (.Platform$OS.type == "windows") {
