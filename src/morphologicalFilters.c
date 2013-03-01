@@ -17,7 +17,7 @@
  * along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
  */
 
-#include "morphological_filters.h"
+#include "morphologicalFilters.h"
 
 void R_dilation(double* f, int* fn, int* n, int* k,  int* q, double* output) {
   dilation(f, *fn, *n, *k, *q, output);

@@ -1,6 +1,6 @@
 Package: MALDIquant
-Version: 1.5.7.1
-Date: 2013-02-28
+Version: 1.6
+Date: 2013-03-01
 Title: Quantitative Analysis of Mass Spectrometry Data
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
                     email="mail@sebastiangibb.de"),
@@ -15,5 +15,5 @@ Description: MALDIquant provides a complete analysis pipeline for MALDI-TOF
 License: GPL (>= 3)
 URL: http://strimmerlab.org/software/maldiquant/
     https://github.com/sgibb/MALDIquant/
-BugReports: https://github.com/sgibb/MALDIquant/issues
+BugReports: https://github.com/sgibb/MALDIquant/issues/
 LazyLoad: yes
