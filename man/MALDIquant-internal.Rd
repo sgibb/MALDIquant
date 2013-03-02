@@ -38,9 +38,6 @@
 \alias{.stopIfNotIsMassPeaksList}
 \alias{.stopIfNotIsMassSpectrumList}
 \alias{.stopIfNotIsValidHalfWindowSize}
-\alias{.stopIfNotMassObjectList}
-\alias{.stopIfNotMassPeaksList}
-\alias{.stopIfNotMassSpectrumList}
 \alias{.testLabelOverlap}
 \alias{.textLabelRects}
 \alias{.topHatR}

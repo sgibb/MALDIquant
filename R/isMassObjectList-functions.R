@@ -36,7 +36,6 @@ isMassObjectList <- function(x) {
   }
   return(TRUE)
 }
-.stopIfNotMassObjectList <- .stopIfNotIsMassObjectList
 
 isMassSpectrumList <- function(x) {
   if (!is.list(x)) {
@@ -58,7 +57,6 @@ isMassSpectrumList <- function(x) {
   }
   return(TRUE)
 }
-.stopIfNotMassSpectrumList <- .stopIfNotIsMassSpectrumList
 
 isMassPeaksList <- function(x) {
   if (!is.list(x)) {
@@ -80,5 +78,4 @@ isMassPeaksList <- function(x) {
   }
   return(TRUE)
 }
-.stopIfNotMassPeaksList <- .stopIfNotIsMassPeaksList
 
