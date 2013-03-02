@@ -11,8 +11,7 @@ test_that(".doByLabels throws errors", {
                                         FUN=sum),
                "For each item in .*l.* there must be a label in .*labels.*")
   expect_error(MALDIquant:::.doByLabels(l=list(s, s),
-                                        labels=as.factor(c("a", "b"))),
-               "argument .*FUN.* is missing, with no default")
+                                        labels=as.factor(c("a", "b"))))
 })
 
 test_that(".doByLabels runs a function for group labels", {

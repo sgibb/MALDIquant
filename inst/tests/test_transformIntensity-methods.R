@@ -3,7 +3,7 @@ context("transformIntensity")
 s <- createMassSpectrum(mass=1:10, intensity=(1:10)^2)
 
 test_that("transformIntensity throws errors", {
-  expect_error(transformIntensity(s), "argument .*fun.* is missing")
+  expect_error(transformIntensity(s))
 })
 
 test_that("transformIntensity shows warnings", {
