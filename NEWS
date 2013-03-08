@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.6.1 [2013-03-08]:
+- Remove LICENSE file.
+
 Version 1.6 [2013-03-01]:
 - Add interactive plot method: iplot.
 - Add TopHat baseline estimation: estimateBaseline(..., method="TopHat")/
