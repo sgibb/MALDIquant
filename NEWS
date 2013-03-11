@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.6.2 [2013-03-11]:
+- Replace all .C interfaces by .Call.
+
 Version 1.6.1 [2013-03-08]:
 - Remove LICENSE file.
 

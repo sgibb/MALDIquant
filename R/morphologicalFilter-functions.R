@@ -34,19 +34,7 @@
 ##  moving max
 ##
 .dilation <- function(x, halfWindowSize) {
-  n <- length(x)
-  windowSize <- halfWindowSize*2+1
-  f <- c(rep(x[1], halfWindowSize), x,
-         rep(tail(x, 1), halfWindowSize+((windowSize-n)%%windowSize)))
-  return(.C("R_dilation",
-            f=as.double(f),
-            fn=as.integer(length(f)),
-            n=as.integer(n),
-            k=as.integer(windowSize),
-            q=as.integer(halfWindowSize),
-            output=double(n),
-            DUP=FALSE, ## we don't change the input vector f
-            PACKAGE="MALDIquant")$output)
+  return(.Call("C_dilation", x, halfWindowSize))
 }
 
 ## erosion
@@ -67,18 +55,6 @@
 ##  moving min
 ##
 .erosion <- function(x, halfWindowSize) {
-  n <- length(x)
-  windowSize <- halfWindowSize*2+1
-  f <- c(rep(x[1], halfWindowSize), x,
-         rep(tail(x, 1), halfWindowSize+((windowSize-n)%%windowSize)))
-  return(.C("R_erosion",
-            f=as.double(f),
-            fn=as.integer(length(f)),
-            n=as.integer(n),
-            k=as.integer(windowSize),
-            q=as.integer(halfWindowSize),
-            output=double(n),
-            DUP=FALSE, ## we don't change the input vector f
-            PACKAGE="MALDIquant")$output)
+  return(.Call("C_erosion", x, halfWindowSize))
 }
 

@@ -12,7 +12,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
-
+ *
  * You should have received a copy of the GNU General Public License
  * along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
  */
@@ -23,51 +23,69 @@
  * only calculate lower hull (we don't need the upper one)
  */
 
+#include "MALDIquant.h"
+
 #include <R.h>
+#include <Rinternals.h>
 
 
 /* build cross product of 2 vectors and compare to zero
  * returns true for P2(x2, y2) left of P0->P1
- */ 
+ */
 double left(double x0, double y0, double x1, double y1, double x2, double y2) {
     return(((x1-x0)*(y2-y0) - (x2-x0)*(y1-y0)) > 0);
 }
 
-/* x = array of double values 
+/* x = array of double values
  * y = array of double values
  * length = length of y
  * output = array of double values (new y values)
  */
-void R_lowerConvexHull(double* x, double* y, int* length, double* output) {
-    
-    int n=*length;
+SEXP C_lowerConvexHull(SEXP x, SEXP y) {
+  SEXP output;
+  /* TODO: replace by R_xlen_t in R 3.0.0 */
+  int n, i, j, k=0;
+  int* nodes;
+  double m, c;
 
-    int k=0;
+  PROTECT(x=coerceVector(x, REALSXP));
+  PROTECT(y=coerceVector(y, REALSXP));
+  n=LENGTH(x);
 
-    /* allocate vector - error handling is done by R */
-    int* nodes=(int*) Calloc((size_t) n, int);
+  PROTECT(output=allocVector(REALSXP, n));
+  /* TODO: replace by R_xlen_t in R 3.0.0 */
+  /* allocate vector - error handling is done by R */
+  nodes=(int*) Calloc((size_t) n, int);
 
-    /* find lower convex hull */
-    for (int i=0; i<n; ++i) {
-        while (k > 1 && !left(x[nodes[k-2]], y[nodes[k-2]], 
-                              x[nodes[k-1]], y[nodes[k-1]], x[i], y[i])) {
-            k=k-1;
-        }
-        nodes[k]=i;
-        k=k+1;
+  double* xx=REAL(x);
+  double* xy=REAL(y);
+  double* xo=REAL(output);
+
+  /* find lower convex hull */
+  for (i=0; i<n; ++i) {
+    while (k > 1 && !left(xx[nodes[k-2]], xy[nodes[k-2]],
+                          xx[nodes[k-1]], xy[nodes[k-1]], xx[i], xy[i])) {
+            k-=1;
     }
+    nodes[k]=i;
+    k+=1;
+  }
 
-    /* build linear function y=mx+c to calculate values between nodes */
-    for (int i=0; i<k; ++i) {
-        double m=(y[nodes[i+1]]-y[nodes[i]])/(x[nodes[i+1]]-x[nodes[i]]);
-        double c=y[nodes[i]]-m*x[nodes[i]];
+  /* build linear function y=mx+c to calculate values between nodes */
+  for (i=0; i<k; ++i) {
+    m=(xy[nodes[i+1]]-xy[nodes[i]])/(xx[nodes[i+1]]-xx[nodes[i]]);
+    c=xy[nodes[i]]-m*xx[nodes[i]];
 
-        for (int j=nodes[i]; j<nodes[i+1]; ++j) {
-            output[j]=m*x[j]+c;
-        }
+    for (j=nodes[i]; j<nodes[i+1]; ++j) {
+      xo[j]=m*xx[j]+c;
     }
+  }
 
-    output[n-1]=y[n-1];
+  xo[n-1]=xy[n-1];
 
-    Free(nodes);
+  Free(nodes);
+  UNPROTECT(3);
+
+  return(output);
 }
+

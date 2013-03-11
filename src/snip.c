@@ -1,4 +1,4 @@
-/* Copyright 2011 Sebastian Gibb
+/* Copyright 2011-2013 Sebastian Gibb
  * <mail@sebastiangibb.de>
  *
  * This file is part of MALDIquant for R and related languages.
@@ -12,52 +12,64 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
-
+ *
  * You should have received a copy of the GNU General Public License
  * along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
  */
 
 /* SNIP algorithm based on:
- * C.G. Ryan, E. Clayton, W.L. Griffin, S.H. Sie, and D.R. Cousens. 
+ * C.G. Ryan, E. Clayton, W.L. Griffin, S.H. Sie, and D.R. Cousens.
  * "Snip, a statistics-sensitive background treatment for the quantitative
  *  analysis of pixe spectra in geoscience applications."
- * Nuclear Instruments and Methods in Physics Research Section B: 
- * Beam Interactions with Materials and Atoms, 34(3):396-402, 1988. 
- * ISSN 0168-583X. doi:10.1016/0168-583X(88)90063-8. 
+ * Nuclear Instruments and Methods in Physics Research Section B:
+ * Beam Interactions with Materials and Atoms, 34(3):396-402, 1988.
+ * ISSN 0168-583X. doi:10.1016/0168-583X(88)90063-8.
  * URL http://www.sciencedirect.com/science/article/B6TJN-46YSYTJ-30/2/e0d015ceb8ea8a7bc0702a857a19750b
  */
 
+#include "MALDIquant.h"
+
 #include <R.h>
+#include <Rinternals.h>
 
 /* y = array of double values
- * length = length of y
  * iterations = max iteration steps
  */
-void R_snip(double* y, int* length, int* iterations, double* output) {
-    
-    int n=*length;
+SEXP C_snip(SEXP y, SEXP iterations) {
+  SEXP tmp, output;
+  /* TODO: replace by R_xlen_t in R 3.0.0 */
+  int n, i, j, k;
+  double a, b;
 
-    /* allocate vector - error handling is done by R */
-    double* tmp=(double*) Calloc((size_t) n, double);
+  PROTECT(tmp=coerceVector(duplicate(y), REALSXP));
+  n=LENGTH(tmp);
 
+  PROTECT(output=allocVector(REALSXP, n));
 
-    for (int i=1; i<=*iterations; ++i) {
-        for (int j=i; j<n-i; ++j) {
-            double a=y[j];
-            double b=(y[j-i]+y[j+i])/2;
-            if (b < a)
-                a=b;
-            tmp[j]=a;
-        }
+  double* xo=REAL(output);
+  double* xy=REAL(tmp);
 
-        for(int j=i; j<n-i; ++j) {
-            y[j]=tmp[j];
-        }
+  k=asInteger(iterations);
+
+  for (i=1; i<=k; ++i) {
+    for (j=i; j<n-i; ++j) {
+      a=xy[j];
+      b=(xy[j-i]+xy[j+i])/2;
+      if (b < a) {
+        a=b;
+      }
+      xo[j]=a;
     }
 
-    for(int i=0; i<n; ++i) {
-        output[i]=y[i];
+    for(j=i; j<n-i; ++j) {
+      xy[j]=xo[j];
     }
+  }
 
-    Free(tmp);
+  memcpy(xo, xy, n*sizeof(double));
+
+  UNPROTECT(2);
+
+  return(output);
 }
+

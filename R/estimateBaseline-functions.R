@@ -33,15 +33,7 @@
 
 ## C version
 .estimateBaselineConvexHull <- function(x, y) {
-  n <- length(x)
-  y <- .C("R_lowerConvexHull",
-          as.double(x),
-          as.double(y),
-          as.integer(n),
-          output=double(n),
-          DUP=TRUE,
-          PACKAGE="MALDIquant")$output
-  return(cbind(x, y))
+  return(cbind(x=x, y=.Call("C_lowerConvexHull", x, y)))
 }
 
 ## R only: obsolete because too slow
@@ -119,15 +111,7 @@
 
 ## C version
 .estimateBaselineSnip <- function(x, y, iterations=100) {
-  n <- length(y)
-  y <- .C("R_snip",
-          as.double(y),
-          as.integer(n),
-          as.integer(iterations),
-          output=double(n),
-          DUP=TRUE,
-          PACKAGE="MALDIquant")$output
-  return(cbind(x, y))
+  return(cbind(x=x, y=.Call("C_snip", y, iterations)))
 }
 
 ## R only: obsolete because too slow

@@ -17,13 +17,175 @@
  * along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
  */
 
-#include "morphologicalFilters.h"
+#include "MALDIquant.h"
 
-void R_dilation(double* f, int* fn, int* n, int* k,  int* q, double* output) {
-  dilation(f, *fn, *n, *k, *q, output);
+#include <R.h>
+#include <Rinternals.h>
+
+/* Dilation/Erosion is based on the vHGW Algorithm
+ * (needs only 3 comparison per * element):
+ *
+ * M. van Herk. "A Fast Algorithm for Local Minimum and Maximum Filters on
+ * Rectangular and Octagonal Kernels."
+ * Pattern Recognition Letters 13.7 (1992): 517-521.
+ *
+ * J. Y. Gil and M. Werman. "Computing 2-Dimensional Min, Median and Max
+ * Filters." IEEE Transactions (1996): 504-507.
+ *
+ * Gil and Kimmel (GK) decrease the number of comparisons to nearly 1.5:
+ *
+ * J. Y. Gil and R. Kimmel. "Efficient Dilation, Erosion, Opening, and Closing
+ * Algorithms." Pattern Analysis and Machine Intelligence,
+ * IEEE Transactions on 24.12 (2002): 1606-1617.
+ *
+ * The implementation of the GK algorithm is much more complex and needs pointer
+ * arithmetic, "goto" or multiple for-loops (increasing number of comparision).
+ * The speed improvement is marginal and does not matter for our purposes.
+ */
+
+/* y = input vector
+ * s = half window size (half filter length)
+ */
+SEXP C_dilation(SEXP y, SEXP s) {
+  SEXP f, g, h, output;
+  /* TODO: replace by R_xlen_t in R 3.0.0 */
+  unsigned int n, fn,  k, q, i, r, j, gi, hi;
+
+  PROTECT(y=coerceVector(y, REALSXP));
+  n=LENGTH(y);
+  q=asInteger(s);
+  k=2*q+1;
+
+  /* add q (== halfWindowSize) values left/right
+   * increase n to make n%windowSize == 0 */
+  fn=n+2*q+(k-(n%k));
+  PROTECT(f=allocVector(REALSXP, fn));
+  PROTECT(g=allocVector(REALSXP, fn));
+  PROTECT(h=allocVector(REALSXP, fn));
+  PROTECT(output=allocVector(REALSXP, n));
+
+  double* xy=REAL(y);
+  double* xf=REAL(f);
+  double* xg=REAL(g);
+  double* xh=REAL(h);
+  double* xo=REAL(output);
+
+  memset(xf, xy[0], q*sizeof(double));
+  memcpy(xf+q, xy, n*sizeof(double));
+  memset(xf+(n+q), xy[n-1], (fn-(n+q))*sizeof(double));
+
+  /* init extrema */
+  r=q+n-1;
+  for (i=0, gi=q+n+q-1, hi=0;  i<q; ++i, --gi, ++hi) {
+    xg[gi]=xf[r];
+    xh[hi]=xf[q];
+  }
+
+  /* preprocessing */
+  for (i=q, r=i+k-1; i<n+q; i+=k, r+=k) {
+
+    /* init most left/right elements */
+    xg[i]=xf[i];
+    xh[r]=xf[r];
+
+    for (j=1, gi=i+1, hi=r-1; j<k; ++j, ++gi, --hi) {
+      if (xg[gi-1] < xf[gi]) {
+        xg[gi]=xf[gi];
+      } else {
+        xg[gi]=xg[gi-1];
+      }
+      if (xh[hi+1] < xf[hi]) {
+        xh[hi]=xf[hi];
+      } else {
+        xh[hi]=xh[hi+1];
+      }
+    }
+
+  }
+
+  /* merging */
+  for (i=0, gi=k-1, hi=0; i<n; ++i, ++gi, ++hi) {
+    if (xg[gi] < xh[hi]) {
+      xo[i]=xh[hi];
+    } else {
+      xo[i]=xg[gi];
+    }
+  }
+
+  UNPROTECT(5);
+  return(output);
 }
 
-void R_erosion(double* f, int* fn, int* n, int* k,  int* q, double* output) {
-  erosion(f, *fn, *n, *k, *q, output);
+/* y = input vector
+ * s = half window size (half filter length)
+ */
+SEXP C_erosion(SEXP y, SEXP s) {
+  SEXP f, g, h, output;
+  /* TODO: replace by R_xlen_t in R 3.0.0 */
+  unsigned int n, fn,  k, q, i, r, j, gi, hi;
+
+  PROTECT(y=coerceVector(y, REALSXP));
+  n=LENGTH(y);
+  q=asInteger(s);
+  k=2*q+1;
+
+  /* add q (== halfWindowSize) values left/right
+   * increase n to make n%windowSize == 0 */
+  fn=n+2*q+(k-(n%k));
+  PROTECT(f=allocVector(REALSXP, fn));
+  PROTECT(g=allocVector(REALSXP, fn));
+  PROTECT(h=allocVector(REALSXP, fn));
+  PROTECT(output=allocVector(REALSXP, n));
+
+  double* xy=REAL(y);
+  double* xf=REAL(f);
+  double* xg=REAL(g);
+  double* xh=REAL(h);
+  double* xo=REAL(output);
+
+  memset(xf, xy[0], q*sizeof(double));
+  memcpy(xf+q, xy, n*sizeof(double));
+  memset(xf+(n+q), xy[n-1], (fn-(n+q))*sizeof(double));
+
+  /* init extrema */
+  r=q+n-1;
+  for (i=0, gi=q+n+q-1, hi=0;  i<q; ++i, --gi, ++hi) {
+    xg[gi]=xf[r];
+    xh[hi]=xf[q];
+  }
+
+  /* preprocessing */
+  for (i=q, r=i+k-1; i<n+q; i+=k, r+=k) {
+
+    /* init most left/right elements */
+    xg[i]=xf[i];
+    xh[r]=xf[r];
+
+    for (j=1, gi=i+1, hi=r-1; j<k; ++j, ++gi, --hi) {
+      if (xg[gi-1] > xf[gi]) {
+        xg[gi]=xf[gi];
+      } else {
+        xg[gi]=xg[gi-1];
+      }
+      if (xh[hi+1] > xf[hi]) {
+        xh[hi]=xf[hi];
+      } else {
+        xh[hi]=xh[hi+1];
+      }
+    }
+
+  }
+
+  /* merging */
+  for (i=0, gi=k-1, hi=0; i<n; ++i, ++gi, ++hi) {
+    if (xg[gi] > xh[hi]) {
+      xo[i]=xh[hi];
+    } else {
+      xo[i]=xg[gi];
+    }
+  }
+
+  UNPROTECT(5);
+  return(output);
 }
 
