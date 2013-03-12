@@ -31,7 +31,7 @@
 
   if (halfWindowSize < 1) {
     stop(parentCall, " : ", sQuote("halfWindowSize"),
-         "=", halfWindowSize, " is too small!", call.=FALSE)
+         " is too small!", call.=FALSE)
   }
 
   windowSize <- halfWindowSize*2+1

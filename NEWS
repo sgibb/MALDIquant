@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.6.3 [2013-03-12]:
+- movingAverage: left/right extrema now calculated for 0:windowSize and
+  (n-windowSize+1):n (before they were set to NA)
+
 Version 1.6.2 [2013-03-11]:
 - Replace all .C interfaces by .Call.
 
