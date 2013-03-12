@@ -11,6 +11,7 @@
 \alias{.doByLabels}
 \alias{.erosion}
 \alias{.filterPeaks}
+\alias{.filter}
 \alias{.findLocalMaxima}
 \alias{.findLocalMaximaLogical}
 \alias{.grouperRelaxedHighestAtReference}
@@ -33,6 +34,7 @@
 \alias{.prepareShow}
 \alias{.prepareShowGroupName}
 \alias{.replaceNonEmptyMassObjects}
+\alias{.savitzkyGolayCoefficients}
 \alias{.snipR}
 \alias{.stopIfNotIsMassObjectList}
 \alias{.stopIfNotIsMassPeaksList}
