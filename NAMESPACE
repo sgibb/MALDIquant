@@ -38,6 +38,7 @@ export("binPeaks",
        "movingAverage",
        "referencePeaks",
        "removeEmptyMassObjects",
+       "savitzkyGolay",
        "warpMassPeaks",
        "warpMassSpectra")
 

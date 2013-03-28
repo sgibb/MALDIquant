@@ -48,7 +48,7 @@ movingAverage <- function(y, halfWindowSize=2) {
 ## returns:
 ##  double
 ##
-savitzkyGolay <- function(y, halfWindowSize=2, polynomialOrder=3) {
+savitzkyGolay <- function(y, halfWindowSize=10, polynomialOrder=3) {
   .stopIfNotIsValidHalfWindowSize(halfWindowSize, n=length(y))
 
   windowSize <- 2*halfWindowSize+1

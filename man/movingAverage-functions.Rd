@@ -1,6 +1,6 @@
 \name{movingAverage}
 \alias{movingAverage}
-\title{Moving Average}
+\title{Moving Average Smoothing Filter}
 \description{This function runs a simple 2-side moving average.}
 \usage{
   movingAverage(y, halfWindowSize=2)
@@ -15,7 +15,7 @@
   \code{2*halfWindowSize+1}).}
 }
 \value{
-  a smoothed intensity vector
+  \code{double}, a smoothed intensity vector.
 }
 \examples{
 ## load library
@@ -36,7 +36,7 @@ data("fiedler2009subset", package="MALDIquant")
 s <- transformIntensity(fiedler2009subset, movingAverage, halfWindowSize=2)
 }
 \seealso{
-  \code{\link{filter}},
+  \code{\link{savitzkyGolay}},
   \code{\linkS4class{MassSpectrum}},
   \code{\link[MALDIquant]{transformIntensity,AbstractMassObject-method}}
 }

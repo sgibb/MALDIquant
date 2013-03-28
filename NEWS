@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.6.4 [2013-03-28]:
+- Add savitzkyGolay: Savitzky-Golay Smoothing Filter.
+
 Version 1.6.3 [2013-03-12]:
 - movingAverage: left/right extrema now calculated for 0:windowSize and
   (n-windowSize+1):n (before they were set to NA)
