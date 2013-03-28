@@ -51,7 +51,7 @@ SEXP C_snip(SEXP y, SEXP iterations) {
 
   k=asInteger(iterations);
 
-  for (i=1; i<=k; ++i) {
+  for (i=k; i>0; --i) {
     for (j=i; j<n-i; ++j) {
       a=xy[j];
       b=(xy[j-i]+xy[j+i])/2;

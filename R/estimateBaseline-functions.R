@@ -118,7 +118,7 @@
 .snipR <- function(x, y, iterations=100) {
   n <- length(y)
 
-  for (i in seq(from=1, to=iterations)) {
+  for (i in seq(from=iterations, to=1)) {
     j <- (i+1):(n-i)
     jl <- j-i
     ju <- j+i

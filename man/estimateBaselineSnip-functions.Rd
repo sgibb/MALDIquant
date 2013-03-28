@@ -27,7 +27,7 @@ instead.
 \details{
 The algorithm based on the following equation:
 \deqn{y_i(k) = \min \{ y_i, \frac{(y_{i-k}+y_{i+k})}{2} \}}{y_i(k) = min \{ y_i, (y_{i-k}+y_{i+k})/2 \}}
-Where \emph{k} is increase by one until \code{iterations} is reached.
+Where \emph{k}=\code{iterations} is decreased by one until zero is reached.
 }
 \references{
 C.G. Ryan, E. Clayton, W.L. Griffin, S.H. Sie, and D.R. Cousens. 1988.
@@ -35,6 +35,13 @@ Snip, a statistics-sensitive background treatment for the quantitative analysis
 of pixe spectra in geoscience applications.
 Nuclear Instruments and Methods in Physics Research Section B:
 Beam Interactions with Materials and Atoms, 34(3): 396-402.
+
+M. Morhac. 2009.
+An algorithm for determination of peak regions and baseline elimination in
+spectroscopic data.
+Nuclear Instruments and Methods in Physics Research Section A:
+Accelerators, Spectrometers, Detectors and Associated Equipment, 600(2),
+478-487.
 }
 \author{
 Sebastian Gibb
