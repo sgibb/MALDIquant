@@ -71,6 +71,13 @@ test_that(".mergeMetaData", {
   r <- list(numbers=1:3, lists=list(a=1, b=2),
             characters=c("a", "b", "b", "c"))
   expect_identical(MALDIquant:::.mergeMetaData(l), r)
+  l <- list(a=list(numbers=1:2, lists=list(a=1, b=2, d=4),
+                   characters=c("a", "b", "c")),
+            b=list(numbers=1:3, lists=list(a=1, b=2), characters=c("b", "c")))
+  r <- list(numbers=c(1:2, 1:3), lists=list(list(a=1, b=2, d=4),
+                                            list(a=1, b=2)),
+            characters=c("a", "b", "c", "b", "c"))
+  expect_identical(MALDIquant:::.mergeMetaData(l), r)
 })
 
 test_that(".merge", {

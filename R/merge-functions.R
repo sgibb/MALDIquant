@@ -145,8 +145,10 @@ mergeMassSpectra <- function(l, labels, fun=mean, ...) {
   m <- lapply(nm, function(n) {
     cur <- m[[1]][[n]]
     all <- lapply(m, function(x)x[[n]])
+    len <- lapply(all, function(x)length(x))
 
-    if (!all(.flat(cur) == .flat(all))) {
+    if (!all(length(cur) == len) ||
+        !all(.flat(cur) == .flat(all))) {
       if (!is.list(cur)) {
         all <- unlist(all)
       }
