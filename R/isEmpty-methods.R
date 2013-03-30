@@ -21,7 +21,7 @@ setMethod(f="isEmpty",
           signature=signature(x="AbstractMassObject"),
           definition=function(x) {
 
-  return(length(x@intensity) == 0)
+  return(length(x@intensity) == 0 || all(x@intensity == 0))
 })
 
 setMethod(f=".isEmptyWarning",

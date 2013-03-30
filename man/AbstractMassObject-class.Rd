@@ -62,7 +62,8 @@ It shouldn't create or handle by the user because it is for internal use only.
       value = "numeric")}
     Replacement function for slot \code{intensity}.}
   \item{isEmpty}{\code{signature(object = "AbstractMassObject")}:
-    Returns \code{TRUE} if length of \code{intensity} is 0.}
+    Returns \code{TRUE} if length of \code{intensity} is 0 or all
+    \code{intensity} values are 0.}
   \item{length}{\code{signature(x = "AbstractMassObject")}:
     Returns length of slot \code{intensity}.}
   \item{lines}{\code{signature(x = "AbstractMassObject")}:
