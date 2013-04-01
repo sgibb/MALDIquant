@@ -24,7 +24,7 @@
 #include <R_ext/Rdynload.h>
 
 static const R_CallMethodDef callMethods[] = {
-    {"C_snip", (DL_FUNC) &C_snip, 2},
+    {"C_snip", (DL_FUNC) &C_snip, 3},
     {"C_lowerConvexHull", (DL_FUNC) &C_lowerConvexHull, 2},
     {"C_dilation", (DL_FUNC) &C_dilation, 2},
     {"C_erosion", (DL_FUNC) &C_erosion, 2},

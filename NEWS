@@ -10,6 +10,11 @@ Version 1.6.7 [2013-03-30]:
 Version 1.6.6 [2013-03-30]:
 - isEmpty: treat spectra with only zeros as intensity values as empty ones.
 
+Version 1.6.5 [2013-03-28]:
+- .estimateBaselineSnip: support decreasing/increasing clipping window;
+  controlled by new argument "decreasing"; use a decreasing window per default
+  to get a smoother baseline; (use decreasing=FALSE to get the old behaviour).
+
 Version 1.6.4 [2013-03-28]:
 - Add savitzkyGolay: Savitzky-Golay Smoothing Filter.
 

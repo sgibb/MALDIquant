@@ -42,10 +42,10 @@ test_that("removeBaseline works with Median", {
 
 test_that("removeBaseline works with SNIP", {
   expect_equal(removeBaseline(s, iterations=2),
-               createMassSpectrum(mass=1:20, intensity=c(rep(0, 10), 5, 5, 2.5,
+               createMassSpectrum(mass=1:20, intensity=c(rep(0, 10), 7.5, 5, 2.5,
                                                          rep(0, 7))))
   expect_equal(removeBaseline(s, method="SNIP", iterations=2),
-               createMassSpectrum(mass=1:20, intensity=c(rep(0, 10), 5, 5, 2.5,
+               createMassSpectrum(mass=1:20, intensity=c(rep(0, 10), 7.5, 5, 2.5,
                                                          rep(0, 7))))
 })
 
@@ -55,7 +55,7 @@ test_that("removeBaseline works with list of MassSpectrum objects", {
   expect_error(removeBaseline(list(s, createMassPeaks(1, 1)),
                "no list of MALDIquant::MassSpectrum objects"))
   r <- createMassSpectrum(mass=1:20,
-                          intensity=c(rep(0, 10), 5, 5, 2.5, rep(0, 7)))
+                          intensity=c(rep(0, 10), 7.5, 5, 2.5, rep(0, 7)))
   expect_equal(removeBaseline(list(s, s), iterations=2), list(r, r))
 })
 
