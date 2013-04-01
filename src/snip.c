@@ -25,6 +25,15 @@
  * Beam Interactions with Materials and Atoms, 34(3):396-402, 1988.
  * ISSN 0168-583X. doi:10.1016/0168-583X(88)90063-8.
  * URL http://www.sciencedirect.com/science/article/B6TJN-46YSYTJ-30/2/e0d015ceb8ea8a7bc0702a857a19750b
+ *
+ * decreasing clipping window adapted from:
+ * M. Morhac. 2009.
+ * "An algorithm for determination of peak regions and baseline elimination in
+ *  spectroscopic data."
+ * Nuclear Instruments and Methods in Physics Research Section A:
+ * Accelerators, Spectrometers, Detectors and Associated Equipment, 600(2), 478-487.
+ * ISSN 0168-9002. doi:10.1016/S0168-9002(97)01023-1.
+ * URL http://www.sciencedirect.com/science/article/pii/S0168900297010231
  */
 
 #include "MALDIquant.h"
@@ -34,15 +43,18 @@
 
 /* y = array of double values
  * iterations = max iteration steps
+ * decreasing = use a decreasing clipping window?
  */
-SEXP C_snip(SEXP y, SEXP iterations) {
+SEXP C_snip(SEXP y, SEXP iterations, SEXP decreasing) {
   SEXP tmp, output;
   /* TODO: replace by R_xlen_t in R 3.0.0 */
   int n, i, j, k;
+  int d;
   double a, b;
 
   PROTECT(tmp=coerceVector(duplicate(y), REALSXP));
   n=LENGTH(tmp);
+  d=asInteger(decreasing);
 
   PROTECT(output=allocVector(REALSXP, n));
 
@@ -51,18 +63,36 @@ SEXP C_snip(SEXP y, SEXP iterations) {
 
   k=asInteger(iterations);
 
-  for (i=k; i>0; --i) {
-    for (j=i; j<n-i; ++j) {
-      a=xy[j];
-      b=(xy[j-i]+xy[j+i])/2;
-      if (b < a) {
-        a=b;
+  /* code duplication to use fater ++i/--i instead of i+=step */
+  if (d) {
+    for (i=k; i>0; --i) {
+      for (j=i; j<n-i; ++j) {
+        a=xy[j];
+        b=(xy[j-i]+xy[j+i])/2;
+        if (b < a) {
+          a=b;
+        }
+        xo[j]=a;
       }
-      xo[j]=a;
-    }
 
-    for(j=i; j<n-i; ++j) {
-      xy[j]=xo[j];
+      for(j=i; j<n-i; ++j) {
+        xy[j]=xo[j];
+      }
+    }
+  } else {
+    for (i=1; i<=k; ++i) {
+      for (j=i; j<n-i; ++j) {
+        a=xy[j];
+        b=(xy[j-i]+xy[j+i])/2;
+        if (b < a) {
+          a=b;
+        }
+        xo[j]=a;
+      }
+
+      for(j=i; j<n-i; ++j) {
+        xy[j]=xo[j];
+      }
     }
   }
 

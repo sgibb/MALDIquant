@@ -101,24 +101,40 @@
 ##  ISSN 0168-583X. doi:10.1016/0168-583X(88)90063-8.
 ##  URL http://www.sciencedirect.com/science/article/B6TJN-46YSYTJ-30/2/e0d015ceb8ea8a7bc0702a857a19750b
 ##
+##  decreasing clipping window adapted from:
+##  M. Morhac. 2009.
+##  "An algorithm for determination of peak regions and baseline elimination in
+##   spectroscopic data."
+##  Nuclear Instruments and Methods in Physics Research Section A:
+##  Accelerators, Spectrometers, Detectors and Associated Equipment, 600(2), 478-487.
+##  ISSN 0168-9002. doi:10.1016/S0168-9002(97)01023-1.
+##  URL http://www.sciencedirect.com/science/article/pii/S0168900297010231
+##
 ## params:
 ##  x: vector of x values (only needed for create a matrix as return value)
 ##  y: vector of y values
 ##  iterations: number of iterations
+##  decreasing: use a decreasing clipping window
 ##
 ## returns:
 ##  a matrix of the estimate baseline (col1: mass; col2: intensity)
 
 ## C version
-.estimateBaselineSnip <- function(x, y, iterations=100) {
-  return(cbind(x=x, y=.Call("C_snip", y, iterations)))
+.estimateBaselineSnip <- function(x, y, iterations=100, decreasing=TRUE) {
+  return(cbind(x=x, y=.Call("C_snip", y, iterations, decreasing)))
 }
 
 ## R only: obsolete because too slow
-.snipR <- function(x, y, iterations=100) {
+.snipR <- function(x, y, iterations=100, decreasing=TRUE) {
   n <- length(y)
 
-  for (i in seq(from=iterations, to=1)) {
+  if (decreasing) {
+    s <- seq(from=iterations, to=1)
+  } else {
+    s <- seq(from=1, to=iterations)
+  }
+
+  for (i in s) {
     j <- (i+1):(n-i)
     jl <- j-i
     ju <- j+i

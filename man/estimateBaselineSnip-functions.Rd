@@ -11,7 +11,7 @@ It is hidden by \code{NAMESPACE} because it is a private function and
 instead.
 }
 \usage{
-.estimateBaselineSnip(x, y, iterations=100)
+.estimateBaselineSnip(x, y, iterations=100, decreasing=TRUE)
 }
 \arguments{
   \item{x}{vector of x values (only needed to return a two-column matrix)}
@@ -19,6 +19,8 @@ instead.
   \item{iterations}{half window size\cr
     The resulting window reaches from \code{mass[cur_index-iterations]}
     to \code{mass[cur_index+iterations]}.}
+  \item{decreasing}{use a decreasing (if \code{FALSE} an increasing) clipping
+  window.}
 }
 \value{
   Returns a two column matrix (first column: mass, second column: intensity)
@@ -27,7 +29,12 @@ instead.
 \details{
 The algorithm based on the following equation:
 \deqn{y_i(k) = \min \{ y_i, \frac{(y_{i-k}+y_{i+k})}{2} \}}{y_i(k) = min \{ y_i, (y_{i-k}+y_{i+k})/2 \}}
-Where \emph{k}=\code{iterations} is decreased by one until zero is reached.
+
+\code{decreasing}: In Morhac 2009 a decreasing clipping window is suggested to
+get a smoother baseline.
+For \code{decreasing == TRUE} (\code{decreasing == FALSE})
+\emph{k}=\code{iterations} is decreased (increased) by one until zero
+(\code{iterations}) is reached.
 }
 \references{
 C.G. Ryan, E. Clayton, W.L. Griffin, S.H. Sie, and D.R. Cousens. 1988.
