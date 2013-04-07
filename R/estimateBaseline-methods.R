@@ -19,7 +19,7 @@
 ## MassSpectrum
 setMethod(f="estimateBaseline",
           signature=signature(object="MassSpectrum"),
-          definition=function(object, method=c("SNIP", "TopHat", "ConvexHull",
+          definition=function(object, method=c("TopHat", "SNIP", "ConvexHull",
                                                "Median"),
                               ...) {
 
@@ -31,11 +31,11 @@ setMethod(f="estimateBaseline",
   method=match.arg(method, several.ok=FALSE)
 
   b <- switch(method,
-              "SNIP" = {
-                .estimateBaselineSnip(object@mass, object@intensity, ...)
-              },
               "TopHat" = {
                 .estimateBaselineTopHat(object@mass, object@intensity, ...)
+              },
+              "SNIP" = {
+                .estimateBaselineSnip(object@mass, object@intensity, ...)
               },
               "ConvexHull" = {
                 .estimateBaselineConvexHull(object@mass, object@intensity)

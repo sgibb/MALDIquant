@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.99.1 [2013-04-07]:
+- Change: TopHat is new default baseline correction algorithm; closes #18.
+  affected funtions: estimateBaseline, removeBaseline.
+
 Version 1.6.8 [2013-03-30]:
 - .mergeMetaData: fix merging of lists with different lengths; fixes #17.
 

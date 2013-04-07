@@ -72,9 +72,8 @@ test_that("estimateBaselineSnip", {
     colnames(mlist[[j]]$m100) <- colnames(mlist[[j]]$m) <- c("mass", "intensity")
     expect_identical(estimateBaseline(s, method="SNIP", iterations=2,
                                       decreasing=d), mlist[[j]]$m)
-    expect_identical(estimateBaseline(s, iterations=2,
-                                      decreasing=d), mlist[[j]]$m)
-    expect_equal(estimateBaseline(s, decreasing=d), mlist[[j]]$m100)
+    expect_equal(estimateBaseline(s, method="SNIP", decreasing=d),
+                 mlist[[j]]$m100)
   }
 })
 
@@ -91,6 +90,7 @@ test_that("estimateBaselineTopHat", {
   ## user method
   colnames(m) <- c("mass", "intensity")
   expect_identical(estimateBaseline(s, method="TopHat", halfWindowSize=2), m)
+  expect_identical(estimateBaseline(s, halfWindowSize=2), m)
 
   ## halfWindowSize
   expect_error(MALDIquant:::.estimateBaselineTopHat(1:20, i, 0),
