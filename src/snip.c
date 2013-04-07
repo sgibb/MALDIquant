@@ -47,13 +47,12 @@
  */
 SEXP C_snip(SEXP y, SEXP iterations, SEXP decreasing) {
   SEXP tmp, output;
-  /* TODO: replace by R_xlen_t in R 3.0.0 */
-  int n, i, j, k;
+  R_xlen_t n, i, j, k;
   int d;
   double a, b;
 
   PROTECT(tmp=coerceVector(duplicate(y), REALSXP));
-  n=LENGTH(tmp);
+  n=XLENGTH(tmp);
   d=asInteger(decreasing);
 
   PROTECT(output=allocVector(REALSXP, n));
