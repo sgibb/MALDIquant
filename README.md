@@ -14,13 +14,13 @@ Please visit: http://strimmerlab.org/software/maldiquant/
 
 ## Install
 
-```R
+```s
 install.packages("MALDIquant")
 ```
 
 ## Install development version (not recommended)
 
-```R
+```s
 install.packages("devtools")
 library("devtools")
 install_github("MALDIquant", "sgibb")
