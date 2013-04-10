@@ -23,7 +23,7 @@
 #include <Rinternals.h>
 
 /* Dilation/Erosion is based on the vHGW Algorithm
- * (needs only 3 comparison per * element):
+ * (needs only 3 comparison per element):
  *
  * M. van Herk. "A Fast Algorithm for Local Minimum and Maximum Filters on
  * Rectangular and Octagonal Kernels."
@@ -69,15 +69,18 @@ SEXP C_dilation(SEXP y, SEXP s) {
   double* xh=REAL(h);
   double* xo=REAL(output);
 
-  memset(xf, xy[0], q*sizeof(double));
   memcpy(xf+q, xy, n*sizeof(double));
-  memset(xf+(n+q), xy[n-1], (fn-(n+q))*sizeof(double));
 
-  /* init extrema */
+  /* init left extrema */
+  for (i=0; i<q; ++i) {
+    xf[i]=xf[q];
+    xh[i]=xf[q];
+  }
+  /* init right extrema */
   r=q+n-1;
-  for (i=0, gi=q+n+q-1, hi=0;  i<q; ++i, --gi, ++hi) {
-    xg[gi]=xf[r];
-    xh[hi]=xf[q];
+  for (i=q+n; i<fn; ++i) {
+    xf[i]=xf[r];
+    xg[i]=xf[r];
   }
 
   /* preprocessing */
@@ -141,15 +144,18 @@ SEXP C_erosion(SEXP y, SEXP s) {
   double* xh=REAL(h);
   double* xo=REAL(output);
 
-  memset(xf, xy[0], q*sizeof(double));
   memcpy(xf+q, xy, n*sizeof(double));
-  memset(xf+(n+q), xy[n-1], (fn-(n+q))*sizeof(double));
 
-  /* init extrema */
+  /* init left extrema */
+  for (i=0; i<q; ++i) {
+    xf[i]=xf[q];
+    xh[i]=xf[q];
+  }
+  /* init right extrema */
   r=q+n-1;
-  for (i=0, gi=q+n+q-1, hi=0;  i<q; ++i, --gi, ++hi) {
-    xg[gi]=xf[r];
-    xh[hi]=xf[q];
+  for (i=q+n; i<fn; ++i) {
+    xf[i]=xf[r];
+    xg[i]=xf[r];
   }
 
   /* preprocessing */
