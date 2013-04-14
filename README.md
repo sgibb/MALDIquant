@@ -26,3 +26,6 @@ library("devtools")
 install_github("MALDIquant", "sgibb")
 ```
 
+## Build status
+
+[![Build Status](https://travis-ci.org/sgibb/MALDIquant.png?branch=master)](https://travis-ci.org/sgibb/MALDIquant)
