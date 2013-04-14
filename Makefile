@@ -1,7 +1,9 @@
 ## package name
 NAME := $(shell sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION)
+VERSION := $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
+PACKAGE := $(NAME)_$(VERSION).tar.gz
 CHECKDIR := $(NAME).Rcheck
-LOCALDIR := .local
+LOCALDIR := $(NAME).local
 TESTDIR := $(NAME)/tests
 
 ## r binaries
@@ -12,7 +14,6 @@ R_PACKAGE_DIR=$(HOME)/R
 APE_R_PACKAGE_DIR=/opt/R-packages/cran
 
 ## package version
-PACKAGE_VERSION := $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
 
 .PHONY: clean cran check build install remove ape_install ape_remove local_install local_remove test
 
@@ -32,7 +33,7 @@ cran: clean test testdemo check
 
 check: build
 	cd .. ;\
-	$(R_BIN) CMD check $(NAME)_$(PACKAGE_VERSION).tar.gz --as-cran
+	$(R_BIN) CMD check $(PACKAGE) --as-cran
 
 build:
 	cd .. ;\
@@ -40,14 +41,14 @@ build:
 
 install: build
 	cd .. ;\
-	$(R_BIN) CMD INSTALL $(NAME)_$(PACKAGE_VERSION).tar.gz
+	$(R_BIN) CMD INSTALL $(PACKAGE)
 
 remove: clean
 	$(R_BIN) CMD REMOVE -l $(R_PACKAGE_DIR) $(NAME)
 
 ape_install: build
 	cd .. ;\
-	sudo $(R_BIN) CMD INSTALL -l $(APE_R_PACKAGE_DIR) $(NAME)_$(PACKAGE_VERSION).tar.gz
+	sudo $(R_BIN) CMD INSTALL -l $(APE_R_PACKAGE_DIR) $(PACKAGE)
 
 ape_remove: clean
 	sudo $(R_BIN) CMD REMOVE -l $(APE_R_PACKAGE_DIR) $(NAME)
@@ -74,5 +75,5 @@ testdemo: local_install
 
 win-builder: check
 	cd .. ;\
-	ncftpput -u anonymous -p '' win-builder.r-project.org R-devel $(NAME)_$(PACKAGE_VERSION).tar.gz
+	ncftpput -u anonymous -p '' win-builder.r-project.org R-devel $(PACKAGE)
 
