@@ -14,7 +14,7 @@ APE_R_PACKAGE_DIR=/opt/R-packages/cran
 ## package version
 PACKAGE_VERSION := $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
 
-.PHONY: clean cran check check_archive build install remove ape_install ape_remove local_install local_remove test
+.PHONY: clean cran check build install remove ape_install ape_remove local_install local_remove test
 
 ## targets:
 all: build
@@ -28,13 +28,9 @@ clean: local_remove
 	$(RM) $(NAME)_*.tar.gz ;\
 	$(RM) -r $(CHECKDIR)
 
-cran: clean test testdemo check_archive
+cran: clean test testdemo check
 
-check: clean
-	cd .. ;\
-	$(R_BIN) CMD check $(NAME)
-
-check_archive: build
+check: build
 	cd .. ;\
 	$(R_BIN) CMD check $(NAME)_$(PACKAGE_VERSION).tar.gz --as-cran
 
@@ -76,7 +72,7 @@ testdemo: local_install
 	$(R_BIN) -q -e "library(\"$(NAME)\", lib.loc=\"$(LOCALDIR)\")" \
 		   		-e "demo(\"MALDIquant\")"
 
-win-builder: check_archive
+win-builder: check
 	cd .. ;\
 	ncftpput -u anonymous -p '' win-builder.r-project.org R-devel $(NAME)_$(PACKAGE_VERSION).tar.gz
 
