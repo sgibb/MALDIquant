@@ -1,0 +1,24 @@
+## R is not supported by travis-ci.org yet. We use C instead.
+language: c
+
+## choose compiler gcc/clang
+compiler: gcc
+
+env:
+  - R_LIBS_USER=~/R
+
+# install dependencies
+install:
+  - sudo apt-add-repository -y ppa:marutter/rdev
+  - sudo apt-get update
+  - sudo apt-get install r-base-dev texinfo texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+  - mkdir -p ${R_LIBS_USER}
+  - R --version
+  - R -e '.libPaths(); sessionInfo()'
+  - Rscript -e 'install.packages("testthat", dep=TRUE, repos="http://cran.at.r-project.org")'
+
+# run tests
+script:
+  - make install
+  - make check
+  - make testdemo
