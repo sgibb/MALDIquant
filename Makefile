@@ -1,5 +1,4 @@
 ## package name
-CUR_DIR := $(shell /bin/pwd)
 NAME := $(shell sed -n "s/Package: *\([^ ]*\)/\1/p" DESCRIPTION)
 CHECKDIR := $(NAME).Rcheck
 LOCALDIR := .local
@@ -15,7 +14,7 @@ APE_R_PACKAGE_DIR=/opt/R-packages/cran
 ## package version
 PACKAGE_VERSION := $(shell sed -n "s/Version: *\([^ ]*\)/\1/p" DESCRIPTION)
 
-.PHONY: clean cran check check_archive build install remove ape_install ape_remove local_install local_remove autotest test
+.PHONY: clean cran check check_archive build install remove ape_install ape_remove local_install local_remove test
 
 ## targets:
 all: build
