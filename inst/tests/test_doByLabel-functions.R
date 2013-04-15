@@ -37,8 +37,24 @@ test_that(".doByLabels runs a function for group labels", {
                         levels=paste("s", c(1, 2, 10, 11))),
                   FUN=function(x){return(x)})
 
-  expect_equal(unname(lapply(l, function(x)metaData(x)$file)),
-               lapply(l, function(x)metaData(x)$file))
+  expect_equal(c(1:2, 10:11), unname(sapply(m, function(x)metaData(x)$file)))
+
+  ## bug #19; order changes if length of output is smaller than input
+  m <- MALDIquant:::.doByLabels(l=l,
+                  ## results in factor(c(2, 2, 1, 1), levels=2:1)
+                  labels=rep(2:1, each=2),
+                  FUN=function(x){return(x[[1]])})
+
+  expect_equal(c(1, 10), unname(sapply(m, function(x)metaData(x)$file)))
+
+  ## respect order of factor
+  m <- MALDIquant:::.doByLabels(l=l,
+                  ## results in factor(c(2, 2, 1, 1), levels=1:2)
+                  labels=factor(rep(2:1, each=2)),
+                  FUN=function(x){return(x[[1]])})
+
+  expect_equal(c(10, 1), unname(sapply(m, function(x)metaData(x)$file)))
+
 
   ## see https://github.com/sgibb/MALDIquant/issues/1
   expect_equal(unname(MALDIquant:::.doByLabels(l, 1:4, function(x)x[[1]])), l)
