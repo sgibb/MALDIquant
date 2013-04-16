@@ -36,7 +36,12 @@
 
   if (!missing(labels)) {
     ## drop unused levels and turn argument into factor
-    labels <- factor(labels)
+    if (is.factor(labels)) {
+      labels <- droplevels(labels)
+    } else {
+      ## preserve order in labels
+      labels <- factor(labels, levels=unique(labels))
+    }
 
     n <- length(l)
 
