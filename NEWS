@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.6.10 [2013-04-22]:
+- filterPeaks: doesn't round (floor) minFrequency argument anymore; led to
+  unexpected results; fixes #22.
+
 Version 1.6.9 [2013-04-16]:
 - .doByLabels: preserve order of non-factor labels; fixes #19;
   affected functions: filterPeaks, mergeMassPeaks, mergeMassSpectra.
