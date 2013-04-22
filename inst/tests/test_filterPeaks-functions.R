@@ -39,5 +39,11 @@ test_that("filterPeaks", {
   expect_identical(filterPeaks(l, minFrequency=1,
                                labels=rep(1:2, each=2)),
                    list(p[1:4], p[1:4], p[1:2], p[1:2]))
+  ## test case for #22 (unexpected results for different number of technical
+  ## replicates)
+  expect_identical(filterPeaks(list(p, p[1:4], p[1:3], p, p[1:4], p[1:3],
+                                    p[1:2]), minFrequency=2/3,
+                               labels=c(rep(1, 3), rep(2, 4))),
+                   list(p[1:4], p[1:4], p[1:3], p[1:3], p[1:3], p[1:3], p[1:2]))
 })
 
