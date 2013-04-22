@@ -51,6 +51,17 @@ filterPeaks <- function(l, minFrequency, minNumber, labels) {
 
   if (missing(minNumber)) {
     minNumber<- NA
+  } else {
+    if (minNumber > length(l)) {
+      minNumber <- length(l)
+      warning(sQuote("minNumber"), " > ", sQuote("length(l)"),
+              " does not make sense! Using ", length(l), " instead.")
+    }
+
+    if (minNumber < 0) {
+      minNumber <- 0
+      warning(sQuote("minNumber"), " < 0 does not make sense! Using 0 instead.")
+    }
   }
 
   if (!is.na(minFrequency) && !is.na(minNumber)) {

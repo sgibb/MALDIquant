@@ -13,6 +13,10 @@ test_that("filterPeaks shows warnings", {
                  " > 1 does not make sense! Using 1 instead")
   expect_warning(filterPeaks(l, minFrequency=-1),
                  " < 0 does not make sense! Using 0 instead")
+  expect_warning(filterPeaks(l, minNumber=10),
+                 "does not make sense! Using 4 instead")
+  expect_warning(filterPeaks(l, minNumber=-1),
+                 " < 0 does not make sense! Using 0 instead")
   expect_warning(filterPeaks(l, minFrequency=2/3, minNumber=2),
                  " arguments are given. Choosing the higher one.")
 })
