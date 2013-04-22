@@ -22,35 +22,50 @@
 ## params:
 ##  l: list of MassPeaks objects
 ##  minFrequency: double, minimal frequency of a peak to be not removed
+##  minNumber: double, minimal (absolute) number of peaks to be not removed
 ##  labels: labelwise filtering
 ##
 ## returns:
 ##  a list of adjusted MassPeaks objects
 ##
-filterPeaks <- function(l, minFrequency, labels) {
+filterPeaks <- function(l, minFrequency, minNumber, labels) {
 
   ## test parameters
   .stopIfNotIsMassPeaksList(l)
 
-  if (minFrequency > 1) {
-    minFrequency <- 1
-    warning(sQuote("minFrequency"),
-            " > 1 does not make sense! Using 1 instead.")
+  if (missing(minFrequency)) {
+    minFrequency <- NA
+  } else {
+    if (minFrequency > 1) {
+      minFrequency <- 1
+      warning(sQuote("minFrequency"),
+              " > 1 does not make sense! Using 1 instead.")
+    }
+
+    if (minFrequency < 0) {
+      minFrequency <- 0
+      warning(sQuote("minFrequency"),
+              " < 0 does not make sense! Using 0 instead.")
+    }
   }
 
-  if (minFrequency < 0) {
-    minFrequency <- 0
-    warning(sQuote("minFrequency"),
-            " < 0 does not make sense! Using 0 instead.")
+  if (missing(minNumber)) {
+    minNumber<- NA
   }
 
-  return(.doByLabels(l, labels=labels, FUN=.filterPeaks, minFrequency))
+  if (!is.na(minFrequency) && !is.na(minNumber)) {
+    warning(sQuote("minFrequency"), " and ", sQuote("minNumber"),
+            " arguments are given. Choosing the higher one.")
+  }
+
+  return(.doByLabels(l, labels=labels, FUN=.filterPeaks,
+                     minFrequency=minFrequency, minNumber=minNumber))
 }
 
-.filterPeaks <- function(l, minFrequency) {
+.filterPeaks <- function(l, minFrequency, minNumber=NA) {
 
   ## calculate minimal number of peaks
-  minPeakNumber <- minFrequency*length(l)
+  minPeakNumber <- max(minFrequency*length(l), minNumber, na.rm=TRUE)
 
   ## fetch mass
   mass <- sort(unique(.unlist(lapply(l, function(x)x@mass))), method="quick")
