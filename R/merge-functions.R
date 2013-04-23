@@ -75,7 +75,7 @@ mergeMassSpectra <- function(l, labels, fun=mean, ...) {
   colnames(m) <- NULL
 
   ## merge intensities
-  intensity <- .merge(m, fun=fun, ...)
+  intensity <- .merge(m, fun=fun, na.rm=na.rm, ...)
 
   ## merge snr
   for (i in seq(along=l)) {
@@ -100,29 +100,57 @@ mergeMassSpectra <- function(l, labels, fun=mean, ...) {
 ## returns:
 ##  a new MassSpectrum object
 ##
-.mergeMassSpectra <- function(l, fun=mean, ...) {
+.mergeMassSpectra <- function(l, fun=mean, na.rm=TRUE, ...) {
 
   ## very simple score to find the "best" spectrum
   simpleScore <- function(x) {return(max(x@intensity)/mean(x@intensity))}
 
-  ## use highest scored spectrum as reference
+  ## merge metaData
+  metaData <- .mergeMetaData(lapply(l, function(x)x@metaData))
+
+  ## look for empty MassSpectrum objects
+  emptyIdx <- findEmptyMassObjects(l)
+  nEmpty <- length(emptyIdx)
+  n <- length(l)
+
+  if (nEmpty) {
+    l <- l[-emptyIdx]
+  }
+
+  ## calculate spectra scores
   maxScore <- which.max(vapply(l, simpleScore, double(1)))
 
-  mass <- l[[maxScore]]@mass
+  if (length(maxScore)) {
+    ## use highest scored spectrum as reference
+    mass <- l[[maxScore]]@mass
+  } else {
+    ## or nothing if all spectra are empty
+    mass <- NA
+  }
 
   ## interpolate not existing masses
   approxSpectra <- lapply(l, approxfun)
 
-  intensities <- lapply(approxSpectra, function(x)x(mass))
+  ## get intensities
+  if (nEmpty) {
+    intensityList <- vector(mode="list", length=n)
+    intensityList[emptyIdx] <- rep(NA, nEmpty)
+    intensityList[-emptyIdx] <- lapply(approxSpectra, function(x)x(mass))
+  } else {
+    intensityList <- lapply(approxSpectra, function(x)x(mass))
+  }
 
   ## create a matrix which could merged
-  m <- do.call(rbind, intensities)
+  m <- do.call(rbind, intensityList)
 
   ## merge intensities
-  intensity <- .merge(m, fun=fun, ...)
+  intensity <- .merge(m, fun=fun, na.rm=na.rm, ...)
 
-  ## merge metaData
-  metaData <- .mergeMetaData(lapply(l, function(x)x@metaData))
+  ## create an empty spectrum if all intensities are NaN
+  if (is.nan(intensity[1])) {
+    intensity <- double()
+    mass <- double()
+  }
 
   return(createMassSpectrum(mass=mass, intensity=intensity, metaData=metaData))
 }

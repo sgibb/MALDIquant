@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.6.12 [2013-04-23]:
+- mergeMassSpectra: empty MassSpectrum objects are ignored now
+  (but if all objects are empty mergeMassSpectra will return an empty
+  MassSpectrum object, too); fixes #20.
+
 Version 1.6.11 [2013-04-22]:
 - filterPeaks: add minNumber argument to allow an absolute threshold for
   filtering; closes #21.
