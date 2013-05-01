@@ -105,6 +105,9 @@ if (is.null(getGeneric("totalIonCurrent<-"))) {
 ## end of AbstractMassObject
 
 ## MassSpectrum
+if (is.null(getGeneric(".anyMissing"))) {
+  setGeneric(".anyMissing", function(x, ...) standardGeneric(".anyMissing"))
+}
 if (is.null(getGeneric("approxfun"))) {
   setGeneric("approxfun",
              function(x, y=NULL, method="linear", yleft, yright, rule=1, f=0,
