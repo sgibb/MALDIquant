@@ -62,7 +62,7 @@ lines(b1, col=2)
 lines(b2, col=3)
 
 ## draw legend
-legend(x="topright", lwd=1, legend=paste("halfWindowSize=", c(75, 150), sep=""),
+legend(x="topright", lwd=1, legend=paste0("halfWindowSize=", c(75, 150)),
        col=c(2, 3))
 }
 \keyword{internal}

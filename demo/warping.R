@@ -48,16 +48,16 @@ par(mfrow=c(2, 2))
 
 ## helper function to avoid double coding
 plotSpectra <- function(unwarped, warped, range) {
-  plot(unwarped[[1]], main=paste("unwarped spectra (mass ",
-                                 paste(range, collapse=":"), " Da)", sep=""),
+  plot(unwarped[[1]], main=paste0("unwarped spectra (mass ",
+                                  paste0(range, collapse=":"), " Da)"),
        xlim=range, ylim=c(0, 4e-4), type="n")
 
   for (i in seq(along=unwarped)) {
     lines(unwarped[[i]], col=colour[i])
   }
 
-  plot(unwarped[[1]], main=paste("warped spectra (mass ",
-                                 paste(range, collapse=":"), " Da)", sep=""),
+  plot(unwarped[[1]], main=paste0("warped spectra (mass ",
+                                 paste0(range, collapse=":"), " Da)"),
        xlim=range, ylim=c(0, 4e-4), type="n")
 
   for (i in seq(along=warped)) {

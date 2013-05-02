@@ -38,7 +38,7 @@ library("MALDIquant")
 ## create example matrix
 m <- matrix(c(1, 2, 3,
               3, 6, 9),
-            nrow=2, byrow=TRUE, dimnames=list(paste("samples", 1:2, sep=""),
+            nrow=2, byrow=TRUE, dimnames=list(paste0("samples", 1:2),
                                               paste("peaks", LETTERS[1:3])))
 
 ## show matrix
