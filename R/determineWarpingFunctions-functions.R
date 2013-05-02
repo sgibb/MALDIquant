@@ -174,9 +174,9 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
       notNA <- !is.na(binnedMass[lIdx[[i+1]]])
 
       if (is.null(givenPlotArgs$main)) {
-        plotArgs$main <- paste("sample ", i, " vs reference\n",
-                               "(matched peaks: ", sum(notNA), "/",
-                               nReference, ")", sep="")
+        plotArgs$main <- paste0("sample ", i, " vs reference\n",
+                                "(matched peaks: ", sum(notNA), "/",
+                                nReference, ")")
       }
 
       if (is.null(givenPlotArgs$sub)) {

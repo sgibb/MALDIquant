@@ -1,11 +1,11 @@
 Package: MALDIquant
-Version: 1.6.13
+Version: 1.6.14
 Date: 2013-05-02
 Title: Quantitative Analysis of Mass Spectrometry Data
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
                     email="mail@sebastiangibb.de"),
              person("Korbinian", "Strimmer", role="ths"))
-Depends: R (>= 2.14.0), methods
+Depends: R (>= 2.15.0), methods
 Suggests: testthat
 Description: MALDIquant provides a complete analysis pipeline for MALDI-TOF
   and other mass spectrometry data. Distinctive features include baseline

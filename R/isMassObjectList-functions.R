@@ -29,9 +29,8 @@ isMassObjectList <- function(x) {
 .stopIfNotIsMassObjectList <- function(x) {
   if (!isMassObjectList(x)) {
     parentCall <- deparse(sys.call(-1))
-    stop(paste(parentCall, " : ", sQuote(deparse(substitute(x))),
-               " is no list of MALDIquant::AbstractMassObject objects!",
-               sep=""), call.=FALSE)
+    stop(parentCall, " : ", sQuote(deparse(substitute(x))),
+         " is no list of MALDIquant::AbstractMassObject objects!", call.=FALSE)
     return(FALSE)
   }
   return(TRUE)
@@ -50,9 +49,8 @@ isMassSpectrumList <- function(x) {
 .stopIfNotIsMassSpectrumList <- function(x) {
   if (!isMassSpectrumList(x)) {
     parentCall <- deparse(sys.call(-1))
-    stop(paste(parentCall, " : ", sQuote(deparse(substitute(x))),
-               " is no list of MALDIquant::MassSpectrum objects!", sep=""),
-               call.=FALSE)
+    stop(parentCall, " : ", sQuote(deparse(substitute(x))),
+         " is no list of MALDIquant::MassSpectrum objects!", call.=FALSE)
     return(FALSE)
   }
   return(TRUE)
@@ -71,9 +69,8 @@ isMassPeaksList <- function(x) {
 .stopIfNotIsMassPeaksList <- function(x) {
   if (!isMassPeaksList(x)) {
     parentCall <- deparse(sys.call(-1))
-    stop(paste(parentCall, " : ", sQuote(deparse(substitute(x))),
-               " is no list of MALDIquant::MassPeaks objects!", sep=""),
-               call.=FALSE)
+    stop(parentCall, " : ", sQuote(deparse(substitute(x))),
+         " is no list of MALDIquant::MassPeaks objects!", call.=FALSE)
     return(FALSE)
   }
   return(TRUE)

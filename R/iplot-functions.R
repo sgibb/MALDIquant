@@ -65,9 +65,9 @@
       "I" = { ylim <<- c(0, .zoomYlim(1.1)[2]) },
       ## print limits
       "p" = { message("xlim=c(",
-                      paste(round(.xlim(), digits=3), collapse=", "), "), ",
+                      paste0(round(.xlim(), digits=3), collapse=", "), "), ",
                       "ylim=c(",
-                      paste(round(.ylim(), digits=3), collapse=", "), ")") },
+                      paste0(round(.ylim(), digits=3), collapse=", "), ")") },
       ## reset limits
       "r" = { xlim <<- backup$xlim
               ylim <<- backup$ylim },
@@ -89,7 +89,7 @@
                  peakStyleType=peakStyleType, showPeakLabels=showPeakLabels,
                  xlim=xlim, ylim=ylim, ...)
     if (n > 1) {
-      mtext(paste(i, "/",  n, sep=""), side=3)
+      mtext(paste0(i, "/",  n), side=3)
     }
     return(NULL)
   }
@@ -99,7 +99,7 @@
                peakStyleType=peakStyleType, showPeakLabels=showPeakLabels,
                xlim=xlim, ylim=ylim, ...)
   if (n > 1) {
-    mtext(paste(i, "/",  n, sep=""), side=3)
+    mtext(paste0(i, "/",  n), side=3)
   }
 
   grDevices::setGraphicsEventHandlers(onKeybd=.keyboard)
@@ -216,10 +216,9 @@
   text <- text[!is.na(keys)]
   keys <- keys[!is.na(keys)]
 
-  msg <- paste("See ", sQuote("help(\"iplot\", \"MALDIquant\")"),
-               " for details and more shortcuts.\n", sep="")
+  msg <- paste0("See ", sQuote("help(\"iplot\", \"MALDIquant\")"),
+                " for details and more shortcuts.\n")
   keys <- format(keys, justify="left")
-  return(paste(msg, paste(keys, ": ", text, "\n", sep="", collapse=""),
-               sep="\n"))
+  return(paste(msg, paste0(keys, ": ", text, "\n", collapse=""), sep="\n"))
 }
 

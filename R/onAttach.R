@@ -17,10 +17,9 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 .onAttach <- function(libname, pkgname) {
-  packageStartupMessage(paste("\nThis is MALDIquant version ",
+  packageStartupMessage("\nThis is MALDIquant version ",
     utils::packageVersion("MALDIquant"), "\n",
     "Quantitative Analysis of Mass Spectrometry Data\n",
     " See ", sQuote("?MALDIquant"),
-    " for more information about this package.\n",
-    sep=""))
+    " for more information about this package.\n")
 }

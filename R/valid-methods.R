@@ -19,9 +19,9 @@
 ## AbstractMassObject
 .validAbstractMassObject <- function(object) {
   if (length(object@mass) != length(object@intensity)) {
-    return(paste("Lengths of mass (", length(object@mass),
-                 ") and intensity (", length(object@intensity),
-                 ") have to be equal.", sep=""))
+    return(paste0("Lengths of mass (", length(object@mass),
+                  ") and intensity (", length(object@intensity),
+                  ") have to be equal."))
   }
   return(TRUE)
 }
@@ -43,9 +43,9 @@ setValidity("MassSpectrum", method=.validMassSpectrum)
 
 .validMassPeaks <- function(object) {
   if (length(object@intensity) != length(object@snr)) {
-    return(paste("Lengths of intensity (", length(object@intensity),
-                 ") and snr(", length(object@snr),
-                 ") have to be equal.", sep=""))
+    return(paste0("Lengths of intensity (", length(object@intensity),
+                  ") and snr(", length(object@snr),
+                  ") have to be equal."))
   }
   return(.validAbstractMassObject(object))
 }

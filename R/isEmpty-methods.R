@@ -31,15 +31,15 @@ setMethod(f=".isEmptyWarning",
           definition=function(x) {
 
   if (isEmpty(x)) {
-    msg <- paste(class(x)[1], " object", sep="")
+    msg <- paste0(class(x)[1], " object")
 
     if (!is.null(x@metaData$file)) {
-      msg <- paste(msg, " (file: ", x@metaData$file, ")", sep="")
+      msg <- paste0(msg, " (file: ", x@metaData$file, ")")
     }
 
     parentCall <- sys.call(-1)
-    warning(paste("In ", deparse(parentCall), " : ", msg, " is empty!",
-                  sep=""), call.=FALSE)
+    warning("In ", deparse(parentCall), " : ", msg, " is empty!",
+            call.=FALSE)
     return(TRUE)
   }
 

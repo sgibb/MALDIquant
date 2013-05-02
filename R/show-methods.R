@@ -31,7 +31,7 @@ setMethod(f="show",
 
   l$groups <- format(l$groups, justify="left")
 
-  cat(paste(l$groups, ": ", l$values, sep="", collapse="\n"), sep="\n")
+  cat(paste0(l$groups, ": ", l$values, collapse="\n"), sep="\n")
 })
 
 setMethod(f=".prepareShow",
@@ -50,11 +50,11 @@ setMethod(f=".prepareShow",
   } else {
     values <- c(values,
                 length(object@mass),
-                paste(round(range(object@mass), digits=3), collapse=" - "),
-                paste(format(min(object@intensity), digits=4,
-                             scientific=TRUE), " - ",
-                      format(max(object@intensity), digits=4,
-                             scientific=TRUE), sep=""))
+                paste0(round(range(object@mass), digits=3), collapse=" - "),
+                paste0(format(min(object@intensity), digits=4,
+                              scientific=TRUE), " - ",
+                       format(max(object@intensity), digits=4,
+                              scientific=TRUE)))
   }
 
   groups <- c(groups, .prepareShowGroupName(object@metaData$name, "Name"))
@@ -77,7 +77,7 @@ setMethod(f=".prepareShow",
   if (isEmpty(object)) {
     values <- NA
   } else {
-    values <- paste(round(range(object@snr), digits=3), collapse=" - ")
+    values <- paste0(round(range(object@snr), digits=3), collapse=" - ")
   }
 
   ## append snr info after intensity
