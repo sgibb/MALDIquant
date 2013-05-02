@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.6.13 [2013-05-02]:
+- createMassSpectrum: test for missing/filtered mass values and throw a
+  warning if missing values are detected; fixes #23.
+
 Version 1.6.12 [2013-04-23]:
 - mergeMassSpectra: empty MassSpectrum objects are ignored now
   (but if all objects are empty mergeMassSpectra will return an empty
