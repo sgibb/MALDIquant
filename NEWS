@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.6.15 [2013-05-06]:
+- Fixes #24;
+
 Version 1.6.14 [2013-05-02]:
 - Replace all paste(..., sep="") calls by paste0;
   now MALDIquant depends on R >= 2.15.

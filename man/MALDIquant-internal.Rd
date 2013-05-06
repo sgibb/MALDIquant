@@ -10,6 +10,7 @@
 \alias{.calculateLabelPositions}
 \alias{.dilation}
 \alias{.doByLabels}
+\alias{.equal}
 \alias{.erosion}
 \alias{.filterPeaks}
 \alias{.filter}

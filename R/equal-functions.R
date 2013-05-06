@@ -16,15 +16,34 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## MassSpectrum
-setMethod(f=".anyMissing",
-          signature=signature(x="MassSpectrum"),
-          definition=function(x) {
+## .equal
+##  test whether two numeric vectors are equal (not identical); avoids floating
+##  point rounding problems.
+##
+## params:
+##  x: numeric vector
+##  y: numeric vector
+##  tolerance: double, maximal allowed deviation to be treated as equal
+##
+## returns:
+##  TRUE/FALSE
+##
+.equal <- function(x, y, tolerance=.Machine$double.eps^0.5) {
+  nx <- length(x)
+  ny <- length(y)
 
-  d <- diff(x@mass)
+  if (nx != ny) {
+    return(FALSE)
+  }
 
-  anyMissing <- !all(d == cummax(d))
+  if (nx == 0) {
+    return(TRUE)
+  }
 
-  return(anyMissing | is.na(anyMissing))
-})
+  if (!is.numeric(x) || !is.numeric(y)) {
+    return(NA)
+  }
+
+  return(mean(abs(x-y)) <= tolerance)
+}
 
