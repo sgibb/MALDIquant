@@ -5,7 +5,6 @@
 \alias{[,MassPeaks,logical,missing-method}
 \alias{[,MassPeaks,numeric,missing-method}
 
-\alias{.anyMissing}
 \alias{.binPeaks}
 \alias{.calculateLabelPositions}
 \alias{.dilation}
@@ -46,7 +45,6 @@
 \alias{.topHatR}
 \alias{.validAbstractMassObject}
 \alias{.validMassPeaks}
-\alias{.validMassSpectrum}
 \alias{.warp}
 \alias{.warpingFunctionCubic}
 \alias{.warpingFunctionLowess}

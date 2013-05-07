@@ -28,19 +28,6 @@
 
 setValidity("AbstractMassObject", method=.validAbstractMassObject)
 
-.validMassSpectrum <- function(object) {
-
-  if (.anyMissing(object)) {
-    warning("MassSpectrum created with missing/filtered mass values. ",
-            "This may compromise subsequent baseline correction and ",
-            "peak detection.")
-  }
-
-  return(.validAbstractMassObject(object))
-}
-
-setValidity("MassSpectrum", method=.validMassSpectrum)
-
 .validMassPeaks <- function(object) {
   if (length(object@intensity) != length(object@snr)) {
     return(paste0("Lengths of intensity (", length(object@intensity),

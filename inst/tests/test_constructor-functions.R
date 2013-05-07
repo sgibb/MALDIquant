@@ -7,9 +7,6 @@ test_that("a MassSpectrum object is constructed", {
   expect_error(createMassSpectrum(mass=1:10, intensity=1:5))
   expect_error(createMassSpectrum(mass=1:10, intensity=1:10, metaData=1:10))
 
-  expect_warning(createMassSpectrum(mass=(1:10)[-8], intensity=(1:10)[-8]),
-                 "MassSpectrum created with missing/filtered mass values.")
-
   expect_equal(createMassSpectrum(mass=1:10, intensity=1:10),
                new("MassSpectrum", mass=1:10, intensity=1:10, metaData=list()))
   expect_equal(createMassSpectrum(1:10, 1:10, meta),

@@ -5,10 +5,6 @@ Version 1.6.14 [2013-05-02]:
 - Replace all paste(..., sep="") calls by paste0;
   now MALDIquant depends on R >= 2.15.
 
-Version 1.6.13 [2013-05-02]:
-- createMassSpectrum: test for missing/filtered mass values and throw a
-  warning if missing values are detected; fixes #23.
-
 Version 1.6.12 [2013-04-23]:
 - mergeMassSpectra: empty MassSpectrum objects are ignored now
   (but if all objects are empty mergeMassSpectra will return an empty
