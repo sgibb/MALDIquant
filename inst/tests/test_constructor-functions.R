@@ -12,9 +12,8 @@ test_that("a MassSpectrum object is constructed", {
 
   expect_equal(createMassSpectrum(mass=1:10, intensity=1:10),
                new("MassSpectrum", mass=1:10, intensity=1:10, metaData=list()))
-  expect_equal(createMassSpectrum((1:10)+0.2, 1:10, meta),
-               new("MassSpectrum", mass=(1:10)+0.2, intensity=1:10,
-                   metaData=meta))
+  expect_equal(createMassSpectrum(1:10, 1:10, meta),
+               new("MassSpectrum", mass=1:10, intensity=1:10, metaData=meta))
 })
 
 test_that("a MassPeaks object is constructed", {
