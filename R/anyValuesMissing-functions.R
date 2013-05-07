@@ -16,34 +16,15 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## .equal
-##  test whether two numeric vectors are equal (not identical); avoids floating
-##  point rounding problems.
-##
-## params:
-##  x: numeric vector
-##  y: numeric vector
-##  tolerance: double, maximal allowed deviation to be treated as equal
-##
-## returns:
-##  TRUE/FALSE
-##
-.equal <- function(x, y, tolerance=.Machine$double.eps^0.5) {
-  nx <- length(x)
-  ny <- length(y)
+## MassSpectrum
+setMethod(f=".anyMissing",
+          signature=signature(x="MassSpectrum"),
+          definition=function(x) {
 
-  if (nx != ny) {
-    return(FALSE)
-  }
+  d <- diff(x@mass)
 
-  if (nx == 0) {
-    return(TRUE)
-  }
+  anyMissing <- !all(d == cummax(d))
 
-  if (!is.numeric(x) || !is.numeric(y)) {
-    return(NA)
-  }
-
-  return(mean(abs(x-y)) <= tolerance)
-}
+  return(anyMissing | is.na(anyMissing))
+})
 
