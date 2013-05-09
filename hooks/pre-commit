@@ -8,6 +8,9 @@ RED="\033[0;31m"
 GREEN="\033[0;32m"
 RESET_COLORS="\033[0m"
 
+## reset uncommited changes
+git stash -q --keep-index
+
 for HOOK  in hooks/pre-commit.* ; do
   MSG="${MSG}${HOOK}: "
   ${HOOK}
@@ -18,6 +21,9 @@ for HOOK  in hooks/pre-commit.* ; do
     MSG="${MSG}${GREEN}success${RESET_COLORS}\n"
   fi
 done
+
+## reload uncommited changes
+git stash pop -q
 
 echo -e ${MSG}
 
