@@ -36,7 +36,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
   ## test arguments
   .stopIfNotIsMassPeaksList(l)
 
-  method <- match.arg(method, c("strict", "relaxed"), several.ok=FALSE)
+  method <- match.arg(method)
 
   ## fetch all mass
   mass <- unname(.unlist(lapply(l, function(x)x@mass)))
@@ -44,17 +44,17 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
   ## fetch all intensities
   intensities <- .unlist(lapply(l, function(x)x@intensity))
 
-  ## fetch all snr 
+  ## fetch all snr
   snr <- .unlist(lapply(l, function(x)x@snr))
 
   ## store original mass sample number/id
   samples <- .unlist(lapply(1:length(l), function(x) {
     return(rep(x, length(l[[x]])))
   }))
-  
+
   ## sort values by mass
   s <- sort(mass, method="quick", index.return=TRUE)
-  
+
   mass <- s$x
   intensities <- intensities[s$ix]
   snr <- snr[s$ix]
@@ -62,7 +62,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
 
   ## select grouper
   grouper <- switch(method,
-            "strict"  = { 
+            "strict"  = {
               .grouperStrict
             },
             "relaxed" = {
@@ -72,7 +72,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
               stop("Unknown ", sQuote("method"), ".")
             }
   )
- 
+
   ## binning
   mass <- .binPeaks(mass=mass, intensities=intensities, samples=samples,
                     tolerance=tolerance, grouper=grouper)
@@ -84,7 +84,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
     intensities <- intensities[s$ix]
     snr <- snr[s$ix]
     samples <- samples[s$ix]
-  } 
+  }
 
   ## group mass/intensities/snr by sample ids
   lIdx <- tapply(X=1:length(mass), INDEX=samples, FUN=function(x) {
@@ -127,8 +127,8 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
   ## grouper function
   grouper <- match.fun(grouper)
 
-  ## stack based implementation taken from 
-  ## caMassClass 1.9 R/msc.peaks.clust.R written by 
+  ## stack based implementation taken from
+  ## caMassClass 1.9 R/msc.peaks.clust.R written by
   ## Jarek Tuszynski <jaroslaw.w.tuszynski@saic.com>
   ## it is a lot of faster than recursion
 
@@ -165,7 +165,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
     } else {
       mass[left:gapIdx] <- l
     }
-  
+
     ## right side
     r <- grouper(mass=mass[(gapIdx+1):right],
                  intensities=intensities[(gapIdx+1):right],
