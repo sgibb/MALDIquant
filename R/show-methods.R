@@ -41,7 +41,8 @@ setMethod(f=".prepareShow",
   groups <- c("S4 class type",
               "Number of m/z values",
               "Range of m/z values",
-              "Range of intensity values")
+              "Range of intensity values",
+              "Memory usage")
 
   values <- class(object)[1]
 
@@ -56,6 +57,7 @@ setMethod(f=".prepareShow",
                        format(max(object@intensity), digits=4,
                               scientific=TRUE)))
   }
+  values <- c(values, .memoryUsageStr(object))
 
   groups <- c(groups, .prepareShowGroupName(object@metaData$name, "Name"))
   values <- c(values, object@metaData$name)

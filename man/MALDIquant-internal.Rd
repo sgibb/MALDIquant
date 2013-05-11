@@ -24,6 +24,7 @@
 \alias{.labelOverlap}
 \alias{.localMaxima}
 \alias{.lowerConvexHullR}
+\alias{.memoryUsageStr}
 \alias{.merge}
 \alias{.mergeMassPeaks}
 \alias{.mergeMassSpectra}

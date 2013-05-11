@@ -8,6 +8,7 @@ test_that("show", {
    "Number of m/z values     : 10          ",
    "Range of m/z values      : 1 - 10      ",
    "Range of intensity values: 11 - 20     ",
+   "Memory usage             : 1.648 KiB   ",
    "Name                     : example     ",
    "File                     : example.mzML")
 
@@ -22,6 +23,7 @@ test_that("show", {
    "Range of m/z values      : 1 - 10   ",
    "Range of intensity values: 11 - 20  ",
    "Range of snr values      : NA - NA  ",
+   "Memory usage             : 1.844 KiB",
    "Name                     : example  ",
    "File                     : example.mzML")
 
@@ -36,6 +38,7 @@ test_that("show", {
    "Range of m/z values      : 1 - 10   ",
    "Range of intensity values: 11 - 20  ",
    "Range of snr values      : 1 - 10   ",
+   "Memory usage             : 1.977 KiB",
    "Name1                    : example1 ",
    "Name2                    : example2 ",
    "File1                    : example1.txt",
