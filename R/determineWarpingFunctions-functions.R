@@ -129,6 +129,9 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
     return(w)
   })
 
+  ## clean misleading names (names == idx+1 because reference is idx == 1)
+  names(warpingFunctions) <- NULL
+
   ## debug plot
   if (plot) {
     ## non interactive device (pdf, png, ...) available?
