@@ -22,7 +22,7 @@ setMethod(f="isEmpty",
           definition=function(x) {
 
   return(length(x@intensity) == 0 ||
-         sum(x@intensity, na.rm=TRUE) == 0)
+         sum(as.double(x@intensity), na.rm=TRUE) == 0)
 })
 
 setMethod(f=".isEmptyWarning",

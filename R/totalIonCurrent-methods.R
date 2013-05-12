@@ -21,7 +21,7 @@ setMethod(f="totalIonCurrent",
           signature=signature(object="AbstractMassObject"),
           definition=function(object) {
 
-  return(as.double(sum(object@intensity, na.rm=TRUE)))
+  return(as.double(sum(as.double(object@intensity), na.rm=TRUE)))
 })
 
 ## AbstractMassObject
