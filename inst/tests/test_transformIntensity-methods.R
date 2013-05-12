@@ -17,7 +17,7 @@ test_that("transformIntensity", {
   expect_equal(length(transformIntensity(s, movingAverage, halfWindowSize=2)),
                10)
   expect_equal(length(transformIntensity(s,
-                        function(x)filter(x, rep(1, 5)/5, sides=2))), 6)
+                        function(x)as.double(filter(x, rep(1, 5)/5, sides=2)))), 6)
 })
 
 test_that("transformIntensity works with list of MassSpectrum objects", {

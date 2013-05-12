@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.99.3 [2013-05-12]:
+- Change: slots mass, intensity and snr in MassSpectrum and MassPeaks are now
+  "numeric" (instead of "vector")
+
 Version 1.99.2 [2013-04-07]:
 - Rewrite C code to support LongVectors; closes #13;
   now R>=3.0.0 is needed.
