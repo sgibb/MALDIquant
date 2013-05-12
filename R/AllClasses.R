@@ -20,8 +20,8 @@
 setClass("AbstractMassObject",
          representation=representation(mass="numeric", intensity="numeric",
                                        metaData="list", .cache="environment"),
-         prototype=prototype(mass=numeric(),
-                             intensity=numeric(), metaData=list()),
+         prototype=prototype(mass=numeric(), intensity=numeric(), 
+                             metaData=list()),
          contains="VIRTUAL")
 
 ## represent a spectrum
