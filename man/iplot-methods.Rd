@@ -49,6 +49,11 @@ more easily.
     \item{\sQuote{p}:}{Print xlim/ylim.}
     \item{\sQuote{r}:}{Reset xlim/ylim.}
   }
+
+  \code{iplot} could used to measure horizontal distances (e.g. FWHM).
+  The measurement is started by a click with the left mouse button on the plot.
+  A second left click stops the measurement and the distance is printed in
+  the R console.
 }
 \references{
 See website: \url{http://strimmerlab.org/software/maldiquant/}

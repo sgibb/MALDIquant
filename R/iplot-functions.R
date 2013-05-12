@@ -22,6 +22,7 @@
   ## init values
   i <- 1
   n <- length(spectra)
+  posX <- NULL
 
   ## test arguments
   if (missing(peaks)) {
@@ -70,7 +71,8 @@
                       paste0(round(.ylim(), digits=3), collapse=", "), ")") },
       ## reset limits
       "r" = { xlim <<- backup$xlim
-              ylim <<- backup$ylim },
+              ylim <<- backup$ylim
+              posX <<- NULL },
       ## spectrum style
       "s" = { types <- c("l", "p", "b", "n")
               cur <- which(spectrumStyleType == types)
@@ -94,6 +96,16 @@
     return(NULL)
   }
 
+  ## mouse button handler
+  .onMouseDown <- function(buttons, x, y) {
+    ## left button
+    if (0 %in% buttons) {
+      posX <<- .polygon(spectra[[i]], x, posX)
+    }
+
+    return(NULL)
+  }
+
   .iplotSingle(spectra[[i]], peaks[[i]],
                spectrumStyleType=spectrumStyleType,
                peakStyleType=peakStyleType, showPeakLabels=showPeakLabels,
@@ -102,7 +114,8 @@
     mtext(paste0(i, "/",  n), side=3)
   }
 
-  grDevices::setGraphicsEventHandlers(onKeybd=.keyboard)
+  grDevices::setGraphicsEventHandlers(onKeybd=.keyboard,
+                                      onMouseDown=.onMouseDown)
   grDevices::getGraphicsEvent(consolePrompt=.iplotUsage(n > 1,
                                                         !is.null(peaks[[1]])))
 }
@@ -185,6 +198,30 @@
 
 .zoomYlim <- function(width) {
   return(.zoomLim(.ylim(), width))
+}
+
+## draw polygon
+.polygon <- function(spectrum, x, posX) {
+  x <- grconvertX(x, "ndc", "user")
+  x <- spectrum@mass[.which.closest(x, spectrum@mass)]
+
+  abline(v=x, col="green4")
+
+  if (is.null(posX)) {
+    posX <- x
+  } else {
+    x <- sort(c(posX, x), method="quick")
+    s <- spectrum[x[1] <= spectrum@mass & spectrum@mass <= x[2]]
+    sm <- s@mass
+    si <- s@intensity
+
+    polygon(c(x[1], sm, x[2]), c(0, si, 0), col="seagreen1")
+    posX <- NULL
+
+    message("difference: ", length(s), " [data points] (",
+            "delta mass: ", round(diff(x), digits=3), ")")
+  }
+  return(posX)
 }
 
 ## usage
