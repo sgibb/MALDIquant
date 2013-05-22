@@ -138,6 +138,10 @@ if (is.null(getGeneric("imputeMass"))) {
   setGeneric("imputeMass",
              function(object, verbose=FALSE) standardGeneric("imputeMass"))
 }
+if (is.null(getGeneric("isRegular"))) {
+  setGeneric("isRegular",
+             function(object, ...) standardGeneric("isRegular"))
+}
 if (is.null(getGeneric("removeBaseline"))) {
   setGeneric("removeBaseline",
              function(object, ...) standardGeneric("removeBaseline"))

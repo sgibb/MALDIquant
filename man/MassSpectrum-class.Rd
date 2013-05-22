@@ -3,6 +3,8 @@
 \docType{class}
 \alias{MassSpectrum}
 \alias{MassSpectrum-class}
+\alias{isRegular}
+\alias{isRegular,MassSpectrum-method}
 
 \title{Class "MassSpectrum"}
 \description{
@@ -40,6 +42,11 @@ Class \code{\linkS4class{AbstractMassObject}}, directly.
 %    \code{\linkS4class{MassSpectrum}} object.
 %    See \code{\link[MALDIquant]{imputeMass,MassSpectrum-method}} for
 %    details.}
+  \item{isRegular}{\code{signature(object = "MassSpectrum")}:
+    Returns \code{FALSE} if the frequency of mass values with irregular
+    intervals is greater than \code{threshold} (because \code{object}
+    was measured in \emph{centroid} mode or some \code{intensity}
+    values were filtered).}
   \item{removeBaseline}{\code{signature(x = "MassSpectrum")}:
     Estimates and removes the baseline of a
     \code{\linkS4class{MassSpectrum}} object.

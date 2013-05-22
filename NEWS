@@ -1,12 +1,22 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.6.19 [2013-05-22]:
+- Add raw data check to workflow demo.
+
+Version 1.6.18 [2013-05-22]:
+- Add isRegular to test for regular increasing mass values; fixes #23.
+- Rename isContinuous to isRegular.
+
 Version 1.6.17 [2013-05-12]:
 - iplot: add horizontal distance measurement (using left mouse clicks).
 
 Version 1.6.16 [2013-05-12]:
 - Fix integer overflow in totalIonCurrent and isEmpty; fixes #25.
 - Add memory usage to "show" output.
+
+Version 1.6.15 [2013-05-11]:
+- Add isContinuous to test for continuous mass values; fixes #23.
 
 Version 1.6.14 [2013-05-02]:
 - Replace all paste(..., sep="") calls by paste0;

@@ -19,6 +19,7 @@
 \alias{.iplot}
 \alias{.iplotSingle}
 \alias{.iplotUsage}
+\alias{.irregularScore}
 \alias{.isFunctionList}
 \alias{.lim}
 \alias{.labelOverlap}
