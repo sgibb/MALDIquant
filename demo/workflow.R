@@ -39,9 +39,11 @@ any(length(fiedler2009subset[[1]]) != sapply(fiedler2009subset, length))
 spectra <- transformIntensity(fiedler2009subset, sqrt)
 
 
-## simple 5 point moving average for smoothing spectra
-## (maybe you have to increase halfWindowSize if your data are very noisy)
-spectra <- transformIntensity(spectra, movingAverage, halfWindowSize=2)
+## 21 point Savitzky-Golay-Filter for smoothing spectra
+## (maybe you have to adjust the halfWindowSize;
+## you could use a simple moving average instead)
+## see ?savitzkyGolay, ?movingAverage
+spectra <- transformIntensity(spectra, savitzkyGolay, halfWindowSize=10)
 
 
 ## remove baseline

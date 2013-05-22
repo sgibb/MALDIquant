@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.6.20 [2013-05-22]:
+- demo/workflow.R: replace moving average smoother by Savitzky-Golay-Filter.
+
 Version 1.6.19 [2013-05-22]:
 - Add raw data check to workflow demo.
 
