@@ -27,6 +27,8 @@
   ## test arguments
   if (missing(peaks)) {
     peaks <- vector(mode="list", length=n)
+  } else {
+    stopifnot(length(spectra) == length(peaks))
   }
 
   if (is.null(xlim)) {
