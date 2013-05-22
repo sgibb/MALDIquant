@@ -12,7 +12,7 @@ test_that("show", {
    "Name                     : example     ",
    "File                     : example.mzML")
 
-  expect_identical(capture.output(show(x)), r)
+  expect_identical(capture.output(show(x))[-5], r[-5])
 
   x <- createMassPeaks(mass=1:10, intensity=11:20,
                        metaData=list(name="example", file="example.mzML"))
@@ -27,7 +27,7 @@ test_that("show", {
    "Name                     : example  ",
    "File                     : example.mzML")
 
-  expect_identical(capture.output(show(x)), r)
+  expect_identical(capture.output(show(x))[-5], r[-5])
 
   x <- createMassPeaks(mass=1:10, intensity=11:20, snr=1:10,
                        metaData=list(name=c("example1", "example2"),
@@ -44,6 +44,6 @@ test_that("show", {
    "File1                    : example1.txt",
    "File2                    : example2.txt")
 
-  expect_identical(capture.output(show(x)), r)
+  expect_identical(capture.output(show(x))[-5], r[-5])
 })
 
