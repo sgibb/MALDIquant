@@ -31,12 +31,12 @@ BUG FIXES
 * `filterPeaks`: doesn't round (floor) minFrequency argument anymore; led to
   unexpected results; fixes #22.
 * `mergeMassSpectra`: empty MassSpectrum objects are ignored now
-  (but if all objects are empty mergeMassSpectra will return an empty
+  (but if all objects are empty `mergeMassSpectra` will return an empty
   MassSpectrum object, too); fixes #20.
 * `.mergeMetaData`: fix merging of lists with different lengths; fixes #17.
   affected functions: `mergeMassPeaks`, `mergeMassSpectra`.
 * `.doByLabels: preserve order of non-factor labels; fixes #19;
-  affected functions: filterPeaks, mergeMassPeaks, mergeMassSpectra.
+  affected functions: `filterPeaks`, `mergeMassPeaks`, `mergeMassSpectra`.
 * `totalIonCurrent`/`isEmpty`: fix integer overflow; fixes #25.
 * `totalIonCurrent<-`: fix handling of empty spectra; fixes #15.
 * Remove LICENSE file.
