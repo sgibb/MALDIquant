@@ -9,7 +9,7 @@ Version 1.99.2 [2013-04-07]:
 - Rewrite C code to support LongVectors; closes #13;
   now R>=3.0.0 is needed.
 
-Version 1.99.1 [2013-04-07]:
+Version 1.99.1 [2013-04-07] (revert):
 - Change: TopHat is new default baseline correction algorithm; closes #18.
   affected funtions: estimateBaseline, removeBaseline.
 
