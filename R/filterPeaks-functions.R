@@ -52,12 +52,6 @@ filterPeaks <- function(l, minFrequency, minNumber, labels) {
   if (missing(minNumber)) {
     minNumber<- NA
   } else {
-    if (minNumber > length(l)) {
-      minNumber <- length(l)
-      warning(sQuote("minNumber"), " > ", sQuote("length(l)"),
-              " does not make sense! Using ", length(l), " instead.")
-    }
-
     if (minNumber < 0) {
       minNumber <- 0
       warning(sQuote("minNumber"), " < 0 does not make sense! Using 0 instead.")
@@ -74,9 +68,17 @@ filterPeaks <- function(l, minFrequency, minNumber, labels) {
 }
 
 .filterPeaks <- function(l, minFrequency, minNumber=NA) {
+  n <- length(l)
+
+  ## minNumber have to be smaller than length(l)
+  if (!is.na(minNumber) && minNumber > n) {
+    minNumber <- n
+    warning(sQuote("minNumber"), " > ", sQuote("length(l)"),
+            " does not make sense! Using ", n, " instead.")
+  }
 
   ## calculate minimal number of peaks
-  minPeakNumber <- max(minFrequency*length(l), minNumber, na.rm=TRUE)
+  minPeakNumber <- max(minFrequency*n, minNumber, na.rm=TRUE)
 
   ## fetch mass
   mass <- sort(unique(.unlist(lapply(l, function(x)x@mass))), method="quick")

@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.7.1 [2013-06-09]:
+- .filterPeaks: reduce minNumber to length(l) to avoid complete removal
+  of peaks; fixes #26.
+
 
 CHANGES IN MALDIquant VERSION 1.7 [2013-05-23]:
 -----------------------------------------------
