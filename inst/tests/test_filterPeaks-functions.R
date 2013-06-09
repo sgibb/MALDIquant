@@ -57,5 +57,9 @@ test_that("filterPeaks", {
                                     p[1:2]), minNumber=2,
                                labels=c(rep(1, 3), rep(2, 4))),
                    list(p[1:4], p[1:4], p[1:3], p[1:4], p[1:4], p[1:3], p[1:2]))
+
+  ## test case for #26 (minNumber > n removes all peaks)
+  expect_identical(filterPeaks(list(p, p[1:4], p), minNumber=2, labels=c(1, 2, 2)),
+                   list(p, p[1:4], p[1:4]))
 })
 
