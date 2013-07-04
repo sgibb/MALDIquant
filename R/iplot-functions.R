@@ -148,16 +148,20 @@
     stop("R has to run in interactive mode.")
   }
 
+  ## Could not use dev.new() because only X11(type="Xlib") and windows() support
+  ## event handlers.
+  ## The following is an ugly workaround to circumvent the NOTE about
+  ## platform-specific code in R CMD check.
   if (.Platform$OS.type == "unix") {
     if (names(dev.cur()) != "X11") {
       # Could not use X11(type="Xlib") because R CMD check gives a NOTE
       # about an unused argument (type) on windows.
-      do.call(X11, list(type="Xlib"))
+      do.call("X11", list(type="Xlib"))
       return(TRUE)
     }
   } else if (.Platform$OS.type == "windows") {
     if (names(dev.cur()) != "windows") {
-      windows()
+      do.call("windows", list())
       return(TRUE)
     }
   } else {

@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.7.2 [2013-07-04]:
+- .iplot: turn platform-specific functions into characters and use do.call to
+  circumvent NOTE in R CMD check; closes #28.
+
 Version 1.7.1 [2013-06-09]:
 - .filterPeaks: reduce minNumber to length(l) to avoid complete removal
   of peaks; fixes #26.
