@@ -9,10 +9,10 @@ test_that("standardizeTotalIonCurrent throws errors", {
 
 test_that("standardizeTotalIonCurrent", {
   sTIC <- standardizeTotalIonCurrent(s)
-  expect_equal(sum(sTIC[[1]]@intensity), 1)
-  expect_equal(sum(sTIC[[2]]@intensity), 1)
+  expect_equal(totalIonCurrent(sTIC[[1]]), 1)
+  expect_equal(totalIonCurrent(sTIC[[2]]), 1)
   sTIC <- standardizeTotalIonCurrent(s, 2)
-  expect_equal(sum(sTIC[[1]]@intensity), 2)
-  expect_equal(sum(sTIC[[2]]@intensity), 2)
+  expect_equal(totalIonCurrent(sTIC[[1]]), 2)
+  expect_equal(totalIonCurrent(sTIC[[2]]), 2)
 })
 
