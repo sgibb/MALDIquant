@@ -11,7 +11,7 @@ R_BIN=R
 
 ## package dir
 R_PACKAGE_DIR=$(HOME)/R
-APE_R_PACKAGE_DIR=/opt/R-packages/cran
+APE_R_PACKAGE_DIR=/usr/local/lib/R/site-library/
 
 ## package version
 
