@@ -107,6 +107,10 @@ if (is.null(getGeneric("approxfun"))) {
                       ties=mean)
                standardGeneric("approxfun"))
 }
+if (is.null(getGeneric("calibrateIntensity"))) {
+  setGeneric("calibrateIntensity",
+             function(object, ...) standardGeneric("calibrateIntensity"))
+}
 if (is.null(getGeneric("detectPeaks"))) {
   setGeneric("detectPeaks",
              function(object, ...) standardGeneric("detectPeaks"))
