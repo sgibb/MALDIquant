@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.7.4 [2013-07-24]:
+- deprecated: totalIonCurrent,MassPeaks
+
 Version 1.7.3 [2013-07-04]:
 - totalIonCurrent: fix calculation by estimating the integral; fixes #29.
 

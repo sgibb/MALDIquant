@@ -22,9 +22,7 @@
 \alias{metaData,AbstractMassObject-method}
 \alias{metaData<-,AbstractMassObject-method}
 \alias{points,AbstractMassObject-method}
-\alias{totalIonCurrent}
 \alias{totalIonCurrent<-}
-\alias{totalIonCurrent,AbstractMassObject-method}
 \alias{totalIonCurrent<-,AbstractMassObject,numeric-method}
 
 \title{Class "AbstractMassObject"}
@@ -94,8 +92,6 @@ It shouldn't create or handle by the user because it is for internal use only.
   \item{rtrim}{\code{signature(object = "AbstractMassObject", maxMass =
     "numeric")}: Trim the right side of an \code{AbstractMassObject} object.
     See \code{\link{rtrim,AbstractMassObject,numeric-method}} for details.}
-  \item{totalIonCurrent}{\code{signature(object = "AbstractMassObject")}:
-    Accessor function for sum of all intensities (slot \code{intensity}).}
   \item{totalIonCurrent<-}{\code{signature(object = "AbstractMassObject",
       value = "numeric")}
     Set sum of slot \code{intensity} to \code{value}.}
@@ -141,9 +137,6 @@ metaData(s)
 
 ## replace metaData
 metaData(s) <- list(name="Spectrum")
-
-## get TIC
-totalIonCurrent(s)
 
 ## trim spectrum
 trim(s, 2, 9)

@@ -94,10 +94,6 @@ if (is.null(getGeneric("metaData<-"))) {
   setGeneric("metaData<-",
              function(object, value) standardGeneric("metaData<-"))
 }
-if (is.null(getGeneric("totalIonCurrent"))) {
-  setGeneric("totalIonCurrent",
-             function(object) standardGeneric("totalIonCurrent"))
-}
 if (is.null(getGeneric("totalIonCurrent<-"))) {
   setGeneric("totalIonCurrent<-",
              function(object, value) standardGeneric("totalIonCurrent<-"))
@@ -145,6 +141,10 @@ if (is.null(getGeneric("isRegular"))) {
 if (is.null(getGeneric("removeBaseline"))) {
   setGeneric("removeBaseline",
              function(object, ...) standardGeneric("removeBaseline"))
+}
+if (is.null(getGeneric("totalIonCurrent"))) {
+  setGeneric("totalIonCurrent",
+             function(object) standardGeneric("totalIonCurrent"))
 }
 ## end of MassSpectrum
 

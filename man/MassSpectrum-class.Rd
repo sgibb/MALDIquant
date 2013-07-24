@@ -5,6 +5,8 @@
 \alias{MassSpectrum-class}
 \alias{isRegular}
 \alias{isRegular,MassSpectrum-method}
+\alias{totalIonCurrent}
+\alias{totalIonCurrent,MassSpectrum-method}
 
 \title{Class "MassSpectrum"}
 \description{
@@ -52,6 +54,8 @@ Class \code{\linkS4class{AbstractMassObject}}, directly.
     \code{\linkS4class{MassSpectrum}} object.
     See \code{\link[MALDIquant]{removeBaseline,MassSpectrum-method}} for
     details.}
+  \item{totalIonCurrent}{\code{signature(object = "MassSpectrum")}:
+    Accessor function for Total Ion Current (TIC, area under the curve).}
 }
 }
 \references{
@@ -82,6 +86,9 @@ s
 
 ## plot spectrum
 plot(s)
+
+## get TIC
+totalIonCurrent(s)
 
 ## modify intensity and metaData
 intensity(s)[1:50] <- 0

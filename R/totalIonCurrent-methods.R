@@ -16,9 +16,9 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## AbstractMassObject
+## MassSpectrum
 setMethod(f="totalIonCurrent",
-          signature=signature(object="AbstractMassObject"),
+          signature=signature(object="MassSpectrum"),
           definition=function(object) {
 
   left <- as.double(head(object@intensity, -1))
