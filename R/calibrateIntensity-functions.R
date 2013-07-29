@@ -37,3 +37,44 @@
   return( (y-offset)/scaling )
 }
 
+## .calibrateProbabilisticQuotientNormalization
+## calibrate intensity values by Probabilistic Quotient Normalization
+##
+## F. Dieterle, A. Ross, G. Schlotterbeck, and Hans Senn.
+## "Probabilistic quotient normalization as robust method to account for
+## dilution of complex biological mixtures. Application in 1H NMR
+## metabonomics."
+## Analytical Chemistry 78, no. 13 (2006): 4281-4290.
+##
+## 1. Perform an integral normalization (typically a constant
+##    integral of 100 is used).
+## 2. Choose/calculate the reference spectrum (the best approach
+##    is the calculation of the median spectrum of control samples).
+## 3. Calculate the quotients of all variables of interest of the test
+##    spectrum with those of the reference spectrum.
+## 4. Calculate the median of these quotients.
+## 5. Divide all variables of the test spectrum by this median.
+##
+## params:
+##  l: list of MassSpectrum objects
+##
+## returns:
+##  list of calibrated MassSpectrum objects
+##
+.calibrateProbabilisticQuotientNormalization <- function(l) {
+  ## 1. integral normalization (==TIC)
+  l <- calibrateIntensity(l, method="TIC")
+  ## 2. median reference spectrum
+  reference <- mergeMassSpectra(l, fun=median)
+  ## 3. quotient calculation
+  a <- lapply(l, approxfun)
+  q <- lapply(a, function(f)f(reference@mass)/reference@intensity)
+  ## 4. median
+  m <- lapply(q, median, na.rm=TRUE)
+  ## 5. divide by median
+  return(mapply(function(cs, cm) {
+    return(transformIntensity(cs, fun=.calibrateIntensitySimple, offset=0,
+                              scaling=cm))
+  }, cs=l, cm=m))
+}
+

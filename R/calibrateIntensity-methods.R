@@ -19,7 +19,9 @@
 ## MassSpectrum
 setMethod(f="calibrateIntensity",
           signature=signature(object="MassSpectrum"),
-          definition=function(object, method=c("TIC", "Median"),
+          definition=function(object,
+                              method=c("TIC", "Median",
+                                       "ProbabilisticQuotientNormalization"),
                               ...) {
 
   method <- match.arg(method)
@@ -33,6 +35,10 @@ setMethod(f="calibrateIntensity",
       transformIntensity(object, fun=.calibrateIntensitySimple,
                          offset=0, scaling=median)
     },
+    "ProbabilisticQuotientNormalization" = {
+      stop(dQuote("Probabilistic Quotient Normalization"),
+           " is not supported for a single MassSpectrum object.")
+    },
     {
       stop("Unknown ", sQuote("method"), ".")
     }
@@ -44,11 +50,28 @@ setMethod(f="calibrateIntensity",
 ## list
 setMethod(f="calibrateIntensity",
           signature=signature(object="list"),
-          definition=function(object, ...) {
+          definition=function(object,
+                              method=c("TIC", "Median",
+                                       "ProbabilisticQuotientNormalization"),
+                              ...) {
 
   ## test arguments
   .stopIfNotIsMassSpectrumList(object)
 
-  return(lapply(object, calibrateIntensity, ...))
+  method <- match.arg(method)
+
+  object <- switch(method,
+    "TIC" = ,
+    "Median" = {
+      lapply(object, calibrateIntensity, method=method, ...)
+    },
+    "ProbabilisticQuotientNormalization" = {
+      .calibrateProbabilisticQuotientNormalization(object)
+    },
+    {
+      stop("Unknown ", sQuote("method"), ".")
+    }
+  )
+  return(object)
 })
 
