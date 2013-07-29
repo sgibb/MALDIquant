@@ -103,19 +103,10 @@ mergeMassSpectra <- function(l, labels, fun=mean, ...) {
 .mergeMassSpectra <- function(l, fun=mean, na.rm=TRUE, ...) {
 
   ## very simple score to find the "best" spectrum
-  simpleScore <- function(x) {return(max(x@intensity)/mean(x@intensity))}
+  simpleScore <- function(x) {return(max(c(x@intensity, 0))/mean(x@intensity))}
 
   ## merge metaData
   metaData <- .mergeMetaData(lapply(l, function(x)x@metaData))
-
-  ## look for empty MassSpectrum objects
-  emptyIdx <- findEmptyMassObjects(l)
-  nEmpty <- length(emptyIdx)
-  n <- length(l)
-
-  if (nEmpty) {
-    l <- l[-emptyIdx]
-  }
 
   ## calculate spectra scores
   maxScore <- which.max(vapply(l, simpleScore, double(1)))
@@ -131,14 +122,8 @@ mergeMassSpectra <- function(l, labels, fun=mean, ...) {
   ## interpolate not existing masses
   approxSpectra <- lapply(l, approxfun)
 
-  ## get intensities
-  if (nEmpty) {
-    intensityList <- vector(mode="list", length=n)
-    intensityList[emptyIdx] <- rep(NA, nEmpty)
-    intensityList[-emptyIdx] <- lapply(approxSpectra, function(x)x(mass))
-  } else {
-    intensityList <- lapply(approxSpectra, function(x)x(mass))
-  }
+  ## get interpolated intensities
+  intensityList <- lapply(approxSpectra, function(x)x(mass))
 
   ## create a matrix which could merged
   m <- do.call(rbind, intensityList)
