@@ -2,7 +2,7 @@ context("approxfun")
 
 test_that("approxfun", {
   s <- createMassSpectrum(mass=1:10, intensity=11:20)
-  e <- createMassSpectrum(mass=1:10, intensity=rep(0, 10))
+  e <- createMassSpectrum(mass=double(), intensity=double())
   p <- createMassPeaks(mass=1:10, intensity=11:20)
 
   expect_error(MALDIquant:::approxfun(p))
