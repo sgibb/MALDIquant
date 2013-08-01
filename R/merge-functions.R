@@ -100,13 +100,18 @@ mergeMassSpectra <- function(l, labels, fun=mean, ...) {
 ## returns:
 ##  a new MassSpectrum object
 ##
-.mergeMassSpectra <- function(l, fun=mean, na.rm=TRUE, ...) {
+.mergeMassSpectra <- function(l, fun=mean, na.rm=TRUE, mergeMetaData=TRUE,
+                              ...) {
 
   ## very simple score to find the "best" spectrum
   simpleScore <- function(x) {return(max(c(x@intensity, 0))/mean(x@intensity))}
 
   ## merge metaData
-  metaData <- .mergeMetaData(lapply(l, function(x)x@metaData))
+  if (mergeMetaData) {
+    metaData <- .mergeMetaData(lapply(l, function(x)x@metaData))
+  } else {
+    metaData <- list()
+  }
 
   ## calculate spectra scores
   maxScore <- which.max(vapply(l, simpleScore, double(1)))

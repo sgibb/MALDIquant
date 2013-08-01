@@ -65,16 +65,17 @@
   ## 1. integral normalization (==TIC)
   l <- calibrateIntensity(l, method="TIC")
   ## 2. median reference spectrum
-  reference <- mergeMassSpectra(l, fun=median)
-  ## 3. quotient calculation
-  a <- lapply(l, approxfun)
-  q <- lapply(a, function(f)f(reference@mass)/reference@intensity)
-  ## 4. median
-  m <- lapply(q, median, na.rm=TRUE)
-  ## 5. divide by median
-  return(mapply(function(cs, cm) {
-    return(transformIntensity(cs, fun=.calibrateIntensitySimple, offset=0,
-                              scaling=cm))
-  }, cs=l, cm=m))
+  reference <- .mergeMassSpectra(l, fun=median, mergeMetaData=FALSE)
+
+  return(lapply(l, function(x) {
+    ## 3. quotient calculation
+    q <- approxfun(x)(reference@mass)/reference@intensity
+    ## 4. median
+    m <- median(q, na.rm=TRUE)
+    ## 5. divide by median
+    x <- transformIntensity(x, fun=.calibrateIntensitySimple,
+                            offset=0, scaling=m)
+    return(x)
+  }))
 }
 
