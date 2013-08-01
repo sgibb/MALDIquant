@@ -6,6 +6,8 @@
 \alias{[,MassPeaks,numeric,missing-method}
 
 \alias{.binPeaks}
+\alias{.calibrateIntensitySimple}
+\alias{.calibrateProbabilisticQuotientNormalization}
 \alias{.calculateLabelPositions}
 \alias{.dilation}
 \alias{.doByLabels}
