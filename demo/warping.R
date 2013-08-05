@@ -25,8 +25,8 @@ spectra <- transformIntensity(spectra, movingAverage, halfWindowSize=2)
 ## remove baseline
 spectra <- removeBaseline(spectra)
 
-## calibrate intensity values by "total ion current"
-spectra <- standardizeTotalIonCurrent(spectra)
+## calibrate intensity values by "Total Ion Current"
+spectra <- calibrateIntensity(spectra)
 
 ## run peak detection
 peaks <- detectPeaks(spectra)
