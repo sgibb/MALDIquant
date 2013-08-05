@@ -54,6 +54,11 @@ spectra <- transformIntensity(spectra, savitzkyGolay, halfWindowSize=10)
 spectra <- removeBaseline(spectra, method="SNIP", iterations=100)
 
 
+## calibrate (normalize) intensities (different calibration methods available)
+## see ?calibrateIntensity
+spectra <- calibrateIntensity(spectra, method="TIC")
+
+
 ## run peak detection
 ## (maybe you need to adjust halfWindowSize [decreasing it for high resolution
 ## spectra] and SNR [a higher value increase the True-Positive-Rate but decrease
