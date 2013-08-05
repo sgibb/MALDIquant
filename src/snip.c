@@ -46,24 +46,25 @@
  * decreasing = use a decreasing clipping window?
  */
 SEXP C_snip(SEXP y, SEXP iterations, SEXP decreasing) {
-  SEXP tmp, output;
+  SEXP dup, output;
   /* TODO: replace by R_xlen_t in R 3.0.0 */
   int n, i, j, k;
   int d;
   double a, b;
 
-  PROTECT(tmp=coerceVector(duplicate(y), REALSXP));
-  n=LENGTH(tmp);
+  PROTECT(dup=duplicate(y));
+  PROTECT(y=coerceVector(dup, REALSXP));
+  n=LENGTH(y);
   d=asInteger(decreasing);
 
   PROTECT(output=allocVector(REALSXP, n));
 
   double* xo=REAL(output);
-  double* xy=REAL(tmp);
+  double* xy=REAL(y);
 
   k=asInteger(iterations);
 
-  /* code duplication to use fater ++i/--i instead of i+=step */
+  /* code duplication to use faster ++i/--i instead of i+=step */
   if (d) {
     for (i=k; i>0; --i) {
       for (j=i; j<n-i; ++j) {
@@ -98,7 +99,7 @@ SEXP C_snip(SEXP y, SEXP iterations, SEXP decreasing) {
 
   memcpy(xo, xy, n*sizeof(double));
 
-  UNPROTECT(2);
+  UNPROTECT(3);
 
   return(output);
 }
