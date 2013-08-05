@@ -43,6 +43,7 @@ export("binPeaks",
        "warpMassSpectra")
 
 exportMethods("as.matrix",
+              "calibrateIntensity",
               "detectPeaks",
               "estimateBaseline",
               "estimateNoise",
