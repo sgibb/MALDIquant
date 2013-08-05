@@ -22,8 +22,6 @@
 \alias{metaData,AbstractMassObject-method}
 \alias{metaData<-,AbstractMassObject-method}
 \alias{points,AbstractMassObject-method}
-\alias{totalIonCurrent<-}
-\alias{totalIonCurrent<-,AbstractMassObject,numeric-method}
 
 \title{Class "AbstractMassObject"}
 \description{
@@ -92,9 +90,6 @@ It shouldn't create or handle by the user because it is for internal use only.
   \item{rtrim}{\code{signature(object = "AbstractMassObject", maxMass =
     "numeric")}: Trim the right side of an \code{AbstractMassObject} object.
     See \code{\link{rtrim,AbstractMassObject,numeric-method}} for details.}
-  \item{totalIonCurrent<-}{\code{signature(object = "AbstractMassObject",
-      value = "numeric")}
-    Set sum of slot \code{intensity} to \code{value}.}
   \item{trim}{\code{signature(object = "AbstractMassObject", minMass =
     "numeric", maxMass = "numeric")}: Trim an \code{AbstractMassObject}
     object. See \code{\link{trim,AbstractMassObject,numeric,numeric-method}}
