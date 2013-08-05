@@ -9,6 +9,12 @@ Version 1.7.7 [2013-08-05]:
 - subset methods "[": little speed up by calling "which" to evaluate logical
   expressions only once.
 
+Version 1.7.6 [2013-08-05]:
+- add calibrateIntensity; closes #31.
+- demo/workflow.R: add calibrateIntensity.
+- deprecated: calibrate,matrix; standardizeTotalIonCurrent,list;
+  totalIonCurrent<-
+
 Version 1.7.5 [2013-07-29]:
 - approxfun: return NA for empty MassSpectrum objects.
 
