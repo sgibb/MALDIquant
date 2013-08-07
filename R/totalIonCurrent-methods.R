@@ -21,8 +21,8 @@ setMethod(f="totalIonCurrent",
           signature=signature(object="MassSpectrum"),
           definition=function(object) {
 
-  left <- as.double(head(object@intensity, -1))
-  right <- as.double(tail(object@intensity, -1))
+  left <- as.double(head(object@intensity, -1L))
+  right <- as.double(tail(object@intensity, -1L))
 
   return(as.double(sum((left+right)/2*diff(object@mass), na.rm=TRUE)))
 })
