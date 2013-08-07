@@ -94,3 +94,33 @@ setReplaceMethod(f="totalIonCurrent",
   }
 })
 
+## deprecated since MALDIquant 1.7.9
+## MassSpectrum
+setMethod("iplot",
+          signature=signature(object="MassSpectrum"),
+          definition=function(object, peaks, ...) {
+
+  .Deprecated(package="MALDIquant")
+
+  if (!missing(peaks)) {
+    stopifnot(isMassPeaks(peaks))
+    peaks <- list(peaks)
+  }
+  return(invisible(.iplot(spectra=list(object), peaks=peaks, ...)))
+})
+
+## list
+setMethod("iplot",
+          signature=signature(object="list"),
+          definition=function(object, peaks, ...) {
+
+  .Deprecated(package="MALDIquant")
+
+  .stopIfNotIsMassSpectrumList(object)
+
+  if (!missing(peaks)) {
+    .stopIfNotIsMassPeaksList(peaks)
+  }
+  return(invisible(.iplot(spectra=object, peaks=peaks, ...)))
+})
+

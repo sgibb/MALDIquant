@@ -10,6 +10,10 @@
 \alias{standardizeTotalIonCurrent,list-method}
 \alias{totalIonCurrent<-}
 \alias{totalIonCurrent<-,AbstractMassObject,numeric-method}
+% since MALDIquant 1.7.9
+\alias{iplot}
+\alias{iplot,MassSpectrum-method}
+\alias{iplot,list-method}
 %------ NOTE: ../R/deprecated.R must be synchronized with this!
 \title{Deprecated Functions/Methods in Package \pkg{MALDIquant}}
 \description{
@@ -29,6 +33,14 @@
   \item{standardizeTotalIonCurrent}{\code{signature(object = "list")}:
     This method sets the TIC (\emph{T}otal \emph{I}on \emph{C}urrent) of a list
     of \code{\linkS4class{AbstractMassObject}} objects to one.}
+  \item{iplot}{\code{signature(object = "MassSpectrum")}:
+    This method provides an interactive plot to investigate
+    \code{\linkS4class{MassSpectrum}} and \code{\linkS4class{MassPeaks}} objects
+    more easily.}
+  \item{iplot}{\code{signature(object = "list")}:
+    This method provides an interactive plot to investigate
+    \code{\linkS4class{MassSpectrum}} and \code{\linkS4class{MassPeaks}} objects
+    more easily.}
 }
 }
 \seealso{

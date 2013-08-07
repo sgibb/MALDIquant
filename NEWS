@@ -1,6 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.7.9 [2013-08-07]:
+- deprecated: iplot,MassSpectrum; iplot,list because it throws NOTEs on R CMD
+  check and the most important function grDevices::getGraphicEvents behaves
+  different on Unix/Windows platform (some keys don't working) and contains some
+  nasty bugs, e.g.: https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=15208
+
 Version 1.7.8 [2013-08-05]:
 - src/snip.c: fix some segmention faults because of a missing
   PROTECT for "duplicate" call.
