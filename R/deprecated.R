@@ -23,7 +23,7 @@ setMethod(f="totalIonCurrent",
           signature=signature(object="MassPeaks"),
           definition=function(object) {
 
-  .Deprecated(package="MALDIquant")
+  .Deprecated(old="totalIonCurrent", package="MALDIquant")
   return(as.double(sum(as.double(object@intensity), na.rm=TRUE)))
 })
 
@@ -43,7 +43,8 @@ setMethod(f="calibrate",
           signature=signature(x="matrix"),
           definition=function(x, ...) {
 
-  .Deprecated(new="calibrateIntensity", package="MALDIquant")
+  .Deprecated(old="calibrate",
+              new="calibrateIntensity", package="MALDIquant")
 
   ## create "reference" spectrum/peak list
   r <- apply(x, 2, median, na.rm=TRUE)
@@ -64,7 +65,8 @@ setMethod(f="standardizeTotalIonCurrent",
           signature=signature(object="list"),
           definition=function(object, value=1) {
 
-  .Deprecated(new="calibrateIntensity", package="MALDIquant")
+  .Deprecated(old="standardizeTotalIonCurrent",
+              new="calibrateIntensity", package="MALDIquant")
 
   ## test arguments
   .stopIfNotIsMassObjectList(object)
@@ -78,7 +80,8 @@ setReplaceMethod(f="totalIonCurrent",
                                      value="numeric"),
                 definition=function(object, value) {
 
-  .Deprecated(new="calibrateIntensity", package="MALDIquant")
+  .Deprecated(old="totalIonCurrent",
+              new="calibrateIntensity", package="MALDIquant")
 
   if (length(value) != 1) {
     stop("Length of ", sQuote("value"), " has to be one.")
@@ -100,7 +103,7 @@ setMethod("iplot",
           signature=signature(object="MassSpectrum"),
           definition=function(object, peaks, ...) {
 
-  .Deprecated(package="MALDIquant")
+  .Deprecated(old="iplot", package="MALDIquant")
 
   if (!missing(peaks)) {
     stopifnot(isMassPeaks(peaks))
@@ -114,7 +117,7 @@ setMethod("iplot",
           signature=signature(object="list"),
           definition=function(object, peaks, ...) {
 
-  .Deprecated(package="MALDIquant")
+  .Deprecated(old="iplot", package="MALDIquant")
 
   .stopIfNotIsMassSpectrumList(object)
 
