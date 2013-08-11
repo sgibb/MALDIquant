@@ -50,7 +50,7 @@ par(mfrow=c(2, 2))
 plotSpectra <- function(unwarped, warped, range) {
   plot(unwarped[[1]], main=paste0("unwarped spectra (mass ",
                                   paste0(range, collapse=":"), " Da)"),
-       xlim=range, ylim=c(0, 4e-4), type="n")
+       xlim=range, ylim=c(0, 2e-3), type="n")
 
   for (i in seq(along=unwarped)) {
     lines(unwarped[[i]], col=colour[i])
@@ -58,7 +58,7 @@ plotSpectra <- function(unwarped, warped, range) {
 
   plot(unwarped[[1]], main=paste0("warped spectra (mass ",
                                  paste0(range, collapse=":"), " Da)"),
-       xlim=range, ylim=c(0, 4e-4), type="n")
+       xlim=range, ylim=c(0, 2e-3), type="n")
 
   for (i in seq(along=warped)) {
     lines(warped[[i]], col=colour[i])
