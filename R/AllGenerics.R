@@ -16,22 +16,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## list
-if (is.null(getGeneric("iplot"))) {
-  setGeneric("iplot", function(object, ...) standardGeneric("iplot"))
-}
-if (is.null(getGeneric("standardizeTotalIonCurrent"))) {
-  setGeneric("standardizeTotalIonCurrent", function(object, value=1)
-               standardGeneric("standardizeTotalIonCurrent"))
-}
-## end of list
-
-## matrix
-if (is.null(getGeneric("calibrate"))) {
-  setGeneric("calibrate", function(x, ...) standardGeneric("calibrate"))
-}
-## end of matrix
-
 ## AbstractMassObject
 if (is.null(getGeneric("as.matrix"))) {
   setGeneric("as.matrix", function(x, ...) standardGeneric("as.matrix"))
@@ -93,10 +77,6 @@ if (is.null(getGeneric("metaData"))) {
 if (is.null(getGeneric("metaData<-"))) {
   setGeneric("metaData<-",
              function(object, value) standardGeneric("metaData<-"))
-}
-if (is.null(getGeneric("totalIonCurrent<-"))) {
-  setGeneric("totalIonCurrent<-",
-             function(object, value) standardGeneric("totalIonCurrent<-"))
 }
 ## end of AbstractMassObject
 

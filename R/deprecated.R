@@ -39,6 +39,9 @@ setMethod(f="totalIonCurrent",
 ## returns:
 ##  a calibrated numeric matrix
 ##
+if (is.null(getGeneric("calibrate"))) {
+  setGeneric("calibrate", function(x, ...) standardGeneric("calibrate"))
+}
 setMethod(f="calibrate",
           signature=signature(x="matrix"),
           definition=function(x, ...) {
@@ -61,6 +64,10 @@ setMethod(f="calibrate",
   return(x)
 })
 
+if (is.null(getGeneric("standardizeTotalIonCurrent"))) {
+  setGeneric("standardizeTotalIonCurrent", function(object, value=1)
+               standardGeneric("standardizeTotalIonCurrent"))
+}
 setMethod(f="standardizeTotalIonCurrent",
           signature=signature(object="list"),
           definition=function(object, value=1) {
@@ -74,6 +81,10 @@ setMethod(f="standardizeTotalIonCurrent",
   return(lapply(object, "totalIonCurrent<-", value))
 })
 
+if (is.null(getGeneric("totalIonCurrent<-"))) {
+  setGeneric("totalIonCurrent<-",
+             function(object, value) standardGeneric("totalIonCurrent<-"))
+}
 ## AbstractMassObject
 setReplaceMethod(f="totalIonCurrent",
                  signature=signature(object="AbstractMassObject",
@@ -98,6 +109,10 @@ setReplaceMethod(f="totalIonCurrent",
 })
 
 ## deprecated since MALDIquant 1.7.9
+
+if (is.null(getGeneric("iplot"))) {
+  setGeneric("iplot", function(object, ...) standardGeneric("iplot"))
+}
 ## MassSpectrum
 setMethod("iplot",
           signature=signature(object="MassSpectrum"),
