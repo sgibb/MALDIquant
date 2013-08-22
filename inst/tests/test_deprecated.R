@@ -60,3 +60,14 @@ test_that("totalIonCurrent<-", {
   expect_equal(sum(e@intensity), 0)
   expect_equal(length(e), 10)
 })
+
+test_that("{l,r}trim", {
+  s <- createMassSpectrum(mass=1:10, intensity=11:20)
+  expect_warning(ltrim(s, 2), "is deprecated.")
+  expect_equal(suppressWarnings(ltrim(s, 2)),
+               createMassSpectrum(mass=2:10, intensity=12:20))
+  expect_warning(rtrim(s, 9), "is deprecated.")
+  expect_equal(suppressWarnings(rtrim(s, 9)),
+               createMassSpectrum(mass=1:9, intensity=11:19))
+})
+

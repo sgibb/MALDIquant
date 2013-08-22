@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.7.10 [2013-08-22]:
+- trim: replace minMass and maxMass arguments by new range argument.
+- deprecated: ltrim/rtrim.
+
 Version 1.7.9 [2013-08-07]:
 - deprecated: iplot,MassSpectrum; iplot,list because it throws NOTEs on R CMD
   check and the most important function grDevices::getGraphicEvents behaves

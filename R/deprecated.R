@@ -127,3 +127,45 @@ setMethod("iplot",
   return(invisible(.iplot(spectra=object, peaks=peaks, ...)))
 })
 
+## deprecated since MALDIquant 1.7.10
+
+if (is.null(getGeneric("ltrim"))) {
+  setGeneric("ltrim", function(object, minMass) standardGeneric("ltrim"))
+}
+
+## AbstractMassObject
+setMethod("ltrim",
+          signature=signature(object="AbstractMassObject", minMass="numeric"),
+          definition=function(object, minMass) {
+  .Deprecated(old="ltrim", new="trim", package="MALDIquant")
+  return(trim(object, range=c(minMass, Inf)))
+})
+
+## list
+setMethod("ltrim",
+          signature=signature(object="list", minMass="numeric"),
+          definition=function(object, minMass) {
+  .Deprecated(old="ltrim", new="trim", package="MALDIquant")
+  return(lapply(object, trim, minMass=minMass))
+})
+
+if (is.null(getGeneric("rtrim"))) {
+  setGeneric("rtrim", function(object, maxMass) standardGeneric("rtrim"))
+}
+
+## AbstractMassObject
+setMethod("rtrim",
+          signature=signature(object="AbstractMassObject", maxMass="numeric"),
+          definition=function(object, maxMass) {
+  .Deprecated(old="rtrim", new="trim", package="MALDIquant")
+  return(trim(object, range=c(-Inf, maxMass)))
+})
+
+## list
+setMethod("rtrim",
+          signature=signature(object="list", maxMass="numeric"),
+          definition=function(object, maxMass) {
+  .Deprecated(old="rtrim", new="trim", package="MALDIquant")
+  return(lapply(object, trim, maxMass=maxMass))
+})
+

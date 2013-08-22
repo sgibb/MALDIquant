@@ -18,80 +18,33 @@
 
 ## AbstractMassObject
 setMethod("trim",
-          signature=signature(object="AbstractMassObject", minMass="numeric",
-                              maxMass="numeric"),
-          definition=function(object, minMass, maxMass) {
+          signature=signature(object="AbstractMassObject", range="numeric"),
+          definition=function(object, range) {
+  if (length(range) != 2) {
+    stop(sQuote("range"), " has to be a vector of length 2.")
+  }
 
-  i <- minMass <= object@mass & object@mass <= maxMass
+  range <- .reorderRange(range)
 
-  return(object[i])
-})
-
-setMethod("trim",
-          signature=signature(object="AbstractMassObject", minMass="missing",
-                              maxMass="numeric"),
-          definition=function(object, minMass, maxMass) {
-
-  return(trim(object, minMass=min(object@mass, na.rm=TRUE), maxMass=maxMass))
-})
-
-setMethod("trim",
-          signature=signature(object="AbstractMassObject", minMass="numeric",
-                              maxMass="missing"),
-          definition=function(object, minMass, maxMass) {
-
-  return(trim(object, minMass=minMass, maxMass=max(object@mass, na.rm=TRUE)))
+  return(object[range[1] <= object@mass & object@mass <= range[2]])
 })
 
 ## list
 setMethod("trim",
-          signature=signature(object="list", minMass="numeric",
-                              maxMass="numeric"),
-          definition=function(object, minMass, maxMass) {
-  return(lapply(object, trim, minMass=minMass, maxMass=maxMass))
+          signature=signature(object="list", range="numeric"),
+          definition=function(object, range) {
+  return(lapply(X=object, FUN=trim, range=range))
 })
 
-## list
 setMethod("trim",
-          signature=signature(object="list", minMass="missing",
-                              maxMass="numeric"),
-          definition=function(object, minMass, maxMass) {
-  return(lapply(object, trim, maxMass=maxMass))
-})
+          signature=signature(object="list", range="missing"),
+          definition=function(object) {
+  range <- .overlap(object)
 
-## list
-setMethod("trim",
-          signature=signature(object="list", minMass="numeric",
-                              maxMass="missing"),
-          definition=function(object, minMass, maxMass) {
-  return(lapply(object, trim, minMass=minMass))
-})
+  if (all(range == 0)) {
+    stop("No overlap found!")
+  }
 
-## AbstractMassObject
-setMethod("ltrim",
-          signature=signature(object="AbstractMassObject", minMass="numeric"),
-          definition=function(object, minMass) {
-  return(trim(object, minMass=minMass))
-})
-
-## list
-setMethod("ltrim",
-          signature=signature(object="list", minMass="numeric"),
-          definition=function(object, minMass) {
-  return(lapply(object, trim, minMass=minMass))
-})
-
-## AbstractMassObject
-setMethod("rtrim",
-          signature=signature(object="AbstractMassObject", maxMass="numeric"),
-          definition=function(object, maxMass) {
-  return(trim(object, maxMass=maxMass))
-})
-
-## list
-setMethod("rtrim",
-          signature=signature(object="list", maxMass="numeric"),
-          definition=function(object, maxMass) {
-  return(lapply(object, trim, maxMass=maxMass))
+  return(lapply(X=object, FUN=trim, range=range))
 })
 
