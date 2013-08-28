@@ -26,9 +26,6 @@ if (is.null(getGeneric("length"))) {
 if (is.null(getGeneric("lines"))) {
   setGeneric("lines", function(x, ...) standardGeneric("lines"))
 }
-if (is.null(getGeneric("ltrim"))) {
-  setGeneric("ltrim", function(object, minMass) standardGeneric("ltrim"))
-}
 if (is.null(getGeneric("plot"))) {
   setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 }
@@ -38,9 +35,6 @@ if (is.null(getGeneric("points"))) {
 if (is.null(getGeneric(".prepareShow"))) {
   setGeneric(".prepareShow", function(object) standardGeneric(".prepareShow"))
 }
-if (is.null(getGeneric("rtrim"))) {
-  setGeneric("rtrim", function(object, maxMass) standardGeneric("rtrim"))
-}
 if (is.null(getGeneric("transformIntensity"))) {
   setGeneric("transformIntensity",
              function(object, fun, na.rm=TRUE, ...)
@@ -48,7 +42,7 @@ if (is.null(getGeneric("transformIntensity"))) {
 }
 if (is.null(getGeneric("trim"))) {
   setGeneric("trim",
-             function(object, minMass, maxMass) standardGeneric("trim"))
+             function(object, range) standardGeneric("trim"))
 }
 
 ## get/set slots

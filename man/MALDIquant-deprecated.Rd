@@ -14,6 +14,13 @@
 \alias{iplot}
 \alias{iplot,MassSpectrum-method}
 \alias{iplot,list-method}
+% since MALDIquant 1.7.10
+\alias{ltrim}
+\alias{rtrim}
+\alias{ltrim,AbstractMassObject,numeric-method}
+\alias{rtrim,AbstractMassObject,numeric-method}
+\alias{ltrim,list,numeric-method}
+\alias{rtrim,list,numeric-method}
 %------ NOTE: ../R/deprecated.R must be synchronized with this!
 \title{Deprecated Functions/Methods in Package \pkg{MALDIquant}}
 \description{
@@ -41,6 +48,12 @@
     This method provides an interactive plot to investigate
     \code{\linkS4class{MassSpectrum}} and \code{\linkS4class{MassPeaks}} objects
     more easily.}
+  \item{ltrim}{
+    \code{signature(object = "AbstractMassObject", minMass = "numeric")}:
+    This method trims an \code{\linkS4class{AbstractMassObject}} on the left.}
+  \item{rtrim}{
+    \code{signature(object = "AbstractMassObject", maxMass = "numeric")}:
+    This method trims an \code{\linkS4class{AbstractMassObject}} on the right.}
 }
 }
 \seealso{
