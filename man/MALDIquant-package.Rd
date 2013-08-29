@@ -17,7 +17,7 @@ For a first overview run \code{demo("MALDIquant")}.
 \details{
 \tabular{ll}{
 Package: \tab MALDIquant\cr
-Version: \tab 1.99.8\cr
+Version: \tab 1.99.9\cr
 Date: \tab 2013-08-29\cr
 License: \tab GPL (>= 3)\cr
 URL: \tab http://strimmerlab.org/software/maldiquant/\cr

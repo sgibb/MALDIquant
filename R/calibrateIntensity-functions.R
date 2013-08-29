@@ -27,7 +27,7 @@
 ## returns:
 ##  double, calibrated intensity values
 ##
-.calibrateIntensitySimple <- function(y, offset=0, scaling=1) {
+.calibrateIntensitySimple <- function(y, offset=0L, scaling=1L) {
   if (is.function(offset)) {
     offset <- offset(y)
   }
@@ -74,7 +74,7 @@
     m <- median(q, na.rm=TRUE)
     ## 5. divide by median
     x <- transformIntensity(x, fun=.calibrateIntensitySimple,
-                            offset=0, scaling=m)
+                            offset=0L, scaling=m)
     return(x)
   }))
 }

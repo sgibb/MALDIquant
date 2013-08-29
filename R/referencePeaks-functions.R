@@ -41,7 +41,7 @@ referencePeaks <- function(l, method=c("strict", "relaxed"), minFrequency=0.9,
                                 minFrequency=minFrequency)
 
   iM <- intensityMatrix(referencePeaks)
-  iM[!is.na(iM)] <- 1
+  iM[!is.na(iM)] <- 1L
 
   ## set peak intensity to number of occurrence
   intensity <- unname(colSums(iM, na.rm=TRUE)/length(l))

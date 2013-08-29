@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.99.9 [2013-08-29]:
+- Use integer values where possible.
+
 Version 1.99.8 [2013-08-29]:
 - Add import("methods") to NAMESPACE (fixes #36).
 

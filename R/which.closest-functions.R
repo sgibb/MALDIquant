@@ -30,7 +30,7 @@
 
   ## find left interval
   lIdx <- findInterval(x, vec, rightmost.closed=FALSE, all.inside=TRUE)
-  rIdx <- lIdx+1
+  rIdx <- lIdx+1L
 
   ## calculate differences for left and right
   lDiff <- abs(vec[lIdx]-x)
@@ -38,3 +38,4 @@
 
   return(ifelse(rDiff == pmin(lDiff, rDiff), rIdx, lIdx))
 }
+

@@ -48,7 +48,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
   snr <- .unlist(lapply(l, function(x)x@snr))
 
   ## store original mass sample number/id
-  samples <- .unlist(lapply(1:length(l), function(x) {
+  samples <- .unlist(lapply(1L:length(l), function(x) {
     return(rep(x, length(l[[x]])))
   }))
 
@@ -87,7 +87,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
   }
 
   ## group mass/intensities/snr by sample ids
-  lIdx <- tapply(X=1:length(mass), INDEX=samples, FUN=function(x) {
+  lIdx <- tapply(X=1L:length(mass), INDEX=samples, FUN=function(x) {
     return(x)
   })
 
@@ -133,24 +133,22 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
   ## it is a lot of faster than recursion
 
   ## store boundaries in a stack
-  nBoundaries <- max(20, floor(3*log(n)))
-  boundary <- vector("list", length=2)
-  boundary$left <- double(nBoundaries)
-  boundary$right <- double(nBoundaries)
+  nBoundaries <- max(20L, floor(3L*log(n)))
+  boundary <- list(left=double(nBoundaries), right=double(nBoundaries))
 
-  currentBoundary <- 1
-  boundary$left[currentBoundary] <- 1
+  currentBoundary <- 1L
+  boundary$left[currentBoundary] <- 1L
   boundary$right[currentBoundary] <- n
 
   ## workhorse loop
-  while (currentBoundary > 0) {
+  while (currentBoundary > 0L) {
     ## find largest gap
     left <- boundary$left[currentBoundary]
     right <- boundary$right[currentBoundary]
-    currentBoundary <- currentBoundary-1
-    gaps <- d[left:(right-1)]
+    currentBoundary <- currentBoundary-1L
+    gaps <- d[left:(right-1L)]
 
-    gapIdx <- which.max(gaps)+left-1
+    gapIdx <- which.max(gaps)+left-1L
 
     ## left side
     l <- grouper(mass=mass[left:gapIdx],
@@ -158,8 +156,8 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
                  samples=samples[left:gapIdx],
                  tolerance=tolerance, ...)
     ## further splitting needed?
-    if (is.na(l[1])) {
-      currentBoundary <- currentBoundary+1
+    if (is.na(l[1L])) {
+      currentBoundary <- currentBoundary+1L
       boundary$left[currentBoundary] <- left
       boundary$right[currentBoundary] <- gapIdx
     } else {
@@ -167,17 +165,17 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
     }
 
     ## right side
-    r <- grouper(mass=mass[(gapIdx+1):right],
-                 intensities=intensities[(gapIdx+1):right],
-                 samples=samples[(gapIdx+1):right],
+    r <- grouper(mass=mass[(gapIdx+1L):right],
+                 intensities=intensities[(gapIdx+1L):right],
+                 samples=samples[(gapIdx+1L):right],
                  tolerance=tolerance, ...)
     ## further splitting needed?
-    if (is.na(r[1])) {
-      currentBoundary <- currentBoundary+1
-      boundary$left[currentBoundary] <- gapIdx+1
+    if (is.na(r[1L])) {
+      currentBoundary <- currentBoundary+1L
+      boundary$left[currentBoundary] <- gapIdx+1L
       boundary$right[currentBoundary] <- right
     } else {
-      mass[(gapIdx+1):right] <- r
+      mass[(gapIdx+1L):right] <- r
     }
 
     ## stack size have to be increased?

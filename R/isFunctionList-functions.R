@@ -22,13 +22,13 @@
   }
 
   areFunctions <- length(x) &&
-                  all(.unlist(vapply(x, is.function, logical(1))))
+                  all(.unlist(vapply(x, is.function, logical(1L))))
   return(areFunctions)
 }
 
 .stopIfNotIsFunctionList <- function(x) {
   if (!.isFunctionList(x)) {
-    parentCall <- deparse(sys.call(-1))
+    parentCall <- deparse(sys.call(-1L))
     stop(parentCall, " : ", sQuote(deparse(substitute(x))),
          " is no list of functions!", call.=FALSE)
     return(FALSE)

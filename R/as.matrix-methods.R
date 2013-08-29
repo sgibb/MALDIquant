@@ -16,12 +16,12 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## AbstractMassObject 
+## AbstractMassObject
 setMethod(f="as.matrix",
           signature=signature(x="AbstractMassObject"),
           definition=function(x, index) {
 
-  return(matrix(c(x@mass[index], x@intensity[index]), ncol=2, byrow=FALSE,
+  return(matrix(c(x@mass[index], x@intensity[index]), ncol=2L, byrow=FALSE,
                 dimnames=list(NULL, c("mass", "intensity"))))
 })
 

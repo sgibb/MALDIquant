@@ -98,7 +98,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
   intensities <- .unlist(lapply(tmpPeakList, function(x)x@intensity))
 
   ## store original mass sample number/id
-  samples <- .unlist(lapply(1:length(tmpPeakList), function(x) {
+  samples <- .unlist(lapply(1L:length(tmpPeakList), function(x) {
                 return(rep(x, length(tmpPeakList[[x]])))
   }))
 
@@ -116,12 +116,12 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
                           grouper=.grouperRelaxedHighestAtReference)
 
   ## group mass/intensities by sample ids
-  lIdx <- tapply(X=1:length(binnedMass), INDEX=samples, FUN=function(x) {
+  lIdx <- tapply(X=1L:length(binnedMass), INDEX=samples, FUN=function(x) {
       return(x)
   })
 
   ## calculate differences
-  binnedMass[binnedMass == 0] <- NA
+  binnedMass[binnedMass == 0L] <- NA
   d <- binnedMass-mass
 
   ## each function which determines a warping function uses these 3 arguments
@@ -131,7 +131,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
   }
 
   ## determine warping functions
-  warpingFunctions <- lapply(lIdx[-1], function(i) {
+  warpingFunctions <- lapply(lIdx[-1L], function(i) {
     ## fetch changed mass == aligned peaks
     notNA <- !is.na(binnedMass[i])
 
@@ -139,7 +139,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
     arguments$d <- d[i][notNA]  ## difference to reference
 
     if (!length(arguments$x)) {
-      stop("Could not match any peak in spectrum ", samples[i[1]]-1,
+      stop("Could not match any peak in spectrum ", samples[i[1L]]-1L,
            " to a reference peak.")
     }
 
@@ -154,7 +154,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
   ## debug plot
   if (plot) {
     ## non interactive device (pdf, png, ...) available?
-    isNonInteractivePlot <- dev.cur() != 1 && !dev.interactive()
+    isNonInteractivePlot <- dev.cur() != 1L && !dev.interactive()
 
     if (!isNonInteractivePlot && !plotInteractive) {
       warning(sQuote("plot"), " is ", sQuote("TRUE"),
@@ -174,8 +174,8 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
                              xlab="mass",
                              ylab="difference",
                              type="p",
-                             lwd=1,
-                             col=1,
+                             lwd=1L,
+                             col=1L,
                              cex.main=0.8,
                              cex.sub=0.75,
                              col.sub="#808080")
@@ -183,7 +183,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
     plotArgs <- modifyList(plotArgsDefaults, givenPlotArgs)
 
     nReference <- length(reference)
-    x <- plotArgs$xlim[1]:plotArgs$xlim[2]
+    x <- plotArgs$xlim[1L]:plotArgs$xlim[2L]
 
     ## workaround to avoid error:
     ## Error in l[[i]] : this S4 class is not subsettable
@@ -193,7 +193,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
 
     for (i in seq(along=l)) {
       ## fetch changed mass == aligned peaks
-      notNA <- !is.na(binnedMass[lIdx[[i+1]]])
+      notNA <- !is.na(binnedMass[lIdx[[i+1L]]])
 
       if (is.null(givenPlotArgs$main)) {
         plotArgs$main <- paste0("sample ", i, " vs reference\n",
@@ -207,7 +207,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
 
       ## plot reference vs sample
       plotArgs$x <- l[[i]]@mass[notNA]
-      plotArgs$y <- d[lIdx[[i+1]]][notNA]
+      plotArgs$y <- d[lIdx[[i+1L]]][notNA]
       do.call(plot.default, plotArgs)
 
       ## draw warping function

@@ -17,7 +17,7 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 ## .calculateLabelPositions
-##  calculate label positions to avoid collisions 
+##  calculate label positions to avoid collisions
 ##
 ## params:
 ##  x: original x coordinates for labels
@@ -32,7 +32,7 @@
 ##
 setMethod(f=".calculateLabelPositions",
   signature=signature(object="MassPeaks"),
-  definition=function(object, x, y, peakLabels, adj, cex, maxSteps=100) {
+  definition=function(object, x, y, peakLabels, adj, cex, maxSteps=100L) {
   ## start with smallest peak
   i <- sort(y, index.return=TRUE, method="quick")$ix
 
@@ -41,13 +41,13 @@ setMethod(f=".calculateLabelPositions",
 
   ## move rectangles around to avoid collisons
   for (j in seq(along=x)) {
-    rects[j, ] <- .testLabelOverlap(object, rects, currentIndex=j, maxSteps=maxSteps) 
+    rects[j, ] <- .testLabelOverlap(object, rects, currentIndex=j, maxSteps=maxSteps)
   }
 
   ## undo sorting
   rects[i, ] <- rects
 
-  return(list(x=rects[, "x"], y=rects[, "y"], 
+  return(list(x=rects[, "x"], y=rects[, "y"],
               xleft=rects[, "x0"], ybottom=rects[, "y0"],
               xright=rects[, "x1"], ytop=rects[, "y1"]))
 })
@@ -66,22 +66,23 @@ setMethod(f=".calculateLabelPositions",
 setMethod(f=".testLabelOverlap",
   signature=signature(object="MassPeaks"),
   definition=function(object, rects, currentIndex, maxSteps) {
-  
-  r <- pi/180*c(90, as.vector(rbind(seq(80, 40, by=-10), seq(100, 140, by=10))))
-  
-  for (k in 0:maxSteps) {
+
+  r <- pi/180L*c(90, as.vector(rbind(seq(80L, 40L, by=-10L),
+                                     seq(100L, 140L, by=10L))))
+
+  for (k in 0L:maxSteps) {
     ## move up
     cur <- rects[currentIndex, ]
     cur[c("y0", "y1", "y")] <- cur[c("y0", "y1", "y")] + k * cur[c("h")]
-    isOverlapped <- .labelOverlap(object, cur, rects[1:(currentIndex-1), ])
+    isOverlapped <- .labelOverlap(object, cur, rects[1L:(currentIndex-1L), ])
 
     if (isOverlapped) {
       for (l in r) {
         ## move in curve
         oldcur <- cur
         cur[c("y0", "y1", "y")] <- cur[c("y0", "y1", "y")] + sin(l) * cur[c("h")]
-        cur[c("x0", "x1", "x")] <- cur[c("x0", "x1", "x")] + cos(l) * cur[c("w")] 
-        isOverlapped <- .labelOverlap(object, cur, rects[1:(currentIndex-1), ])
+        cur[c("x0", "x1", "x")] <- cur[c("x0", "x1", "x")] + cos(l) * cur[c("w")]
+        isOverlapped <- .labelOverlap(object, cur, rects[1L:(currentIndex-1L), ])
 
         if (!isOverlapped) {
           ## success
@@ -112,26 +113,26 @@ setMethod(f=".labelOverlap",
   signature=signature(object="MassPeaks"),
   definition=function(object, cur, rects) {
 
-  x <- cur[c(1, 3)]
-  y <- cur[c(2, 4)]
+  x <- cur[c(1L, 3L)]
+  y <- cur[c(2L, 4L)]
 
-  rects <- matrix(rects, ncol=8)
+  rects <- matrix(rects, ncol=8L)
 
   ## peak overlap?
-  peakOverlap <- any(x[1] <= object@mass & x[2] >= object@mass & 
-                     y[1] <= object@intensity)
-                 
+  peakOverlap <- any(x[1L] <= object@mass & x[2L] >= object@mass &
+                     y[1L] <= object@intensity)
+
   if (peakOverlap) {
     return(TRUE)
   }
 
   ## text overlap?
-  textOverlap <- any(((x[1] > rects[, 1] & x[1] < rects[, 3]) |
-                      (x[2] > rects[, 1] & x[2] < rects[, 3]) |
-                      (x[1] < rects[, 1] & x[2] > rects[, 3])) &
-                     ((y[1] > rects[, 2] & y[1] < rects[, 4]) |
-                      (y[2] > rects[, 2] & y[2] < rects[, 4]) |
-                      (y[1] < rects[, 2] & y[2] > rects[, 4])))
+  textOverlap <- any(((x[1L] > rects[, 1L] & x[1L] < rects[, 3L]) |
+                      (x[2L] > rects[, 1L] & x[2L] < rects[, 3L]) |
+                      (x[1L] < rects[, 1L] & x[2L] > rects[, 3L])) &
+                     ((y[1L] > rects[, 2L] & y[1L] < rects[, 4L]) |
+                      (y[2L] > rects[, 2L] & y[2L] < rects[, 4L]) |
+                      (y[1L] < rects[, 2L] & y[2L] > rects[, 4L])))
 
   return(textOverlap)
 })

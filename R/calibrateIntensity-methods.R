@@ -27,11 +27,11 @@ setMethod(f="calibrateIntensity",
   object <- switch(method,
     "TIC" = {
       transformIntensity(object, fun=.calibrateIntensitySimple,
-                         offset=0, scaling=totalIonCurrent(object))
+                         offset=0L, scaling=totalIonCurrent(object))
     },
     "Median" = {
       transformIntensity(object, fun=.calibrateIntensitySimple,
-                         offset=0, scaling=median)
+                         offset=0L, scaling=median)
     },
     "PQN" = {
       stop(dQuote("PQN"),

@@ -75,7 +75,7 @@ averageMassSpectra <- function(l, labels, method=c("Mean", "Median", "Sum")) {
   }
 
   ## use the first non empty spectrum as reference
-  i <- which(!vapply(l, isEmpty, logical(1)))[1]
+  i <- which(!vapply(l, isEmpty, logical(1L)))[1L]
   if (!is.na(i)) {
     mass <- l[[i]]@mass
   } else {
@@ -95,7 +95,7 @@ averageMassSpectra <- function(l, labels, method=c("Mean", "Median", "Sum")) {
   intensity <- fun(m, na.rm=TRUE)
 
   ## create an empty spectrum if all intensities are NaN
-  if (is.nan(intensity[1])) {
+  if (is.nan(intensity[1L])) {
     intensity <- double()
     mass <- double()
   }

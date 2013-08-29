@@ -27,14 +27,14 @@
 ##  TRUE if valid
 ##
 .stopIfNotIsValidHalfWindowSize <- function(halfWindowSize, n) {
-  parentCall <- deparse(sys.call(-1))
+  parentCall <- deparse(sys.call(-1L))
 
-  if (halfWindowSize < 1) {
+  if (halfWindowSize < 1L) {
     stop(parentCall, " : ", sQuote("halfWindowSize"),
          " is too small!", call.=FALSE)
   }
 
-  windowSize <- halfWindowSize*2+1
+  windowSize <- halfWindowSize*2L+1L
 
   if (windowSize > n) {
     stop(parentCall, " : ", sQuote("halfWindowSize"),

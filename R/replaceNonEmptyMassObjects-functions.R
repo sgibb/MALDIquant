@@ -33,7 +33,7 @@
   .stopIfNotIsMassObjectList(replaceByList)
 
   ## find empty MassPeaks objects
-  notEmpty <- !(1:length(l) %in% findEmptyMassObjects(l))
+  notEmpty <- !(1L:length(l) %in% findEmptyMassObjects(l))
 
   if (sum(notEmpty) != length(replaceByList)) {
     stop("Length of non-empty list elements of ", sQuote("l"),
@@ -45,3 +45,4 @@
 
   return(l)
 }
+

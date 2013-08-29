@@ -78,7 +78,7 @@ mergeMassPeaks  <- function(l, labels, method=c("Mean", "Median", "Sum"),
 
   isNA <- is.na(m)
   if (!ignore.na) {
-    m[isNA] <- 0
+    m[isNA] <- 0L
   }
 
   ## merge intensities
@@ -109,10 +109,10 @@ mergeMassPeaks  <- function(l, labels, method=c("Mean", "Median", "Sum"),
 
   .flat <- function(x) {return(unname(unlist(x)))}
 
-  nm <- names(m[[1]])
+  nm <- names(m[[1L]])
   names(nm) <- nm
   m <- lapply(nm, function(n) {
-    cur <- m[[1]][[n]]
+    cur <- m[[1L]][[n]]
     all <- lapply(m, function(x)x[[n]])
     len <- lapply(all, function(x)length(x))
 

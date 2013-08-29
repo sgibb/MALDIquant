@@ -52,7 +52,7 @@
          paste0(dQuote(choices), collapse = ", "))
   }
   i <- i[i > 0L]
-  if (!several.ok && length(i) > 1) {
+  if (!several.ok && length(i) > 1L) {
     stop("there is more than one match in 'match.arg'")
   }
   return(choices[i])

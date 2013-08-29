@@ -16,10 +16,10 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## AbstractMassObject 
-setMethod(f="lines", 
+## AbstractMassObject
+setMethod(f="lines",
     signature=signature(x="AbstractMassObject"),
-    definition=function(x, 
+    definition=function(x,
         type=ifelse(isMassPeaks(x), "h", "l"),
         ...) {
 

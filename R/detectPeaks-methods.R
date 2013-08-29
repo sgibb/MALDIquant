@@ -19,7 +19,7 @@
 ## MassSpectrum
 setMethod(f="detectPeaks",
           signature=signature(object="MassSpectrum"),
-          definition=function(object, halfWindowSize=20, fun, SNR=2, ...) {
+          definition=function(object, halfWindowSize=20L, fun, SNR=2L, ...) {
 
   ## empty spectrum?
   if (.isEmptyWarning(object)) {
@@ -37,7 +37,7 @@ setMethod(f="detectPeaks",
 
   ## wrong noise argument given?
   isCorrectNoise <- is.matrix(noise) &&
-                    (nrow(noise) == length(object) && ncol(noise) == 2)
+                    (nrow(noise) == length(object) && ncol(noise) == 2L)
 
   if (!isCorrectNoise) {
     stop("The noise argument is not valid.")
@@ -47,13 +47,13 @@ setMethod(f="detectPeaks",
   localMaxima <- .findLocalMaximaLogical(object, halfWindowSize=halfWindowSize)
 
   ## include only local maxima which are above the noise
-  aboveNoise <- object@intensity > (SNR * noise[, 2])
+  aboveNoise <- object@intensity > (SNR * noise[, 2L])
 
   isPeak <- aboveNoise & localMaxima
 
   return(createMassPeaks(mass=object@mass[isPeak],
                          intensity=object@intensity[isPeak],
-                         snr=object@intensity[isPeak]/noise[isPeak, 2],
+                         snr=object@intensity[isPeak]/noise[isPeak, 2L],
                          metaData=object@metaData))
 })
 

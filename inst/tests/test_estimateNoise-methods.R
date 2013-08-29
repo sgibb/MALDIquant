@@ -16,7 +16,7 @@ test_that("estimateNoise shows warnings", {
                  "empty")
   expect_identical(suppressWarnings(estimateNoise(
                       createMassSpectrum(mass=double(), intensity=double()))),
-                   0)
+                   0L)
 })
 
 test_that(".estimateNoiseMad", {

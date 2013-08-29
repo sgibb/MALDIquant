@@ -36,7 +36,7 @@
 
   if (length(rightMass)) {
     r <- c(max(leftMass, na.rm=TRUE), min(rightMass, na.rm=TRUE))
-    if (r[1] < r[2]) {
+    if (r[1L] < r[2L]) {
       return(r)
     }
   }

@@ -20,13 +20,13 @@
 setMethod("trim",
           signature=signature(object="AbstractMassObject", range="numeric"),
           definition=function(object, range) {
-  if (length(range) != 2) {
+  if (length(range) != 2L) {
     stop(sQuote("range"), " has to be a vector of length 2.")
   }
 
   range <- .reorderRange(range)
 
-  return(object[range[1] <= object@mass & object@mass <= range[2]])
+  return(object[range[1L] <= object@mass & object@mass <= range[2L]])
 })
 
 ## list
@@ -41,7 +41,7 @@ setMethod("trim",
           definition=function(object) {
   range <- .overlap(object)
 
-  if (all(range == 0)) {
+  if (all(range == 0L)) {
     stop("No overlap found!")
   }
 

@@ -44,17 +44,17 @@ setMethod(f=".prepareShow",
               "Range of intensity values",
               "Memory usage")
 
-  values <- class(object)[1]
+  values <- class(object)[1L]
 
   if (isEmpty(object)) {
-    values <- c(values, 0, NA, NA)
+    values <- c(values, 0L, NA, NA)
   } else {
     values <- c(values,
                 length(object@mass),
-                paste0(round(range(object@mass), digits=3), collapse=" - "),
-                paste0(format(min(object@intensity), digits=4,
+                paste0(round(range(object@mass), digits=3L), collapse=" - "),
+                paste0(format(min(object@intensity), digits=4L,
                               scientific=TRUE), " - ",
-                       format(max(object@intensity), digits=4,
+                       format(max(object@intensity), digits=4L,
                               scientific=TRUE)))
   }
   values <- c(values, .memoryUsageStr(object))
@@ -83,8 +83,9 @@ setMethod(f=".prepareShow",
   }
 
   ## append snr info after intensity
-  l$groups <- append(l$groups, groups, after=4)
-  l$values <- append(l$values, values, after=4)
+  l$groups <- append(l$groups, groups, after=4L)
+  l$values <- append(l$values, values, after=4L)
 
   return(list(groups=l$groups, values=l$values))
 })
+

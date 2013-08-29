@@ -49,23 +49,23 @@
   # typically x values have to been sorted
   # our x values are already sorted
   index <- double(length(x))
-  k <- 1
+  k <- 1L
 
   for (i in seq(along=x)) {
-    while (k > 2 && !.left(x[index[k-2]], y[index[k-2]],
-                           x[index[k-1]], y[index[k-1]],
-                           x[i], y[i])) {
+    while (k > 2L && !.left(x[index[k-2L]], y[index[k-2L]],
+                            x[index[k-1L]], y[index[k-1L]],
+                            x[i], y[i])) {
       ## remove last point
-      k <- k-1
+      k <- k-1L
     }
     index[k] <- i
-    k <- k+1
+    k <- k+1L
   }
 
-  index <- index[1:(k-1)]
+  index <- index[1L:(k-1L)]
 
   b <- matrix(.unlist(approx(x=x[index], y=y[index], xout=x, method="linear",
-                             rule=2)), nrow=length(x), ncol=2,
+                             rule=2L)), nrow=length(x), ncol=2L,
               dimnames=list(list(), list("x", "y")))
   return(b)
 }
@@ -81,10 +81,10 @@
 ## returns:
 ##  a matrix of the estimate baseline (col1: mass; col2: intensity)
 ##
-.estimateBaselineMedian <- function(x, y, halfWindowSize=100) {
+.estimateBaselineMedian <- function(x, y, halfWindowSize=100L) {
   .stopIfNotIsValidHalfWindowSize(halfWindowSize=halfWindowSize, n=length(x))
 
-  y <- runmed(y, k=2*halfWindowSize+1)
+  y <- runmed(y, k=2L*halfWindowSize+1L)
 
   return(cbind(x, y))
 }
@@ -120,25 +120,25 @@
 ##  a matrix of the estimate baseline (col1: mass; col2: intensity)
 
 ## C version
-.estimateBaselineSnip <- function(x, y, iterations=100, decreasing=TRUE) {
+.estimateBaselineSnip <- function(x, y, iterations=100L, decreasing=TRUE) {
   return(cbind(x=x, y=.Call("C_snip", y, iterations, decreasing)))
 }
 
 ## R only: obsolete because too slow
-.snipR <- function(x, y, iterations=100, decreasing=TRUE) {
+.snipR <- function(x, y, iterations=100L, decreasing=TRUE) {
   n <- length(y)
 
   if (decreasing) {
-    s <- seq(from=iterations, to=1)
+    s <- seq(from=iterations, to=1L)
   } else {
-    s <- seq(from=1, to=iterations)
+    s <- seq(from=1L, to=iterations)
   }
 
   for (i in s) {
-    j <- (i+1):(n-i)
+    j <- (i+1L):(n-i)
     jl <- j-i
     ju <- j+i
-    m <- (y[jl]+y[ju])/2
+    m <- (y[jl]+y[ju])/2L
     ## too slow
     #y[j] <- ifelse(y[j] > m, m, y[j])
     ml <- y[j]>m
@@ -158,7 +158,7 @@
 ## returns:
 ##  a matrix of the estimate baseline (col1: mass; col2: intensity)
 ##
-.estimateBaselineTopHat <- function(x, y, halfWindowSize=100) {
+.estimateBaselineTopHat <- function(x, y, halfWindowSize=100L) {
 
   .stopIfNotIsValidHalfWindowSize(halfWindowSize=halfWindowSize, n=length(x))
 
@@ -169,18 +169,18 @@
 }
 
 ## R only: obsolete because too slow
-.topHatR <- function(x, y, halfWindowSize=100) {
+.topHatR <- function(x, y, halfWindowSize=100L) {
 
   .stopIfNotIsValidHalfWindowSize(halfWindowSize=halfWindowSize, n=length(x))
 
-  windowSize <- 2*halfWindowSize+1
+  windowSize <- 2L*halfWindowSize+1L
 
-  windows <- embed(c(rep(y[1], halfWindowSize), y,
-                     rep(tail(y, 1), halfWindowSize)), windowSize)
-  e <- apply(windows, 1, min)
-  windows <- embed(c(rep(e[1], halfWindowSize), e,
-                     rep(tail(e, 1), halfWindowSize)), windowSize)
-  y <- apply(windows, 1, max)
+  windows <- embed(c(rep(y[1L], halfWindowSize), y,
+                     rep(tail(y, 1L), halfWindowSize)), windowSize)
+  e <- apply(windows, 1L, min)
+  windows <- embed(c(rep(e[1L], halfWindowSize), e,
+                     rep(tail(e, 1L), halfWindowSize)), windowSize)
+  y <- apply(windows, 1L, max)
   return(cbind(x, y))
 }
 
