@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.99.8 [2013-08-29]:
+- Add import("methods") to NAMESPACE (fixes #36).
+
 Version 1.99.7 [2013-08-29]:
 - determineWarpingFunctions: add method argument; remove warpingFunctions
   argument.
