@@ -16,10 +16,9 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## TODO: replace by faster C implementation
 .colMedians <- function(x, na.rm=FALSE) {
   stopifnot(is.matrix(x))
   stopifnot(is.logical(na.rm))
-  return(apply(x, 2, median, na.rm=na.rm))
+  return(.Call("C_colMedians", x, na.rm))
 }
 
