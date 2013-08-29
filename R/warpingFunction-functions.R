@@ -39,8 +39,43 @@
   return(approxfun(x=lo$x, y=lo$y, rule=2))
 }
 
+## .warpingFunctionLinear
+##  1st order polynomial based determination of warping function
+##
+## params:
+##  x: double, original mass
+##  d: double, corresponding difference to reference
+##  ...: additional arguments possible (see ?lm for details)
+##
+## returns:
+##  function(x)
+##
+.warpingFunctionLinear <- function(x, d, ...) {
+  l <- lm(y ~ x1, data=list(x1=x, y=d), ...)
+  co <- coef(l)
+  return(function(x) { return (co[1]+x*co[2]) })
+}
+
+## .warpingFunctionQuadratic
+##  2nd order polynomial based determination of warping function
+##
+## params:
+##  x: double, original mass
+##  d: double, corresponding difference to reference
+##  ...: additional arguments possible (see ?lm for details)
+##
+## returns:
+##  function(x)
+##
+.warpingFunctionQuadratic <- function(x, d, ...) {
+  x2 <- x*x
+  l <- lm(y ~ x1+x2, data=list(x1=x, x2=x2, y=d), ...)
+  co <- coef(l)
+  return(function(x) { return (co[1]+x*co[2]+x2*co[3]) })
+}
+
 ## .warpingFunctionCubic
-##  3nd order polynomial based determination of warping function
+##  3rd order polynomial based determination of warping function
 ##
 ## params:
 ##  x: double, original mass
@@ -51,8 +86,10 @@
 ##  function(x)
 ##
 .warpingFunctionCubic <- function(x, d, ...) {
-  l <- lm(y ~ x1+x2+x3, data=list(x1=x, x2=x^2, x3=x^3, y=d), ...)
+  x2 <- x*x
+  x3 <- x*x*x
+  l <- lm(y ~ x1+x2+x3, data=list(x1=x, x2=x2, x3=x3, y=d), ...)
   co <- coef(l)
-  return(function(x) { return (co[1]+x*co[2]+x^2*co[3]+x^3*co[4]) })
+  return(function(x) { return (co[1]+x*co[2]+x2*co[3]+x3*co[4]) })
 }
 
