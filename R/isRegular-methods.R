@@ -17,25 +17,11 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 ## MassSpectrum
-setMethod("iplot",
+setMethod(f="isRegular",
           signature=signature(object="MassSpectrum"),
-          definition=function(object, peaks, ...) {
-  if (!missing(peaks)) {
-    stopifnot(isMassPeaks(peaks))
-    peaks <- list(peaks)
-  }
-  return(invisible(.iplot(spectra=list(object), peaks=peaks, ...)))
-})
+          definition=function(object, threshold=1e-3) {
 
-## list
-setMethod("iplot",
-          signature=signature(object="list"),
-          definition=function(object, peaks, ...) {
-  .stopIfNotIsMassSpectrumList(object)
-
-  if (!missing(peaks)) {
-    .stopIfNotIsMassPeaksList(peaks)
-  }
-  return(invisible(.iplot(spectra=object, peaks=peaks, ...)))
+  s <- .irregularScore(object@mass) <= threshold
+  return(!is.na(s) & s)
 })
 

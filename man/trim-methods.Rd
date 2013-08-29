@@ -1,37 +1,26 @@
 \name{trim-methods}
 \docType{methods}
-\alias{ltrim}
-\alias{rtrim}
 \alias{trim}
-\alias{ltrim,AbstractMassObject,numeric-method}
-\alias{rtrim,AbstractMassObject,numeric-method}
-\alias{trim,AbstractMassObject,numeric,numeric-method}
-\alias{trim,AbstractMassObject,missing,numeric-method}
-\alias{trim,AbstractMassObject,numeric,missing-method}
-\alias{ltrim,list,numeric-method}
-\alias{rtrim,list,numeric-method}
-\alias{trim,list,numeric,numeric-method}
-\alias{trim,list,missing,numeric-method}
-\alias{trim,list,numeric,missing-method}
+\alias{trim,AbstractMassObject,numeric-method}
+\alias{trim,list,numeric-method}
+\alias{trim,list,missing-method}
 \title{Trim an AbstractMassObject object.}
 \description{
-These methods trim an \code{\linkS4class{AbstractMassObject}} object on left
-side (\code{ltrim}), right side (\code{rtrim}), or both sides (\code{trim}). \cr
+These methods trim an \code{\linkS4class{AbstractMassObject}} object.
 This is useful if some mass ranges should be excluded from further analysis.
 }
 \usage{
-\S4method{ltrim}{AbstractMassObject,numeric}(object, minMass)
-\S4method{ltrim}{list,numeric}(object, minMass)
-\S4method{rtrim}{AbstractMassObject,numeric}(object, maxMass)
-\S4method{rtrim}{list,numeric}(object, maxMass)
-\S4method{trim}{AbstractMassObject,numeric,numeric}(object, minMass, maxMass)
-\S4method{trim}{list,numeric,numeric}(object, minMass, maxMass)
+\S4method{trim}{AbstractMassObject,numeric}(object, range)
+\S4method{trim}{list,numeric}(object, range)
+\S4method{trim}{list,missing}(object)
 }
 \arguments{
   \item{object}{\code{\linkS4class{AbstractMassObject}} object or a
     \code{list} of \code{\linkS4class{AbstractMassObject}} objects.}
-  \item{minMass}{\code{numeric}, minimal mass which should included.}
-  \item{maxMass}{\code{numeric}, maximal mass which should included.}
+  \item{range}{\code{numeric}, limits of trimming (left/minimal mass,
+    right/maximal mass). If missing it is automatically determined (largest
+    overlapping mass range) for a \code{list} of
+    \code{\linkS4class{AbstractMassObject}}.}
 }
 \references{
 See website: \url{http://strimmerlab.org/software/maldiquant/}
@@ -55,13 +44,16 @@ data("fiedler2009subset", package="MALDIquant")
 s <- fiedler2009subset[[1]]
 
 ## remove all mass lower 3000
-ltrim(s, 3000)
+trim(s, range=c(3000, Inf))
 
 ## remove all mass higher 8000
-rtrim(s, 8000)
+trim(s, range=c(0, 8000))
 
 ## remove all mass lower 3000 and higher 8000
-trim(s, 3000, 8000)
+trim(s, range=c(3000, 8000))
+
+## choose largest overlapping mass range for all spectra
+trim(fiedler2009subset)
 }
 \keyword{methods}
 

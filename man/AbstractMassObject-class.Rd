@@ -22,10 +22,6 @@
 \alias{metaData,AbstractMassObject-method}
 \alias{metaData<-,AbstractMassObject-method}
 \alias{points,AbstractMassObject-method}
-\alias{totalIonCurrent}
-\alias{totalIonCurrent<-}
-\alias{totalIonCurrent,AbstractMassObject-method}
-\alias{totalIonCurrent<-,AbstractMassObject,numeric-method}
 
 \title{Class "AbstractMassObject"}
 \description{
@@ -70,9 +66,6 @@ It shouldn't create or handle by the user because it is for internal use only.
     Extented function for adding \code{AbstractMassObject} object as a
     line to a specific plot.
     See \code{\link{lines}} for details.}
-  \item{ltrim}{\code{signature(object = "AbstractMassObject", minMass =
-    "numeric")}: Trim the left side of an \code{AbstractMassObject} object.
-    See \code{\link{ltrim,AbstractMassObject,numeric-method}} for details.}
   \item{mass}{\code{signature(object = "AbstractMassObject")}:
     Accessor function for slot \code{mass}.}
   \item{mass<-}{\code{signature(object = "AbstractMassObject",
@@ -91,17 +84,9 @@ It shouldn't create or handle by the user because it is for internal use only.
     \code{\linkS4class{AbstractMassObject}} object as points
     to a specific plot.
     See \code{\link{points}} for details.}
-  \item{rtrim}{\code{signature(object = "AbstractMassObject", maxMass =
-    "numeric")}: Trim the right side of an \code{AbstractMassObject} object.
-    See \code{\link{rtrim,AbstractMassObject,numeric-method}} for details.}
-  \item{totalIonCurrent}{\code{signature(object = "AbstractMassObject")}:
-    Accessor function for sum of all intensities (slot \code{intensity}).}
-  \item{totalIonCurrent<-}{\code{signature(object = "AbstractMassObject",
-      value = "numeric")}
-    Set sum of slot \code{intensity} to \code{value}.}
-  \item{trim}{\code{signature(object = "AbstractMassObject", minMass =
-    "numeric", maxMass = "numeric")}: Trim an \code{AbstractMassObject}
-    object. See \code{\link{trim,AbstractMassObject,numeric,numeric-method}}
+  \item{trim}{\code{signature(object = "AbstractMassObject",
+      range = "numeric")}: Trim an \code{AbstractMassObject}
+    object. See \code{\link{trim,AbstractMassObject,numeric-method}}
     for details.}
   \item{transformIntensity}{\code{signature(object = "AbstractMassObject")}:
     Transforms the intensities of an \code{AbstractMassObject} object.
@@ -120,7 +105,7 @@ Sebastian Gibb
 \code{\linkS4class{MassSpectrum}},
 \code{\link[MALDIquant]{plot,AbstractMassObject,missing-method}},
 \code{\link[MALDIquant]{transformIntensity,AbstractMassObject-method}},
-\code{\link[MALDIquant]{trim,AbstractMassObject,numeric,numeric-method}}
+\code{\link[MALDIquant]{trim,AbstractMassObject,numeric-method}}
 }
 \examples{
 ## load library
@@ -142,11 +127,8 @@ metaData(s)
 ## replace metaData
 metaData(s) <- list(name="Spectrum")
 
-## get TIC
-totalIonCurrent(s)
-
 ## trim spectrum
-trim(s, 2, 9)
+trim(s, c(2, 9))
 
 ## select a range
 s[3:6]

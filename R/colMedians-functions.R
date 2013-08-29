@@ -1,4 +1,4 @@
-## Copyright 2012-2013 Sebastian Gibb
+## Copyright 2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -10,20 +10,16 @@
 ##
 ## MALDIquant is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## list
-setMethod(f="standardizeTotalIonCurrent",
-          signature=signature(object="list"),
-          definition=function(object, value=1) {
-
-  ## test arguments
-  .stopIfNotIsMassObjectList(object)
-
-  return(lapply(object, "totalIonCurrent<-", value))
-})
+## TODO: replace by faster C implementation
+.colMedians <- function(x, na.rm=FALSE) {
+  stopifnot(is.matrix(x))
+  stopifnot(is.logical(na.rm))
+  return(apply(x, 2, median, na.rm=na.rm))
+}
 

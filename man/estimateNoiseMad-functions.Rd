@@ -51,4 +51,5 @@ n <- estimateNoise(s, method="MAD")
 ## draw noise on the plot
 lines(n, col="red")
 }
+\keyword{internal}
 

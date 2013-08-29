@@ -35,7 +35,7 @@
 ##
 .grouperStrict <- function(mass, intensities, samples, tolerance) {
   ## don't accept two or more peaks of the same sample
-  if (any(duplicated(samples))) {
+  if (anyDuplicated(samples)) {
     return(NA)
   }
 
@@ -74,7 +74,7 @@
   }
 
   ## choose highest peak in duplicates
-  if (any(duplicated(samples))) {
+  if (anyDuplicated(samples)) {
     s <- sort(intensities, method="quick", decreasing=TRUE, index.return=TRUE)
     samples <- samples[s$ix]
 
@@ -128,7 +128,7 @@
   }
 
   ## choose highest peak in duplicates
-  if (any(duplicated(samples))) {
+  if (anyDuplicated(samples)) {
     s <- sort(intensities, method="quick", decreasing=TRUE, index.return=TRUE)
     sSamples <- samples[s$ix]
 

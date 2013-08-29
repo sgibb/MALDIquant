@@ -16,31 +16,14 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## AbstractMassObject
+## MassSpectrum
 setMethod(f="totalIonCurrent",
-          signature=signature(object="AbstractMassObject"),
+          signature=signature(object="MassSpectrum"),
           definition=function(object) {
 
-  return(as.double(sum(object@intensity, na.rm=TRUE)))
-})
+  left <- as.double(head(object@intensity, -1L))
+  right <- as.double(tail(object@intensity, -1L))
 
-## AbstractMassObject
-setReplaceMethod(f="totalIonCurrent",
-                 signature=signature(object="AbstractMassObject",
-                                     value="numeric"),
-                definition=function(object, value) {
-
-  if (length(value) != 1) {
-    stop("Length of ", sQuote("value"), " has to be one.")
-  }
-
-  tic <- totalIonCurrent(object)
-
-  if (tic) {
-    return(transformIntensity(object, function(x)x*value/tic))
-  } else {
-    warning("Total Ion Current is zero! Is spectrum empty?")
-    return(object)
-  }
+  return(as.double(sum((left+right)/2*diff(object@mass), na.rm=TRUE)))
 })
 

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+MSG=""
+EXIT_CODE=0
+
+## colors
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+RESET_COLORS="\033[0m"
+
+## reset uncommited changes
+git stash -q --keep-index
+
+for HOOK  in hooks/pre-commit.* ; do
+  MSG="${MSG}${HOOK}: "
+  ${HOOK}
+  if [ $? -ne 0 ] ; then
+    MSG="${MSG}${RED}failed${RESET_COLORS}\n"
+    EXIT_CODE=1
+  else
+    MSG="${MSG}${GREEN}success${RESET_COLORS}\n"
+  fi
+done
+
+## reload uncommited changes
+git stash pop -q
+
+echo -e ${MSG}
+
+exit ${EXIT_CODE}

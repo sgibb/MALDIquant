@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.99.4 [2013-08-29]:
+- merge current master into 2.0
+
 Version 1.99.3 [2013-05-12]:
 - Change: slots mass, intensity and snr in MassSpectrum and MassPeaks are now
   "numeric" (instead of "vector")
@@ -13,156 +16,333 @@ Version 1.99.1 [2013-04-07] (revert):
 - Change: TopHat is new default baseline correction algorithm; closes #18.
   affected funtions: estimateBaseline, removeBaseline.
 
-Version 1.6.8 [2013-03-30]:
-- .mergeMetaData: fix merging of lists with different lengths; fixes #17.
+Version 1.7.11 [2013-08-29]:
+- Remove mergeMassSpectra, superseded by averageMassSpectra
+- mergeMassPeaks: add method argument; remove "fun" argument;
 
-Version 1.6.7 [2013-03-30]:
-- totalIonCurrent<-: fix handling of empty spectra; fixes #15.
+Version 1.7.10 [2013-08-22]:
+- trim: replace minMass and maxMass arguments by new range argument.
+- deprecated: ltrim/rtrim.
 
-Version 1.6.6 [2013-03-30]:
-- isEmpty: treat spectra with only zeros as intensity values as empty ones.
+Version 1.7.9 [2013-08-07]:
+- deprecated: iplot,MassSpectrum; iplot,list because it throws NOTEs on R CMD
+  check and the most important function grDevices::getGraphicEvents behaves
+  different on Unix/Windows platform (some keys don't working) and contains some
+  nasty bugs, e.g.: https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=15208
 
-Version 1.6.5 [2013-03-28]:
-- .estimateBaselineSnip: support decreasing/increasing clipping window;
+Version 1.7.8 [2013-08-05]:
+- src/snip.c: fix some segmention faults because of a missing
+  PROTECT for "duplicate" call.
+
+Version 1.7.7 [2013-08-05]:
+- subset methods "[": little speed up by calling "which" to evaluate logical
+  expressions only once.
+
+Version 1.7.6 [2013-08-05]:
+- add calibrateIntensity; closes #31.
+- demo/workflow.R: add calibrateIntensity.
+- deprecated: calibrate,matrix; standardizeTotalIonCurrent,list;
+  totalIonCurrent<-
+
+Version 1.7.5 [2013-07-29]:
+- approxfun: return NA for empty MassSpectrum objects.
+
+Version 1.7.4 [2013-07-24]:
+- deprecated: totalIonCurrent,MassPeaks
+
+Version 1.7.3 [2013-07-04]:
+- totalIonCurrent: fix calculation by estimating the integral; fixes #29.
+
+Version 1.7.2 [2013-07-04]:
+- .iplot: turn platform-specific functions into characters and use do.call to
+  circumvent NOTE in R CMD check; closes #28.
+
+Version 1.7.1 [2013-06-09]:
+- .filterPeaks: reduce minNumber to length(l) to avoid complete removal
+  of peaks; fixes #26.
+
+
+CHANGES IN MALDIquant VERSION 1.7 [2013-05-23]:
+-----------------------------------------------
+
+NEW FEATURES
+
+* Add `isRegular` method to test MassSpectrum objects for regular increasing
+  mass values/intervals; closes #23.
+* Add `savitzkyGolay`, Savitzky-Golay Smoothing Filter.
+* Add memory usage to `show` output.
+* `iplot`: add horizontal distance measurement (using left mouse clicks).
+* `filterPeaks`: add "minNumber" argument to allow an absolute threshold for
+  filtering; closes #21.
+* demo/workflow.R: add raw data check.
+
+IMPROVEMENTS
+
+* demo/workflow.R: replace moving average smoother by Savitzky-Golay-Filter.
+* `.estimateBaselineSnip`: support decreasing/increasing clipping window;
   controlled by new argument "decreasing"; use a decreasing window per default
   to get a smoother baseline; (use decreasing=FALSE to get the old behaviour).
+* `isEmpty`: treat spectra with only zeros as intensity values as empty ones.
+* `movingAverage`: left/right extrema now calculated for 0:windowSize and
+  (n-windowSize+1):n (before they were set to NA).
 
-Version 1.6.4 [2013-03-28]:
-- Add savitzkyGolay: Savitzky-Golay Smoothing Filter.
+BUG FIXES
 
-Version 1.6.3 [2013-03-12]:
-- movingAverage: left/right extrema now calculated for 0:windowSize and
-  (n-windowSize+1):n (before they were set to NA)
+* `filterPeaks`: doesn't round (floor) minFrequency argument anymore; led to
+  unexpected results; fixes #22.
+* `mergeMassSpectra`: empty MassSpectrum objects are ignored now
+  (but if all objects are empty `mergeMassSpectra` will return an empty
+  MassSpectrum object, too); fixes #20.
+* `.mergeMetaData`: fix merging of lists with different lengths; fixes #17.
+  affected functions: `mergeMassPeaks`, `mergeMassSpectra`.
+* `.doByLabels: preserve order of non-factor labels; fixes #19;
+  affected functions: `filterPeaks`, `mergeMassPeaks`, `mergeMassSpectra`.
+* `totalIonCurrent`/`isEmpty`: fix integer overflow; fixes #25.
+* `totalIonCurrent<-`: fix handling of empty spectra; fixes #15.
+* Remove LICENSE file.
 
-Version 1.6.2 [2013-03-11]:
-- Replace all .C interfaces by .Call.
+INTERNAL CHANGES
 
-Version 1.6.1 [2013-03-08]:
-- Remove LICENSE file.
+* Replace all `paste(..., sep="")` calls by `paste0`;
+  now MALDIquant depends on R >= 2.15.
+* Replace all `.C` interfaces by `.Call`.
 
-Version 1.6 [2013-03-01]:
-- Add interactive plot method: iplot.
-- Add TopHat baseline estimation: estimateBaseline(..., method="TopHat")/
-  removeBaseline(..., method="TopHat").
-- .which.closest: rounding .5 to the next highest integer (before: to the next
-  lowest one); affected functions: labelPeaks.
-- estimateBaseline(..., method="Median"): do not allow a window size > n
+
+CHANGES IN MALDIquant VERSION 1.6 [2013-03-01]:
+-----------------------------------------------
+
+NEW FEATURES
+
+* Add interactive plot method: `iplot`.
+* Add TopHat baseline estimation: `estimateBaseline(..., method="TopHat")`/
+  `removeBaseline(..., method="TopHat")`.
+
+IMPROVEMENTS
+
+* Include tests in inst/tests.
+
+BUG FIXES
+
+* `.which.closest`: rounding .5 to the next highest integer (before: to the next
+  lowest one); affected functions: `labelPeaks`.
+* `.doByLabels`: fix an error that occurred if all labels were unique
+  (fixes #1); affected functions: `filterPeaks`, `mergeMassPeaks`,
+  `mergeMassSpectra`.
+* `estimateBaseline(..., method="Median")`: do not allow a window size > n
   (fixes #4).
-- .doByLabels: fix an error that occurred if all labels were unique (fixes #1);
-  affected functions: filterPeaks, mergeMassPeaks, mergeMassSpectra.
-- Include tests in inst/tests.
 
-Version 1.5 [2012-12-06]:
-- Add movingAverage.
-- labelPeaks: add labels argument.
-- detectPeaks: only throw an error if windowSize > length (windowSize == length
-  is no error anymore).
-- .doByLabels: drop unused levels of argument "labels";
-  affected functions: filterPeaks, mergeMassPeaks, mergeMassSpectra.
-- Rewrite localMaxima in C to reduce running time and memory consumption.
 
-Version 1.4 [2012-10-30]:
-- Add slot "snr" to MassPeaks.
-- Change demo licences.
-- binPeaks/referencePeaks: add argument method=c("strict", "relaxed");
+CHANGES IN MALDIquant VERSION 1.5 [2012-12-06]:
+-----------------------------------------------
+
+NEW FEATURES
+
+* Add `movingAverage`.
+* `labelPeaks`: add labels argument.
+
+IMPROVEMENTS
+
+* `detectPeaks`: only throw an error if windowSize > length
+  (windowSize == length is no error anymore).
+* `.doByLabels`: drop unused levels of argument "labels";
+  affected functions: `filterPeaks`, `mergeMassPeaks`, `mergeMassSpectra`.
+* Rewrite `localMaxima` in C to reduce running time and memory consumption.
+
+
+CHANGES IN MALDIquant VERSION 1.4 [2012-10-30]:
+-----------------------------------------------
+
+NEW FEATURES
+
+* Add slot "snr" to MassPeaks.
+* Add `.estimateNoiseMad` (same implementation as old `estimateNoise` method).
+* Add `.estimateNoiseSuperSmoother`.
+* `estimateNoise`: add method argument, change return value to two column
+  matrix.
+* `binPeaks`/`referencePeaks`: add argument method=c("strict", "relaxed");
   "relaxed" allows multiple peaks of the same spectrum in a bin.
-- labelPeaks: remove tolerance argument (now always select the closest one).
-- mergeMassPeaks/mergeMassSpectra: merge metaData, too.
-- detectPeaks: new example for a custom noise estimation function.
-- detectPeaks: change internal snr handling.
-- Add .estimateNoiseMad (same implementation as old estimateNoise method),
-  .estimateNoiseSuperSmoother.
-- estimateNoise: add method argument, change return value to two column matrix.
-- show: rewrite (OO design).
-- calibrate: add ... to generic definition of calibrate.
 
-Version 1.3 [2012-09-16]:
-- Add trim and [ methods.
-- Fix isMassSpectrumList.
-- detectPeaks: add error message if windowSize >= length.
-- determineWarpingFunctions: add error message if it could not match any peak
+IMPROVEMENTS
+
+* `labelPeaks`: remove tolerance argument (now always select the closest one).
+* `mergeMassPeaks`/`mergeMassSpectra`: merge metaData, too.
+* `detectPeaks`: new example for a custom noise estimation function.
+* `calibrate`: add ... to generic definition of `calibrate`.
+* Change demo licences to public domain.
+
+INTERNAL CHANGES
+
+* `detectPeaks`: change internal snr handling.
+* `show`: rewrite (OO design).
+
+
+CHANGES IN MALDIquant VERSION 1.3 [2012-09-16]:
+-----------------------------------------------
+
+NEW FEATURES
+
+* Add `trim` and `[` methods.
+* `labelPeaks`: add avoidOverlap argument to avoid overlapping of peak labels.
+
+IMPROVEMENTS
+
+* `detectPeaks`: add error message if windowSize >= length.
+* `determineWarpingFunctions`: add error message if it could not match any peak
   to reference peaks.
-- labelPeaks: add avoidOverlap argument to avoid overlapping of peak labels.
-- labelPeaks: change default value for verticalOffset argument.
-- labelPeaks: remove family argument.
-- Update DESCRIPTION file to use Authors@R and depends on R>=2.14 now.
-- Add CITATION file.
 
-Version 1.2 [2012-07-18]:
-- determineWarpingFunctions: stop with an error if reference MassPeaks
+MODIFICATIONS
+
+* `labelPeaks`: change default value for verticalOffset argument.
+* `labelPeaks`: remove family argument.
+
+BUG FIXES
+
+* Fix `isMassSpectrumList`.
+
+GENERAL
+
+* Update DESCRIPTION file to use Authors@R and depends on R>=2.14 now.
+* Add CITATION file.
+
+
+CHANGES IN MALDIquant VERSION 1.2 [2012-07-18]:
+-----------------------------------------------
+
+BUG FIXES
+
+* `determineWarpingFunctions`: stop with an error if reference MassPeaks
   object is empty.
-- .doByLabel: preserve list order (affects filterPeaks).
-- Replace some sapply calls by lapply.
+* `.doByLabel`: preserve list order (affects `filterPeaks`).
 
-Version 1.1 [2012-05-06]:
-- detectPeaks: remove localMaxima argument.
-- detectPeaks: replace noise argument by fun.
-- removeBaseline: replace baseline argument by fun.
-- labelPeaks: use par("usr") to calculate default verticalOffset.
-- labelPeaks: add absoluteVerticalPos argument.
-- plot: change "sub" for merged spectra/peaks.
-- intensityMatrix: remove argument replaceByNa.
-- determineWarpingFunctions, warpMassSpectra, warpMassPeaks now require
-  lists as arguments and return a list.
-- calibrate: works only on matrices now.
-- Add totalIonCurrent method (replacement for calibrate function on
+INTERNAL CHANGES
+
+* Replace some `sapply` calls by `lapply`.
+
+
+CHANGES IN MALDIquant VERSION 1.1 [2012-05-06]:
+-----------------------------------------------
+
+NEW FEATURES
+
+* Add `totalIonCurrent` method (replacement for `calibrate` function on
   MassSpectrum objects).
-- Add methods accepting lists as arguments: transformIntensity, removeBaseline,
-  detectPeaks.
-- Replace all lapply calls by new methods in demonstration scripts.
-- Allow only numeric values for intensity<- and mass<-.
-- Rename findLocalMaxima to .findLocalMaxima and hide by NAMESPACE.
-- Rename dataset spectra in fiedler2009subset.
-- Remove peaks dataset.
+* Add methods accepting lists as arguments: `transformIntensity`,
+  `removeBaseline`, `detectPeaks`.
 
-Version 1.0 [2012-03-28]:
-- Add demonstration scripts.
-- Add functions: binPeaks, determineWarpingFunctions, filterPeaks,
-  isMassObject, isMassPeaks, isMassSpectrum, mergeMassPeaks, mergeMassSpectra,
-  referencePeaks, warpMassPeaks, warpMassSpectra.
-- Change NAMESPACE.
-- Hide imputeMass method because it fails on Bruker Daltonics' CompassXport
+MODIFICATIONS
+
+* `detectPeaks`: remove localMaxima argument.
+* `detectPeaks`: replace noise argument by fun.
+* `removeBaseline`: replace baseline argument by fun.
+* `labelPeaks`: use par("usr") to calculate default verticalOffset.
+* `labelPeaks`: add absoluteVerticalPos argument.
+* `plot`: change "sub" for merged spectra/peaks.
+* `intensityMatrix`: remove argument replaceByNa.
+* `determineWarpingFunctions`, `warpMassSpectra`, `warpMassPeaks` now require
+  lists as arguments and return a list.
+* `calibrate`: works only on matrices now.
+* Replace all `lapply` calls by new methods in demonstration scripts.
+* Allow only numeric values for `intensity<-` and `mass<-`.
+* Rename `findLocalMaxima` to `.findLocalMaxima` and hide by NAMESPACE.
+* Rename dataset spectra in fiedler2009subset.
+* Remove peaks dataset.
+
+
+CHANGES IN MALDIquant VERSION 1.0 [2012-03-28]:
+-----------------------------------------------
+
+NEW FEATURES
+
+* Add demonstration scripts.
+* Add functions: `binPeaks`, `determineWarpingFunctions`, `filterPeaks`,
+  `isMassObject`, `isMassPeaks`, `isMassSpectrum`, `mergeMassPeaks`,
+  `mergeMassSpectra`, `referencePeaks`, `warpMassPeaks`, `warpMassSpectra`.
+
+MODIFICATIONS
+
+* Change NAMESPACE.
+* Hide `imputeMass` method because it fails on Bruker Daltonics' CompassXport
   32bit output.
-- Add \keyword{internal} to estimateBasline*-functions.Rd.
-- Rename labelPeaks' argument massTolerance into tolerance.
-- Replace dataset sA1/pA1 by spectra/peaks (containing 16 example spectra).
+* Add \keyword{internal} to estimateBasline*-functions.Rd.
+* `labelPeaks`: rename massTolerance argument to tolerance.
+* Replace dataset sA1/pA1 by spectra/peaks (containing 16 example spectra).
 
-Version 0.5 [2012-01-18]:
-- Add imputeMass method.
-- Rewrite intensityMatrix function (little speed improvement).
 
-Version 0.4 [2011-08-04]:
-- Add functions: isMassObjectList, isMassPeaksList, isMassSpectrumList,
-  findEmptyMassObjects, removeEmptyMassObjects, intensityMatrix and calibrate
-  (only TIC supported up to now).
-- Change default value for verticalOffset argument in labelPeaks.
-- Add mass and massTolerance argument to labelPeaks.
-- Rename AbstractMassSpectrumData to AbstractMassObject.
-- Add pA1 dataset.
+CHANGES IN MALDIquant VERSION 0.5 [2012-01-18]:
+-----------------------------------------------
 
-Version 0.3 [2011-05-28]:
-- Add transformIntensity, estimateNoise, findLocalMaxima, detectPeaks and
-  points method.
-- Add createMassPeaks constructor.
-- Replace .estimateBaselineMovingEstimator by .estimateBaselineMedian (uses
-  runmed instead of an own slow movingEstimator function).
-- Remove fdrtool dependency and rewrite .estimateBaselineConvexHull in C.
-- Rename SingleSpectrum class to MassSpectrum.
-- Rename SinglePeakList class to MassPeaks.
-- Rewrite labelPeaks (some arguments changed).
-- Move importing functions to the following R-packages: readBrukerFlexData,
+NEW FEATURES
+
+* Add `imputeMass` method.
+
+IMPROVEMENTS
+
+* Rewrite intensityMatrix function (little speed improvement).
+
+
+CHANGES IN MALDIquant VERSION 0.4 [2011-08-04]:
+-----------------------------------------------
+
+NEW FEATURES
+
+* Add functions: `isMassObjectList`, `isMassPeaksList`, `isMassSpectrumList`,
+  `findEmptyMassObjects`, `removeEmptyMassObjects`, `intensityMatrix` and
+  `calibrate` (only TIC supported up to now).
+* Add mass and massTolerance argument to `labelPeaks`.
+
+IMPROVEMENTS
+
+* Change default value for verticalOffset argument in `labelPeaks`.
+* Add pA1 dataset.
+
+MODIFICATIONS
+
+* Rename AbstractMassSpectrumData to AbstractMassObject.
+
+
+CHANGES IN MALDIquant VERSION 0.3 [2011-05-28]:
+-----------------------------------------------
+
+NEW FEATURES
+
+* Add `transformIntensity`, `estimateNoise`, `findLocalMaxima`, `detectPeaks`
+  and `points` method.
+* Add `createMassPeaks` constructor.
+
+IMPROVEMENTS
+
+* Replace `.estimateBaselineMovingEstimator` by `.estimateBaselineMedian` (uses
+  `runmed` instead of an own slow `movingEstimator` function).
+
+MODIFICATIONS
+
+* Rewrite `labelPeaks` (some arguments changed).
+* Rename SingleSpectrum class to MassSpectrum.
+* Rename SinglePeakList class to MassPeaks.
+* Remove fdrtool dependency and rewrite `.estimateBaselineConvexHull` in C.
+* Move importing functions to the following R-packages: readBrukerFlexData,
   readMzXmlData.
-- Bugfix: change .C(..., DUP=F) to .C(..., DUP=T) in .estimateBaselineSnip
+
+BUG FIXES
+
+* change `.C(..., DUP=F)` to `.C(..., DUP=T)` in `.estimateBaselineSnip`
   to avoid changes of global variables.
 
-Version 0.2 [2011-03-29]:
-- Add baseline correction algorithm SNIP (implemented in C) [default].
-- Add MovingEstimator and ConvexHull baseline estimation algorithm.
-- Add as.matrix, intensity, length, lines, mass and metaData methods.
-- Add basic SinglePeakList class, adopt plot and lines, add labelPeaks
+
+CHANGES IN MALDIquant VERSION 0.2 [2011-03-29]:
+-----------------------------------------------
+
+* Add baseline correction algorithm SNIP (implemented in C) [default].
+* Add MovingEstimator and ConvexHull baseline estimation algorithm.
+* Add `as.matrix`, `intensity`, `length`, `lines`, `mass` and `metaData`
+  methods.
+* Add basic SinglePeakList class, adopt `plot` and `lines`, add `labelPeaks`
   (still useless).
 
-Version 0.1 [2011-02-22]:
-- First public release.
-- Up to now only importing and plotting of a single mass spectrum are supported.
+
+CHANGES IN MALDIquant VERSION 0.1 [2011-02-22]:
+-----------------------------------------------
+
+* First public release.
+* Up to now only importing and plotting of a single mass spectrum are supported.
 

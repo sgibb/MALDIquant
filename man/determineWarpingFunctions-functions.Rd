@@ -140,7 +140,7 @@ data("fiedler2009subset", package="MALDIquant")
 t<- transformIntensity(fiedler2009subset, fun=sqrt)
 
 ## smooth spectra
-s <- transformIntensity(t, movingAverage, halfWindowSize=2)
+s <- transformIntensity(t, movingAverage)
 
 ## baseline correction
 b <- removeBaseline(s)

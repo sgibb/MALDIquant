@@ -5,8 +5,12 @@
 \alias{[,MassPeaks,logical,missing-method}
 \alias{[,MassPeaks,numeric,missing-method}
 
+\alias{.averageMassSpectra}
 \alias{.binPeaks}
+\alias{.calibrateIntensitySimple}
+\alias{.calibrateProbabilisticQuotientNormalization}
 \alias{.calculateLabelPositions}
+\alias{.colMedians}
 \alias{.dilation}
 \alias{.doByLabels}
 \alias{.erosion}
@@ -19,14 +23,14 @@
 \alias{.iplot}
 \alias{.iplotSingle}
 \alias{.iplotUsage}
+\alias{.irregularScore}
 \alias{.isFunctionList}
 \alias{.lim}
 \alias{.labelOverlap}
 \alias{.localMaxima}
 \alias{.lowerConvexHullR}
-\alias{.merge}
+\alias{.memoryUsageStr}
 \alias{.mergeMassPeaks}
-\alias{.mergeMassSpectra}
 \alias{.mergeMetaData}
 \alias{.moveLim}
 \alias{.moveXlim}

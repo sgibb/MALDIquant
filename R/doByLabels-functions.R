@@ -36,11 +36,14 @@
 
   if (!missing(labels)) {
     ## drop unused levels and turn argument into factor
-    labels <- factor(labels)
+    if (is.factor(labels)) {
+      labels <- droplevels(labels)
+    } else {
+      ## preserve order in labels
+      labels <- factor(labels, levels=unique(labels))
+    }
 
-    n <- length(l)
-
-    if (length(labels) != n) {
+    if (length(labels) != length(l)) {
       stop("For each item in ", sQuote("l"), " there must be a label in ",
            sQuote("labels"), "!")
     }
@@ -50,7 +53,7 @@
 
     k <- unlist(tmp)
 
-    if (length(k) == n && length(tmp) != n) {
+    if (length(k) != length(tmp)) {
       k <- unsplit(tmp, labels)
     }
   } else {

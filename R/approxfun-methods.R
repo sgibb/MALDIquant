@@ -21,7 +21,11 @@ setMethod(f="approxfun",
           signature=signature(x="MassSpectrum"),
           definition=function(x, y=NULL, method="linear", yleft, yright,
                               rule=1,  f=0, ties=mean) {
-  return(approxfun(x=x@mass, y=x@intensity, method=method, yleft=yleft,
-                   yright=yright, rule=rule, f=f, ties=ties))
+  if (isEmpty(x)) {
+    return(function(x) { return(rep(NA, length.out=length(x))) })
+  } else {
+    return(approxfun(x=x@mass, y=x@intensity, method=method, yleft=yleft,
+                     yright=yright, rule=rule, f=f, ties=ties))
+  }
 })
 

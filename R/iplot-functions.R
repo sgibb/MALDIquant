@@ -22,10 +22,13 @@
   ## init values
   i <- 1
   n <- length(spectra)
+  posX <- NULL
 
   ## test arguments
   if (missing(peaks)) {
     peaks <- vector(mode="list", length=n)
+  } else {
+    stopifnot(length(spectra) == length(peaks))
   }
 
   if (is.null(xlim)) {
@@ -65,12 +68,13 @@
       "I" = { ylim <<- c(0, .zoomYlim(1.1)[2]) },
       ## print limits
       "p" = { message("xlim=c(",
-                      paste(round(.xlim(), digits=3), collapse=", "), "), ",
+                      paste0(round(.xlim(), digits=3), collapse=", "), "), ",
                       "ylim=c(",
-                      paste(round(.ylim(), digits=3), collapse=", "), ")") },
+                      paste0(round(.ylim(), digits=3), collapse=", "), ")") },
       ## reset limits
       "r" = { xlim <<- backup$xlim
-              ylim <<- backup$ylim },
+              ylim <<- backup$ylim
+              posX <<- NULL },
       ## spectrum style
       "s" = { types <- c("l", "p", "b", "n")
               cur <- which(spectrumStyleType == types)
@@ -89,8 +93,18 @@
                  peakStyleType=peakStyleType, showPeakLabels=showPeakLabels,
                  xlim=xlim, ylim=ylim, ...)
     if (n > 1) {
-      mtext(paste(i, "/",  n, sep=""), side=3)
+      mtext(paste0(i, "/",  n), side=3)
     }
+    return(NULL)
+  }
+
+  ## mouse button handler
+  .onMouseDown <- function(buttons, x, y) {
+    ## left button
+    if (0 %in% buttons) {
+      posX <<- .polygon(spectra[[i]], x, posX)
+    }
+
     return(NULL)
   }
 
@@ -99,10 +113,11 @@
                peakStyleType=peakStyleType, showPeakLabels=showPeakLabels,
                xlim=xlim, ylim=ylim, ...)
   if (n > 1) {
-    mtext(paste(i, "/",  n, sep=""), side=3)
+    mtext(paste0(i, "/",  n), side=3)
   }
 
-  grDevices::setGraphicsEventHandlers(onKeybd=.keyboard)
+  grDevices::setGraphicsEventHandlers(onKeybd=.keyboard,
+                                      onMouseDown=.onMouseDown)
   grDevices::getGraphicsEvent(consolePrompt=.iplotUsage(n > 1,
                                                         !is.null(peaks[[1]])))
 }
@@ -133,16 +148,20 @@
     stop("R has to run in interactive mode.")
   }
 
+  ## Could not use dev.new() because only X11(type="Xlib") and windows() support
+  ## event handlers.
+  ## The following is an ugly workaround to circumvent the NOTE about
+  ## platform-specific code in R CMD check.
   if (.Platform$OS.type == "unix") {
     if (names(dev.cur()) != "X11") {
       # Could not use X11(type="Xlib") because R CMD check gives a NOTE
       # about an unused argument (type) on windows.
-      do.call(X11, list(type="Xlib"))
+      do.call("X11", list(type="Xlib"))
       return(TRUE)
     }
   } else if (.Platform$OS.type == "windows") {
     if (names(dev.cur()) != "windows") {
-      windows()
+      do.call("windows", list())
       return(TRUE)
     }
   } else {
@@ -187,6 +206,30 @@
   return(.zoomLim(.ylim(), width))
 }
 
+## draw polygon
+.polygon <- function(spectrum, x, posX) {
+  x <- grconvertX(x, "ndc", "user")
+  x <- spectrum@mass[.which.closest(x, spectrum@mass)]
+
+  abline(v=x, col="green4")
+
+  if (is.null(posX)) {
+    posX <- x
+  } else {
+    x <- sort(c(posX, x), method="quick")
+    s <- spectrum[x[1] <= spectrum@mass & spectrum@mass <= x[2]]
+    sm <- s@mass
+    si <- s@intensity
+
+    polygon(c(x[1], sm, x[2]), c(0, si, 0), col="seagreen1")
+    posX <- NULL
+
+    message("difference: ", length(s), " [data points] (",
+            "delta mass: ", round(diff(x), digits=3), ")")
+  }
+  return(posX)
+}
+
 ## usage
 .iplotUsage <- function(isList=FALSE, hasPeaks=FALSE) {
   keys <- c("q",
@@ -216,10 +259,9 @@
   text <- text[!is.na(keys)]
   keys <- keys[!is.na(keys)]
 
-  msg <- paste("See ", sQuote("help(\"iplot\", \"MALDIquant\")"),
-               " for details and more shortcuts.\n", sep="")
+  msg <- paste0("See ", sQuote("help(\"iplot\", \"MALDIquant\")"),
+                " for details and more shortcuts.\n")
   keys <- format(keys, justify="left")
-  return(paste(msg, paste(keys, ": ", text, "\n", sep="", collapse=""),
-               sep="\n"))
+  return(paste(msg, paste0(keys, ": ", text, "\n", collapse=""), sep="\n"))
 }
 
