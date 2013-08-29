@@ -25,14 +25,15 @@
 ##             MassPeaks objects should be aligned
 ##  tolerance: double, maximal deviation of a peak position to be
 ##             considered as same peak
-##  warpingFunction: function, used to create warping function
+##  method: choose type of base warping function
 ##  plot: logical, plots warping function
 ##
 ## returns:
 ##  a list of warping functions
 ##
 determineWarpingFunctions <- function(l, reference, tolerance=0.002,
-                                      warpingFunction=.warpingFunctionLowess,
+                                      method=c("LOWESS", "Linear", "Quadratic",
+                                               "Cubic"),
                                       plot=FALSE, plotInteractive=FALSE, ...) {
 
   ## test arguments
@@ -40,7 +41,25 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
     stop(sQuote("l"), " is no list of MALDIquant::MassPeaks objects!")
   }
 
-  warpingFunction <- match.fun(warpingFunction)
+  method <- .match.arg(method)
+
+  warpingFunction <- switch(method,
+    "LOWESS" = {
+      .warpingFunctionLowess
+    },
+    "Linear" = {
+      .warpingFunctionLinear
+    },
+    "Quadratic" = {
+      .warpingFunctionQuadratic
+    },
+    "Cubic" = {
+      .warpingFunctionCubic
+    },
+    {
+      stop("Unknown ", sQuote("method"), ".")
+    }
+  )
 
   optArgs <- list(...)
 

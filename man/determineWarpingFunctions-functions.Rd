@@ -10,7 +10,7 @@ This function determines a warping function for a list of
 }
 \usage{
 determineWarpingFunctions(l, reference, tolerance=0.002,
-                          warpingFunction=.warpingFunctionLowess,
+                          method=c("LOWESS", "Linear", "Quadratic", "Cubic"),
                           plot=FALSE, plotInteractive=FALSE, \dots)
 }
 \arguments{
@@ -26,9 +26,8 @@ determineWarpingFunctions(l, reference, tolerance=0.002,
     \code{double}, maximal deviation of a peak position (mass) to be
     considered as identical.
   }
-  \item{warpingFunction}{
-    \code{function}, general warping function which is used to align
-    sample and reference \code{\linkS4class{MassPeaks}} objects.
+  \item{method}{
+    used basic warping function.
   }
   \item{plot}{
     \code{logical}, if \code{TRUE} a warping plot is drawn for each sample.
@@ -47,30 +46,6 @@ determineWarpingFunctions(l, reference, tolerance=0.002,
   the current sample. To calculate the differences each reference peak would
   match with the highest sample peak in the nearer neighborhood
   (defined by \code{mass of reference peak*tolerance}). \cr
-  MALDIquant uses a \code{\link{lowess}}-based warping
-  function as default one. It could easily replaced by an own warping
-  function. At least three arguments are needed:
-  \itemize{
-    \item{\code{x}: \code{double}, the original (not warped) mass of the
-      sample \code{\linkS4class{MassPeaks}} object.
-    }
-    \item{\code{d}: \code{double}, the difference of the sample and the
-      reference mass.
-    }
-    \item{\code{\dots}: further arguments (e.g. \code{iter} for
-      \code{\link{lowess}})
-    }
-  }
-  A correct warping function has to return a single individual warping function
-  which depends on a single argument \code{x}. \cr
-  \preformatted{
-## e.g. warping function to fit a 2nd order polynomial
-quadraticWarp <- function(x, d, ...) {
-  l <- lm(y ~ x1+x2, data=list(x1=x, x2=x*x, y=d), ...)
-  co <- coef(l)
-  return(function(x) { return (co[1]+x*co[2]+x*x*co[3]) })
-}
-  }
   \code{plotInteractive}: If \code{plot} is \code{TRUE} a lot of output is
   created (each sample in \code{l} gets its own plot).
   That's why an non-interactive devices is recommended:
@@ -109,14 +84,12 @@ r <- createMassPeaks(mass=1:5, intensity=1:5)
 p <- list(createMassPeaks(mass=((1:5)*1.01), intensity=1:5),
           createMassPeaks(mass=((1:5)*0.99), intensity=1:5))
 
-## create a simple (in other cases useless ) warping function
-simpleWarp <- function(x, d, ...) { return(function(x){return(d)}) }
-
 ## create an interactive device with 2 rows
 par(mfrow=c(2, 1))
-## calculate warping function (using simpleWarp as basic warping function)
+## calculate warping function
+## (using a linear function as basic warping function)
 ## and show warping plot
-w <- determineWarpingFunctions(p, tolerance=0.02, warpingFunction=simpleWarp,
+w <- determineWarpingFunctions(p, tolerance=0.02, method="Linear",
                                plot=TRUE, plotInteractive=TRUE)
 par(mfrow=c(1, 1))
 
@@ -153,7 +126,7 @@ peaks <- detectPeaks(spectra)
 
 ## create an interactive device with 2 rows
 par(mfrow=c(4, 1))
-## calculate warping functions (using lowess based basic function [default])
+## calculate warping functions (using LOWESS based basic function [default])
 w <- determineWarpingFunctions(peaks, plot=TRUE, plotInteractive=TRUE)
 par(mfrow=c(1, 1))
 
@@ -170,8 +143,8 @@ refPeaks <- createMassPeaks(mass=c(1207, 1264, 1351, 1466, 1616, 2769, 2932,
 
 ## create an interactive device with 2 rows
 par(mfrow=c(4, 1))
-## calculate warping functions (using lowess based basic function [default])
-w <- determineWarpingFunctions(peaks, reference=refPeaks,
+## calculate warping functions (using a quadratic function as basic function)
+w <- determineWarpingFunctions(peaks, reference=refPeaks, method="Quadratic",
                                plot=TRUE, plotInteractive=TRUE)
 par(mfrow=c(1, 1))
 

@@ -2,7 +2,11 @@ RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
 Version 1.99.7 [2013-08-29]:
-- determineWarpingPeaks: add example with user defined reference/calibration
+- determineWarpingFunctions: add method argument; remove warpingFunctions
+  argument.
+
+Version 1.99.7 [2013-08-29]:
+- determineWarpingFunctions: add example with user defined reference/calibration
   peaks to the manual page.
 
 Version 1.99.6 [2013-08-29]:
