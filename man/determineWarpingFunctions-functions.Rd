@@ -136,23 +136,45 @@ data("fiedler2009subset", package="MALDIquant")
 
 ## running typical workflow
 
+## use only four spectra of the subset
+spectra <- fiedler2009subset[1:4]
+
 ## transform intensities
-t<- transformIntensity(fiedler2009subset, fun=sqrt)
+spectra <- transformIntensity(spectra, fun=sqrt)
 
 ## smooth spectra
-s <- transformIntensity(t, movingAverage)
+spectra <- transformIntensity(spectra, movingAverage)
 
 ## baseline correction
-b <- removeBaseline(s)
+spectra <- removeBaseline(spectra)
 
 ## detect peaks
-peaks <- detectPeaks(b)
+peaks <- detectPeaks(spectra)
 
 ## create an interactive device with 2 rows
-par(mfrow=c(2, 1))
+par(mfrow=c(4, 1))
 ## calculate warping functions (using lowess based basic function [default])
 w <- determineWarpingFunctions(peaks, plot=TRUE, plotInteractive=TRUE)
 par(mfrow=c(1, 1))
+
+
+
+## realistic example with user defined reference/calibration peaks
+
+## use the workflow above for fiedler2009subset
+
+## create reference peaks
+refPeaks <- createMassPeaks(mass=c(1207, 1264, 1351, 1466, 1616, 2769, 2932,
+                                   3191, 3262, 4091, 4209, 5904, 7762, 9285),
+                            intensity=rep(1, 14))
+
+## create an interactive device with 2 rows
+par(mfrow=c(4, 1))
+## calculate warping functions (using lowess based basic function [default])
+w <- determineWarpingFunctions(peaks, reference=refPeaks,
+                               plot=TRUE, plotInteractive=TRUE)
+par(mfrow=c(1, 1))
+
 }
 \keyword{methods}
 
