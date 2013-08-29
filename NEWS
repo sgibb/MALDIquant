@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.99.6 [2013-08-29]:
+- Add case insensitive .match.arg.
+
 Version 1.99.5 [2013-08-29]:
 - Add C implementation of colMedians.
 

@@ -32,7 +32,7 @@ averageMassSpectra <- function(l, labels, method=c("Mean", "Median", "Sum")) {
   ## test parameters
   .stopIfNotIsMassSpectrumList(l)
 
-  method <- match.arg(method)
+  method <- .match.arg(method)
 
   fun <- switch(method,
               "Mean" = {

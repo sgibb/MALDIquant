@@ -33,7 +33,7 @@ cran: clean test testdemo check
 
 check: build
 	cd .. ;\
-	$(R_BIN) CMD check $(PACKAGE)
+	$(R_BIN) CMD check $(PACKAGE) --as-cran
 
 build:
 	cd .. ;\

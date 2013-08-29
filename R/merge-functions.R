@@ -33,7 +33,7 @@ mergeMassPeaks  <- function(l, labels, method=c("Mean", "Median", "Sum"),
   ## test arguments
   .stopIfNotIsMassPeaksList(l)
 
-  method <- match.arg(method)
+  method <- .match.arg(method)
 
   fun <- switch(method,
               "Mean" = {

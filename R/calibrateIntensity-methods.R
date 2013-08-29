@@ -22,7 +22,7 @@ setMethod(f="calibrateIntensity",
           definition=function(object,
                               method=c("TIC", "Median", "PQN"), ...) {
 
-  method <- match.arg(method)
+  method <- .match.arg(method)
 
   object <- switch(method,
     "TIC" = {
@@ -54,7 +54,7 @@ setMethod(f="calibrateIntensity",
   ## test arguments
   .stopIfNotIsMassSpectrumList(object)
 
-  method <- match.arg(method)
+  method <- .match.arg(method)
 
   object <- switch(method,
     "TIC" = ,
