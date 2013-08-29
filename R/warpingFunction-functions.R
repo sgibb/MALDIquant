@@ -68,10 +68,9 @@
 ##  function(x)
 ##
 .warpingFunctionQuadratic <- function(x, d, ...) {
-  x2 <- x*x
-  l <- lm(y ~ x1+x2, data=list(x1=x, x2=x2, y=d), ...)
+  l <- lm(y ~ x1+x2, data=list(x1=x, x2=x*x, y=d), ...)
   co <- coef(l)
-  return(function(x) { return (co[1L]+x*co[2L]+x2*co[3L]) })
+  return(function(x) { return (co[1L]+x*co[2L]+x*x*co[3L]) })
 }
 
 ## .warpingFunctionCubic
@@ -86,10 +85,8 @@
 ##  function(x)
 ##
 .warpingFunctionCubic <- function(x, d, ...) {
-  x2 <- x*x
-  x3 <- x*x*x
-  l <- lm(y ~ x1+x2+x3, data=list(x1=x, x2=x2, x3=x3, y=d), ...)
+  l <- lm(y ~ x1+x2+x3, data=list(x1=x, x2=x*x, x3=x*x*x, y=d), ...)
   co <- coef(l)
-  return(function(x) { return (co[1L]+x*co[2L]+x2*co[3L]+x3*co[4L]) })
+  return(function(x) { return (co[1L]+x*co[2L]+x*x*co[3L]+x*x*x*co[4L]) })
 }
 
