@@ -32,7 +32,7 @@ Application hints for Savitzky-Golay digital smoothing filters.
 Analytical Chemistry, 53(11), 1583-1586.
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## 5 point savitzky-golay filter

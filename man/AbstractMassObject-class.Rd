@@ -108,7 +108,7 @@ Sebastian Gibb
 \code{\link[MALDIquant]{trim,AbstractMassObject,numeric-method}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## create example spectrum

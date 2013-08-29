@@ -5,7 +5,7 @@
 ## baseline demo
 
 
-## load necessary libraries
+## load necessary packages
 library("MALDIquant")
 
 ## load example spectra

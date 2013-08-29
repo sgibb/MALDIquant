@@ -47,7 +47,7 @@ Sebastian Gibb
 \code{\linkS4class{MassSpectrum}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## load example data

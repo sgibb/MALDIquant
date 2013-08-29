@@ -36,7 +36,7 @@ Sebastian Gibb
 \code{\linkS4class{AbstractMassObject}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## create a MassPeaks object

@@ -75,7 +75,7 @@ Sebastian Gibb
 \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## load example data

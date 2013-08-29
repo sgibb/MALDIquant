@@ -99,7 +99,7 @@ Sebastian Gibb
 \code{\linkS4class{MassPeaks}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## create a reference MassPeaks object

@@ -45,7 +45,7 @@ Sebastian Gibb
 \code{\linkS4class{MassSpectrum}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## create a MassPeaks object

@@ -29,7 +29,7 @@ Sebastian Gibb
 \code{\link[MALDIquant]{removeBaseline,MassSpectrum-method}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## load example data
