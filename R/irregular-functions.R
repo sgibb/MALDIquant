@@ -27,7 +27,7 @@
 ##
 .irregularScore <- function(x) {
   d <- diff(x)
-  d <- d[-1] < head(d, -1)
+  d <- d[-1L] < head(d, -1L)
 
   return(mean(d))
 }

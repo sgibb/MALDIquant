@@ -37,14 +37,14 @@ setMethod(f="removeBaseline",
   ## wrong baseline argument given?
   isBaselineMatrix <- is.matrix(baseline) &&
                       nrow(baseline) == length(object) &&
-                      ncol(baseline) == 2
+                      ncol(baseline) == 2L
 
   if (!isBaselineMatrix) {
     stop("The baseline is not a valid matrix!")
   }
 
   ## substract baseline
-  object@intensity <- object@intensity - baseline[,2]
+  object@intensity <- object@intensity - baseline[, 2L]
 
   return(object)
 })

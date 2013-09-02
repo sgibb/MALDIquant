@@ -48,11 +48,10 @@
  */
 SEXP C_dilation(SEXP y, SEXP s) {
   SEXP f, g, h, output;
-  /* TODO: replace by R_xlen_t in R 3.0.0 */
-  unsigned int n, fn,  k, q, i, r, j, gi, hi;
+  R_xlen_t n, fn,  k, q, i, r, j, gi, hi;
 
   PROTECT(y=coerceVector(y, REALSXP));
-  n=LENGTH(y);
+  n=XLENGTH(y);
   q=asInteger(s);
   k=2*q+1;
 
@@ -124,11 +123,10 @@ SEXP C_dilation(SEXP y, SEXP s) {
  */
 SEXP C_erosion(SEXP y, SEXP s) {
   SEXP f, g, h, output;
-  /* TODO: replace by R_xlen_t in R 3.0.0 */
-  unsigned int n, fn,  k, q, i, r, j, gi, hi;
+  R_xlen_t n, fn,  k, q, i, r, j, gi, hi;
 
   PROTECT(y=coerceVector(y, REALSXP));
-  n=LENGTH(y);
+  n=XLENGTH(y);
   q=asInteger(s);
   k=2*q+1;
 

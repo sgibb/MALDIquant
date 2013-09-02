@@ -23,10 +23,10 @@ setMethod(f="estimateNoise",
                               ...) {
 
   if (.isEmptyWarning(object)) {
-    return(0)
+    return(0L)
   }
 
-  method <- match.arg(method)
+  method <- .match.arg(method)
 
   n <- switch(method,
               "MAD" = {

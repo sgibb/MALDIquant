@@ -29,7 +29,8 @@ findEmptyMassObjects <- function(l) {
 
   .stopIfNotIsMassObjectList(l)
 
-  isEmpty <- vapply(l, isEmpty, logical(1))
+  isEmpty <- vapply(l, isEmpty, logical(1L))
 
   return(which(isEmpty))
 }
+

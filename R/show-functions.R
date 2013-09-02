@@ -29,8 +29,8 @@
   if (!is.null(x)) {
     n <- length(x)
 
-    if (n > 1) {
-      name <- paste0(name, 1:n)
+    if (n > 1L) {
+      name <- paste0(name, 1L:n)
     }
 
   } else {
@@ -39,3 +39,4 @@
 
   return(name)
 }
+

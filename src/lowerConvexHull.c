@@ -44,13 +44,13 @@ double left(double x0, double y0, double x1, double y1, double x2, double y2) {
 SEXP C_lowerConvexHull(SEXP x, SEXP y) {
   SEXP output;
   /* TODO: replace by R_xlen_t in R 3.0.0 */
-  int n, i, j, k=0;
+  R_xlen_t n, i, j, k=0;
   int* nodes;
   double m, c;
 
   PROTECT(x=coerceVector(x, REALSXP));
   PROTECT(y=coerceVector(y, REALSXP));
-  n=LENGTH(x);
+  n=XLENGTH(x);
 
   PROTECT(output=allocVector(REALSXP, n));
   /* TODO: replace by R_xlen_t in R 3.0.0 */

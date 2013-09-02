@@ -45,13 +45,14 @@ Sebastian Gibb
 \code{\linkS4class{MassSpectrum}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## create a MassPeaks object
 p <- createMassPeaks(mass=1:5, intensity=1:5)
 
-## simple warping function (see determineWarpingFunctions for details)
+## stupid warping function for demonstration
+## (please use determineWarpingFunctions in real life applications)
 simpleWarp <- function(x) { return(1) }
 
 ## run warping function

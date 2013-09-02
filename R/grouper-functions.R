@@ -109,12 +109,12 @@
 .grouperRelaxedHighestAtReference <- function(mass, intensities, samples,
                                               tolerance) {
   ## any reference peaks in current samples?
-  ref <- samples == 1
+  ref <- samples == 1L
   nRef <- sum(ref)
-  if (nRef == 0) {
+  if (nRef == 0L) {
     ## no reference peak
-    return(0)
-  } else if (nRef > 1) {
+    return(0L)
+  } else if (nRef > 1L) {
     ## too many reference peaks => further splitting needed
     return(NA)
   }

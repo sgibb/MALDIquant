@@ -4,7 +4,7 @@ s <- c(createMassSpectrum(mass=1:10, intensity=11:20),
        createMassSpectrum(mass=1:2, intensity=rep.int(.Machine$integer.max, 2)))
 e <- c(createMassSpectrum(mass=double(), intensity=double()),
        createMassSpectrum(mass=1:10, intensity=rep(0, 10)),
-       createMassSpectrum(mass=1:10, intensity=rep(NA, 10)))
+       createMassSpectrum(mass=1:10, intensity=as.double(rep(NA, 10))))
 
 test_that("isEmpty", {
   for (i in seq(along=e)) {

@@ -5,7 +5,7 @@
 ## workflow demo
 
 
-## load necessary libraries
+## load necessary packages
 library("MALDIquant")
 
 
@@ -97,7 +97,8 @@ samples <- factor(rep(1:nBiologicalSamples, each=nTechRep),
 peaks <- filterPeaks(peaks, labels=samples, minFrequency=1)
 
 ## 3. merge technical replicates
-peaks <- mergeMassPeaks(peaks, labels=samples, fun=mean)
+peaks <- mergeMassPeaks(peaks, labels=samples, method="Mean")
+
 
 
 ## prepare for statistical analysis

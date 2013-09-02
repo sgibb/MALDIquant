@@ -29,22 +29,22 @@
 ##
 
 ## C version
-.localMaxima <- function(y, halfWindowSize=1) {
-  y <- c(rep(0, halfWindowSize), y, rep(0, halfWindowSize))
+.localMaxima <- function(y, halfWindowSize=1L) {
+  y <- c(rep(0L, halfWindowSize), y, rep(0L, halfWindowSize))
   n <- length(y)
-  i <- (halfWindowSize+1):(n-halfWindowSize)
+  i <- (halfWindowSize+1L):(n-halfWindowSize)
   return(.Call("C_localMaxima", y, halfWindowSize)[i])
 }
 
 ## R only: obsolete because too slow and too much memory usage
-.localMaximaR <- function(y, halfWindowSize=1) {
+.localMaximaR <- function(y, halfWindowSize=1L) {
   ## based on a posting of Brian Ripley on r-help mailinglist
   ## https://stat.ethz.ch/pipermail/r-help/2001-January/010704.html
-  windowSize <- 2*halfWindowSize+1
+  windowSize <- 2L*halfWindowSize+1L
 
-  windows <- embed(c(rep(0, halfWindowSize), y, rep(0, halfWindowSize)),
+  windows <- embed(c(rep(0L, halfWindowSize), y, rep(0L, halfWindowSize)),
                    windowSize)
-  localMaxima <- max.col(windows, "last") == halfWindowSize+1
+  localMaxima <- max.col(windows, "last") == halfWindowSize+1L
 
   return(localMaxima)
 }

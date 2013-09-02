@@ -22,9 +22,8 @@
 #include <R.h>
 #include <Rinternals.h>
 
-/* TODO: replace int by R_xlen_t in R 3.0.0 */
-int windowMaxIdx(double* x, int start, int end) {
-  int i, m=start;
+R_xlen_t windowMaxIdx(double* x, R_xlen_t start, R_xlen_t end) {
+  R_xlen_t i, m=start;
   for (i=start+1; i<=end; ++i) {
     if (x[m] < x[i]) {
       m=i;
@@ -38,11 +37,10 @@ int windowMaxIdx(double* x, int start, int end) {
  */
 SEXP C_localMaxima(SEXP y, SEXP s) {
   SEXP output;
-  /* TODO: replace by R_xlen_t in R 3.0.0 */
-  int n, q, m, windowSize, i, l, mid;
+  R_xlen_t n, q, m, windowSize, i, l, mid;
 
   PROTECT(y=coerceVector(y, REALSXP));
-  n=LENGTH(y);
+  n=XLENGTH(y);
 
   PROTECT(output=allocVector(LGLSXP, n));
 
@@ -73,3 +71,4 @@ SEXP C_localMaxima(SEXP y, SEXP s) {
   UNPROTECT(2);
   return(output);
 }
+

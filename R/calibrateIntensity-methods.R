@@ -22,16 +22,16 @@ setMethod(f="calibrateIntensity",
           definition=function(object,
                               method=c("TIC", "Median", "PQN"), ...) {
 
-  method <- match.arg(method)
+  method <- .match.arg(method)
 
   object <- switch(method,
     "TIC" = {
       transformIntensity(object, fun=.calibrateIntensitySimple,
-                         offset=0, scaling=totalIonCurrent(object))
+                         offset=0L, scaling=totalIonCurrent(object))
     },
     "Median" = {
       transformIntensity(object, fun=.calibrateIntensitySimple,
-                         offset=0, scaling=median)
+                         offset=0L, scaling=median)
     },
     "PQN" = {
       stop(dQuote("PQN"),
@@ -54,7 +54,7 @@ setMethod(f="calibrateIntensity",
   ## test arguments
   .stopIfNotIsMassSpectrumList(object)
 
-  method <- match.arg(method)
+  method <- .match.arg(method)
 
   object <- switch(method,
     "TIC" = ,

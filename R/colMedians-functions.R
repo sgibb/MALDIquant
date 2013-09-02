@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2013 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -10,32 +10,15 @@
 ##
 ## MALDIquant is distributed in the hope that it will be useful,
 ## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 ## GNU General Public License for more details.
 ##
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## .which.closest
-##  a relaxed version of which (returns the nearest index)
-##
-## params:
-##  x: numeric key value to look for
-##  vec: numeric, has to be sorted
-##
-## returns:
-##  a vector of indices
-##
-.which.closest <- function(x, vec) {
-
-  ## find left interval
-  lIdx <- findInterval(x, vec, rightmost.closed=FALSE, all.inside=TRUE)
-  rIdx <- lIdx+1L
-
-  ## calculate differences for left and right
-  lDiff <- abs(vec[lIdx]-x)
-  rDiff <- abs(vec[rIdx]-x)
-
-  return(ifelse(rDiff == pmin(lDiff, rDiff), rIdx, lIdx))
+.colMedians <- function(x, na.rm=FALSE) {
+  stopifnot(is.matrix(x))
+  stopifnot(is.logical(na.rm))
+  return(.Call("C_colMedians", x, na.rm))
 }
 

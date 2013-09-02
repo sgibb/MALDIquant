@@ -21,8 +21,8 @@ setMethod(f="isEmpty",
           signature=signature(x="AbstractMassObject"),
           definition=function(x) {
 
-  return(length(x@intensity) == 0 ||
-         sum(as.double(x@intensity), na.rm=TRUE) == 0)
+  return(length(x@intensity) == 0L ||
+         sum(as.double(x@intensity), na.rm=TRUE) == 0L)
 })
 
 setMethod(f=".isEmptyWarning",
@@ -30,13 +30,13 @@ setMethod(f=".isEmptyWarning",
           definition=function(x) {
 
   if (isEmpty(x)) {
-    msg <- paste0(class(x)[1], " object")
+    msg <- paste0(class(x)[1L], " object")
 
     if (!is.null(x@metaData$file)) {
       msg <- paste0(msg, " (file: ", x@metaData$file, ")")
     }
 
-    parentCall <- sys.call(-1)
+    parentCall <- sys.call(-1L)
     warning("In ", deparse(parentCall), " : ", msg, " is empty!",
             call.=FALSE)
     return(TRUE)

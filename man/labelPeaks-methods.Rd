@@ -48,7 +48,7 @@ peaks stored in a \code{\linkS4class{MassPeaks}} object to a plot.
   \code{\link[MALDIquant]{plot,AbstractMassObject,missing-method}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## create a MassPeaks object from scratch

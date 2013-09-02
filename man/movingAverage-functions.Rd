@@ -18,7 +18,7 @@
   \code{double}, a smoothed intensity vector.
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## 5 point moving average

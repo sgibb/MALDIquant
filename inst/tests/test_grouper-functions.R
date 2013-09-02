@@ -35,7 +35,7 @@ test_that("grouperRelaxed", {
 test_that("grouperRelaxedHighestAtReference", {
   expect_identical(MALDIquant:::.grouperRelaxedHighestAtReference(
                       mass=1:5, intensities=rep(1, 5), samples=2:6,
-                      tolerance=0.01), 0)
+                      tolerance=0.01), 0L)
   expect_true(is.na(MALDIquant:::.grouperRelaxedHighestAtReference(
                       mass=1:5, intensities=rep(1, 5), samples=c(1, 1:4),
                       tolerance=0.01)))

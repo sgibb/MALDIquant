@@ -71,7 +71,7 @@ Sebastian Gibb
 \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## load example data

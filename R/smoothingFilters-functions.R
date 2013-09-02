@@ -27,11 +27,11 @@
 ## returns:
 ##  double
 ##
-movingAverage <- function(y, halfWindowSize=2) {
+movingAverage <- function(y, halfWindowSize=2L) {
   .stopIfNotIsValidHalfWindowSize(halfWindowSize, n=length(y))
-  windowSize <- 2*halfWindowSize+1
+  windowSize <- 2L*halfWindowSize+1L
   return(.filter(y, hws=halfWindowSize,
-                 coef=matrix(1/windowSize, nrow=windowSize, ncol=windowSize)))
+                 coef=matrix(1L/windowSize, nrow=windowSize, ncol=windowSize)))
 }
 
 ## savitzkyGolay
@@ -48,10 +48,10 @@ movingAverage <- function(y, halfWindowSize=2) {
 ## returns:
 ##  double
 ##
-savitzkyGolay <- function(y, halfWindowSize=10, polynomialOrder=3) {
+savitzkyGolay <- function(y, halfWindowSize=10L, polynomialOrder=3L) {
   .stopIfNotIsValidHalfWindowSize(halfWindowSize, n=length(y))
 
-  windowSize <- 2*halfWindowSize+1
+  windowSize <- 2L*halfWindowSize+1L
 
   if (windowSize < polynomialOrder) {
     stop("The window size has to be larger than the polynomial order.")
@@ -73,14 +73,14 @@ savitzkyGolay <- function(y, halfWindowSize=10, polynomialOrder=3) {
 ##
 ## Implemention of left/right extrema based on:
 ## sgolay in signal 0.7-3/R/sgolay.R by Paul Kienzle <pkienzle@users.sf.net>
-## modificated by Sebastian Gibb <mail@sebastiangibb.de>
+## modified by Sebastian Gibb <mail@sebastiangibb.de>
 ##
 ## params:
 ##  m: integer, half window size
 ##  k: integer, polynomial order (k == 0 = moving average)
-.savitzkyGolayCoefficients <- function(m, k=3) {
-  k <- 0:k
-  nm <- 2*m+1
+.savitzkyGolayCoefficients <- function(m, k=3L) {
+  k <- 0L:k
+  nm <- 2L*m+1L
   nk <- length(k)
   K <- matrix(k, nrow=nm, ncol=nk, byrow=TRUE)
 
@@ -94,14 +94,14 @@ savitzkyGolay <- function(y, halfWindowSize=10, polynomialOrder=3) {
   ## row m+1 == typical sg coef
   ## row (n-m-1):n == rhs coef
   F <- matrix(double(), nrow=nm, ncol=nm)
-  for (i in 1:(m+1)) {
-    M <- matrix((1:nm)-i, nrow=nm, ncol=nk, byrow=FALSE)
+  for (i in 1L:(m+1L)) {
+    M <- matrix((1L:nm)-i, nrow=nm, ncol=nk, byrow=FALSE)
     X <- M^K
     T <- solve(t(X) %*% X) %*% t(X)
-    F[i, ] <- T[1, ]
+    F[i, ] <- T[1L, ]
   }
   ## rhs (row (n-m):n) are equal to reversed lhs
-  F[(m+2):nm, ] <- rev(F[1:m, ])
+  F[(m+2L):nm, ] <- rev(F[1L:m, ])
 
   return(F)
 }
@@ -110,13 +110,13 @@ savitzkyGolay <- function(y, halfWindowSize=10, polynomialOrder=3) {
 ##  remove time series attributes and NA at left/right extrema
 .filter <- function(x, hws, coef) {
   n <- length(x)
-  w <- 2*hws+1
-  y <- stats::filter(x=x, filter=coef[hws+1, ], sides=2)
+  w <- 2L*hws+1L
+  y <- stats::filter(x=x, filter=coef[hws+1L, ], sides=2L)
   attributes(y) <- NULL
 
   ## fix left/right extrema
-  y[1:hws] <- head(coef, hws) %*% head(x, w)
-  y[(n-hws+1):n] <- tail(coef, hws) %*% tail(x, w)
+  y[1L:hws] <- head(coef, hws) %*% head(x, w)
+  y[(n-hws+1L):n] <- tail(coef, hws) %*% tail(x, w)
   return(y)
 }
 

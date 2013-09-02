@@ -23,6 +23,7 @@
 #include <R.h>
 #include <Rinternals.h>
 
+SEXP C_colMedians(SEXP x, SEXP na_rm);
 SEXP C_snip(SEXP y, SEXP iterations, SEXP decreasing);
 SEXP C_lowerConvexHull(SEXP x, SEXP y);
 SEXP C_dilation(SEXP y, SEXP s);

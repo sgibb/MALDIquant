@@ -46,3 +46,4 @@ setMethod(f="transformIntensity",
 
   return(lapply(object, transformIntensity, fun=fun, na.rm=na.rm, ...))
 })
+

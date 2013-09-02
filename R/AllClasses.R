@@ -18,10 +18,10 @@
 
 ## basic class for all spectra based information
 setClass("AbstractMassObject",
-         representation=representation(mass="vector", intensity="vector",
+         representation=representation(mass="numeric", intensity="numeric",
                                        metaData="list", .cache="environment"),
-         prototype=prototype(mass=vector(mode="numeric"),
-                             intensity=vector(mode="numeric"), metaData=list()),
+         prototype=prototype(mass=numeric(), intensity=numeric(), 
+                             metaData=list()),
          contains="VIRTUAL")
 
 ## represent a spectrum
@@ -30,7 +30,7 @@ setClass("MassSpectrum",
 
 ## represent a peak list from a single spectrum
 setClass("MassPeaks",
-         representation=representation(snr="vector"),
-         prototype=prototype(snr=vector(mode="numeric")),
+         representation=representation(snr="numeric"),
+         prototype=prototype(snr=numeric()),
          contains="AbstractMassObject")
 

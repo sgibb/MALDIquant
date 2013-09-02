@@ -29,7 +29,7 @@ Sebastian Gibb
 \code{\link[stats]{supsmu}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## load example data

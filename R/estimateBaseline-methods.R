@@ -28,7 +28,7 @@ setMethod(f="estimateBaseline",
     return(NA)
   }
 
-  method <- match.arg(method)
+  method <- .match.arg(method)
 
   b <- switch(method,
               "SNIP" = {

@@ -9,7 +9,8 @@ shouldn't called by the user. Try
 \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}} instead.
 }
 \usage{
-createMassPeaks(mass, intensity, snr=rep(NA, length(intensity)), metaData=list())
+createMassPeaks(mass, intensity, snr=as.double(rep(NA, length(intensity))), 
+                metaData=list())
 }
 \arguments{
   \item{mass}{
@@ -39,7 +40,7 @@ Sebastian Gibb
 \code{\linkS4class{MassPeaks}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## create a MassPeaks object by default constructor

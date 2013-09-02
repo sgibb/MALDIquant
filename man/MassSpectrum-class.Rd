@@ -24,6 +24,11 @@ Class \code{\linkS4class{AbstractMassObject}}, directly.
 }
 \section{Methods}{
 \describe{
+  \item{calibrateIntensity}{\code{signature(x = "MassSpectrum")}:
+    Calibrates the intensity of a
+    \code{\linkS4class{MassSpectrum}} object.
+    See \code{\link[MALDIquant]{calibrateIntensity,MassSpectrum-method}} for
+    details.}
   \item{detectPeaks}{\code{signature(x = "MassSpectrum")}:
     Look for local maxima and estimate noise to extract peaks out of a
     \code{\linkS4class{MassSpectrum}} object.
@@ -39,11 +44,6 @@ Class \code{\linkS4class{AbstractMassObject}}, directly.
     \code{\linkS4class{MassSpectrum}} object.
     See \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}} for
     details.}
-%  \item{imputeMass}{\code{signature(x = "MassSpectrum")}:
-%    Impute missing mass values to a
-%    \code{\linkS4class{MassSpectrum}} object.
-%    See \code{\link[MALDIquant]{imputeMass,MassSpectrum-method}} for
-%    details.}
   \item{isRegular}{\code{signature(object = "MassSpectrum")}:
     Returns \code{FALSE} if the frequency of mass values with irregular
     intervals is greater than \code{threshold} (because \code{object}
@@ -66,15 +66,15 @@ Sebastian Gibb
 }
 \seealso{
 \code{\link[MALDIquant]{createMassSpectrum}},
+\code{\link[MALDIquant]{calibrateIntensity,MassSpectrum-method}},
 \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}},
 \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}},
 \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}},
-\code{\link[MALDIquant]{imputeMass,MassSpectrum-method}},
 \code{\link[MALDIquant]{removeBaseline,MassSpectrum-method}},
 \code{\linkS4class{AbstractMassObject}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## create a MassSpectrum object by default constructor

@@ -61,7 +61,7 @@ Sebastian Gibb
 \code{\linkS4class{MassPeaks}}
 }
 \examples{
-## load library
+## load package
 library("MALDIquant")
 
 ## create two MassPeaks objects

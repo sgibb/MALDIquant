@@ -5,10 +5,12 @@
 \alias{[,MassPeaks,logical,missing-method}
 \alias{[,MassPeaks,numeric,missing-method}
 
+\alias{.averageMassSpectra}
 \alias{.binPeaks}
 \alias{.calibrateIntensitySimple}
 \alias{.calibrateProbabilisticQuotientNormalization}
 \alias{.calculateLabelPositions}
+\alias{.colMedians}
 \alias{.dilation}
 \alias{.doByLabels}
 \alias{.erosion}
@@ -18,26 +20,17 @@
 \alias{.findLocalMaximaLogical}
 \alias{.grouperRelaxedHighestAtReference}
 \alias{.grouperStrict}
-\alias{.iplot}
-\alias{.iplotSingle}
-\alias{.iplotUsage}
 \alias{.irregularScore}
 \alias{.isFunctionList}
-\alias{.lim}
 \alias{.labelOverlap}
 \alias{.localMaxima}
 \alias{.lowerConvexHullR}
+\alias{.match.arg}
 \alias{.memoryUsageStr}
-\alias{.merge}
 \alias{.mergeMassPeaks}
-\alias{.mergeMassSpectra}
 \alias{.mergeMetaData}
-\alias{.moveLim}
-\alias{.moveXlim}
-\alias{.openInteractiveDevice}
 \alias{.prepareShow}
 \alias{.prepareShowGroupName}
-\alias{.replaceNonEmptyMassObjects}
 \alias{.savitzkyGolayCoefficients}
 \alias{.snipR}
 \alias{.stopIfNotIsMassObjectList}
@@ -53,11 +46,6 @@
 \alias{.warpingFunctionCubic}
 \alias{.warpingFunctionLowess}
 \alias{.which.closest}
-\alias{.xlim}
-\alias{.ylim}
-\alias{.zoomLim}
-\alias{.zoomXlim}
-\alias{.zoomYlim}
 
 \title{Internal MALDIquant Functions}
 \description{

@@ -20,7 +20,7 @@
 setMethod(f="approxfun",
           signature=signature(x="MassSpectrum"),
           definition=function(x, y=NULL, method="linear", yleft, yright,
-                              rule=1,  f=0, ties=mean) {
+                              rule=1L,  f=0L, ties=mean) {
   if (isEmpty(x)) {
     return(function(x) { return(rep(NA, length.out=length(x))) })
   } else {

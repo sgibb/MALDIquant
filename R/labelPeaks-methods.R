@@ -18,17 +18,17 @@
 
 setMethod(f="labelPeaks",
           signature=signature(object="MassPeaks"),
-          definition=function(object, index, mass, labels, digits=3,
+          definition=function(object, index, mass, labels, digits=3L,
                               underline=TRUE,
                               ## verticalOffset ca. 0.01 of plot height
-                              verticalOffset=abs(diff(par("usr")[3:4]))*0.01,
-                              absoluteVerticalPos, adj=c(0.5, 0), cex=0.7,
-                              avoidOverlap=FALSE, arrowLength=0, arrowLwd=0.5,
-                              arrowCol=1, ...) {
+                              verticalOffset=abs(diff(par("usr")[3L:4L]))*0.01,
+                              absoluteVerticalPos, adj=c(0.5, 0L), cex=0.7,
+                              avoidOverlap=FALSE, arrowLength=0L, arrowLwd=0.5,
+                              arrowCol=1L, ...) {
 
   ## index
   if (missing(index) && missing(mass)) {
-    index <- 1:length(object@mass)
+    index <- 1L:length(object@mass)
   } else if (!missing(index) && is.logical(index)) {
     index <- which(index)
   }
@@ -48,7 +48,7 @@ setMethod(f="labelPeaks",
 
   isValidIndex <- length(index) &&
                   length(index) <= length(object@mass) &&
-                  (min(index) >= 1 && max(index) <= length(object@mass))
+                  (min(index) >= 1L && max(index) <= length(object@mass))
 
   if (!isValidIndex) {
     stop("No valid ", sQuote("index"), " nor ", sQuote("mass"), " given.")
@@ -84,7 +84,7 @@ setMethod(f="labelPeaks",
            lwd=arrowLwd)
     ## no transparent background
     rect(xleft=p$xleft, ybottom=p$ybottom, xright=p$xright, ytop=p$ytop,
-         col="white", border=NA, density=-1)
+         col="white", border=NA, density=-1L)
     x <- p$x
     y <- p$y
   }

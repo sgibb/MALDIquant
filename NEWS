@@ -1,6 +1,56 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.99.12 [2013-09-02]:
+- Remove deprecated functions: calibrate, standardizeTotalIonCurrent,
+  totalIonCurrent<-, totalIonCurrent for MassPeaks, iplot (use the
+  zoom package instead which provides a similar function), ltrim, rtrim.
+
+Version 1.99.11 [2013-09-02]:
+- Remove hidden imputeMass.
+
+Version 1.99.10 [2013-09-02]:
+- Remove .replaceNonEmptyMassObjects.
+
+Version 1.99.9 [2013-08-29]:
+- Use integer values where possible.
+
+Version 1.99.8 [2013-08-29]:
+- Add import("methods") to NAMESPACE (fixes #36).
+
+Version 1.99.7 [2013-08-29]:
+- determineWarpingFunctions: add method argument; remove warpingFunctions
+  argument.
+
+Version 1.99.7 [2013-08-29]:
+- determineWarpingFunctions: add example with user defined reference/calibration
+  peaks to the manual page.
+
+Version 1.99.6 [2013-08-29]:
+- Add case insensitive .match.arg.
+
+Version 1.99.5 [2013-08-29]:
+- Add C implementation of colMedians.
+
+Version 1.99.4 [2013-08-29]:
+- Merge current master into 2.0
+
+Version 1.99.3 [2013-05-12]:
+- Change: slots mass, intensity and snr in MassSpectrum and MassPeaks are now
+  "numeric" (instead of "vector")
+
+Version 1.99.2 [2013-04-07]:
+- Rewrite C code to support LongVectors; closes #13;
+  now R>=3.0.0 is needed.
+
+Version 1.99.1 [2013-04-07] (revert):
+- Change: TopHat is new default baseline correction algorithm; closes #18.
+  affected funtions: estimateBaseline, removeBaseline.
+
+Version 1.7.11 [2013-08-29]:
+- Remove mergeMassSpectra, superseded by averageMassSpectra
+- mergeMassPeaks: add method argument; remove "fun" argument;
+
 Version 1.7.10 [2013-08-22]:
 - trim: replace minMass and maxMass arguments by new range argument.
 - deprecated: ltrim/rtrim.
