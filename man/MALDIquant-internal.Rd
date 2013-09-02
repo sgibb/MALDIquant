@@ -20,12 +20,8 @@
 \alias{.findLocalMaximaLogical}
 \alias{.grouperRelaxedHighestAtReference}
 \alias{.grouperStrict}
-\alias{.iplot}
-\alias{.iplotSingle}
-\alias{.iplotUsage}
 \alias{.irregularScore}
 \alias{.isFunctionList}
-\alias{.lim}
 \alias{.labelOverlap}
 \alias{.localMaxima}
 \alias{.lowerConvexHullR}
@@ -33,9 +29,6 @@
 \alias{.memoryUsageStr}
 \alias{.mergeMassPeaks}
 \alias{.mergeMetaData}
-\alias{.moveLim}
-\alias{.moveXlim}
-\alias{.openInteractiveDevice}
 \alias{.prepareShow}
 \alias{.prepareShowGroupName}
 \alias{.savitzkyGolayCoefficients}
@@ -53,11 +46,6 @@
 \alias{.warpingFunctionCubic}
 \alias{.warpingFunctionLowess}
 \alias{.which.closest}
-\alias{.xlim}
-\alias{.ylim}
-\alias{.zoomLim}
-\alias{.zoomXlim}
-\alias{.zoomYlim}
 
 \title{Internal MALDIquant Functions}
 \description{
