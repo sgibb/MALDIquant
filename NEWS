@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.99.11 [2013-09-02]:
+- Remove hidden imputeMass.
+
 Version 1.99.10 [2013-09-02]:
 - Remove .replaceNonEmptyMassObjects.
 
