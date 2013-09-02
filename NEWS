@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.99.10 [2013-09-02]:
+- Remove .replaceNonEmptyMassObjects.
+
 Version 1.99.9 [2013-08-29]:
 - Use integer values where possible.
 

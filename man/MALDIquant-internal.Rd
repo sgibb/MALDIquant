@@ -38,7 +38,6 @@
 \alias{.openInteractiveDevice}
 \alias{.prepareShow}
 \alias{.prepareShowGroupName}
-\alias{.replaceNonEmptyMassObjects}
 \alias{.savitzkyGolayCoefficients}
 \alias{.snipR}
 \alias{.stopIfNotIsMassObjectList}
