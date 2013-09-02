@@ -24,6 +24,11 @@ Class \code{\linkS4class{AbstractMassObject}}, directly.
 }
 \section{Methods}{
 \describe{
+  \item{calibrateIntensity}{\code{signature(x = "MassSpectrum")}:
+    Calibrates the intensity of a
+    \code{\linkS4class{MassSpectrum}} object.
+    See \code{\link[MALDIquant]{calibrateIntensity,MassSpectrum-method}} for
+    details.}
   \item{detectPeaks}{\code{signature(x = "MassSpectrum")}:
     Look for local maxima and estimate noise to extract peaks out of a
     \code{\linkS4class{MassSpectrum}} object.
@@ -61,6 +66,7 @@ Sebastian Gibb
 }
 \seealso{
 \code{\link[MALDIquant]{createMassSpectrum}},
+\code{\link[MALDIquant]{calibrateIntensity,MassSpectrum-method}},
 \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}},
 \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}},
 \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}},
