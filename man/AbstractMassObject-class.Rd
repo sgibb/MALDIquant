@@ -86,12 +86,12 @@ It shouldn't create or handle by the user because it is for internal use only.
     See \code{\link{points}} for details.}
   \item{trim}{\code{signature(object = "AbstractMassObject",
       range = "numeric")}: Trim an \code{AbstractMassObject}
-    object. See \code{\link{trim,AbstractMassObject,numeric-method}}
+    object. See \code{\link[MALDIquant]{trim,AbstractMassObject,numeric-method}}
     for details.}
   \item{transformIntensity}{\code{signature(object = "AbstractMassObject")}:
     Transforms the intensities of an \code{AbstractMassObject} object.
-    See \code{\link{transformIntensity,AbstractMassObject-method}} for
-    details.}
+    See \code{\link[MALDIquant]{transformIntensity,AbstractMassObject-method}}
+    for details.}
 }
 }
 \references{

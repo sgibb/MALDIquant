@@ -1,9 +1,12 @@
-\name{movingAverage}
-\alias{movingAverage}
+\name{.movingAverage}
+\alias{.movingAverage}
 \title{Moving Average Smoothing Filter}
-\description{This function runs a simple 2-side moving average.}
+\description{This function runs a simple 2-side moving average.\cr
+It is hidden by \code{NAMESPACE} because it is a private function and
+\code{\link[MALDIquant]{smoothIntensity,MassSpectrum-method}} should be used
+instead.}
 \usage{
-  movingAverage(y, halfWindowSize=2)
+  .movingAverage(y, halfWindowSize=2)
 }
 \arguments{
   \item{y}{intensity values}
@@ -21,23 +24,20 @@
 ## load package
 library("MALDIquant")
 
-## 5 point moving average
-movingAverage(rep(1:5, times=2), halfWindowSize=2)
-# 3 3 3  3  3  3  3  3 3 3
-
 ## 9 point moving average
-movingAverage(rep(1:5, times=2), halfWindowSize=4)
+MALDIquant:::.movingAverage(rep(1:5, times=2), halfWindowSize=4)
 # 2.778 2.778 2.778 2.778 2.778 3.222 3.222 3.222 3.222 3.222
 
 ## load example data
 data("fiedler2009subset", package="MALDIquant")
 
 ## smooth spectra
-s <- transformIntensity(fiedler2009subset, movingAverage, halfWindowSize=2)
+s <- smoothIntensity(fiedler2009subset, method="MovingAverage",
+                     halfWindowSize=2)
 }
 \seealso{
-  \code{\link{savitzkyGolay}},
-  \code{\linkS4class{MassSpectrum}},
-  \code{\link[MALDIquant]{transformIntensity,AbstractMassObject-method}}
+  \code{\link[MALDIquant]{smoothIntensity,MassSpectrum-method}},
+  \code{\link[MALDIquant]{.savitzkyGolay}},
+  \code{\linkS4class{MassSpectrum}}
 }
 

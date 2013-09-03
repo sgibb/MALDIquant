@@ -44,7 +44,7 @@ data("fiedler2009subset", package="MALDIquant")
 s <- fiedler2009subset[[1]]
 
 ## transform intensities
-s <- transformIntensity(s, sqrt)
+s <- transformIntensity(s, method="Sqrt")
 
 ## remove baseline
 s <- removeBaseline(s)

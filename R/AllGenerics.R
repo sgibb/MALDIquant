@@ -37,8 +37,13 @@ if (is.null(getGeneric(".prepareShow"))) {
 }
 if (is.null(getGeneric("transformIntensity"))) {
   setGeneric("transformIntensity",
-             function(object, fun, na.rm=TRUE, ...)
+             function(object, ...)
                standardGeneric("transformIntensity"))
+}
+if (is.null(getGeneric(".transformIntensity"))) {
+  setGeneric(".transformIntensity",
+             function(object, ...)
+               standardGeneric(".transformIntensity"))
 }
 if (is.null(getGeneric("trim"))) {
   setGeneric("trim",
@@ -100,17 +105,13 @@ if (is.null(getGeneric("estimateNoise"))) {
 }
 if (is.null(getGeneric(".findLocalMaxima"))) {
   setGeneric(".findLocalMaxima",
-             function(object, halfWindowSize=20)
+             function(object, halfWindowSize=20L)
                standardGeneric(".findLocalMaxima"))
 }
 if (is.null(getGeneric(".findLocalMaximaLogical"))) {
   setGeneric(".findLocalMaximaLogical",
-             function(object, halfWindowSize=20)
+             function(object, halfWindowSize=20L)
                standardGeneric(".findLocalMaximaLogical"))
-}
-if (is.null(getGeneric("imputeMass"))) {
-  setGeneric("imputeMass",
-             function(object, verbose=FALSE) standardGeneric("imputeMass"))
 }
 if (is.null(getGeneric("isRegular"))) {
   setGeneric("isRegular",
@@ -119,6 +120,11 @@ if (is.null(getGeneric("isRegular"))) {
 if (is.null(getGeneric("removeBaseline"))) {
   setGeneric("removeBaseline",
              function(object, ...) standardGeneric("removeBaseline"))
+}
+if (is.null(getGeneric("smoothIntensity"))) {
+  setGeneric("smoothIntensity",
+             function(object, ...)
+               standardGeneric("smoothIntensity"))
 }
 if (is.null(getGeneric("totalIonCurrent"))) {
   setGeneric("totalIonCurrent",
@@ -129,10 +135,10 @@ if (is.null(getGeneric("totalIonCurrent"))) {
 ## MassPeaks
 if (is.null(getGeneric("labelPeaks"))) {
   setGeneric("labelPeaks",
-             function(object, index, mass, labels, digits=3, underline=TRUE,
+             function(object, index, mass, labels, digits=3L, underline=TRUE,
                       verticalOffset=abs(diff(par("usr")[3:4]))*0.0125,
-                      absoluteVerticalPos, adj=c(0.5, 0), cex=0.7,
-                      avoidOverlap=FALSE, arrowLength=0, arrowLwd=0.5,
+                      absoluteVerticalPos, adj=c(0.5, 0L), cex=0.7,
+                      avoidOverlap=FALSE, arrowLength=0L, arrowLwd=0.5,
                       arrowCol=1, ...) standardGeneric("labelPeaks"))
 }
 if (is.null(getGeneric("snr"))) {

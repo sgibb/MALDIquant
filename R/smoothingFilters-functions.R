@@ -17,7 +17,7 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 
-## movingAverage
+## .movingAverage
 ##  runs a simple 2-side moving average.
 ##
 ## params:
@@ -27,14 +27,14 @@
 ## returns:
 ##  double
 ##
-movingAverage <- function(y, halfWindowSize=2L) {
+.movingAverage <- function(y, halfWindowSize=2L) {
   .stopIfNotIsValidHalfWindowSize(halfWindowSize, n=length(y))
   windowSize <- 2L*halfWindowSize+1L
   return(.filter(y, hws=halfWindowSize,
                  coef=matrix(1L/windowSize, nrow=windowSize, ncol=windowSize)))
 }
 
-## savitzkyGolay
+## .savitzkyGolay
 ##  runs a savitzky golay filter
 ##
 ## Savitzky, A., & Golay, M. J. (1964). Smoothing and differentiation of data
@@ -48,7 +48,7 @@ movingAverage <- function(y, halfWindowSize=2L) {
 ## returns:
 ##  double
 ##
-savitzkyGolay <- function(y, halfWindowSize=10L, polynomialOrder=3L) {
+.savitzkyGolay <- function(y, halfWindowSize=10L, polynomialOrder=3L) {
   .stopIfNotIsValidHalfWindowSize(halfWindowSize, n=length(y))
 
   windowSize <- 2L*halfWindowSize+1L

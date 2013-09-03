@@ -19,9 +19,43 @@
 ## AbstractMassObject
 setMethod(f="transformIntensity",
           signature=signature(object="AbstractMassObject"),
+          definition=function(object,
+                              method=c("Sqrt", "Log", "Log2", "Log10")) {
+
+  ## empty spectrum?
+  if (.isEmptyWarning(object)) {
+    return(object)
+  }
+
+  method <- .match.arg(method)
+
+  fun <- switch(method,
+         "Sqrt" = {
+           sqrt
+         },
+         "Log" = {
+           log
+         },
+         "Log2" = {
+           log2
+         },
+         "Log10" = {
+           log10
+         },
+         {
+           stop("Unknown ", sQuote("method"), ".")
+         }
+  )
+
+  return(.transformIntensity(object, fun=fun))
+})
+
+## AbstractMassObject
+setMethod(f=".transformIntensity",
+          signature=signature(object="AbstractMassObject"),
           definition=function(object, fun, na.rm=TRUE, ...) {
 
-  if (!.isEmptyWarning(object)) {
+  if (!isEmpty(object)) {
     fun <- match.fun(fun)
 
     object@intensity <- fun(object@intensity, ...)
@@ -39,11 +73,23 @@ setMethod(f="transformIntensity",
 ## list
 setMethod(f="transformIntensity",
           signature=signature(object="list"),
-          definition=function(object, fun, na.rm=TRUE, ...) {
+          definition=function(object, ...) {
+
 
   ## test arguments
   .stopIfNotIsMassObjectList(object)
 
-  return(lapply(object, transformIntensity, fun=fun, na.rm=na.rm, ...))
+  return(lapply(object, transformIntensity, ...))
+})
+
+## list
+setMethod(f=".transformIntensity",
+          signature=signature(object="list"),
+          definition=function(object, ...) {
+
+  ## test arguments
+  .stopIfNotIsMassObjectList(object)
+
+  return(lapply(object, .transformIntensity, ...))
 })
 

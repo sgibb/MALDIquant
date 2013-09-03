@@ -1,6 +1,13 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.99.13 [2013-09-03]:
+- Add smoothIntensity.
+- Rename savitzkyGolay and movingAverage to .savitzkyGolay and .movingAverage.
+- Hide .savitzkyGolay and .movingAverage by NAMESPACE.
+- transformIntensity: replace fun argument by method argument.
+- Add hidden .transformIntensity (old transformIntensity).
+
 Version 1.99.12 [2013-09-02]:
 - Remove deprecated functions: calibrate, standardizeTotalIonCurrent,
   totalIonCurrent<-, totalIonCurrent for MassPeaks, iplot (use the

@@ -73,8 +73,8 @@
     ## 4. median
     m <- median(q, na.rm=TRUE)
     ## 5. divide by median
-    x <- transformIntensity(x, fun=.calibrateIntensitySimple,
-                            offset=0L, scaling=m)
+    x <- .transformIntensity(x, fun=.calibrateIntensitySimple,
+                             offset=0L, scaling=m)
     return(x)
   }))
 }

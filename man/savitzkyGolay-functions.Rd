@@ -1,9 +1,12 @@
-\name{savitzkyGolay}
-\alias{savitzkyGolay}
+\name{.savitzkyGolay}
+\alias{.savitzkyGolay}
 \title{Savitzky-Golay Smoothing Filter}
-\description{This function applies a Savitzky-Golay filter.}
+\description{This function applies a Savitzky-Golay filter.\cr
+It is hidden by \code{NAMESPACE} because it is a private function and
+\code{\link[MALDIquant]{smoothIntensity,MassSpectrum-method}} should be used
+instead.}
 \usage{
-  savitzkyGolay(y, halfWindowSize=10, polynomialOrder=3)
+  .savitzkyGolay(y, halfWindowSize=10, polynomialOrder=3)
 }
 \arguments{
   \item{y}{intensity values}
@@ -36,18 +39,19 @@ Analytical Chemistry, 53(11), 1583-1586.
 library("MALDIquant")
 
 ## 5 point savitzky-golay filter
-savitzkyGolay(rep(1:5, times=2), halfWindowSize=2)
+MALDIquant:::.savitzkyGolay(rep(1:5, times=2), halfWindowSize=2)
 # 1 2 3 4.43 3.71 2.29 1.57 3 4 5
 
 ## load example data
 data("fiedler2009subset", package="MALDIquant")
 
 ## smooth spectra
-s <- transformIntensity(fiedler2009subset, savitzkyGolay, halfWindowSize=12)
+s <- smoothIntensity(fiedler2009subset, method="SavitzkyGolay",
+                     halfWindowSize=12)
 }
 \seealso{
-  \code{\link{movingAverage}},
-  \code{\linkS4class{MassSpectrum}},
-  \code{\link[MALDIquant]{transformIntensity,AbstractMassObject-method}}
+  \code{\link[MALDIquant]{smoothIntensity,MassSpectrum-method}},
+  \code{\link[MALDIquant]{.movingAverage}},
+  \code{\linkS4class{MassSpectrum}}
 }
 

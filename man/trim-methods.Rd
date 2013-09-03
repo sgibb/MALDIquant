@@ -6,7 +6,7 @@
 \alias{trim,list,missing-method}
 \title{Trim an AbstractMassObject object.}
 \description{
-These methods trim an \code{\linkS4class{AbstractMassObject}} object.
+These method trims an \code{\linkS4class{AbstractMassObject}} object.
 This is useful if some mass ranges should be excluded from further analysis.
 }
 \usage{

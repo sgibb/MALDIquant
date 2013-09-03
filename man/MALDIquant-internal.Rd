@@ -40,6 +40,7 @@
 \alias{.testLabelOverlap}
 \alias{.textLabelRects}
 \alias{.topHatR}
+\alias{.transformIntensity}
 \alias{.validAbstractMassObject}
 \alias{.validMassPeaks}
 \alias{.warp}

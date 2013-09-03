@@ -54,6 +54,10 @@ Class \code{\linkS4class{AbstractMassObject}}, directly.
     \code{\linkS4class{MassSpectrum}} object.
     See \code{\link[MALDIquant]{removeBaseline,MassSpectrum-method}} for
     details.}
+  \item{smoothIntensity}{\code{signature(object = "MassSpectrum")}:
+    Smoothes the intensities of an \code{MassSpectrum} object.
+    See \code{\link[MALDIquant]{smoothIntensity,MassSpectrum-method}} for
+    details.}
   \item{totalIonCurrent}{\code{signature(object = "MassSpectrum")}:
     Accessor function for Total Ion Current (TIC, area under the curve).}
 }
@@ -71,6 +75,7 @@ Sebastian Gibb
 \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}},
 \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}},
 \code{\link[MALDIquant]{removeBaseline,MassSpectrum-method}},
+\code{\link[MALDIquant]{smoothIntensity,MassSpectrum-method}},
 \code{\linkS4class{AbstractMassObject}}
 }
 \examples{

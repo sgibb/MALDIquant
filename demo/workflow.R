@@ -36,14 +36,14 @@ any(length(fiedler2009subset[[1]]) != sapply(fiedler2009subset, length))
 
 ## preprocessing
 ## sqrt transform (for variance stabilization)
-spectra <- transformIntensity(fiedler2009subset, sqrt)
+spectra <- transformIntensity(fiedler2009subset, method="Sqrt")
 
 
 ## 21 point Savitzky-Golay-Filter for smoothing spectra
 ## (maybe you have to adjust the halfWindowSize;
 ## you could use a simple moving average instead)
-## see ?savitzkyGolay, ?movingAverage
-spectra <- transformIntensity(spectra, savitzkyGolay, halfWindowSize=10)
+## see ?smoothIntensity, ?.savitzkyGolay, ?.movingAverage
+spectra <- smoothIntensity(spectra, method="SavitzkyGolay", halfWindowSize=10)
 
 
 ## remove baseline
