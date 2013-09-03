@@ -19,29 +19,17 @@
 ## MassSpectrum
 setMethod(f="removeBaseline",
           signature=signature(object="MassSpectrum"),
-          definition=function(object, fun, ...) {
+          definition=function(object,
+                              method=c("SNIP", "TopHat", "ConvexHull",
+                                       "Median"), ...) {
 
   ## empty spectrum?
   if (.isEmptyWarning(object)) {
     return(object)
   }
 
-  ## try to use user-defined baseline estimation function
-  if (!missing(fun)) {
-    fun <- match.fun(fun)
-    baseline <- fun(object@mass, object@intensity, ...)
-  } else {
-    baseline <- estimateBaseline(object=object, ...)
-  }
-
-  ## wrong baseline argument given?
-  isBaselineMatrix <- is.matrix(baseline) &&
-                      nrow(baseline) == length(object) &&
-                      ncol(baseline) == 2L
-
-  if (!isBaselineMatrix) {
-    stop("The baseline is not a valid matrix!")
-  }
+  ## estimate baseline
+  baseline <- estimateBaseline(object=object, method=method, ...)
 
   ## substract baseline
   object@intensity <- object@intensity - baseline[, 2L]

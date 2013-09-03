@@ -5,17 +5,6 @@ s <- createMassSpectrum(mass=1:20, intensity=rep(10:1, 2))
 test_that("removeBaseline throws errors", {
   expect_error(removeBaseline(s, method="foobar"),
                ".*arg.* should be one of .*SNIP.*, .*ConvexHull.*, .*Median.*")
-
-  wrongBaseline <- function(x, y, ...) { return(0) }
-  expect_error(removeBaseline(s, fun=wrongBaseline),
-               "The baseline is not a valid matrix!")
-
-  wrongBaseline <- function(x, y, ...) {
-    return(do.call(cbind, list(x, rep(1, length(x)), rep(2, length(x)))))
-  }
-  expect_error(removeBaseline(s, fun=wrongBaseline),
-               "The baseline is not a valid matrix!")
-
 })
 
 test_that("removeBaseline shows warnings", {

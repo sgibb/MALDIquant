@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.99.14 [2013-09-03]:
+- removeBaseline/detectPeaks: replace fun by method argument.
+
 Version 1.99.13 [2013-09-03]:
 - Add smoothIntensity.
 - Rename savitzkyGolay and movingAverage to .savitzkyGolay and .movingAverage.

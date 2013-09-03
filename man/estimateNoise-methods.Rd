@@ -9,14 +9,14 @@ This method estimates the noise of mass spectrometry data
 }
 \usage{
 \S4method{estimateNoise}{MassSpectrum}(object,
-    method=c("MAD", "SuperSmoother"),
-    \dots)
+  method=c("MAD", "SuperSmoother"),
+  \dots)
 }
 \arguments{
   \item{object}{\code{\linkS4class{MassSpectrum}} object}
   \item{method}{a noise estimation function; see
     \code{\link[MALDIquant]{.estimateNoiseMad}},
-    \code{\link[MALDIquant]{.estimateNoiseSuperSmoother}}
+    \code{\link[MALDIquant]{.estimateNoiseSuperSmoother}}.
   }
   \item{\dots}{arguments to be passed to \code{method}.}
 }
