@@ -10,7 +10,7 @@ p2 <- c(createMassPeaks(mass=c(1.009, 1.01, 3), intensity=c(2, 1, 1), snr=1:3),
 test_that("binPeaks throws errors", {
   expect_error(binPeaks(list()), "no list of MALDIquant::MassPeaks")
   expect_error(binPeaks(p, method="foobar"),
-               ".*arg.* should be one of .*strict.*, .*relaxed.*")
+               ".*arg.* should be one of .*Strict.*, .*Relaxed.*")
 
 })
 
