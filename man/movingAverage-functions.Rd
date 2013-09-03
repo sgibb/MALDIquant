@@ -40,4 +40,5 @@ s <- smoothIntensity(fiedler2009subset, method="MovingAverage",
   \code{\link[MALDIquant]{.savitzkyGolay}},
   \code{\linkS4class{MassSpectrum}}
 }
+\keyword{internal}
 
