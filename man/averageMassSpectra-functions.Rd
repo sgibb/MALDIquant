@@ -19,6 +19,11 @@ averageMassSpectra(l, labels, method=c("Mean", "Median", "Sum"))
   }
   \item{method}{used aggregation function.}
 }
+\details{
+The mass of the averaged \code{\linkS4class{MassSpectrum}} object
+will be the mass of the first non-empty
+\code{\linkS4class{MassSpectrum}} object (of each group).
+}
 \value{
 Returns a single (no \code{labels} given) or a \code{\link{list}}
 (\code{labels} given) of averaged \code{\linkS4class{MassSpectrum}} objects.
