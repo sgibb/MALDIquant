@@ -30,7 +30,7 @@
 ## returns:
 ##  a new MassPeaks object
 ##
-referencePeaks <- function(l, method=c("Strict", "Relaxed"), minFrequency=0.9,
+referencePeaks <- function(l, method=c("strict", "relaxed"), minFrequency=0.9,
                            tolerance=0.002) {
 
   .stopIfNotIsMassPeaksList(l)

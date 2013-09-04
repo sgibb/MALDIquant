@@ -1,10 +1,6 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
-Version 1.99.15 [2013-09-03]:
-- binPeaks: change method=c("strict", "relaxed") to
-  method=c("Strict", "Relaxed").
-
 Version 1.99.14 [2013-09-03]:
 - removeBaseline/detectPeaks: replace fun by method argument.
 

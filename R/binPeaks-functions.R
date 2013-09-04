@@ -31,7 +31,7 @@
 ## returns:
 ##  a list of adjusted MassPeaks objects
 ##
-binPeaks <- function(l, method=c("Strict", "Relaxed"), tolerance=0.002) {
+binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
 
   ## test arguments
   .stopIfNotIsMassPeaksList(l)
@@ -62,10 +62,10 @@ binPeaks <- function(l, method=c("Strict", "Relaxed"), tolerance=0.002) {
 
   ## select grouper
   grouper <- switch(method,
-            "Strict"  = {
+            "strict"  = {
               .grouperStrict
             },
-            "Relaxed" = {
+            "relaxed" = {
               .grouperRelaxed
             },
             {
@@ -78,7 +78,7 @@ binPeaks <- function(l, method=c("Strict", "Relaxed"), tolerance=0.002) {
                     tolerance=tolerance, grouper=grouper)
 
   ## resort mass (order could change if "relaxed" is used)
-  if (method == "Relaxed") {
+  if (method == "relaxed") {
     s <- sort(mass, method="quick", index.return=TRUE)
     mass <- s$x
     intensities <- intensities[s$ix]

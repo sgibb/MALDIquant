@@ -11,7 +11,7 @@ Generally it is a combination of \code{\link[MALDIquant]{binPeaks}} and
 \code{\link[MALDIquant]{filterPeaks}}
 }
 \usage{
-referencePeaks(l, method=c("Strict", "Relaxed"), minFrequency=0.9,
+referencePeaks(l, method=c("strict", "relaxed"), minFrequency=0.9,
                tolerance=0.002)
 }
 \arguments{
