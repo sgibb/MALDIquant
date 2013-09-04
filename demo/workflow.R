@@ -36,7 +36,7 @@ any(length(fiedler2009subset[[1]]) != sapply(fiedler2009subset, length))
 
 ## preprocessing
 ## sqrt transform (for variance stabilization)
-spectra <- transformIntensity(fiedler2009subset, method="Sqrt")
+spectra <- transformIntensity(fiedler2009subset, method="sqrt")
 
 
 ## 21 point Savitzky-Golay-Filter for smoothing spectra
@@ -97,7 +97,7 @@ samples <- factor(rep(1:nBiologicalSamples, each=nTechRep),
 peaks <- filterPeaks(peaks, labels=samples, minFrequency=1)
 
 ## 3. merge technical replicates
-peaks <- mergeMassPeaks(peaks, labels=samples, method="Mean")
+peaks <- mergeMassPeaks(peaks, labels=samples, method="mean")
 
 
 

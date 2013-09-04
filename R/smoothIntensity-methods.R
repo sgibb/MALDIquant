@@ -27,7 +27,7 @@ setMethod(f="smoothIntensity",
     return(object)
   }
 
-  method <- .match.arg(method)
+  method <- match.arg(method)
 
   switch(method,
          "SavitzkyGolay" = {

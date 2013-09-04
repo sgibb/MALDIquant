@@ -29,9 +29,9 @@ test_that("mergeMassPeaks", {
                                      labels=rep(1:2, times=2), ignore.na=FALSE)),
                list(meanPNA, meanPNA))
   expect_equal(unname(mergeMassPeaks(list(p[[1]], p[[1]], p[[2]], p[[2]]),
-                                     labels=c(1:2, 1:2), method="Sum")),
+                                     labels=c(1:2, 1:2), method="sum")),
                list(sumP, sumP))
-  expect_equal(unname(mergeMassPeaks(pNA[rep(1:2, each=2)], method="Median",
+  expect_equal(unname(mergeMassPeaks(pNA[rep(1:2, each=2)], method="median",
                       ignore.na=FALSE)),
                createMassPeaks(mass=1:3, intensity=c(2.5, 3.5, 1.5),
                                snr=c(2.5, 3.5, 1.5),

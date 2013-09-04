@@ -26,7 +26,7 @@ setMethod(f="estimateNoise",
     return(0L)
   }
 
-  method <- .match.arg(method)
+  method <- match.arg(method)
 
   n <- switch(method,
               "MAD" = {

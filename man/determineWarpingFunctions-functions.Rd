@@ -10,7 +10,7 @@ This function determines a warping function for a list of
 }
 \usage{
 determineWarpingFunctions(l, reference, tolerance=0.002,
-                          method=c("LOWESS", "Linear", "Quadratic", "Cubic"),
+                          method=c("lowess", "linear", "quadratic", "cubic"),
                           plot=FALSE, plotInteractive=FALSE, \dots,
                           warpingFunction
                           )
@@ -92,7 +92,7 @@ par(mfrow=c(2, 1))
 ## calculate warping function
 ## (using a linear function as basic warping function)
 ## and show warping plot
-w <- determineWarpingFunctions(p, tolerance=0.02, method="Linear",
+w <- determineWarpingFunctions(p, tolerance=0.02, method="linear",
                                plot=TRUE, plotInteractive=TRUE)
 par(mfrow=c(1, 1))
 
@@ -116,7 +116,7 @@ data("fiedler2009subset", package="MALDIquant")
 spectra <- fiedler2009subset[1:4]
 
 ## transform intensities
-spectra <- transformIntensity(spectra, method="Sqrt")
+spectra <- transformIntensity(spectra, method="sqrt")
 
 ## smooth spectra
 spectra <- smoothIntensity(spectra, method="MovingAverage")
@@ -147,7 +147,7 @@ refPeaks <- createMassPeaks(mass=c(1207, 1264, 1351, 1466, 1616, 2769, 2932,
 ## create an interactive device with 2 rows
 par(mfrow=c(4, 1))
 ## calculate warping functions (using a quadratic function as basic function)
-w <- determineWarpingFunctions(peaks, reference=refPeaks, method="Quadratic",
+w <- determineWarpingFunctions(peaks, reference=refPeaks, method="quadratic",
                                plot=TRUE, plotInteractive=TRUE)
 par(mfrow=c(1, 1))
 

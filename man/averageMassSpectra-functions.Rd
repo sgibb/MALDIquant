@@ -7,7 +7,7 @@ Averages \code{\linkS4class{MassSpectrum}} objects.
 This function averages \code{\linkS4class{MassSpectrum}} objects.
 }
 \usage{
-averageMassSpectra(l, labels, method=c("Mean", "Median", "Sum"))
+averageMassSpectra(l, labels, method=c("mean", "median", "sum"))
 }
 \arguments{
   \item{l}{
@@ -51,13 +51,13 @@ s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
 ## average all four MassSpectrum objects into a single new one
 ## by sum their intensities
 ## (no labels, returns only one new MassSpectrum object)
-summedSpectra <- averageMassSpectra(s, method="Sum")
+summedSpectra <- averageMassSpectra(s, method="sum")
 
 ## only average MassSpectrum objects in a group
 ## (e.g. useful for technical replicates)
 ## (two different labels, returns a list of two new MassPeaks objects)
 groups <- factor(c("a", "a", "b", "b"), levels=c("a", "b"))
-averagedSpectra <- averageMassSpectra(s, labels=groups, method="Mean")
+averagedSpectra <- averageMassSpectra(s, labels=groups, method="mean")
 }
 \keyword{methods}
 

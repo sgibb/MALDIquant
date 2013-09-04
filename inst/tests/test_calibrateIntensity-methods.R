@@ -6,7 +6,7 @@ s <- list(createMassSpectrum(mass=1:5, intensity=1:5),
 
 test_that("calibrateIntensity,MassSpectrum throws errors", {
   expect_error(calibrateIntensity(s[[1]], method="foobar"),
-               ".*arg.* should be one of .*TIC.*, .*Median.*, .*PQN.*")
+               ".*arg.* should be one of .*TIC.*, .*PQN.*, .*median.*")
   expect_error(calibrateIntensity(s[[1]], method="PQN"),
                ".*PQN.* is not supported for a single MassSpectrum object")
 })
@@ -15,7 +15,7 @@ test_that("calibrateIntensity,list throws errors", {
   expect_error(calibrateIntensity(list(1:10), method="TIC"),
                "no list of MALDIquant::MassSpectrum objects")
   expect_error(calibrateIntensity(s, method="foobar"),
-               ".*arg.* should be one of .*TIC.*, .*Median.*, .*PQN.*")
+               ".*arg.* should be one of .*TIC.*, .*PQN.*, .*median.*")
 })
 
 test_that("calibrateIntensity works with TIC", {
@@ -25,10 +25,10 @@ test_that("calibrateIntensity works with TIC", {
   expect_equal(unlist(lapply(sTIC, totalIonCurrent)), rep(1, 3))
 })
 
-test_that("calibrateIntensity works with Median", {
-  sMed <- calibrateIntensity(s[[1]], method="Median")
+test_that("calibrateIntensity works with median", {
+  sMed <- calibrateIntensity(s[[1]], method="median")
   expect_equal(intensity(sMed), intensity(s[[1]])/median(intensity(s[[1]])))
-  sMed <- calibrateIntensity(s, method="Median")
+  sMed <- calibrateIntensity(s, method="median")
   expect_equal(lapply(sMed, intensity),
                lapply(s, function(x)intensity(x)/median(intensity(x))))
 })

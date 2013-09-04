@@ -20,22 +20,22 @@
 setMethod(f="calibrateIntensity",
           signature=signature(object="MassSpectrum"),
           definition=function(object,
-                              method=c("TIC", "Median", "PQN"), ...) {
+                              method=c("TIC", "PQN", "median"), ...) {
 
-  method <- .match.arg(method)
+  method <- match.arg(method)
 
   object <- switch(method,
     "TIC" = {
       .transformIntensity(object, fun=.calibrateIntensitySimple,
                           offset=0L, scaling=totalIonCurrent(object))
     },
-    "Median" = {
-      .transformIntensity(object, fun=.calibrateIntensitySimple,
-                          offset=0L, scaling=median)
-    },
     "PQN" = {
       stop(dQuote("PQN"),
            " is not supported for a single MassSpectrum object.")
+    },
+    "median" = {
+      .transformIntensity(object, fun=.calibrateIntensitySimple,
+                          offset=0L, scaling=median)
     },
     {
       stop("Unknown ", sQuote("method"), ".")
@@ -49,16 +49,16 @@ setMethod(f="calibrateIntensity",
 setMethod(f="calibrateIntensity",
           signature=signature(object="list"),
           definition=function(object,
-                              method=c("TIC", "Median", "PQN"), ...) {
+                              method=c("TIC", "PQN", "median"), ...) {
 
   ## test arguments
   .stopIfNotIsMassSpectrumList(object)
 
-  method <- .match.arg(method)
+  method <- match.arg(method)
 
   object <- switch(method,
     "TIC" = ,
-    "Median" = {
+    "median" = {
       lapply(object, calibrateIntensity, method=method, ...)
     },
     "PQN" = {

@@ -15,13 +15,13 @@ test_that("determineWarpingFunctions throws errors", {
 })
 
 test_that("determineWarpingFunctions works with single MassPeaks object", {
-  w <- determineWarpingFunctions(p, reference=r, method="Linear")
+  w <- determineWarpingFunctions(p, reference=r, method="linear")
   wp <- warpMassPeaks(list(p), w)[[1]]
   expect_equal(r, wp)
 })
 
 test_that("determineWarpingFunctions works with list of MassPeaks objects", {
-  w <- determineWarpingFunctions(list(p, p), reference=r, method="Linear")
+  w <- determineWarpingFunctions(list(p, p), reference=r, method="linear")
   wp <- warpMassPeaks(list(p, p), w)
   expect_equal(list(r, r), wp)
 })

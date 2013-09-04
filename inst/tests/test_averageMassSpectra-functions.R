@@ -18,7 +18,7 @@ test_that("averageMassSpectra", {
                                          labels=c(1:2, 1:2))),
                list(meanS, meanS))
   expect_equal(unname(averageMassSpectra(list(s[[1]], s[[1]], s[[2]], s[[2]]),
-                                         labels=c(1:2, 1:2), method="Sum")),
+                                         labels=c(1:2, 1:2), method="sum")),
                list(sumS, sumS))
 })
 

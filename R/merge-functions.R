@@ -27,7 +27,7 @@
 ## returns:
 ##  a new MassPeaks object or a list of new MassPeaks objects
 ##
-mergeMassPeaks  <- function(l, labels, method=c("Mean", "Median", "Sum"),
+mergeMassPeaks  <- function(l, labels, method=c("mean", "median", "sum"),
                             ignore.na=TRUE,
                             fun, ... ## deprecated
                             ) {
@@ -41,16 +41,16 @@ mergeMassPeaks  <- function(l, labels, method=c("Mean", "Median", "Sum"),
                        fun=fun, ...))
   }
 
-  method <- .match.arg(method)
+  method <- match.arg(method)
 
   fun <- switch(method,
-              "Mean" = {
+              "mean" = {
                 colMeans
               },
-              "Median" = {
+              "median" = {
                 .colMedians
               },
-              "Sum" = {
+              "sum" = {
                 colSums
               },
               {

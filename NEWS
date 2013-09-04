@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.7.14 [2013-09-04]:
+- Remove .match.arg and rename some methods arguments.
+
 Version 1.7.13 [2013-09-04]:
 - deprecated: isMassObject, isMassObjectList
 

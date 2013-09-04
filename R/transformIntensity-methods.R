@@ -20,7 +20,7 @@
 setMethod(f="transformIntensity",
           signature=signature(object="AbstractMassObject"),
           definition=function(object,
-                              method=c("Sqrt", "Log", "Log2", "Log10"),
+                              method=c("sqrt", "log", "log2", "log10"),
                               fun, ... ## deprecated
                               ) {
 
@@ -34,19 +34,19 @@ setMethod(f="transformIntensity",
     return(.transformIntensity(object, fun=fun, ...))
   }
 
-  method <- .match.arg(method)
+  method <- match.arg(method)
 
   fun <- switch(method,
-         "Sqrt" = {
+         "sqrt" = {
            sqrt
          },
-         "Log" = {
+         "log" = {
            log
          },
-         "Log2" = {
+         "log2" = {
            log2
          },
-         "Log10" = {
+         "log10" = {
            log10
          },
          {

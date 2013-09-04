@@ -36,7 +36,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
   ## test arguments
   .stopIfNotIsMassPeaksList(l)
 
-  method <- .match.arg(method)
+  method <- match.arg(method)
 
   ## fetch all mass
   mass <- unname(.unlist(lapply(l, function(x)x@mass)))

@@ -7,7 +7,7 @@ Merges \code{\linkS4class{MassPeaks}} objects.
 This function merges \code{\linkS4class{MassPeaks}} objects.
 }
 \usage{
-mergeMassPeaks(l, labels, method=c("Mean", "Median", "Sum"), ignore.na=TRUE,
+mergeMassPeaks(l, labels, method=c("mean", "median", "sum"), ignore.na=TRUE,
 fun, \dots)
 }
 \arguments{
@@ -52,15 +52,15 @@ p <- list(createMassPeaks(mass=1:2, intensity=1:2),
 ## merge all four MassPeaks objects into a single new one
 ## by sum their intensities
 ## (no labels, returns only one new MassPeaks object)
-mergedPeaks <- mergeMassPeaks(p, method="Sum")
+mergedPeaks <- mergeMassPeaks(p, method="sum")
 
 ## only merge MassPeaks objects in a group
 ## (two different labels, returns a list of two new MassPeaks objects)
 groups <- factor(c("a", "a", "b", "b"), levels=c("a", "b"))
-mergedPeaks <- mergeMassPeaks(p, labels=groups, method="Mean")
+mergedPeaks <- mergeMassPeaks(p, labels=groups, method="mean")
 
 ## the same, but treat NA as zero
-mergedPeaks <- mergeMassPeaks(p, labels=groups, method="Mean", ignore.na=FALSE)
+mergedPeaks <- mergeMassPeaks(p, labels=groups, method="mean", ignore.na=FALSE)
 }
 \keyword{methods}
 

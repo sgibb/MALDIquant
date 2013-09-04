@@ -11,13 +11,13 @@ This function calibrates (normalize) intensities of
 
 \usage{
 \S4method{calibrateIntensity}{MassSpectrum}(object,
-  method=c("TIC", "Median", "PQN"), \dots)
+  method=c("TIC", "PQN", "median"), \dots)
 }
 \arguments{
   \item{object}{\code{\linkS4class{MassSpectrum}} object or a \code{list} of
     \code{\linkS4class{MassSpectrum}} objects.}
   \item{method}{the calibration method to be used. This should be one of
-    \code{"TIC"}, \code{"Median"} or \code{"PQN"}.
+    \code{"TIC"}, \code{"PQN"} or \code{"median"}.
     See \sQuote{Details} section.}
   \item{\dots}{arguments to be passed to other functions (unneeded until now).}
 }
@@ -25,8 +25,6 @@ This function calibrates (normalize) intensities of
   A number of different calibration methods are provided:
   \describe{
     \item{\code{"TIC"}:}{The TIC (\emph{T}otal \emph{I}on \emph{C}urrent) of a
-      \code{\linkS4class{MassSpectrum}} object is set to one.}
-    \item{\code{"Median"}:}{The median of intensities of a
       \code{\linkS4class{MassSpectrum}} object is set to one.}
     \item{\code{"PQN"}:}{The PQN (\emph{P}robabilistic \emph{Q}uotient
       \emph{N}ormalization) is described in \emph{Dieterle et al 2006}.
@@ -40,6 +38,8 @@ This function calibrates (normalize) intensities of
         \item{Divide all intensities of each spectrum by its median of quotients.}
       }
     }
+    \item{\code{"Median"}:}{The median of intensities of a
+      \code{\linkS4class{MassSpectrum}} object is set to one.}
   }
 }
 \value{

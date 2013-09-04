@@ -17,7 +17,7 @@ spectra <- fiedler2009subset[seq(1, 16, by=4)]
 ## some preprocessing
 
 ## sqrt transform (for variance stabilization)
-spectra <- transformIntensity(spectra, method="Sqrt")
+spectra <- transformIntensity(spectra, method="sqrt")
 
 ## simple 5 point moving average for smoothing spectra
 spectra <- smoothIntensity(spectra, method="MovingAverage", halfWindowSize=2)

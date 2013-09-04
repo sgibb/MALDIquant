@@ -27,21 +27,21 @@
 ## returns:
 ##  a new MassSpectrum object or a list of new MassSpectra objects
 ##
-averageMassSpectra <- function(l, labels, method=c("Mean", "Median", "Sum")) {
+averageMassSpectra <- function(l, labels, method=c("mean", "median", "sum")) {
 
   ## test parameters
   .stopIfNotIsMassSpectrumList(l)
 
-  method <- .match.arg(method)
+  method <- match.arg(method)
 
   fun <- switch(method,
-              "Mean" = {
+              "mean" = {
                 colMeans
               },
-              "Median" = {
+              "median" = {
                 .colMedians
               },
-              "Sum" = {
+              "sum" = {
                 colSums
               },
               {

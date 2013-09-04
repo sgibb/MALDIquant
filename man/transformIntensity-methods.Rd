@@ -10,7 +10,7 @@ intensities of an \code{\linkS4class{AbstractMassObject}} object.
 }
 \usage{
 \S4method{transformIntensity}{AbstractMassObject}(object,
-  method=c("Sqrt", "Log", "Log2", "Log10"),
+  method=c("sqrt", "log", "log2", "log10"),
   fun, \dots)
 }
 \arguments{
@@ -41,7 +41,7 @@ data("fiedler2009subset", package="MALDIquant")
 s <- fiedler2009subset[[1]]
 
 ## transform spectrum
-t <- transformIntensity(s, method="Sqrt")
+t <- transformIntensity(s, method="sqrt")
 
 ## plot spectrum
 par(mfrow=c(2, 1))

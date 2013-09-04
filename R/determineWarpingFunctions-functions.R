@@ -32,8 +32,8 @@
 ##  a list of warping functions
 ##
 determineWarpingFunctions <- function(l, reference, tolerance=0.002,
-                                      method=c("LOWESS", "Linear", "Quadratic",
-                                               "Cubic"),
+                                      method=c("lowess", "linear", "quadratic",
+                                               "cubic"),
                                       plot=FALSE, plotInteractive=FALSE, ...,
                                       warpingFunction ## deprecated
                                       ) {
@@ -47,19 +47,19 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
     .deprecatedArgument("1.7.12", "warpingFunction", "method")
     warpingFunction <- match.fun(warpingFunction)
   } else {
-    method <- .match.arg(method)
+    method <- match.arg(method)
 
     warpingFunction <- switch(method,
-      "LOWESS" = {
+      "lowess" = {
         .warpingFunctionLowess
       },
-      "Linear" = {
+      "linear" = {
         .warpingFunctionLinear
       },
-      "Quadratic" = {
+      "quadratic" = {
         .warpingFunctionQuadratic
       },
-      "Cubic" = {
+      "cubic" = {
         .warpingFunctionCubic
       },
       {
