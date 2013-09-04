@@ -16,18 +16,18 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-isMassObjectList <- function(x) {
+.isMassObjectList <- function(x) {
   if (!is.list(x)) {
     return(FALSE)
   }
 
   areMassObjects <- length(x) &&
-                    all(unname(vapply(x, isMassObject, logical(1L))))
+                    all(unname(vapply(x, .isMassObject, logical(1L))))
   return(areMassObjects)
 }
 
 .stopIfNotIsMassObjectList <- function(x) {
-  if (!isMassObjectList(x)) {
+  if (!.isMassObjectList(x)) {
     parentCall <- deparse(sys.call(-1L))
     stop(parentCall, " : ", sQuote(deparse(substitute(x))),
          " is no list of MALDIquant::AbstractMassObject objects!", call.=FALSE)

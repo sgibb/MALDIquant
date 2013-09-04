@@ -1,16 +1,14 @@
-\name{isMassObject}
-\alias{isMassObject}
+\name{isMassSpectrum}
 \alias{isMassSpectrum}
 \alias{isMassPeaks}
 \title{
-Tests for AbstractMassObject objects.
+Tests for MassSpectrum or MassPeaks object.
 }
 \description{
-These functions test for an \code{\linkS4class{AbstractMassObject}} object.
+These functions test for a \code{\linkS4class{MassSpectrum}} or
+\code{\linkS4class{MassPeaks}} object.
 }
 \usage{
-isMassObject(x)
-
 isMassSpectrum(x)
 
 isMassPeaks(x)
@@ -22,7 +20,8 @@ isMassPeaks(x)
 }
 \value{
 Returns \code{\link{TRUE}} or \code{\link{FALSE}} depending on whether its
-argument is an \code{\linkS4class{AbstractMassObject}} object.
+argument is an \code{\linkS4class{MassSpectrum}} or
+\code{\linkS4class{MassPeaks}} object.
 }
 \references{
 See website: \url{http://strimmerlab.org/software/maldiquant/}
@@ -44,7 +43,6 @@ peaks <- createMassPeaks(mass=1:100, intensity=1:100,
                          metaData=list(name="example 1"))
 
 ## test
-isMassObject(peaks)     # returns TRUE
 isMassPeaks(peaks)      # returns TRUE
 isMassSpectrum(peaks)   # returns FALSE
 isMassPeaks(double())   # returns FALSE

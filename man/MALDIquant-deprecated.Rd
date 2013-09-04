@@ -25,6 +25,9 @@
 \alias{mergeMassSpectra}
 \alias{movingAverage}
 \alias{savitzkyGolay}
+% since MALDIquant 1.7.13
+\alias{isMassObject}
+\alias{isMassObjectList}
 %------ NOTE: ../R/deprecated.R must be synchronized with this!
 \title{Deprecated Functions/Methods in Package \pkg{MALDIquant}}
 \description{
@@ -64,6 +67,8 @@
     instead.}
   \item{savitzkyGolay}{use \code{\link[MALDIquant]{smoothIntensity}}
     instead.}
+  \item{isMassObject}{deprecated.}
+  \item{isMassObjectList}{deprecated.}
 }
 }
 \seealso{

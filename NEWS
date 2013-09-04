@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.7.13 [2013-09-04]:
+- deprecated: isMassObject, isMassObjectList
+
 Version 1.7.12 [2013-09-04]:
 - Reintroduce deprecated functions. Next release will be 1.8 (not 2.0).
 

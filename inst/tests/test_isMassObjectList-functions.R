@@ -3,15 +3,15 @@ context("isMassObjectList")
 s <- createMassSpectrum(mass=1:10, intensity=1:10)
 p <- createMassPeaks(mass=1:10, intensity=1:10)
 
-test_that("isMassObjectList", {
-  expect_false(isMassObjectList(double(2)))
-  expect_false(isMassObjectList(list()))
-  expect_false(isMassObjectList(s))
-  expect_false(isMassObjectList(p))
+test_that(".isMassObjectList", {
+  expect_false(MALDIquant:::.isMassObjectList(double(2)))
+  expect_false(MALDIquant:::.isMassObjectList(list()))
+  expect_false(MALDIquant:::.isMassObjectList(s))
+  expect_false(MALDIquant:::.isMassObjectList(p))
 
-  expect_true(isMassObjectList(list(s, s)))
-  expect_true(isMassObjectList(list(s, p)))
-  expect_true(isMassObjectList(list(p, p)))
+  expect_true(MALDIquant:::.isMassObjectList(list(s, s)))
+  expect_true(MALDIquant:::.isMassObjectList(list(s, p)))
+  expect_true(MALDIquant:::.isMassObjectList(list(p, p)))
 })
 
 test_that("isMassSpectrumList", {

@@ -16,7 +16,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-isMassObject <- function(x) {
+.isMassObject <- function(x) {
   return(inherits(x=x, what="AbstractMassObject"))
 }
 

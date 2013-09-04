@@ -307,3 +307,14 @@ savitzkyGolay <- function(y, halfWindowSize=10L, polynomialOrder=3L) {
   return(.savitzkyGolay(y, halfWindowSize, polynomialOrder))
 }
 
+## deprecated since MALDIquant 1.7.13
+isMassObject <- function(x) {
+  .deprecatedFunction("1.7.13")
+  return(.isMassObject(x))
+}
+
+isMassObjectList <- function(x) {
+  .deprecatedFunction("1.7.13")
+  return(.isMassObjectList(x))
+}
+

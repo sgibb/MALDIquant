@@ -23,6 +23,8 @@
 \alias{.grouperStrict}
 \alias{.irregularScore}
 \alias{.isFunctionList}
+\alias{.isMassObject}
+\alias{.isMassObjectList}
 \alias{.labelOverlap}
 \alias{.localMaxima}
 \alias{.lowerConvexHullR}
