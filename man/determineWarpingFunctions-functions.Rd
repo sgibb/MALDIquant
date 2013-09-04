@@ -11,7 +11,9 @@ This function determines a warping function for a list of
 \usage{
 determineWarpingFunctions(l, reference, tolerance=0.002,
                           method=c("LOWESS", "Linear", "Quadratic", "Cubic"),
-                          plot=FALSE, plotInteractive=FALSE, \dots)
+                          plot=FALSE, plotInteractive=FALSE, \dots,
+                          warpingFunction
+                          )
 }
 \arguments{
   \item{l}{
@@ -39,6 +41,7 @@ determineWarpingFunctions(l, reference, tolerance=0.002,
   \item{\dots}{
     arguments to be passed to \code{warpingFunction}
   }
+  \item{warpingFunction}{deprecated.}
 }
 \details{
   \code{warpingFunction}: \code{determineWarpingFunctions} estimates a warping

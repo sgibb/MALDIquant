@@ -20,11 +20,18 @@
 setMethod(f="transformIntensity",
           signature=signature(object="AbstractMassObject"),
           definition=function(object,
-                              method=c("Sqrt", "Log", "Log2", "Log10")) {
+                              method=c("Sqrt", "Log", "Log2", "Log10"),
+                              fun, ... ## deprecated
+                              ) {
 
   ## empty spectrum?
   if (.isEmptyWarning(object)) {
     return(object)
+  }
+
+  if (!missing(fun)) {
+    .deprecatedArgument("1.7.12", "fun", "method", help="transformIntensity")
+    return(.transformIntensity(object, fun=fun, ...))
   }
 
   method <- .match.arg(method)

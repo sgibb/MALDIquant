@@ -20,7 +20,9 @@
 setMethod(f="detectPeaks",
           signature=signature(object="MassSpectrum"),
           definition=function(object, halfWindowSize=20L,
-                              method=c("MAD", "SuperSmoother"), SNR=2L, ...) {
+                              method=c("MAD", "SuperSmoother"), SNR=2L,
+                              fun, ## deprecated
+                              ...) {
 
   ## empty spectrum?
   if (.isEmptyWarning(object)) {
@@ -28,8 +30,23 @@ setMethod(f="detectPeaks",
                            metaData=object@metaData))
   }
 
-  ## estimate noise
-  noise <- estimateNoise(object, method=method, ...)
+  ## try to use user-defined noise estimation function
+  if (!missing(fun)) {
+    .deprecatedArgument("1.7.12", old="fun", new="method", help="detectPeaks")
+    fun <- match.fun(fun)
+    noise <- fun(object@mass, object@intensity, ...)
+
+    ## wrong noise argument given?
+    isCorrectNoise <- is.matrix(noise) &&
+                      (nrow(noise) == length(object) && ncol(noise) == 2)
+
+    if (!isCorrectNoise) {
+      stop("The noise argument is not valid.")
+    }
+  } else {
+    ## estimate noise
+    noise <- estimateNoise(object, method=method, ...)
+  }
 
   ## find local maxima
   localMaxima <- .findLocalMaximaLogical(object, halfWindowSize=halfWindowSize)

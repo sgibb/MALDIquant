@@ -7,7 +7,8 @@ Merges \code{\linkS4class{MassPeaks}} objects.
 This function merges \code{\linkS4class{MassPeaks}} objects.
 }
 \usage{
-mergeMassPeaks(l, labels, method=c("Mean", "Median", "Sum"), ignore.na=TRUE)
+mergeMassPeaks(l, labels, method=c("Mean", "Median", "Sum"), ignore.na=TRUE,
+fun, \dots)
 }
 \arguments{
   \item{l}{
@@ -21,6 +22,8 @@ mergeMassPeaks(l, labels, method=c("Mean", "Median", "Sum"), ignore.na=TRUE)
   \item{ignore.na}{Should \code{NA} (positions where a peak is missing)
     ignored (\code{ignore.na=TRUE}) or treated as zero
     (\code{ignore.na=FALSE})?}
+  \item{fun}{deprecated.}
+  \item{\dots}{deprecated.}
 }
 \value{
 Returns a single (no \code{labels} given) or a \code{\link{list}}

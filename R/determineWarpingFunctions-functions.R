@@ -34,32 +34,39 @@
 determineWarpingFunctions <- function(l, reference, tolerance=0.002,
                                       method=c("LOWESS", "Linear", "Quadratic",
                                                "Cubic"),
-                                      plot=FALSE, plotInteractive=FALSE, ...) {
+                                      plot=FALSE, plotInteractive=FALSE, ...,
+                                      warpingFunction ## deprecated
+                                      ) {
 
   ## test arguments
   if (!isMassPeaksList(l) && !isMassPeaks(l)) {
     stop(sQuote("l"), " is no list of MALDIquant::MassPeaks objects!")
   }
 
-  method <- .match.arg(method)
+  if (!missing(warpingFunction)) {
+    .deprecatedArgument("1.7.12", "warpingFunction", "method")
+    warpingFunction <- match.fun(warpingFunction)
+  } else {
+    method <- .match.arg(method)
 
-  warpingFunction <- switch(method,
-    "LOWESS" = {
-      .warpingFunctionLowess
-    },
-    "Linear" = {
-      .warpingFunctionLinear
-    },
-    "Quadratic" = {
-      .warpingFunctionQuadratic
-    },
-    "Cubic" = {
-      .warpingFunctionCubic
-    },
-    {
-      stop("Unknown ", sQuote("method"), ".")
-    }
-  )
+    warpingFunction <- switch(method,
+      "LOWESS" = {
+        .warpingFunctionLowess
+      },
+      "Linear" = {
+        .warpingFunctionLinear
+      },
+      "Quadratic" = {
+        .warpingFunctionQuadratic
+      },
+      "Cubic" = {
+        .warpingFunctionCubic
+      },
+      {
+        stop("Unknown ", sQuote("method"), ".")
+      }
+    )
+  }
 
   optArgs <- list(...)
 

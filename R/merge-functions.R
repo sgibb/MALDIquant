@@ -28,10 +28,18 @@
 ##  a new MassPeaks object or a list of new MassPeaks objects
 ##
 mergeMassPeaks  <- function(l, labels, method=c("Mean", "Median", "Sum"),
-                            ignore.na=TRUE) {
+                            ignore.na=TRUE,
+                            fun, ... ## deprecated
+                            ) {
 
   ## test arguments
   .stopIfNotIsMassPeaksList(l)
+
+  if (!missing(fun)) {
+    .deprecatedArgument("1.7.12", "fun", "method")
+    return(.doByLabels(l=l, labels=labels, FUN=.mergeMassPeaksDeprecated,
+                       fun=fun, ...))
+  }
 
   method <- .match.arg(method)
 

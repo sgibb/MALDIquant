@@ -13,7 +13,5 @@ test_that("detectPeaks works with list of MassSpectrum objects", {
   expect_error(detectPeaks(list(s, createMassPeaks(1, 1)),
                "no list of MALDIquant::MassSpectrum objects"))
   p <- createMassPeaks(c(2, 4), c(2, 2), c(Inf, Inf))
-  expect_equal(detectPeaks(list(s, s), halfWindowSize=1, fun=zeroNoise),
-               list(p, p))
 })
 

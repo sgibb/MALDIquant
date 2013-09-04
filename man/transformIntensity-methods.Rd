@@ -10,12 +10,15 @@ intensities of an \code{\linkS4class{AbstractMassObject}} object.
 }
 \usage{
 \S4method{transformIntensity}{AbstractMassObject}(object,
-  method=c("Sqrt", "Log", "Log2", "Log10"))
+  method=c("Sqrt", "Log", "Log2", "Log10"),
+  fun, \dots)
 }
 \arguments{
   \item{object}{\code{\linkS4class{AbstractMassObject}} object or a
     \code{list} of \code{\linkS4class{AbstractMassObject}} objects.}
   \item{method}{used transformation method.}
+  \item{fun}{deprecated.}
+  \item{\dots}{deprecated.}
 }
 \references{
 See website: \url{http://strimmerlab.org/software/maldiquant/}

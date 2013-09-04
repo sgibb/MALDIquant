@@ -55,6 +55,10 @@
 ##  nothing
 ##
 .deprecatedFunction <- function(version, old, new) {
+  if (missing(old)) {
+    old <- parentCall <- sys.call(-1L)[[1]]
+  }
+
   msg <- paste0("\"", old , "\" is deprecated.")
 
   if (!missing(new)) {
@@ -70,15 +74,20 @@
 ##  version: last working version
 ##  old: old argument
 ##  new: new argument
+##  help: help file
 ##
 ## returns:
 ##  nothing
 ##
-.deprecatedArgument <- function(version, old, new) {
+.deprecatedArgument <- function(version, old, new, help) {
   msg <- paste0("Argument \"", old, "\" is deprecated.")
 
   if (!missing(new)) {
-    parentCall <- sys.call(-1L)[[1]]
+    if (missing(help)) {
+      parentCall <- sys.call(-1L)[[1]]
+    } else {
+      parentCall <- call(help)[[1]]
+    }
     msg <- paste0(msg, "\nUse \"", new, "\" instead. See help(\"",
                   deparse(parentCall),"\").")
   }
