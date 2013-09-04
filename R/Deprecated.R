@@ -98,7 +98,7 @@ setReplaceMethod(f="totalIonCurrent",
   tic <- totalIonCurrent(object)
 
   if (tic) {
-    return(transformIntensity(object, function(x)x*value/tic))
+    return(transformIntensity(object, fun=function(x)x*value/tic))
   } else {
     warning("Total Ion Current is zero! Is spectrum empty?")
     return(object)
