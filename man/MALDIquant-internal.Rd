@@ -12,6 +12,7 @@
 \alias{.calculateLabelPositions}
 \alias{.colMedians}
 \alias{.dilation}
+\alias{.deprecated}
 \alias{.doByLabels}
 \alias{.erosion}
 \alias{.filterPeaks}
