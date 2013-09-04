@@ -43,3 +43,45 @@
   invisible()
 }
 
+## .deprecatedFunction
+##  mark a function as deprecated and show default message
+##
+## params:
+##  version: last working version
+##  old: old function
+##  new: new function
+##
+## returns:
+##  nothing
+##
+.deprecatedFunction <- function(version, old, new) {
+  msg <- paste0("\"", old , "\" is deprecated.")
+
+  if (!missing(new)) {
+    msg <- paste0(msg, "\nUse \"", new, "\" instead. See help(\"", new ,"\").")
+  }
+  return(.deprecated(version, msg))
+}
+
+## .deprecatedArgument
+##  mark an function as deprecated and show default message
+##
+## params:
+##  version: last working version
+##  old: old argument
+##  new: new argument
+##
+## returns:
+##  nothing
+##
+.deprecatedArgument <- function(version, old, new) {
+  msg <- paste0("Argument \"", old, "\" is deprecated.")
+
+  if (!missing(new)) {
+    parentCall <- sys.call(-1L)[[1]]
+    msg <- paste0(msg, "\nUse \"", new, "\" instead. See help(\"",
+                  deparse(parentCall),"\").")
+  }
+  return(.deprecated(version, msg))
+}
+
