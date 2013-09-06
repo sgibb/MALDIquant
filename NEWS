@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.7.16 [2013-09-06]:
+- estimateBaseline/removeBaseline: replace argument method="Median" by
+  method="median".
+
 Version 1.7.15 [2013-09-04]:
 - Readd iplot-functions.R
 

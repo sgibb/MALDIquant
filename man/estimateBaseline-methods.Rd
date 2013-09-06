@@ -9,7 +9,7 @@ This method estimates the baseline of mass spectrometry data
 }
 \usage{
 \S4method{estimateBaseline}{MassSpectrum}(object,
-  method=c("SNIP", "TopHat", "ConvexHull", "Median"),
+  method=c("SNIP", "TopHat", "ConvexHull", "median"),
   \dots)
 }
 \arguments{

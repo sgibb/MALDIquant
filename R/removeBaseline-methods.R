@@ -21,7 +21,7 @@ setMethod(f="removeBaseline",
           signature=signature(object="MassSpectrum"),
           definition=function(object,
                               method=c("SNIP", "TopHat", "ConvexHull",
-                                       "Median"),
+                                       "median"),
                               fun, ## deprecated
                               ...) {
 

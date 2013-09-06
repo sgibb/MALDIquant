@@ -7,7 +7,7 @@ m <- matrix(c(1:20, rep(NA, 20)), ncol=2, byrow=FALSE,
 
 test_that("estimateBaseline throws errors", {
   expect_error(estimateBaseline(s, method="foobar"),
-               ".*arg.* should be one of .*SNIP.*, .*ConvexHull.*, .*Median.*")
+               ".*arg.* should be one of .*SNIP.*, .*ConvexHull.*, .*median.*")
 })
 
 test_that("estimateBaseline shows warnings", {
@@ -35,7 +35,7 @@ test_that("estimateBaselineMedian", {
   expect_identical(MALDIquant:::.estimateBaselineMedian(1:20, i, 2), m)
   ## user method
   colnames(m) <- c("mass", "intensity")
-  expect_identical(estimateBaseline(s, method="Median", halfWindowSize=2), m)
+  expect_identical(estimateBaseline(s, method="median", halfWindowSize=2), m)
 
   ## halfWindowSize
   expect_error(MALDIquant:::.estimateBaselineMedian(1:20, i, 0),

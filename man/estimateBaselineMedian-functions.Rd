@@ -47,7 +47,7 @@ s <- fiedler2009subset[[1]]
 plot(s)
 
 ## estimate baseline
-b <- estimateBaseline(s, method="Median")
+b <- estimateBaseline(s, method="median")
 
 ## draw baseline on the plot
 lines(b, col="red")

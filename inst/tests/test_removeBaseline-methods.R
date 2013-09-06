@@ -4,7 +4,7 @@ s <- createMassSpectrum(mass=1:20, intensity=rep(10:1, 2))
 
 test_that("removeBaseline throws errors", {
   expect_error(removeBaseline(s, method="foobar"),
-               ".*arg.* should be one of .*SNIP.*, .*ConvexHull.*, .*Median.*")
+               ".*arg.* should be one of .*SNIP.*, .*ConvexHull.*, .*median.*")
 })
 
 test_that("removeBaseline shows warnings", {
@@ -18,13 +18,13 @@ test_that("removeBaseline works with ConvexHull", {
                createMassSpectrum(mass=1:20, intensity=c(rep(0, 10), 9:0)))
 })
 
-test_that("removeBaseline works with Median", {
+test_that("removeBaseline works with median", {
   ## halfWindowSize
-  expect_error(removeBaseline(s, method="Median", halfWindowSize=0),
+  expect_error(removeBaseline(s, method="median", halfWindowSize=0),
                "too small")
-  expect_error(removeBaseline(s, method="Median"),
+  expect_error(removeBaseline(s, method="median"),
                "too large")
-  expect_equal(removeBaseline(s, method="Median", halfWindowSize=2),
+  expect_equal(removeBaseline(s, method="median", halfWindowSize=2),
                createMassSpectrum(mass=1:20, intensity=c(rep(0, 8), -1:-2, 2:1,
                                                          rep(0, 8))))
 })

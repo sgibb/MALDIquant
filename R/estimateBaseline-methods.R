@@ -20,7 +20,7 @@
 setMethod(f="estimateBaseline",
           signature=signature(object="MassSpectrum"),
           definition=function(object, method=c("SNIP", "TopHat", "ConvexHull",
-                                               "Median"),
+                                               "median"),
                               ...) {
 
   ## empty spectrum?
@@ -40,7 +40,7 @@ setMethod(f="estimateBaseline",
               "ConvexHull" = {
                 .estimateBaselineConvexHull(object@mass, object@intensity)
               },
-              "Median" = {
+              "median" = {
                 .estimateBaselineMedian(object@mass, object@intensity, ...)
               },
               {

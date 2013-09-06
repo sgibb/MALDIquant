@@ -12,7 +12,7 @@ The intensity of the mass spectrometry data would be reduced by
 }
 \usage{
 \S4method{removeBaseline}{MassSpectrum}(object,
-  method=c("SNIP", "TopHat", "ConvexHull", "Median"),
+  method=c("SNIP", "TopHat", "ConvexHull", "median"),
   fun,
   \dots)
 }
