@@ -105,42 +105,6 @@ setReplaceMethod(f="totalIonCurrent",
   }
 })
 
-## deprecated since MALDIquant 1.7.9
-
-if (is.null(getGeneric("iplot"))) {
-  setGeneric("iplot", function(object, ...) standardGeneric("iplot"))
-}
-## MassSpectrum
-setMethod("iplot",
-          signature=signature(object="MassSpectrum"),
-          definition=function(object, peaks, ...) {
-
-  .deprecated("1.7.9", "iplot is deprecated. Use the \"zoom\" R package ",
-              "instead. It provides similar functionality.")
-
-  if (!missing(peaks)) {
-    stopifnot(isMassPeaks(peaks))
-    peaks <- list(peaks)
-  }
-  return(invisible(.iplot(spectra=list(object), peaks=peaks, ...)))
-})
-
-## list
-setMethod("iplot",
-          signature=signature(object="list"),
-          definition=function(object, peaks, ...) {
-
-  .deprecated("1.7.9", "iplot is deprecated. Use the \"zoom\" R package ",
-              "instead. It provides similar functionality.")
-
-  .stopIfNotIsMassSpectrumList(object)
-
-  if (!missing(peaks)) {
-    .stopIfNotIsMassPeaksList(peaks)
-  }
-  return(invisible(.iplot(spectra=object, peaks=peaks, ...)))
-})
-
 ## deprecated since MALDIquant 1.7.10
 
 if (is.null(getGeneric("ltrim"))) {
