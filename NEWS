@@ -1,122 +1,96 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
-Version 1.7.16 [2013-09-06]:
-- estimateBaseline/removeBaseline: replace argument method="Median" by
+
+CHANGES IN MALDIquant VERSION 1.8 [2013-09-08]:
+-----------------------------------------------
+
+NEW FEATURES
+
+* Add `smoothIntensity`: to apply smoothing filters. Supports 
+  "SavitzkyGolay" and "MovingAverage". `savitzkyGolay` and `movingAverage`
+  are now marked as deprecated.
+* Add `calibrateIntensity`: to calibrate/normalize intensity values.
+  Supports "TIC", "median" and "PQN" calibration/normalization. 
+  It replaces three similar functions with
+  different names: `totalIonCurrent<-`, `standardizeTotalIonCurrent`,
+  `calibrate` (these three are marked as deprecated and will be removed in
+  future releases).
+* Add `averageMassSpectra`: supports "mean", "median" and "sum" aggregation of
+  spectra. It replaces `mergeMassSpectra`.
+* Add C implementation of colMedians for faster averaging/merging of
+  MassSpectrum/MassPeaks objects.
+* Add LongVector support; now MALDIquant depends on R >= 3.0.0.
+
+MODIFICATIONS
+
+* MassSpectrum/MassPeaks class: change representation of slots mass, intensity,
+  snr to "numeric" (was "vector" before). Should not affect anything. Maybe you
+  have to reimport raw data and resave RData files.
+* `trim`: replace "minMass" and "maxMass" arguments by new "range" argument.
+* `transformIntensity`: add "method" argument (supports "sqrt", "log", "log2",
+  "log10"). "fun" argument is deprecated.
+* `estimateBaseline`/`removeBaseline`: rename argument method="Median" to 
   method="median".
+* `determineWarpingFunctions`: add "method" argument (supports "lowess",
+  "linear", "quadratic", "cubic"); "warpingFunctions" argument is deprecated.
+* `mergeMassPeaks`: add "method" (supports "mean", "median", "sum") argument;
+  "fun" argument is deprecated.
 
-Version 1.7.15 [2013-09-04]:
-- Readd iplot-functions.R
+DEPRECATED ARGUMENTS/FUNCTIONS
 
-Version 1.7.14 [2013-09-04]:
-- Remove .match.arg and rename some methods arguments.
-
-Version 1.7.13 [2013-09-04]:
-- deprecated: isMassObject, isMassObjectList
-
-Version 1.7.12 [2013-09-04]:
-- Reintroduce deprecated functions. Next release will be 1.8 (not 2.0).
-
-Version 1.99.14 [2013-09-03]:
-- removeBaseline/detectPeaks: replace fun by method argument.
-
-Version 1.99.13 [2013-09-03]:
-- Add smoothIntensity.
-- Rename savitzkyGolay and movingAverage to .savitzkyGolay and .movingAverage.
-- Hide .savitzkyGolay and .movingAverage by NAMESPACE.
-- transformIntensity: replace fun argument by method argument.
-- Add hidden .transformIntensity (old transformIntensity).
-
-Version 1.99.12 [2013-09-02]:
-- Remove deprecated functions: calibrate, standardizeTotalIonCurrent,
-  totalIonCurrent<-, totalIonCurrent for MassPeaks, iplot (use the
-  zoom package instead which provides a similar function), ltrim, rtrim.
-
-Version 1.99.11 [2013-09-02]:
-- Remove hidden imputeMass.
-
-Version 1.99.10 [2013-09-02]:
-- Remove .replaceNonEmptyMassObjects.
-
-Version 1.99.9 [2013-08-29]:
-- Use integer values where possible.
-
-Version 1.99.8 [2013-08-29]:
-- Add import("methods") to NAMESPACE (fixes #36).
-
-Version 1.99.7 [2013-08-29]:
-- determineWarpingFunctions: add method argument; remove warpingFunctions
-  argument.
-
-Version 1.99.7 [2013-08-29]:
-- determineWarpingFunctions: add example with user defined reference/calibration
-  peaks to the manual page.
-
-Version 1.99.6 [2013-08-29]:
-- Add case insensitive .match.arg.
-
-Version 1.99.5 [2013-08-29]:
-- Add C implementation of colMedians.
-
-Version 1.99.4 [2013-08-29]:
-- Merge current master into 2.0
-
-Version 1.99.3 [2013-05-12]:
-- Change: slots mass, intensity and snr in MassSpectrum and MassPeaks are now
-  "numeric" (instead of "vector")
-
-Version 1.99.2 [2013-04-07]:
-- Rewrite C code to support LongVectors; closes #13;
-  now R>=3.0.0 is needed.
-
-Version 1.99.1 [2013-04-07] (revert):
-- Change: TopHat is new default baseline correction algorithm; closes #18.
-  affected funtions: estimateBaseline, removeBaseline.
-
-Version 1.7.11 [2013-08-29]:
-- Remove mergeMassSpectra, superseded by averageMassSpectra
-- mergeMassPeaks: add method argument; remove "fun" argument;
-
-Version 1.7.10 [2013-08-22]:
-- trim: replace minMass and maxMass arguments by new range argument.
-- deprecated: ltrim/rtrim.
-
-Version 1.7.9 [2013-08-07]:
-- deprecated: iplot,MassSpectrum; iplot,list because it throws NOTEs on R CMD
-  check and the most important function grDevices::getGraphicEvents behaves
+* `isMassObject`/`isMassObjectList`: use `isMassSpectrum`, `isMassPeaks`,
+  `isMassSpectrumList` or `isMassPeaksList` instead.
+* `totalIonCurrent,MassPeaks-method`: TIC of peaks is meaningless.
+* `totalIonCurrent<-,MassSpectrum-method`: 
+  use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
+  MassSpectrum objects.
+* `standardizeTotalIonCurrent`: 
+  use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
+  MassSpectrum objects.
+* `calibrate`: 
+  use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
+  MassSpectrum objects.
+* `iplot`: because it throws NOTEs on CRAN's R CMD check and the most 
+  important function `grDevices::getGraphicEvents` behaves
   different on Unix/Windows platform (some keys don't working) and contains some
   nasty bugs, e.g.: https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=15208
+  Also the "zoom" R package provides similar functionality.
+* `ltrim`/`rtrim`: use `trim(..., range=c(min, max))` instead.
+* `determineWarpingFunctions`, argument "warpingFunction": use "method" argument
+  instead.
+* `mergeMassPeaks`, argument "fun": use "method" argument instead.
+* `mergeMassSpectra`: use `averageMassSpectra`.
+* `savitzkyGolay`: use `smoothIntensity(..., method="SavitzkyGolay")` instead.
+* `movingAverage`: use `smoothIntensity(..., method="MovingAverage")` instead.
+* `transformIntensity`, argument "fun": use "method" argument instead.  
+* `removeBaseline`, argument "fun": use "method" argument instead.  
+* `detectPeaks`, argument "fun": use "method" argument instead.  
 
-Version 1.7.8 [2013-08-05]:
-- src/snip.c: fix some segmention faults because of a missing
-  PROTECT for "duplicate" call.
+BUG FIXES
 
-Version 1.7.7 [2013-08-05]:
-- subset methods "[": little speed up by calling "which" to evaluate logical
-  expressions only once.
-
-Version 1.7.6 [2013-08-05]:
-- add calibrateIntensity; closes #31.
-- demo/workflow.R: add calibrateIntensity.
-- deprecated: calibrate,matrix; standardizeTotalIonCurrent,list;
-  totalIonCurrent<-
-
-Version 1.7.5 [2013-07-29]:
-- approxfun: return NA for empty MassSpectrum objects.
-
-Version 1.7.4 [2013-07-24]:
-- deprecated: totalIonCurrent,MassPeaks
-
-Version 1.7.3 [2013-07-04]:
-- totalIonCurrent: fix calculation by estimating the integral; fixes #29.
-
-Version 1.7.2 [2013-07-04]:
-- .iplot: turn platform-specific functions into characters and use do.call to
-  circumvent NOTE in R CMD check; closes #28.
-
-Version 1.7.1 [2013-06-09]:
-- .filterPeaks: reduce minNumber to length(l) to avoid complete removal
+* `totalIonCurrent`: fix calculation by estimating the integral; fixes #29.
+  affected functions: `totalIonCurrent`, 
+    `calibrateIntensity(..., method="TIC")`.
+* `filterPeaks`: reduce minNumber to length(l) to avoid complete removal
   of peaks; fixes #26.
+* src/snip.c: fix some segmention faults because of a missing
+  PROTECT for "duplicate" call.
+  affected functions: `estimateBasline/removeBaseline(..., method="SNIP")`
+- Add `import("methods")` to NAMESPACE (fixes #36).
+ 
+INTERNAL CHANGES
+
+* Remove internal `imputeMass`.
+* Remove internal `.replaceNonEmptyMassObjects`.
+* `.iplot`: turn platform-specific functions into characters and use `do.call` 
+  to circumvent NOTE in R CMD check; closes #28.
+* `approxfun`: returns NA for empty MassSpectrum objects.
+* `[` (subset method): little speed up by calling `which` to evaluate logical
+  expressions only once.
+* Use integer values where possible.
+* Modify C written functions to support LongVectors; closes #13;
+  now MALDIquant depends on R >= 3.0.0.
 
 
 CHANGES IN MALDIquant VERSION 1.7 [2013-05-23]:
