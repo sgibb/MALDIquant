@@ -20,9 +20,5 @@ test_that(".colMedians", {
   m[na] <- NA
   expect_equal(MALDIquant:::.colMedians(m), colMedians(m))
   expect_equal(MALDIquant:::.colMedians(m, TRUE), colMedians(m, TRUE))
-  ## speed
-  expect_true(system.time(MALDIquant:::.colMedians(m))["elapsed"] <
-              system.time(colMedians(m))["elapsed"])
-  expect_true(system.time(MALDIquant:::.colMedians(m, TRUE))["elapsed"] <
-              system.time(colMedians(m, TRUE))["elapsed"])
 })
+
