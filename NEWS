@@ -1,17 +1,21 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.1 [2013-09-25]:
+- INTERNAL: argument representation of `setClass` is deprecated since R 3.0.0;
+  use slots instead.
+
 
 CHANGES IN MALDIquant VERSION 1.8 [2013-09-08]:
 -----------------------------------------------
 
 NEW FEATURES
 
-* Add `smoothIntensity`: to apply smoothing filters. Supports 
+* Add `smoothIntensity`: to apply smoothing filters. Supports
   "SavitzkyGolay" and "MovingAverage". `savitzkyGolay` and `movingAverage`
   are now marked as deprecated.
 * Add `calibrateIntensity`: to calibrate/normalize intensity values.
-  Supports "TIC", "median" and "PQN" calibration/normalization. 
+  Supports "TIC", "median" and "PQN" calibration/normalization.
   It replaces three similar functions with
   different names: `totalIonCurrent<-`, `standardizeTotalIonCurrent`,
   `calibrate` (these three are marked as deprecated and will be removed in
@@ -30,7 +34,7 @@ MODIFICATIONS
 * `trim`: replace "minMass" and "maxMass" arguments by new "range" argument.
 * `transformIntensity`: add "method" argument (supports "sqrt", "log", "log2",
   "log10"). "fun" argument is deprecated.
-* `estimateBaseline`/`removeBaseline`: rename argument method="Median" to 
+* `estimateBaseline`/`removeBaseline`: rename argument method="Median" to
   method="median".
 * `determineWarpingFunctions`: add "method" argument (supports "lowess",
   "linear", "quadratic", "cubic"); "warpingFunctions" argument is deprecated.
@@ -42,13 +46,13 @@ DEPRECATED ARGUMENTS/FUNCTIONS
 * `isMassObject`/`isMassObjectList`: use `isMassSpectrum`, `isMassPeaks`,
   `isMassSpectrumList` or `isMassPeaksList` instead.
 * `totalIonCurrent,MassPeaks-method`: TIC of peaks is meaningless.
-* `totalIonCurrent<-,MassSpectrum-method`: 
+* `totalIonCurrent<-,MassSpectrum-method`:
   use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
   MassSpectrum objects.
-* `standardizeTotalIonCurrent`: 
+* `standardizeTotalIonCurrent`:
   use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
   MassSpectrum objects.
-* `calibrate`: 
+* `calibrate`:
   use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
   MassSpectrum objects.
 * `ltrim`/`rtrim`: use `trim(..., range=c(min, max))` instead.
@@ -58,13 +62,13 @@ DEPRECATED ARGUMENTS/FUNCTIONS
 * `mergeMassSpectra`: use `averageMassSpectra`.
 * `savitzkyGolay`: use `smoothIntensity(..., method="SavitzkyGolay")` instead.
 * `movingAverage`: use `smoothIntensity(..., method="MovingAverage")` instead.
-* `transformIntensity`, argument "fun": use "method" argument instead.  
-* `removeBaseline`, argument "fun": use "method" argument instead.  
-* `detectPeaks`, argument "fun": use "method" argument instead.  
+* `transformIntensity`, argument "fun": use "method" argument instead.
+* `removeBaseline`, argument "fun": use "method" argument instead.
+* `detectPeaks`, argument "fun": use "method" argument instead.
 
 REMOVED FUNCTIONS
 
-* `iplot`: because it throws NOTEs on CRAN's R CMD check and the most 
+* `iplot`: because it throws NOTEs on CRAN's R CMD check and the most
   important function `grDevices::getGraphicEvents` behaves
   different on Unix/Windows platform (some keys don't working) and contains some
   nasty bugs, e.g.: https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=15208
@@ -73,7 +77,7 @@ REMOVED FUNCTIONS
 BUG FIXES
 
 * `totalIonCurrent`: fix calculation by estimating the integral; fixes #29.
-  affected functions: `totalIonCurrent`, 
+  affected functions: `totalIonCurrent`,
     `calibrateIntensity(..., method="TIC")`.
 * `filterPeaks`: reduce minNumber to length(l) to avoid complete removal
   of peaks; fixes #26.
@@ -81,7 +85,7 @@ BUG FIXES
   PROTECT for "duplicate" call.
   affected functions: `estimateBasline/removeBaseline(..., method="SNIP")`
 - Add `import("methods")` to NAMESPACE (fixes #36).
- 
+
 INTERNAL CHANGES
 
 * Remove internal `imputeMass`.
