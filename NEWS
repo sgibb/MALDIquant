@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.2 [2013-09-26]:
+- IMPROVEMENT: replace some `lapply` calls by `mapply` to allow different
+  "halfWindowSize" arguments etc.;
+  affected methods: `smoothIntensity`, `removeBaseline`, `detectPeaks`
+
 Version 1.8.1 [2013-09-25]:
 - INTERNAL: argument representation of `setClass` is deprecated since R 3.0.0;
   use slots instead.

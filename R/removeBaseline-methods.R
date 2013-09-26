@@ -63,6 +63,6 @@ setMethod(f="removeBaseline",
   ## test arguments
   .stopIfNotIsMassSpectrumList(object)
 
-  return(lapply(object, removeBaseline, ...))
+  return(.mapply(removeBaseline, object, ...))
 })
 

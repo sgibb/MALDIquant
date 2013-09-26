@@ -70,6 +70,6 @@ setMethod(f="detectPeaks",
   ## test arguments
   .stopIfNotIsMassSpectrumList(object)
 
-  return(lapply(object, detectPeaks, ...))
+  return(.mapply(detectPeaks, object, ...))
 })
 

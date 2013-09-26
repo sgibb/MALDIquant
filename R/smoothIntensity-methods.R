@@ -59,6 +59,6 @@ setMethod(f="smoothIntensity",
   ## test arguments
   .stopIfNotIsMassSpectrumList(object)
 
-  return(lapply(object, smoothIntensity, ...))
+  return(.mapply(smoothIntensity, object, ...))
 })
 

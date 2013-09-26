@@ -28,6 +28,7 @@
 \alias{.labelOverlap}
 \alias{.localMaxima}
 \alias{.lowerConvexHullR}
+\alias{.mapply}
 \alias{.match.arg}
 \alias{.memoryUsageStr}
 \alias{.mergeMassPeaks}
