@@ -33,7 +33,7 @@ setMethod(f="plot",
                               abline.col="#808080", ...) {
 
   if (all(sub == x@metaData$file) && length(x@metaData$file) > 1L) {
-    sub <- paste0("merged ", ifelse(isMassSpectrum(x), "spectrum", "peaks"),
+    sub <- paste0(ifelse(isMassSpectrum(x), "averaged spectrum", "merged peaks"),
                   " composed of ", length(x@metaData$file), " ",
                   ifelse(isMassSpectrum(x), "MassSpectrum", "MassPeaks"),
                   " objects")

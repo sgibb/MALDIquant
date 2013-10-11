@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.3 [2013-10-11]:
+- plot: fix subtitle for averaged spectra.
+
 Version 1.8.2 [2013-09-26]:
 - IMPROVEMENT: replace some `lapply` calls by `mapply` to allow different
   "halfWindowSize" arguments etc.;
