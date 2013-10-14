@@ -17,7 +17,7 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 ## intensityMatrix
-##  convert list of AbstractMassObject objects to a matrix
+##  converts a list of AbstractMassObject objects to a matrix
 ##
 ## params:
 ##  l: list of AbstractMassObject objects
@@ -30,17 +30,30 @@ intensityMatrix <- function(l) {
   ## test parameters
   .stopIfNotIsMassObjectList(l)
 
-  ## fetch all mass
+  return(.intensityMatrix(l)$intensityMatrix)
+}
+
+## .intensityMatrix
+##  converts a list of AbstractMassObject objects to a matrix
+##
+## params:
+##  l: list of AbstractMassObject objects
+##
+## returns:
+##  a list: intensityMatrix, uniqueMass
+##
+.intensityMatrix <- function(l) {
+
   mass <- sort(x=.unlist(lapply(l, function(x)x@mass)), method="quick")
-  uMass <- unique(mass)
+  uniqueMass <- unique(mass)
 
   ## build matrix
   m <- do.call(rbind, lapply(l, function(x) {
-    return(x@intensity[match(x=uMass, table=x@mass, nomatch=NA)])}))
+    return(x@intensity[match(x=uniqueMass, table=x@mass, nomatch=NA)])}))
 
   ## set column names
-  dimnames(m) <- list(NULL, c(uMass))
+  dimnames(m) <- list(NULL, c(uniqueMass))
 
-  return(m)
+  return(list(intensityMatrix=m, uniqueMass=uniqueMass))
 }
 
