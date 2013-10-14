@@ -6,8 +6,7 @@ Converts a list of AbstractMassObject objects into a matrix.
 \description{
 This function converts a \code{\link{list}} of
 \code{\linkS4class{AbstractMassObject}} objects into a \code{\link{matrix}}.
-}
-\usage{
+} \usage{
 intensityMatrix(l)
 }
 \arguments{
@@ -31,6 +30,7 @@ See website: \url{http://strimmerlab.org/software/maldiquant/}
 Sebastian Gibb
 }
 \seealso{
+\code{\link[MALDIquant]{expressionMatrix}},
 \code{\linkS4class{AbstractMassObject}}
 }
 \examples{

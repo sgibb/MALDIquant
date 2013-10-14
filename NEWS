@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.4 [2013-10-14]:
+- Add `expressionMatrix`.
+
 Version 1.8.3 [2013-10-11]:
 - plot: fix subtitle for averaged spectra.
 
