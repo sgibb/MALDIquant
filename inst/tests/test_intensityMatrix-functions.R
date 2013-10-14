@@ -17,3 +17,7 @@ test_that("intensityMatrix", {
     expect_identical(intensityMatrix(p), m)
 })
 
+test_that(".intensityMatrix", {
+    expect_identical(MALDIquant:::.intensityMatrix(p)$intensityMatrix, m)
+    expect_equal(MALDIquant:::.intensityMatrix(p)$uniqueMass, as.double(colnames(m)))
+})
