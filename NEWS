@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.6 [2013-10-16]:
+- INTERNAL: remove man/MALDIquant-internal.Rd.
+
 Version 1.8.5 [2013-10-16]:
 - Integrate `expressionMatrix` into `intensityMatrix`; `intensityMatrix` now
   interpolates missing peaks if corresponding spectrum is given.

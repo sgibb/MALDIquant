@@ -4,6 +4,8 @@
 \alias{AbstractMassObject-class}
 \alias{[,AbstractMassObject,logical,missing-method}
 \alias{[,AbstractMassObject,numeric,missing-method}
+\alias{[,MassPeaks,logical,missing-method}
+\alias{[,MassPeaks,numeric,missing-method}
 \alias{as.matrix,AbstractMassObject-method}
 \alias{intensity}
 \alias{intensity<-}
