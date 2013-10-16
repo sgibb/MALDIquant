@@ -19,6 +19,11 @@ intensityMatrix(peaks, spectra, tolerance)
     is missing the corresponding intensity value of the spectrum is used. If
     \code{spectra} is missing \code{NA} is used instead.
   }
+  \item{tolerance}{
+    \code{double}, maximal deviation of a peak position (mass) to be
+    considered as identical; see
+    \code{\link[MALDIquant]{binPeaks}}.
+  }
 }
 
 \value{
