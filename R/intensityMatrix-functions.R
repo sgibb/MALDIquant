@@ -17,43 +17,56 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 ## intensityMatrix
-##  converts a list of AbstractMassObject objects to a matrix
+##  converts a list of MassPeaks into an expression matrix
 ##
 ## params:
-##  l: list of AbstractMassObject objects
+##  peaks: list of MassPeaks objects
+##  spectra: list of MassSpectrum objects
+##  tolerance: binning tolerance
 ##
 ## returns:
 ##  a matrix
 ##
-intensityMatrix <- function(l) {
+intensityMatrix <- function(peaks, spectra, tolerance=0.002) {
 
-  ## test parameters
-  .stopIfNotIsMassObjectList(l)
+  ## deprecated for MassSpectrum objects
+  if (isMassSpectrumList(peaks)) {
+    .deprecated("1.8.4", "\"intensityMatrix\" is deprecated ",
+                "for lists of MassSpectrum objects.")
+    return(.intensityMatrixDeprecated(peaks))
+  }
 
-  return(.intensityMatrix(l)$intensityMatrix)
-}
+  ## test arguments
+  .stopIfNotIsMassPeaksList(peaks)
 
-## .intensityMatrix
-##  converts a list of AbstractMassObject objects to a matrix
-##
-## params:
-##  l: list of AbstractMassObject objects
-##
-## returns:
-##  a list: intensityMatrix, uniqueMass
-##
-.intensityMatrix <- function(l) {
+  peaks <- binPeaks(peaks, tolerance=tolerance)
 
-  mass <- sort(x=.unlist(lapply(l, function(x)x@mass)), method="quick")
+  mass <- sort(x=.unlist(lapply(peaks, function(x)x@mass)), method="quick")
   uniqueMass <- unique(mass)
 
   ## build matrix
-  m <- do.call(rbind, lapply(l, function(x) {
+  m <- do.call(rbind, lapply(peaks, function(x) {
     return(x@intensity[match(x=uniqueMass, table=x@mass, nomatch=NA)])}))
 
   ## set column names
   dimnames(m) <- list(NULL, c(uniqueMass))
 
-  return(list(intensityMatrix=m, uniqueMass=uniqueMass))
-}
+  ## lookup corresponding intensity values in spectra for missing peaks
+  if (!missing(spectra)) {
+    .stopIfNotIsMassSpectrumList(spectra)
 
+    if (length(peaks) != length(spectra)) {
+      stop("Incompatible number of spectra!")
+    }
+
+    isNa <- is.na(m)
+
+    approxSpectra <- lapply(spectra, approxfun, yleft=0L, yright=0L)
+
+    for (i in seq(along=approxSpectra)) {
+      m[i, isNa[i, ]] <- approxSpectra[[i]](uniqueMass[isNa[i, ]])
+    }
+  }
+
+  return(m)
+}
