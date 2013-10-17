@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.7 [2013-10-17]:
+- Add `alignSpectra`, a wrapper around `detectPeaks`,
+  `determineWarpingFunctions` and `warpMassSpectra`.
+
 Version 1.8.6 [2013-10-16]:
 - INTERNAL: remove man/MALDIquant-internal.Rd.
 

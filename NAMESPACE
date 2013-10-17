@@ -21,7 +21,8 @@ importFrom("utils",
 exportClasses("MassPeaks",
               "MassSpectrum")
 
-export("averageMassSpectra",
+export("alignSpectra",
+       "averageMassSpectra",
        "binPeaks",
        "createMassPeaks",
        "createMassSpectrum",
