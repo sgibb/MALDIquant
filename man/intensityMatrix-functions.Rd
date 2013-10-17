@@ -25,7 +25,9 @@ intensityMatrix(peaks, spectra, tolerance)
     \code{\link[MALDIquant]{binPeaks}}.
   }
 }
-
+\details{
+The \code{peaks} are binned internally by \code{\link[MALDIquant]{binPeaks}}.
+}
 \value{
 Returns a \code{\link{matrix}} containing intensities of all
 \code{\linkS4class{MassPeaks}} objects of \code{peaks} and interpolated
@@ -33,8 +35,6 @@ intensity values for missing peaks if \code{spectra} was given or \code{NA}
 otherwise. \cr
 The \code{\link{matrix}} has \code{length(peaks)} rows
 (one row for each sample) and \code{length(unique(mass))} columns.
-}
-\details{
 The column names of the returned \code{\link{matrix}} store the mass values.
 }
 \references{
