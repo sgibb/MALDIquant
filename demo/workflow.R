@@ -59,46 +59,32 @@ spectra <- removeBaseline(spectra, method="SNIP", iterations=100)
 spectra <- calibrateIntensity(spectra, method="TIC")
 
 
+## spectra alignment
+## (the spectra alignment is peak based, maybe you need to adjust
+## halfWindowSize, SNR, tolerance, warpingMethod)
+## see ?alignSpectra
+spectra <- alignSpectra(spectra,
+                        halfWindowSize=20, SNR=2,
+                        tolerance=0.002, warpingMethod="lowess")
+
+
+## average technical replicates
+## 1. create factors for correct assignment
+## (e.g. sample name is stored in metaData(x)$sampleName; maybe you have to
+## adjust the metaData or use your own ID table for your data here)
+samples <- factor(sapply(spectra, function(x)metaData(x)$sampleName))
+
+## 2. average technical replicates
+## see ?averageMassSpectra
+avgSpectra <- averageMassSpectra(spectra, labels=samples, method="mean")
+
+
 ## run peak detection
 ## (maybe you need to adjust halfWindowSize [decreasing it for high resolution
 ## spectra] and SNR [a higher value increase the True-Positive-Rate but decrease
 ## sensitivity])
 ## see ?detectPeaks, ?estimateNoise
-peaks <- detectPeaks(spectra, method="MAD", halfWindowSize=20, SNR=2)
-
-
-## align spectra by warping
-## 1. create reference peaks (could be done automatically by
-##  determineWarpingFunctions)
-## 2. calculate individual warping functions
-## 3. warp each MassPeaks object
-## (maybe you have to adjust the tolerance argument [increasing for low
-## resolution spectra with a high mass error, decreasing for high resolution
-## spectra with a small mass error])
-## see ?referencePeaks,?determineWarpingFunctions
-refPeaks <- referencePeaks(peaks)
-warpingFunctions <- determineWarpingFunctions(peaks, reference=refPeaks,
-                                              tolerance=0.002)
-peaks <- warpMassPeaks(peaks, warpingFunctions)
-
-
-## bin peaks
-peaks <- binPeaks(peaks)
-
-
-## merge technical replicates
-## 1. create factors for correct assignment
-nTechRep <- 2
-nBiologicalSamples <- length(peaks)/nTechRep
-samples <- factor(rep(1:nBiologicalSamples, each=nTechRep),
-                  levels=1:nBiologicalSamples)
-
-## 2. filter peaks which occur only in one of the replicates
-peaks <- filterPeaks(peaks, labels=samples, minFrequency=1)
-
-## 3. merge technical replicates
-peaks <- mergeMassPeaks(peaks, labels=samples, method="mean")
-
+peaks <- detectPeaks(avgSpectra, method="MAD", halfWindowSize=20, SNR=2)
 
 
 ## prepare for statistical analysis
@@ -108,11 +94,10 @@ cancer <- grepl(pattern="/tumor/", x=filenames)
 classes <- factor(ifelse(cancer, "cancer", "control"),
                   levels=c("cancer", "control"))
 
-## 2. filter peaks which occur less across all samples
-peaks <- filterPeaks(peaks, minFrequency=1)
-
-## 3. export MassPeaks objects as matrix
-training <- intensityMatrix(peaks)
+## 2. export expression/training matrix (and fill missing peaks by interpolated
+## values; maybe you need to adjust tolerance)
+## see ?intensityMatrix
+training <- intensityMatrix(peaks, avgSpectra, tolerance=0.002)
 
 
 ## 'training' and 'classes' could now used by any statistical tool e.g. sda

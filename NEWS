@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.10 [2013-10-22]:
+- demo/workflow.R: introduce alignMassSpectra.
+
 Version 1.8.9 [2013-10-22]:
 - demo/warping.R: adapt to current preferred workflow.
 
