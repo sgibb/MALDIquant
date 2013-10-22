@@ -19,17 +19,17 @@ spectra <- fiedler2009subset[seq(1, 16, by=4)]
 ## sqrt transform (for variance stabilization)
 spectra <- transformIntensity(spectra, method="sqrt")
 
-## simple 5 point moving average for smoothing spectra
-spectra <- smoothIntensity(spectra, method="MovingAverage", halfWindowSize=2)
+## 21 point Savitzky-Golay-Filter for smoothing spectra
+spectra <- smoothIntensity(spectra, method="SavitzkyGolay", halfWindowSize=10)
 
 ## remove baseline
-spectra <- removeBaseline(spectra)
+spectra <- removeBaseline(spectra, method="SNIP", iterations=100)
 
 ## calibrate intensity values by "Total Ion Current"
-spectra <- calibrateIntensity(spectra)
+spectra <- calibrateIntensity(spectra, method="TIC")
 
 ## run peak detection
-peaks <- detectPeaks(spectra)
+peaks <- detectPeaks(spectra, method="MAD", halfWindowSize=20, SNR=2)
 
 ## warping
 par(mfrow=c(2, 2))
@@ -42,8 +42,6 @@ warpedSpectra <- warpMassSpectra(spectra, warpingFunctions)
 warpedPeaks <- warpMassPeaks(peaks, warpingFunctions)
 
 ## compare some regions in a plot
-colour <- rainbow(length(spectra))
-
 par(mfrow=c(2, 2))
 
 ## helper function to avoid double coding
@@ -52,8 +50,10 @@ plotSpectra <- function(unwarped, warped, range) {
                                   paste0(range, collapse=":"), " Da)"),
        xlim=range, ylim=c(0, 2e-3), type="n")
 
+  color <- rainbow(length(unwarped))
+
   for (i in seq(along=unwarped)) {
-    lines(unwarped[[i]], col=colour[i])
+    lines(unwarped[[i]], col=color[i])
   }
 
   plot(unwarped[[1]], main=paste0("warped spectra (mass ",
@@ -61,10 +61,11 @@ plotSpectra <- function(unwarped, warped, range) {
        xlim=range, ylim=c(0, 2e-3), type="n")
 
   for (i in seq(along=warped)) {
-    lines(warped[[i]], col=colour[i])
+    lines(warped[[i]], col=color[i])
   }
 }
 
 plotSpectra(spectra, warpedSpectra, c(4180, 4240))
 plotSpectra(spectra, warpedSpectra, c(9200, 9400))
 
+par(mfrow=c(1, 1))
