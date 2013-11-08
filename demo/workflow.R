@@ -86,6 +86,12 @@ avgSpectra <- averageMassSpectra(spectra, labels=samples, method="mean")
 ## see ?detectPeaks, ?estimateNoise
 peaks <- detectPeaks(avgSpectra, method="MAD", halfWindowSize=20, SNR=2)
 
+## bin peaks
+## (After alignment peak positions (mass) are similar but not identical. Binning
+## is needed to make similar peak mass values identical.)
+## see ?binPeaks
+peaks <- binPeaks(peaks, tolerance=0.002)
+
 
 ## prepare for statistical analysis
 ## 1. get cancer/control indices
@@ -94,10 +100,10 @@ cancer <- grepl(pattern="/tumor/", x=filenames)
 classes <- factor(ifelse(cancer, "cancer", "control"),
                   levels=c("cancer", "control"))
 
-## 2. export expression/training matrix (and fill missing peaks by interpolated
-## values; maybe you need to adjust tolerance)
+## 2. export expression/training matrix
+## (and fill missing peaks by interpolated values)
 ## see ?intensityMatrix
-training <- intensityMatrix(peaks, avgSpectra, tolerance=0.002)
+training <- intensityMatrix(peaks, avgSpectra)
 
 
 ## 'training' and 'classes' could now used by any statistical tool e.g. sda

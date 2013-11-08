@@ -22,12 +22,11 @@
 ## params:
 ##  peaks: list of MassPeaks objects
 ##  spectra: list of MassSpectrum objects
-##  tolerance: binning tolerance
 ##
 ## returns:
 ##  a matrix
 ##
-intensityMatrix <- function(peaks, spectra, tolerance=0.002) {
+intensityMatrix <- function(peaks, spectra) {
 
   ## deprecated for MassSpectrum objects
   if (isMassSpectrumList(peaks)) {
@@ -38,8 +37,6 @@ intensityMatrix <- function(peaks, spectra, tolerance=0.002) {
 
   ## test arguments
   .stopIfNotIsMassPeaksList(peaks)
-
-  peaks <- binPeaks(peaks, tolerance=tolerance)
 
   m <- .as.matrix.MassObjectList(peaks)
 

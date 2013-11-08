@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.13 [2013-11-08]:
+- INTERNAL: remove `binPeaks` from `intensityMatrix`. You have to call
+  `binPeaks` manually.
+
 Version 1.8.12 [2013-11-08]:
 - INTERNAL: add `.as.binary.matrix`.
 

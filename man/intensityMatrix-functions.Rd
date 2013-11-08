@@ -8,7 +8,7 @@ This function converts a \code{\link{list}} of
 \code{\linkS4class{MassPeaks}} objects into a \code{\link{matrix}}.
 }
 \usage{
-intensityMatrix(peaks, spectra, tolerance)
+intensityMatrix(peaks, spectra)
 }
 \arguments{
   \item{peaks}{
@@ -19,14 +19,10 @@ intensityMatrix(peaks, spectra, tolerance)
     is missing the corresponding intensity value of the spectrum is used. If
     \code{spectra} is missing \code{NA} is used instead.
   }
-  \item{tolerance}{
-    \code{double}, maximal deviation of a peak position (mass) to be
-    considered as identical; see
-    \code{\link[MALDIquant]{binPeaks}}.
-  }
 }
 \details{
-The \code{peaks} are binned internally by \code{\link[MALDIquant]{binPeaks}}.
+\code{peaks} have to be binned by \code{\link[MALDIquant]{binPeaks}} before
+calling \code{\link[MALDIquant]{intensityMatrix}}.
 }
 \value{
 Returns a \code{\link{matrix}} containing intensities of all
@@ -80,6 +76,9 @@ s <- removeBaseline(s)
 
 ## call peak detection
 p <- detectPeaks(s)
+
+## bin peaks
+p <- binPeaks(p)
 
 ## convert MassPeaks objects into a matrix with missing intensity
 ## values
