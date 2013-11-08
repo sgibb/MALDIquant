@@ -40,7 +40,7 @@ referencePeaks <- function(l, method=c("strict", "relaxed"), minFrequency=0.9,
                                          tolerance=tolerance),
                                 minFrequency=minFrequency)
 
-  iM <- intensityMatrix(referencePeaks)
+  iM <- .as.matrix.MassObjectList(referencePeaks)
   iM[!is.na(iM)] <- 1L
 
   ## set peak intensity to number of occurrence

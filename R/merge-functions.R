@@ -77,7 +77,7 @@ mergeMassPeaks  <- function(l, labels, method=c("mean", "median", "sum"),
   fun <- match.fun(fun)
 
   ## create a matrix which could merged
-  m <- intensityMatrix(l)
+  m <- .as.matrix.MassObjectList(l)
 
   mass <- as.double(colnames(m))
 

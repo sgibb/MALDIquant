@@ -1,8 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.11 [2013-11-08]:
+- INTERNAL: add `.as.matrix.MassObjectList` to avoid dependency on
+  `intensityMatrix`.
+
 Version 1.8.10 [2013-10-22]:
-- demo/workflow.R: introduce alignMassSpectra.
+- demo/workflow.R: introduce `alignMassSpectra`.
 
 Version 1.8.9 [2013-10-22]:
 - demo/warping.R: adapt to current preferred workflow.
@@ -20,7 +24,7 @@ Version 1.8.6 [2013-10-16]:
 Version 1.8.5 [2013-10-16]:
 - Integrate `expressionMatrix` into `intensityMatrix`; `intensityMatrix` now
   interpolates missing peaks if corresponding spectrum is given.
-- Deprecated: intensityMatrix for MassSpectrum objects.
+- Deprecated: `intensityMatrix` for MassSpectrum objects.
 
 Version 1.8.4 [2013-10-14]:
 - Add `expressionMatrix`.

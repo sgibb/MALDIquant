@@ -84,7 +84,7 @@ filterPeaks <- function(l, minFrequency, minNumber, labels) {
   mass <- sort(unique(.unlist(lapply(l, function(x)x@mass))), method="quick")
 
   ## generate peak matrix
-  pm <- intensityMatrix(l)
+  pm <- .as.matrix.MassObjectList(l)
   exclude <- .unlist(apply(pm, 2L, function(x) {
     return(sum(!is.na(x)) < minPeakNumber)
   }))

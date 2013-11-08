@@ -41,15 +41,7 @@ intensityMatrix <- function(peaks, spectra, tolerance=0.002) {
 
   peaks <- binPeaks(peaks, tolerance=tolerance)
 
-  mass <- sort(x=.unlist(lapply(peaks, function(x)x@mass)), method="quick")
-  uniqueMass <- unique(mass)
-
-  ## build matrix
-  m <- do.call(rbind, lapply(peaks, function(x) {
-    return(x@intensity[match(x=uniqueMass, table=x@mass, nomatch=NA)])}))
-
-  ## set column names
-  dimnames(m) <- list(NULL, c(uniqueMass))
+  m <- .as.matrix.MassObjectList(peaks)
 
   ## lookup corresponding intensity values in spectra for missing peaks
   if (!missing(spectra)) {
@@ -60,6 +52,7 @@ intensityMatrix <- function(peaks, spectra, tolerance=0.002) {
     }
 
     isNa <- is.na(m)
+    uniqueMass <- as.double(colnames(m))
 
     approxSpectra <- lapply(spectra, approxfun, yleft=0L, yright=0L)
 
