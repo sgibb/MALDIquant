@@ -40,12 +40,11 @@ referencePeaks <- function(l, method=c("strict", "relaxed"), minFrequency=0.9,
                                          tolerance=tolerance),
                                 minFrequency=minFrequency)
 
-  iM <- .as.matrix.MassObjectList(referencePeaks)
-  iM[!is.na(iM)] <- 1L
+  m <- .as.binary.matrix(.as.matrix.MassObjectList(referencePeaks))
 
   ## set peak intensity to number of occurrence
-  intensity <- unname(colSums(iM, na.rm=TRUE)/length(l))
+  intensity <- unname(colMeans(m))
 
-  return(createMassPeaks(mass=as.double(colnames(iM)), intensity=intensity))
+  return(createMassPeaks(mass=as.double(colnames(m)), intensity=intensity))
 }
 

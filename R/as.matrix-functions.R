@@ -16,8 +16,9 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## .as.matrix.MassObjectsList
-##  internal function to convert a list of AbstractMassObjects into a matrix
+## .as.matrix.MassObjectList
+##  internal function to convert a list of AbstractMassObject objects into a
+##  matrix
 ##
 ## params:
 ##  l: list of AbstractMassObject objects
@@ -37,6 +38,22 @@
   ## set column names
   dimnames(m) <- list(NULL, c(uniqueMass))
 
+  return(m)
+}
+
+## .as.binary.matrix
+##  internal function to convert a matrix with NA to a binary one
+##
+## params:
+##  m: matrix
+##
+## returns:
+##  a binary matrix
+.as.binary.matrix <- function(m) {
+  stopifnot(is.matrix(m))
+  isNA <- is.na(m)
+  m[isNA] <- 0L
+  m[!isNA] <- 1L
   return(m)
 }
 

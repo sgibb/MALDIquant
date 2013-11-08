@@ -84,11 +84,8 @@ filterPeaks <- function(l, minFrequency, minNumber, labels) {
   mass <- sort(unique(.unlist(lapply(l, function(x)x@mass))), method="quick")
 
   ## generate peak matrix
-  pm <- .as.matrix.MassObjectList(l)
-  exclude <- .unlist(apply(pm, 2L, function(x) {
-    return(sum(!is.na(x)) < minPeakNumber)
-  }))
-  exclude <- mass[exclude]
+  m <- .as.binary.matrix(.as.matrix.MassObjectList(l))
+  exclude <- mass[colSums(m) < minPeakNumber]
 
   l <- lapply(l, function(x) {
     e <- x@mass %in% exclude

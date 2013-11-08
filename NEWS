@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.12 [2013-11-08]:
+- INTERNAL: add `.as.binary.matrix`.
+
 Version 1.8.11 [2013-11-08]:
 - INTERNAL: add `.as.matrix.MassObjectList` to avoid dependency on
   `intensityMatrix`.
