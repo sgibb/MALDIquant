@@ -1,24 +1,23 @@
-## R is not supported by travis-ci.org yet. We use C instead.
+# taken from
+# https://github.com/craigcitro/r-travis/blob/master/sample.travis.yml
+
 language: c
 
-## choose compiler gcc/clang
-compiler: gcc
+before_install:
+  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
+  - chmod 755 ./travis-tool.sh
+  - ./travis-tool.sh bootstrap
 
-env:
-  - R_LIBS_USER=~/R
-
-# install dependencies
 install:
-  - sudo apt-add-repository -y ppa:marutter/rdev
-  - sudo apt-get update
-  - sudo apt-get install r-base-dev texinfo texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
-  - mkdir -p ${R_LIBS_USER}
-  - R --version
-  - R -e '.libPaths(); sessionInfo()'
-  - Rscript -e 'install.packages("testthat", dep=TRUE, repos="http://cran.at.r-project.org")'
+  - ./travis-tool.sh install_deps
 
-# run tests
 script:
-  - make install
-  - make check
-  - make testdemo
+  - ./travis-tool.sh run_tests
+
+on_failure:
+  - ./travis-tool.sh dump_logs
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
