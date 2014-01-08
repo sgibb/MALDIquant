@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.16 [2014-01-08]:
+- IMPROVEMENT: `filterPeaks` is more sophisticated and supports different
+  whitelist modes now. The default behaviour does not changed. Please see the
+  man page of `filterPeaks` for details.
+
 Version 1.8.13 [2013-11-08]:
 - INTERNAL: remove `binPeaks` from `intensityMatrix`. You have to call
   `binPeaks` manually.
