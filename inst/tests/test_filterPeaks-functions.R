@@ -67,3 +67,32 @@ test_that("filterPeaks", {
                    list(p, p[1:4], p[1:4]))
 })
 
+test_that("filterPeaks mode argument works", {
+  p2 <- list(
+    createMassPeaks(1:5, 1:5),
+    createMassPeaks(1:4, 1:4),
+    createMassPeaks(4:9, 4:9),
+    createMassPeaks(4:8, 4:8),
+    createMassPeaks(1:5, 1:5),
+    createMassPeaks(2:6, 2:6))
+
+  ## test group mode (with recycling)
+  expect_identical(filterPeaks(p2, minFrequency=1, labels=rep(1:3, each=2),
+                               mode="group"),
+                   c(p2[[2]], p2[[2]], p[[4]], p[[4]],
+                     createMassPeaks(2:5, 2:5), createMassPeaks(2:5, 2:5)))
+  ## test all mode (with recycling)
+  expect_identical(filterPeaks(p2, minFrequency=1, labels=rep(1:3, each=2),
+                               mode="all"),
+                   list(rep(createMassPeaks(4, 4), 6)))
+  ## test none mode (with recycling)
+  expect_identical(filterPeaks(p2, minFrequency=1, labels=rep(1:3, each=2),
+                               mode="none"),
+                   list(rep(createMassPeaks(double(), double()), 6)))
+  ## test complex mode
+  expect_identical(filterPeaks(p2, minFrequency=c(1, 1, 0),
+                               labels=rep(1:3, each=2),
+                               mode=c("group", "all", "none")),
+                   c(p2[1:2], p[[4]], p[[4]],
+                     createMassPeaks(4:5, 4:5), createMassPeaks(4:6, 4:6)))
+})
