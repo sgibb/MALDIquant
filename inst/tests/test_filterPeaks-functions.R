@@ -6,6 +6,8 @@ l <- list(p, p[1:4], p[1:3], p[1:2])
 test_that("filterPeaks throws errors", {
   expect_error(filterPeaks(p), "no list of MALDIquant::MassPeaks")
   expect_error(filterPeaks(list()), "no list of MALDIquant::MassPeaks")
+  expect_error(filterPeaks(l, minFrequency=NA, minNumber=NA),
+                 " has to be a meaningful number")
 })
 
 test_that("filterPeaks shows warnings", {
@@ -79,20 +81,27 @@ test_that("filterPeaks mode argument works", {
   ## test group mode (with recycling)
   expect_identical(filterPeaks(p2, minFrequency=1, labels=rep(1:3, each=2),
                                mode="group"),
-                   c(p2[[2]], p2[[2]], p[[4]], p[[4]],
+                   c(p2[[2]], p2[[2]], p2[[4]], p2[[4]],
                      createMassPeaks(2:5, 2:5), createMassPeaks(2:5, 2:5)))
   ## test all mode (with recycling)
   expect_identical(filterPeaks(p2, minFrequency=1, labels=rep(1:3, each=2),
                                mode="all"),
-                   list(rep(createMassPeaks(4, 4), 6)))
+                   c(p2[1:2], p2[[4]], p2[[4]], p2[5:6]))
   ## test none mode (with recycling)
-  expect_identical(filterPeaks(p2, minFrequency=1, labels=rep(1:3, each=2),
+  expect_equal(filterPeaks(p2, minFrequency=1, labels=rep(1:3, each=2),
                                mode="none"),
-                   list(rep(createMassPeaks(double(), double()), 6)))
+               rep(c(createMassPeaks(double(), double())), 6))
   ## test complex mode
   expect_identical(filterPeaks(p2, minFrequency=c(1, 1, 0),
                                labels=rep(1:3, each=2),
                                mode=c("group", "all", "none")),
-                   c(p2[1:2], p[[4]], p[[4]],
+                   c(p2[1:2], p2[[4]], p2[[4]],
+                     createMassPeaks(4:5, 4:5), createMassPeaks(4:6, 4:6)))
+  ## test complex mode with different numbers and frequencies
+  expect_identical(filterPeaks(p2, minFrequency=c(1, NA, 0),
+                               minNumber=c(NA, 2, NA),
+                               labels=rep(1:3, each=2),
+                               mode=c("group", "all", "none")),
+                   c(p2[1:2], p2[[4]], p2[[4]],
                      createMassPeaks(4:5, 4:5), createMassPeaks(4:6, 4:6)))
 })
