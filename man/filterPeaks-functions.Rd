@@ -43,9 +43,10 @@ of \code{minFrequency*n} (\code{n} is the number of
 \code{\linkS4class{MassPeaks}}) and \code{minNumber} is chosen.
 
 \code{mode} controls the whitelist behaviour. For each level (group) of
-\code{labels} a separate whitelist is generated. If \code{mode="group"} this
+\code{labels} a separate whitelist is generated. If \code{mode="group"} the
 whitelist is only applied to the current level (group). In contrast
-\code{mode="all"} results in a whitelist that is applied to all levels. \cr
+\code{mode="all"} results in a whitelist that is applied to all levels
+(groups). \cr
 \code{mode="none"} does not create any whitelist and all peaks in this level
 (group) will be removed if no other level has \code{mode="all"}. For
 clarification see the examples, too.
@@ -114,6 +115,11 @@ groups <- factor(c("a", "a", "b", "b"), levels=c("a", "b"))
 filteredPeaks <- filterPeaks(p, minNumber=2, labels=groups,
                              mode=c("group", "group"))
 intensityMatrix(filteredPeaks)
+#     1 2  3  4
+#[1,] 1 2 NA NA
+#[2,] 1 2 NA NA
+#[3,] 1 2  3  4
+#[4,] 1 2  3  4
 
 ## use "all" for group "b"
 ## (whitelist b is applied to group a, too;
@@ -121,12 +127,22 @@ intensityMatrix(filteredPeaks)
 filteredPeaks <- filterPeaks(p, minNumber=2, labels=groups,
                              mode=c("group", "all"))
 intensityMatrix(filteredPeaks)
+#     1 2  3  4
+#[1,] 1 2 NA NA
+#[2,] 1 2  3 NA
+#[3,] 1 2  3  4
+#[4,] 1 2  3  4
 
 ## use "none" for group "b"
 ## (no whitelist is generated for group "b" and all peaks in "b" are removed)
 filteredPeaks <- filterPeaks(p, minNumber=2, labels=groups,
                              mode=c("group", "none"))
 intensityMatrix(filteredPeaks)
+#      1  2
+#[1,]  1  2
+#[2,]  1  2
+#[3,] NA NA
+#[4,] NA NA
 
 ## use "all" and "none"
 ## (no whitelist is generated for group "b" but peaks in "b" are not
@@ -134,5 +150,10 @@ intensityMatrix(filteredPeaks)
 filteredPeaks <- filterPeaks(p, minNumber=2, labels=groups,
                              mode=c("all", "none"))
 intensityMatrix(filteredPeaks)
+#     1 2
+#[1,] 1 2
+#[2,] 1 2
+#[3,] 1 2
+#[4,] 1 2
 }
 \keyword{methods}
