@@ -37,7 +37,7 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
 
   ## labels
   if (missing(labels)) {
-    labels <- rep(0L, length(l))
+    labels <- rep_len(0L, length(l))
   }
 
   ## drop unused levels and turn argument into factor
@@ -60,6 +60,11 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
 
   ll <- levels(labels)
   nl <- length(ll)
+
+  if (length(labels) != length(l)) {
+    stop("For each item in ", sQuote("l"), " there must be a label in ",
+         sQuote("labels"), "!")
+  }
 
   ## recycle arguments if needed
   minFrequency <- rep_len(minFrequency, nl)
@@ -105,6 +110,18 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   return(l)
 }
 
+## .whitelist
+##  helper function to create whitelists for filtering
+##
+## params:
+##  m: matrix
+##  rows: index of rows which should filtered
+##  minFrequency: double, minimal frequency of a peak to be not removed
+##  minNumber: double, minimal (absolute) number of peaks to be not removed
+##
+## returns:
+##  a logical vector representing the whitelist
+##
 .whitelist <- function(m, rows, minFrequency, minNumber) {
 
   ## test arguments
@@ -152,3 +169,4 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
     return(sum(m >= minPeakNumber))
   }
 }
+

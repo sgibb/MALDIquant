@@ -8,6 +8,8 @@ test_that("filterPeaks throws errors", {
   expect_error(filterPeaks(list()), "no list of MALDIquant::MassPeaks")
   expect_error(filterPeaks(l, minFrequency=NA, minNumber=NA),
                  " has to be a meaningful number")
+  expect_error(filterPeaks(l=l, labels=as.factor("a"), minFrequency=1),
+               "For each item in .*l.* there must be a label in .*labels.*")
 })
 
 test_that("filterPeaks shows warnings", {
