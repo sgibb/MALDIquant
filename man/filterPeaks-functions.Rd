@@ -8,7 +8,7 @@ This function removes infrequently peaks from a list of
 \code{\linkS4class{MassPeaks}} objects.
 }
 \usage{
-filterPeaks(l, minFrequency, minNumber, labels, mode="group")
+filterPeaks(l, minFrequency, minNumber, labels, mergeWhitelists=FALSE)
 }
 \arguments{
   \item{l}{
@@ -25,12 +25,15 @@ filterPeaks(l, minFrequency, minNumber, labels, mode="group")
     objects. It is an absolute threshold.
   }
   \item{labels}{
-    \code{list}, list of \code{\link{factor}}s (one for each
-    \code{\linkS4class{MassPeaks}} object) to do groupwise filtering.
+    \code{factor}, (one for each \code{\linkS4class{MassPeaks}} object)
+    to do groupwise filtering. The \emph{levels} of the factor
+    \code{label} define the groups.
   }
-  \item{mode}{
-    \code{character}, whitelist mode, could be \code{"group"} (default),
-    \code{"all"} or \code{"none"}. See Details section for more information.
+  \item{mergeWhitelists}{
+    \code{logical}, if \code{FALSE} the filtering criteria are applied
+    groupwise. If \code{TRUE} peaks that survive the filtering in one group
+    (level of \code{labels}) these peaks are also kept in other groups even if
+    their frequencies are below \code{minFrequency}.
   }
 }
 \details{
@@ -41,15 +44,6 @@ the number of \code{\linkS4class{MassPeaks}} objects in each level).
 If \code{minFrequency} and \code{minNumber} arguments are given the highest
 of \code{minFrequency*n} (\code{n} is the number of
 \code{\linkS4class{MassPeaks}}) and \code{minNumber} is chosen.
-
-\code{mode} controls the whitelist behaviour. For each level (group) of
-\code{labels} a separate whitelist is generated. If \code{mode="group"} the
-whitelist is only applied to the current level (group). In contrast
-\code{mode="all"} results in a whitelist that is applied to all levels
-(groups). \cr
-\code{mode="none"} does not create any whitelist and all peaks in this level
-(group) will be removed if no other level has \code{mode="all"}. For
-clarification see the examples, too.
 }
 \value{
 Returns a \code{\link{list}} of filtered
@@ -107,13 +101,23 @@ filteredPeaks[groups == "a"]
 ## peaks at mass 5 were removed in group "b"
 filteredPeaks[groups == "b"]
 
+## apply different minFrequency arguments to each group
+groups <- factor(c("a", "a", "b", "b", "b"), levels=c("a", "b"))
+filteredPeaks <- filterPeaks(c(p, p[[3]]), minFrequency=c(1, 2/3), labels=groups)
+intensityMatrix(filteredPeaks)
+#     1 2  3  4
+#[1,] 1 2 NA NA
+#[2,] 1 2 NA NA
+#[3,] 1 2  3  4
+#[4,] 1 2  3  4
+#[4,] 1 2  3  4
+
 
 ## demonstrate the use of different whitelist modes
 groups <- factor(c("a", "a", "b", "b"), levels=c("a", "b"))
 
 ## default behaviour
-filteredPeaks <- filterPeaks(p, minNumber=2, labels=groups,
-                             mode=c("group", "group"))
+filteredPeaks <- filterPeaks(p, minNumber=2, labels=groups)
 intensityMatrix(filteredPeaks)
 #     1 2  3  4
 #[1,] 1 2 NA NA
@@ -121,39 +125,16 @@ intensityMatrix(filteredPeaks)
 #[3,] 1 2  3  4
 #[4,] 1 2  3  4
 
-## use "all" for group "b"
-## (whitelist b is applied to group a, too;
-##  please note that mass == 3 is not removed in the second MassPeaks)
+## use mergeWhitelists=TRUE to keep peaks of group "a" that match all filtering
+## criteria in group "b"
+## (please note that mass == 3 is not removed in the second MassPeaks object)
 filteredPeaks <- filterPeaks(p, minNumber=2, labels=groups,
-                             mode=c("group", "all"))
+                             mergeWhitelists=TRUE)
 intensityMatrix(filteredPeaks)
 #     1 2  3  4
 #[1,] 1 2 NA NA
 #[2,] 1 2  3 NA
 #[3,] 1 2  3  4
 #[4,] 1 2  3  4
-
-## use "none" for group "b"
-## (no whitelist is generated for group "b" and all peaks in "b" are removed)
-filteredPeaks <- filterPeaks(p, minNumber=2, labels=groups,
-                             mode=c("group", "none"))
-intensityMatrix(filteredPeaks)
-#      1  2
-#[1,]  1  2
-#[2,]  1  2
-#[3,] NA NA
-#[4,] NA NA
-
-## use "all" and "none"
-## (no whitelist is generated for group "b" but peaks in "b" are not
-##  completely because the "a" whitelist have been applied on "b")
-filteredPeaks <- filterPeaks(p, minNumber=2, labels=groups,
-                             mode=c("all", "none"))
-intensityMatrix(filteredPeaks)
-#     1 2
-#[1,] 1 2
-#[2,] 1 2
-#[3,] 1 2
-#[4,] 1 2
 }
 \keyword{methods}

@@ -1,10 +1,18 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.17 [2014-01-10]:
+- IMPROVEMENT: introduce "mergeWhitelists" argument; remove `mode` argument;
+  affected functions: `filterPeaks`, `referencePeaks`.
+
+- MODIFICATION: `filterPeaks`: "minFrequency" > 1 and "minNumber" > n is not set
+  to 1 or n anymore; only a warning is given; see issue #26, too.
+
 Version 1.8.16 [2014-01-08]:
 - IMPROVEMENT: `filterPeaks` is more sophisticated and supports different
   whitelist modes now. The default behaviour does not changed. Please see the
-  man page of `filterPeaks` for details.
+  man page of `filterPeaks` for details;
+  affected functions: `filterPeaks`, `referencePeaks`.
 
 Version 1.8.13 [2013-11-08]:
 - INTERNAL: remove `binPeaks` from `intensityMatrix`. You have to call
