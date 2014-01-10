@@ -14,17 +14,17 @@ test_that("filterPeaks throws errors", {
 
 test_that("filterPeaks shows warnings", {
   expect_warning(filterPeaks(l, minFrequency=2),
-                 " > 1 for level")
+                 "Empty peak whitelist for level")
   expect_warning(filterPeaks(l, minFrequency=-1),
                  " < 0 does not make sense! Using 0 instead")
   expect_warning(filterPeaks(l, minNumber=10),
-                 " > n for level")
+                 "Empty peak whitelist for level")
   expect_warning(filterPeaks(l, minNumber=-1),
                  " < 0 does not make sense! Using 0 instead")
   expect_warning(filterPeaks(l, minFrequency=2/3, minNumber=2),
                  " arguments are given. Choosing the higher one.")
   expect_warning(filterPeaks(l, minNumber=2, labels=c(1, 2, 2, 2)),
-                 " > n for level")
+                 "Empty peak whitelist for level")
 })
 
 test_that("filterPeaks", {

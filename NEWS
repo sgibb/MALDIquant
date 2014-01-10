@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.8.18 [2014-01-10]:
+- MODIFICATION: replace warning about too large "minFrequency" or "minNumber"
+  by a warning about "empty peak whitelists".
+
 Version 1.8.17 [2014-01-10]:
 - IMPROVEMENT: introduce "mergeWhitelists" argument; remove `mode` argument;
   affected functions: `filterPeaks`, `referencePeaks`.

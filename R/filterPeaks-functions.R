@@ -81,14 +81,17 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   ## collect whitelists
   for (i in seq(along=idx)) {
     wl <- .whitelist(m, idx[[i]],
-                     minFrequency=minFrequency[i], minNumber=minNumber[i],
-                     level=ll[i])
-    if (mergeWhitelists) {
-      ## R uses columnwise recycling
-      w <- t(t(w) | wl)
+                     minFrequency=minFrequency[i], minNumber=minNumber[i])
+    if (sum(wl)) {
+      if (mergeWhitelists) {
+        ## R uses columnwise recycling
+        w <- t(t(w) | wl)
+      } else {
+        ## R uses columnwise recycling
+        w[idx[[i]], ] <- t(t(w[idx[[i]], , drop=FALSE]) | wl)
+      }
     } else {
-      ## R uses columnwise recycling
-      w[idx[[i]], ] <- t(t(w[idx[[i]], ]) | wl)
+      warning("Empty peak whitelist for level ", sQuote(ll[i]), ".")
     }
   }
 
@@ -115,24 +118,16 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
 ##  rows: index of rows which should filtered
 ##  minFrequency: double, minimal frequency of a peak to be not removed
 ##  minNumber: double, minimal (absolute) number of peaks to be not removed
-##  level: current level (group) name
 ##
 ## returns:
 ##  a logical vector representing the whitelist
 ##
-.whitelist <- function(m, rows, minFrequency, minNumber, level) {
+.whitelist <- function(m, rows, minFrequency, minNumber) {
 
   ## test arguments
   if (is.na(minFrequency) && is.na(minNumber)) {
     stop(sQuote(minFrequency), " or ", sQuote(minNumber),
          " has to be a meaningful number!")
-  }
-
-  ## minFrequency should be less or equal to 100%
-  if (!is.na(minFrequency) && minFrequency > 1L) {
-    warning(sQuote("minFrequency"), " > 1 for level ",
-            sQuote(level), ". No whitelist is created. All peaks are filtered.")
-    return(FALSE)
   }
 
   if (!is.na(minFrequency) && minFrequency < 0L) {
@@ -146,26 +141,14 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
     warning(sQuote("minNumber"), " < 0 does not make sense! Using 0 instead.")
   }
 
-  ## minNumber should be smaller than n
-  n <- length(rows)
-  if (!is.na(minNumber) && minNumber > n) {
-    warning(sQuote("minNumber"), " > n for level ",
-            sQuote(level), ". No whitelist is created. All peaks are filtered.")
-    return(FALSE)
-  }
-
   if (!is.na(minFrequency) && !is.na(minNumber)) {
     warning(sQuote("minFrequency"), " and ", sQuote("minNumber"),
             " arguments are given. Choosing the higher one.")
   }
 
   ## calculate minimal number of peaks
-  minPeakNumber <- max(minFrequency*n, minNumber, na.rm=TRUE)
+  minPeakNumber <- max(minFrequency*length(rows), minNumber, na.rm=TRUE)
 
-  if (length(rows) > 1) {
-    return(colSums(m[rows, ]) >= minPeakNumber)
-  } else {
-    return(m)
-  }
+  return(colSums(m[rows, , drop=FALSE]) >= minPeakNumber)
 }
 
