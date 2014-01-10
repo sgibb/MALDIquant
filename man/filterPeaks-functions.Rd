@@ -1,10 +1,10 @@
 \name{filterPeaks}
 \alias{filterPeaks}
 \title{
-Removes less frequently peaks.
+Removes less frequent peaks.
 }
 \description{
-This function removes infrequently peaks from a list of
+This function removes infrequently occuring peaks in a list of
 \code{\linkS4class{MassPeaks}} objects.
 }
 \usage{
@@ -27,7 +27,7 @@ filterPeaks(l, minFrequency, minNumber, labels, mergeWhitelists=FALSE)
   \item{labels}{
     \code{factor}, (one for each \code{\linkS4class{MassPeaks}} object)
     to do groupwise filtering. The \emph{levels} of the factor
-    \code{label} define the groups.
+    \code{label} define the groups. If not specified a single group is assumed.
   }
   \item{mergeWhitelists}{
     \code{logical}, if \code{FALSE} the filtering criteria are applied
@@ -37,13 +37,14 @@ filterPeaks(l, minFrequency, minNumber, labels, mergeWhitelists=FALSE)
   }
 }
 \details{
-If \code{labels} argument is given all peaks which occur in less than
-\code{minFrequency*n} \code{\linkS4class{MassPeaks}} are removed (\code{n} is
-the number of \code{\linkS4class{MassPeaks}} objects in each level).
+For \code{mergeWhitelists=FALSE} the filtering uses a separate peak whitelist
+for each group specified by \code{labels}, and is done independently in each
+group. For \code{mergeWhitelists=TRUE} the peak whitelists are combined,
+which means that peaks that occur frequently in at least one group are also
+kept in all other groups.
 
-If \code{minFrequency} and \code{minNumber} arguments are given the highest
-of \code{minFrequency*n} (\code{n} is the number of
-\code{\linkS4class{MassPeaks}}) and \code{minNumber} is chosen.
+If both \code{minFrequency} and \code{minNumber} arguments are specified the
+more stringent threshold is used.
 }
 \value{
 Returns a \code{\link{list}} of filtered
@@ -113,7 +114,7 @@ intensityMatrix(filteredPeaks)
 #[4,] 1 2  3  4
 
 
-## demonstrate the use of different whitelist modes
+## demonstrate the use of mergeWhitelists
 groups <- factor(c("a", "a", "b", "b"), levels=c("a", "b"))
 
 ## default behaviour
