@@ -1,4 +1,4 @@
-## Copyright 2013 Sebastian Gibb
+## Copyright 2013-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -51,9 +51,9 @@
 ##  a binary matrix
 .as.binary.matrix <- function(m) {
   stopifnot(is.matrix(m))
-  isNA <- is.na(m)
+  isNA <- which(is.na(m))
+  m[] <- 1L
   m[isNA] <- 0L
-  m[!isNA] <- 1L
   return(m)
 }
 

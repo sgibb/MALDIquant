@@ -1,4 +1,4 @@
-## Copyright 2012-2013 Sebastian Gibb
+## Copyright 2012-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -92,7 +92,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
   })
 
   ## create adjusted peak list
-  l <- mapply(FUN=function(p, i) {
+  l <- .mapply(FUN=function(p, i) {
     p@mass <- mass[i]
     p@intensity <- intensities[i]
     p@snr <- snr[i]
