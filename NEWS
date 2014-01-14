@@ -1,74 +1,82 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
-Version 1.8.18 [2014-01-10]:
-- MODIFICATION: replace warning about too large "minFrequency" or "minNumber"
-  by a warning about "empty peak whitelists".
 
-Version 1.8.17 [2014-01-10]:
-- IMPROVEMENT: introduce "mergeWhitelists" argument; remove `mode` argument;
-  affected functions: `filterPeaks`, `referencePeaks`.
+CHANGES IN MALDIquant VERSION 1.9 [2014-01-14]:
+-----------------------------------------------
 
-- MODIFICATION: `filterPeaks`: "minFrequency" > 1 and "minNumber" > n is not set
-  to 1 or n anymore; only a warning is given; see issue #26, too.
+NEW FEATURES
 
-Version 1.8.16 [2014-01-08]:
-- IMPROVEMENT: `filterPeaks` is more sophisticated and supports different
-  whitelist modes now. The default behaviour does not changed. Please see the
-  man page of `filterPeaks` for details;
-  affected functions: `filterPeaks`, `referencePeaks`.
+* Add `alignSpectra`: a wrapper around `detectPeaks`,
+  `determineWarpingFunctions` and `warpMassSpectra` to provide an easier
+  workflow.
 
-Version 1.8.15 [2014-01-06]:
-- INTERNAL: `.as.binary.matrix` the use `which` results in a little speed
-  improvement;
-  affected functions: `filterPeaks`, `referencePeaks`
+IMPROVEMENTS
 
-Version 1.8.13 [2013-11-08]:
-- INTERNAL: remove `binPeaks` from `intensityMatrix`. You have to call
-  `binPeaks` manually.
-
-Version 1.8.12 [2013-11-08]:
-- INTERNAL: add `.as.binary.matrix`.
-
-Version 1.8.11 [2013-11-08]:
-- INTERNAL: add `.as.matrix.MassObjectList` to avoid dependency on
-  `intensityMatrix`.
-
-Version 1.8.10 [2013-10-22]:
-- demo/workflow.R: introduce `alignMassSpectra`.
-
-Version 1.8.9 [2013-10-22]:
-- demo/warping.R: adapt to current preferred workflow.
-
-Version 1.8.8 [2013-10-22]:
-- demo/peaks.R: add smoothing and a few plots.
-
-Version 1.8.7 [2013-10-17]:
-- Add `alignSpectra`, a wrapper around `detectPeaks`,
-  `determineWarpingFunctions` and `warpMassSpectra`.
-
-Version 1.8.6 [2013-10-16]:
-- INTERNAL: remove man/MALDIquant-internal.Rd.
-
-Version 1.8.5 [2013-10-16]:
-- Integrate `expressionMatrix` into `intensityMatrix`; `intensityMatrix` now
-  interpolates missing peaks if corresponding spectrum is given.
-- Deprecated: `intensityMatrix` for MassSpectrum objects.
-
-Version 1.8.4 [2013-10-14]:
-- Add `expressionMatrix`.
-
-Version 1.8.3 [2013-10-11]:
-- plot: fix subtitle for averaged spectra.
-
-Version 1.8.2 [2013-09-26]:
-- IMPROVEMENT: replace some `lapply` calls by `mapply` to allow different
+* `filterPeaks`: introduce "mergeWhitelists" argument to additionally keep peaks
+  that occur at least in one group. The default behaviour does not changed.
+  Please see the man page of `filterPeaks` for details.
+* `intensityMatrix`: add "spectra" argument to allow interpolation of missing
+  peaks if corresponding spectra is given.
+* Replace some `lapply` calls by `mapply` to allow different
   "halfWindowSize" arguments etc.;
-  affected methods: `smoothIntensity`, `removeBaseline`, `detectPeaks`
+  affected methods: `smoothIntensity`, `removeBaseline`, `detectPeaks`.
 
-Version 1.8.1 [2013-09-25]:
-- INTERNAL: argument representation of `setClass` is deprecated since R 3.0.0;
-  use slots instead.
+MODIFICATIONS
+
+* `filterPeaks`: "minFrequency" > 1 and "minNumber" > n is not set
+  to 1 or n anymore; only a warning about "empty peak whitelists" is given;
+  see also issue #26.
+* `filterPeaks`: replace warning about too large "minFrequency" or "minNumber"
+  by a warning about "empty peak whitelists".
+* `intensityMatrix`: rename first argument to "peaks"
+* demo/workflow.R: introduce `alignSpectra`.
+* demo/warping.R: adapt to current preferred workflow.
+* demo/peaks.R: add smoothing and a few new plots.
+
+DEPRECATED ARGUMENTS/FUNCTIONS
+
+- `intensityMatrix` for MassSpectrum objects.
+
+DEFUNCT ARGUMENTS/FUNCTIONS
+
+* `isMassObject`/`isMassObjectList`: use `isMassSpectrum`, `isMassPeaks`,
+  `isMassSpectrumList` or `isMassPeaksList` instead.
+* `totalIonCurrent,MassPeaks-method`: TIC of peaks is meaningless.
+* `totalIonCurrent<-,MassSpectrum-method`:
+  use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
+  MassSpectrum objects.
+* `standardizeTotalIonCurrent`:
+  use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
+  MassSpectrum objects.
+* `calibrate`:
+  use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
+  MassSpectrum objects.
+* `ltrim`/`rtrim`: use `trim(..., range=c(min, max))` instead.
+* `determineWarpingFunctions`, argument "warpingFunction": use "method" argument
+  instead.
+* `mergeMassPeaks`, argument "fun": use "method" argument instead.
+* `mergeMassSpectra`: use `averageMassSpectra`.
+* `savitzkyGolay`: use `smoothIntensity(..., method="SavitzkyGolay")` instead.
+* `movingAverage`: use `smoothIntensity(..., method="MovingAverage")` instead.
+* `transformIntensity`, argument "fun": use "method" argument instead.
+* `removeBaseline`, argument "fun": use "method" argument instead.
+* `detectPeaks`, argument "fun": use "method" argument instead.
+
+BUGFIXES
+
+* `plot`: fix subtitle for averaged spectra.
+
+INTERNAL CHANGES
+
+* Add `.as.matrix.MassObjectList` to avoid internal dependencies on
+  `intensityMatrix`;
+  affected functions: `filterPeaks`, `referencePeaks`.
+* Add `.as.binary.matrix`.
+* Remove man/MALDIquant-internal.Rd.
+* Argument "representation" of `setClass` is deprecated since R 3.0.0;
+  use "slots" instead.
+  affected classes: AbstractMassObject, MassPeaks, MassSpectrum.
 
 
 CHANGES IN MALDIquant VERSION 1.8 [2013-09-08]:
