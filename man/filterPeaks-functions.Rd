@@ -1,14 +1,14 @@
 \name{filterPeaks}
 \alias{filterPeaks}
 \title{
-Removes less frequently peaks.
+Removes less frequent peaks.
 }
 \description{
-This function removes infrequently peaks from a list of
+This function removes infrequently occuring peaks in a list of
 \code{\linkS4class{MassPeaks}} objects.
 }
 \usage{
-filterPeaks(l, minFrequency, minNumber, labels)
+filterPeaks(l, minFrequency, minNumber, labels, mergeWhitelists=FALSE)
 }
 \arguments{
   \item{l}{
@@ -25,18 +25,26 @@ filterPeaks(l, minFrequency, minNumber, labels)
     objects. It is an absolute threshold.
   }
   \item{labels}{
-    \code{list}, list of \code{\link{factor}}s (one for each
-    \code{\linkS4class{MassPeaks}} object) to do groupwise filtering.
+    \code{factor}, (one for each \code{\linkS4class{MassPeaks}} object)
+    to do groupwise filtering. The \emph{levels} of the factor
+    \code{label} define the groups. If not specified a single group is assumed.
+  }
+  \item{mergeWhitelists}{
+    \code{logical}, if \code{FALSE} the filtering criteria are applied
+    groupwise. If \code{TRUE} peaks that survive the filtering in one group
+    (level of \code{labels}) these peaks are also kept in other groups even if
+    their frequencies are below \code{minFrequency}.
   }
 }
 \details{
-If \code{labels} argument is given all peaks which occur in less than
-\code{minFrequency*n} \code{\linkS4class{MassPeaks}} are removed (\code{n} is
-the number of \code{\linkS4class{MassPeaks}} objects in each level).
+For \code{mergeWhitelists=FALSE} the filtering uses a separate peak whitelist
+for each group specified by \code{labels}, and is done independently in each
+group. For \code{mergeWhitelists=TRUE} the peak whitelists are combined,
+which means that peaks that occur frequently in at least one group are also
+kept in all other groups.
 
-If \code{minFrequency} and \code{minNumber} arguments are given the highest
-of \code{minFrequency*n} (\code{n} is the number of
-\code{\linkS4class{MassPeaks}}) and \code{minNumber} is chosen.
+If both \code{minFrequency} and \code{minNumber} arguments are specified the
+more stringent threshold is used.
 }
 \value{
 Returns a \code{\link{list}} of filtered
@@ -94,5 +102,40 @@ filteredPeaks[groups == "a"]
 ## peaks at mass 5 were removed in group "b"
 filteredPeaks[groups == "b"]
 
+## apply different minFrequency arguments to each group
+groups <- factor(c("a", "a", "b", "b", "b"), levels=c("a", "b"))
+filteredPeaks <- filterPeaks(c(p, p[[3]]), minFrequency=c(1, 2/3), labels=groups)
+intensityMatrix(filteredPeaks)
+#     1 2  3  4
+#[1,] 1 2 NA NA
+#[2,] 1 2 NA NA
+#[3,] 1 2  3  4
+#[4,] 1 2  3  4
+#[4,] 1 2  3  4
+
+
+## demonstrate the use of mergeWhitelists
+groups <- factor(c("a", "a", "b", "b"), levels=c("a", "b"))
+
+## default behaviour
+filteredPeaks <- filterPeaks(p, minNumber=2, labels=groups)
+intensityMatrix(filteredPeaks)
+#     1 2  3  4
+#[1,] 1 2 NA NA
+#[2,] 1 2 NA NA
+#[3,] 1 2  3  4
+#[4,] 1 2  3  4
+
+## use mergeWhitelists=TRUE to keep peaks of group "a" that match all filtering
+## criteria in group "b"
+## (please note that mass == 3 is not removed in the second MassPeaks object)
+filteredPeaks <- filterPeaks(p, minNumber=2, labels=groups,
+                             mergeWhitelists=TRUE)
+intensityMatrix(filteredPeaks)
+#     1 2  3  4
+#[1,] 1 2 NA NA
+#[2,] 1 2  3 NA
+#[3,] 1 2  3  4
+#[4,] 1 2  3  4
 }
 \keyword{methods}

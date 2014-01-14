@@ -20,7 +20,7 @@ test_that("referencePeaks shows warnings", {
   expect_warning(referencePeaks(p, minFrequency=-1),
                  " < 0 does not make sense! Using 0 instead")
   expect_warning(referencePeaks(p, minFrequency=10),
-                 " > 1 does not make sense! Using 1 instead")
+                 "Empty peak whitelist for level")
 })
 
 test_that("referencePeaks works with different frequencies", {

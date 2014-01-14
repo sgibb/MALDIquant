@@ -1,4 +1,4 @@
-## Copyright 2012-2013 Sebastian Gibb
+## Copyright 2012-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -23,39 +23,122 @@
 ##  l: list of MassPeaks objects
 ##  minFrequency: double, minimal frequency of a peak to be not removed
 ##  minNumber: double, minimal (absolute) number of peaks to be not removed
-##  labels: labelwise filtering
+##  labels: factor, labelwise filtering
+##  mergeWhitelists: logical, apply whitelists local (FALSE) or global (TRUE)
 ##
 ## returns:
 ##  a list of adjusted MassPeaks objects
 ##
-filterPeaks <- function(l, minFrequency, minNumber, labels) {
+filterPeaks <- function(l, minFrequency, minNumber, labels,
+                        mergeWhitelists=FALSE) {
 
-  ## test parameters
+  ## test arguments
   .stopIfNotIsMassPeaksList(l)
+
+  ## labels
+  if (missing(labels)) {
+    labels <- rep_len(0L, length(l))
+  }
+
+  ## drop unused levels and turn argument into factor
+  if (is.factor(labels)) {
+    labels <- droplevels(labels)
+  } else {
+    ## preserve order in labels
+    labels <- factor(labels, levels=unique(labels))
+  }
 
   if (missing(minFrequency)) {
     minFrequency <- NA
-  } else {
-    if (minFrequency > 1L) {
-      minFrequency <- 1L
-      warning(sQuote("minFrequency"),
-              " > 1 does not make sense! Using 1 instead.")
-    }
-
-    if (minFrequency < 0L) {
-      minFrequency <- 0L
-      warning(sQuote("minFrequency"),
-              " < 0 does not make sense! Using 0 instead.")
-    }
   }
 
   if (missing(minNumber)) {
-    minNumber<- NA
-  } else {
-    if (minNumber < 0L) {
-      minNumber <- 0L
-      warning(sQuote("minNumber"), " < 0 does not make sense! Using 0 instead.")
+    minNumber <- NA
+  }
+
+  ll <- levels(labels)
+  nl <- length(ll)
+
+  if (length(labels) != length(l)) {
+    stop("For each item in ", sQuote("l"), " there must be a label in ",
+         sQuote("labels"), "!")
+  }
+
+  ## recycle arguments if needed
+  minFrequency <- rep_len(minFrequency, nl)
+  minNumber <- rep_len(minNumber, nl)
+  mergeWhitelists <- mergeWhitelists[1]
+
+  ## binary peak matrix (mask)
+  m <- .as.binary.matrix(.as.matrix.MassObjectList(l))
+
+  ## whitelist
+  w <- matrix(0L, nrow=nrow(m), ncol=ncol(m))
+
+  ## group indices by labels
+  idx <- lapply(ll, function(x)which(labels == x))
+
+  ## collect whitelists
+  for (i in seq(along=idx)) {
+    wl <- .whitelist(m, idx[[i]],
+                     minFrequency=minFrequency[i], minNumber=minNumber[i])
+    if (sum(wl)) {
+      if (mergeWhitelists) {
+        ## R uses columnwise recycling
+        w <- t(t(w) | wl)
+      } else {
+        ## R uses columnwise recycling
+        w[idx[[i]], ] <- t(t(w[idx[[i]], , drop=FALSE]) | wl)
+      }
+    } else {
+      warning("Empty peak whitelist for level ", sQuote(ll[i]), ".")
     }
+  }
+
+  ## apply whitelist
+  w <- w & m
+
+  ## turn matrix back into MassPeaks objects
+  for (i in seq(along=l)) {
+    j <- which(as.logical(m[i, ]))
+    include <- which(w[i, j])
+    l[[i]]@mass <- l[[i]]@mass[include]
+    l[[i]]@intensity <- l[[i]]@intensity[include]
+    l[[i]]@snr <- l[[i]]@snr[include]
+  }
+
+  return(l)
+}
+
+## .whitelist
+##  helper function to create whitelists for filtering
+##
+## params:
+##  m: matrix
+##  rows: index of rows which should filtered
+##  minFrequency: double, minimal frequency of a peak to be not removed
+##  minNumber: double, minimal (absolute) number of peaks to be not removed
+##
+## returns:
+##  a logical vector representing the whitelist
+##
+.whitelist <- function(m, rows, minFrequency, minNumber) {
+
+  ## test arguments
+  if (is.na(minFrequency) && is.na(minNumber)) {
+    stop(sQuote(minFrequency), " or ", sQuote(minNumber),
+         " has to be a meaningful number!")
+  }
+
+  if (!is.na(minFrequency) && minFrequency < 0L) {
+    minFrequency <- 0L
+    warning(sQuote("minFrequency"),
+            " < 0 does not make sense! Using 0 instead.")
+  }
+
+  if (!is.na(minNumber) && minNumber < 0L) {
+    minNumber <- 0L
+    warning(sQuote("minNumber"), " < 0 does not make sense! Using 0 instead.")
   }
 
   if (!is.na(minFrequency) && !is.na(minNumber)) {
@@ -63,38 +146,9 @@ filterPeaks <- function(l, minFrequency, minNumber, labels) {
             " arguments are given. Choosing the higher one.")
   }
 
-  return(.doByLabels(l, labels=labels, FUN=.filterPeaks,
-                     minFrequency=minFrequency, minNumber=minNumber))
-}
-
-.filterPeaks <- function(l, minFrequency, minNumber=NA) {
-  n <- length(l)
-
-  ## minNumber have to be smaller than length(l)
-  if (!is.na(minNumber) && minNumber > n) {
-    minNumber <- n
-    warning(sQuote("minNumber"), " > ", sQuote("length(l)"),
-            " does not make sense! Using ", n, " instead.")
-  }
-
   ## calculate minimal number of peaks
-  minPeakNumber <- max(minFrequency*n, minNumber, na.rm=TRUE)
+  minPeakNumber <- max(minFrequency*length(rows), minNumber, na.rm=TRUE)
 
-  ## fetch mass
-  mass <- sort(unique(.unlist(lapply(l, function(x)x@mass))), method="quick")
-
-  ## generate peak matrix
-  m <- .as.binary.matrix(.as.matrix.MassObjectList(l))
-  exclude <- mass[colSums(m) < minPeakNumber]
-
-  l <- lapply(l, function(x) {
-    e <- x@mass %in% exclude
-    x@mass <- x@mass[!e]
-    x@intensity <- x@intensity[!e]
-    x@snr <- x@snr[!e]
-    return(x)
-  })
-
-  return(l)
+  return(colSums(m[rows, , drop=FALSE]) >= minPeakNumber)
 }
 
