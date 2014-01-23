@@ -6,6 +6,7 @@
 
 
 ## load necessary packages
+## requires MALDIquant >= 1.9
 library("MALDIquant")
 
 ## load example spectra
