@@ -20,6 +20,11 @@ instead.
   Returns a two column matrix (first column: mass, second column: intensity)
   of the estimated baseline.
 }
+\references{
+Andrew, A. M. 1979.
+Another efficient algorithm for convex hulls in two dimensions.
+Information Processing Letters, 9(5), 216-219.
+}
 \author{
 Sebastian Gibb
 }

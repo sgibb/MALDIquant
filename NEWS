@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.9.1 [2014-01-26]:
+- Add missing reference "Andrew 1979" to the ".estimateBaselineConvexHull"
+  man page.
+
 
 CHANGES IN MALDIquant VERSION 1.9 [2014-01-14]:
 -----------------------------------------------
