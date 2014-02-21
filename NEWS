@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.9.2 [2014-02-21]:
+- INTERNAL: move tests into tests/testthat to adapt to testthat 0.8 and new
+  CRAN policy; close #44.
+
 Version 1.9.1 [2014-01-26]:
 - Add missing reference "Andrew 1979" to the ".estimateBaselineConvexHull"
   man page.
