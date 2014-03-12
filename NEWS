@@ -1,12 +1,16 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.9.3 [2014-03-12]:
+- Use `table` instead of `any(length(fiedler2009subset[[1]]) == sapply(...` in
+  demo/workflow.R.
+
 Version 1.9.2 [2014-02-21]:
 - INTERNAL: move tests into tests/testthat to adapt to testthat 0.8 and new
   CRAN policy; close #44.
 
 Version 1.9.1 [2014-01-26]:
-- Add missing reference "Andrew 1979" to the ".estimateBaselineConvexHull"
+- Add missing reference "Andrew 1979" to the `.estimateBaselineConvexHull`
   man page.
 
 

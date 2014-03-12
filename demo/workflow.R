@@ -31,8 +31,9 @@ any(!sapply(fiedler2009subset, isRegular))
 ## do length of spectra differ? (if they differ you have to adjust the
 ## corresponding halfWindowSize in subsequent baseline correction and peak
 ## detection.)
-any(length(fiedler2009subset[[1]]) != sapply(fiedler2009subset, length))
-# FALSE
+table(sapply(fiedler2009subset, length))
+# 42388
+#    16
 
 
 ## preprocessing
