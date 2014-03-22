@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.9.4 [2014-03-22]:
+- `trim`: a warning is thrown if the resulting MassSpectrum/MassPeaks object
+  contains no data points anymore.
+
 Version 1.9.3 [2014-03-12]:
 - Use `table` instead of `any(length(fiedler2009subset[[1]]) == sapply(...` in
   demo/workflow.R.

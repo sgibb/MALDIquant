@@ -9,6 +9,10 @@ test_that("trim throws errors", {
                "No overlap")
 })
 
+test_that("trim throws warnings", {
+  expect_warning(trim(s, range=c(20, 30)), "No data points left")
+})
+
 test_that("trim", {
   expect_equal(trim(s, c(2, 9)),
          createMassSpectrum(mass=2:9, intensity=12:19))
