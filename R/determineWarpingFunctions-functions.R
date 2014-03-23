@@ -85,6 +85,13 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
     stop("Reference MassPeaks object contains no peaks!")
   }
 
+  if (length(reference) < 10) {
+    warning("Reference MassPeaks object contains very few peaks (n == ",
+            length(reference), "). The warping could be instable. ",
+            "Consider to reduce ", sQuote("minFrequency"),
+            " or/and to increase ", sQuote("tolerance"), ".")
+  }
+
   ## fetch plot.default arguments (debug plot)
   if (plot) {
     plotNames <- c("xlim", "ylim", "xlab", "ylab", "type", "lwd", "col",

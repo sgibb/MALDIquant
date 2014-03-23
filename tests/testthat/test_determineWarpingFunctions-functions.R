@@ -14,6 +14,11 @@ test_that("determineWarpingFunctions throws errors", {
                "Could not match any peak in spectrum 1 to a reference peak")
 })
 
+test_that("determineWarpingFunctions throws warnings", {
+  expect_warning(determineWarpingFunctions(p, reference=r[6:10]),
+                 "Reference MassPeaks object contains very few peaks")
+})
+
 test_that("determineWarpingFunctions works with single MassPeaks object", {
   w <- determineWarpingFunctions(p, reference=r, method="linear")
   wp <- warpMassPeaks(list(p), w)[[1]]

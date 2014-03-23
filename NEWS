@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.9.5 [2014-03-23]:
+- `determineWarpingFunctions`: a warning is thrown if the "reference" contains
+  less than ten peaks;
+  affected functions: `determineWarpingFunctions`, `alignSpectra`
+
 Version 1.9.4 [2014-03-22]:
 - `trim`: a warning is thrown if the resulting MassSpectrum/MassPeaks object
   contains no data points anymore.
