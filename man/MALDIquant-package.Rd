@@ -17,8 +17,8 @@ For a first overview run \code{demo("MALDIquant")}.
 \details{
 \tabular{ll}{
 Package: \tab MALDIquant\cr
-Version: \tab 1.9.5\cr
-Date: \tab 2014-03-23\cr
+Version: \tab 1.9.6\cr
+Date: \tab 2014-03-24\cr
 License: \tab GPL (>= 3)\cr
 URL: \tab http://strimmerlab.org/software/maldiquant/\cr
 }
@@ -49,7 +49,9 @@ See website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \seealso{
   \itemize{
+    \item Introduction: \code{vignette("MALDIquant", package="MALDIquant")}.
     \item Run demo files: \code{demo("MALDIquant")}.
     \item List all available manual pages: \code{library(help="MALDIquant")}.
+    \item MALDIquant website: \url{http://strimmerlab.org/software/maldiquant/}.
   }
 }

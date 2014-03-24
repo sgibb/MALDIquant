@@ -20,7 +20,7 @@ APE_R_PACKAGE_DIR=/usr/local/lib/R/site-library/
 ## targets:
 all: build
 
-clean: local_remove
+clean: local_remove clean_vignette
 	cd .. ;\
 	$(RM) Rplots.pdf ;\
 	$(RM) $(NAME)/src/*.rds ;\
@@ -76,4 +76,13 @@ testdemo: local_install
 win-builder: check
 	cd .. ;\
 	ncftpput -u anonymous -p '' win-builder.r-project.org R-devel $(PACKAGE)
+
+vignette:
+	cd vignettes ;\
+	$(R_BIN) --vanilla -e "library(knitr); knit2pdf(\"MALDIquant.Rnw\");"
+
+clean_vignette:
+	cd vignettes ;\
+	$(RM) *.aux *.bbl *.blg *.log *.out *.pdf *.tex *.toc ;\
+	$(RM) -r figure
 

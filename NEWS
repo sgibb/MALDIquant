@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.9.6 [2014-03-24]:
+- add basic vignette.
+
 Version 1.9.5 [2014-03-23]:
 - `determineWarpingFunctions`: a warning is thrown if the "reference" contains
   less than ten peaks;
