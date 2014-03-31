@@ -84,8 +84,8 @@ suppressPackageStartupMessages(library("MALDIquant"))
 
 \section*{Foreword}
 
-\Mq{} is free and open source software for the \R{} \citep{RPROJECT} environment
-and under active development.
+\Mq{} is free and open source software for the \R{} \citep{RPROJECT}
+environment and under active development.
 If you use it, please support the project by citing it in publications:
 
 \begin{quote}
@@ -98,7 +98,7 @@ Please visit \url{http://strimmerlab.org/software/maldiquant/}.
 
 \section{Introduction}
 
-\Mq{}  comprising all steps from importing of raw data, preprocessing
+\Mq{} comprising all steps from importing of raw data, preprocessing
 (e.g. baseline removal), peak detection and non-linear peak alignment to
 calibration of mass spectra.
 
