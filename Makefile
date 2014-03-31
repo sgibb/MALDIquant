@@ -15,7 +15,7 @@ APE_R_PACKAGE_DIR=/usr/local/lib/R/site-library/
 
 ## package version
 
-.PHONY: clean cran check build install remove ape_install ape_remove local_install local_remove test
+.PHONY: clean cran check build install remove ape_install ape_remove local_install local_remove test clean_vignette
 
 ## targets:
 all: build
