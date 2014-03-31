@@ -50,7 +50,7 @@
 }
 
 
-\title{\Rpackage{MALDIquant}: Quantitative Analysis of Mass Spectrometry Data}
+\title{\Mq{}: Quantitative Analysis of Mass Spectrometry Data}
 
 \author{
   Sebastian Gibb%
