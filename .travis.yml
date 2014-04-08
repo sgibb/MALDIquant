@@ -21,3 +21,7 @@ notifications:
   email:
     on_success: change
     on_failure: change
+env:
+  - global:
+    - WARNINGS_ARE_ERRORS=1
+    - BOOTSTRAP_LATEX=1
