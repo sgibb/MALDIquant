@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.9.7 [2014-04-09]:
+- INTERNAL: check limits in `.which.closest` to avoid missing matches in some
+  rare edge cases;
+  affected functions: `labelPeaks`.
+
 Version 1.9.6 [2014-03-24]:
 - add basic vignette.
 
