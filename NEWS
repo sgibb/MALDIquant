@@ -2,10 +2,12 @@ RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
 Version 1.9.9 [2014-04-10]:
-- `.transformIntensity`: show warning if negative intensities are generated and
-  set them to zero;
+- `.transformIntensity`: show a warning if negative intensity values are
+  generated and set them to zero;
   affected functions: `transformIntensity`, `smoothIntensity`,
   `calibrateIntensity`.
+- `createMassSpectrum`\`createPeaks`: show a warning if negative intensity
+  are found.
 
 Version 1.9.8 [2014-04-10]:
 - INTERNAL: move body of estimateNoise,MassSpectrum to .estimateNoise.

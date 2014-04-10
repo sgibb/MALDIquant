@@ -23,6 +23,16 @@
                   ") and intensity (", length(object@intensity),
                   ") have to be equal."))
   }
+  if (is.numeric(object@mass) &&
+      length(object@mass) &&
+      any(object@mass < 0L)) {
+    warning("Negative mass values found.")
+  }
+  if (is.numeric(object@intensity) &&
+      !isEmpty(object) &&
+      any(object@intensity < 0L)) {
+    warning("Negative intensity values found.")
+  }
   return(TRUE)
 }
 

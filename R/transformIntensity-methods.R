@@ -71,7 +71,7 @@ setMethod(f=".transformIntensity",
 
     if (length(belowZeroIdx)) {
       warning("Negative intensities generated. Replaced by zeros.")
-      object@intensity[belowZeroIdx] <- 0L
+      object <- .replaceNegativeIntensityValues(object, warn=FALSE)
     }
 
     if (na.rm) {
