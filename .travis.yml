@@ -3,6 +3,10 @@
 
 language: c
 
+env:
+  global:
+    - R_BUILD_ARGS=" " R_CHECK_ARGS="--as-cran" BOOTSTRAP_LATEX="1" WARNINGS_ARE_ERRORS="1"
+
 before_install:
   - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
   - chmod 755 ./travis-tool.sh
@@ -10,6 +14,7 @@ before_install:
 
 install:
   - ./travis-tool.sh install_deps
+  - ./travis-tool.sh install_aptget pgf
 
 script:
   - ./travis-tool.sh run_tests
@@ -21,9 +26,3 @@ notifications:
   email:
     on_success: change
     on_failure: change
-env:
-  - global:
-    - R_BUILD_ARGS=
-    - R_CHECK_ARGS=--as-cran
-    - WARNINGS_ARE_ERRORS=1
-    - BOOTSTRAP_LATEX=1
