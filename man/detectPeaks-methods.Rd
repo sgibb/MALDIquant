@@ -12,7 +12,6 @@ A peak is a local maximum above a user defined noise threshold.
 \usage{
 \S4method{detectPeaks}{MassSpectrum}(object,
   halfWindowSize=20, method=c("MAD", "SuperSmoother"), SNR=2,
-  fun,
   \dots)
 }
 \arguments{
@@ -29,7 +28,6 @@ A peak is a local maximum above a user defined noise threshold.
   \item{SNR}{single numeric value. \code{SNR} is an abbreviation for
     \emph{s}ignal-to-\emph{n}oise-\emph{r}atio. A local maximum has to
     be higher than \code{SNR*noise} to be recognize as peak.}
-  \item{fun}{deprecated.}
   \item{\dots}{arguments to be passed to
     \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}}.}
 }
