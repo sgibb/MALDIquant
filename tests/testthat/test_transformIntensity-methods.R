@@ -26,6 +26,11 @@ test_that(".transformIntensity throws errors", {
   expect_error(.transformIntensity(s), "is missing")
 })
 
+test_that(".transformIntensity shows warnings", {
+  expect_warning(.transformIntensity(s, fun=function(x)return(-x)),
+                 "Negative intensities generated")
+})
+
 test_that(".transformIntensity", {
   expect_equal(intensity(.transformIntensity(s, sqrt)), 1:10)
   expect_equal(length(.transformIntensity(s, MALDIquant:::.movingAverage,
@@ -33,6 +38,9 @@ test_that(".transformIntensity", {
   expect_equal(length(.transformIntensity(s,
                         function(x)as.double(filter(x, rep(1, 5)/5, sides=2)))),
                6)
+  expect_equal(intensity(suppressWarnings(
+                 .transformIntensity(s, fun=function(x)return(-x)))),
+               rep(0, 10))
 })
 
 test_that(".transformIntensity works with list of AbstractMassObject objects", {

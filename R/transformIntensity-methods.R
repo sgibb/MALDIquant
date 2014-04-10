@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2011-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -67,10 +67,17 @@ setMethod(f=".transformIntensity",
 
     object@intensity <- fun(object@intensity, ...)
 
+    belowZeroIdx <- which(object@intensity < 0L)
+
+    if (length(belowZeroIdx)) {
+      warning("Negative intensities generated. Replaced by zeros.")
+      object@intensity[belowZeroIdx] <- 0L
+    }
+
     if (na.rm) {
-      na <- is.na(object@intensity)
-      object@intensity <- object@intensity[!na]
-      object@mass <- object@mass[!na]
+      naIdx <- which(!is.na(object@intensity))
+      object@intensity <- object@intensity[naIdx]
+      object@mass <- object@mass[naIdx]
     }
   }
 
