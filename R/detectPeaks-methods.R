@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2011-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -20,9 +20,7 @@
 setMethod(f="detectPeaks",
           signature=signature(object="MassSpectrum"),
           definition=function(object, halfWindowSize=20L,
-                              method=c("MAD", "SuperSmoother"), SNR=2L,
-                              fun, ## deprecated
-                              ...) {
+                              method=c("MAD", "SuperSmoother"), SNR=2L, ...) {
 
   ## empty spectrum?
   if (.isEmptyWarning(object)) {
@@ -30,35 +28,21 @@ setMethod(f="detectPeaks",
                            metaData=object@metaData))
   }
 
-  ## try to use user-defined noise estimation function
-  if (!missing(fun)) {
-    .deprecatedArgument("1.7.12", old="fun", new="method", help="detectPeaks")
-    fun <- match.fun(fun)
-    noise <- fun(object@mass, object@intensity, ...)
-
-    ## wrong noise argument given?
-    isCorrectNoise <- is.matrix(noise) &&
-                      (nrow(noise) == length(object) && ncol(noise) == 2)
-
-    if (!isCorrectNoise) {
-      stop("The noise argument is not valid.")
-    }
-  } else {
-    ## estimate noise
-    noise <- estimateNoise(object, method=method, ...)
-  }
+  ## estimate noise
+  noise <- estimateNoise(object, method=method, ...)
 
   ## find local maxima
-  localMaxima <- .findLocalMaximaLogical(object, halfWindowSize=halfWindowSize)
+  isLocalMaxima <- .findLocalMaximaLogical(object,
+                                           halfWindowSize=halfWindowSize)
 
   ## include only local maxima which are above the noise
-  aboveNoise <- object@intensity > (SNR * noise[, 2L])
+  isAboveNoise <- object@intensity > (SNR * noise[, 2L])
 
-  isPeak <- aboveNoise & localMaxima
+  peakIdx <- which(isAboveNoise & isLocalMaxima)
 
-  return(createMassPeaks(mass=object@mass[isPeak],
-                         intensity=object@intensity[isPeak],
-                         snr=object@intensity[isPeak]/noise[isPeak, 2L],
+  return(createMassPeaks(mass=object@mass[peakIdx],
+                         intensity=object@intensity[peakIdx],
+                         snr=object@intensity[peakIdx]/noise[peakIdx, 2L],
                          metaData=object@metaData))
 })
 

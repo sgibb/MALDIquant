@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2011-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -15,6 +15,38 @@
 ##
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
+
+## estimateNoise
+##  estimating the noise of a spectrum
+##
+## params:
+##  x: vector of x values (mass)
+##  y: vector of y values (intensity)
+##  method: method to use
+##  ...: further arguments passed to "method"
+##
+## returns:
+##  a matrix of the estimate noise (col1: mass; col2: intensity)
+##
+.estimateNoise <- function(x, y, method=c("MAD", "SuperSmoother"), ...) {
+
+  method <- match.arg(method)
+
+  n <- switch(method,
+              "MAD" = {
+                .estimateNoiseMad(x, y)
+              },
+              "SuperSmoother" = {
+                .estimateNoiseSuperSmoother(x, y, ...)
+              },
+              {
+                stop("Unknown ", sQuote("method"), ".")
+              }
+  )
+
+  colnames(n) <- c("mass", "intensity")
+  return(n)
+}
 
 ## estimateNoiseMad
 ##  estimate noise by calculating mad over intensity values

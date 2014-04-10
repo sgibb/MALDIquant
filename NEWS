@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+- INTERNAL: move body of estimateNoise,MassSpectrum to .estimateNoise.
+
+- REMOVED: `detectPeaks`, argument "fun": use "method" argument instead.
+
 Version 1.9.7 [2014-04-09]:
 - INTERNAL: check limits in `.which.closest` to avoid missing matches in some
   rare edge cases;

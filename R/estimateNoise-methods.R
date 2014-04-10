@@ -26,21 +26,6 @@ setMethod(f="estimateNoise",
     return(0L)
   }
 
-  method <- match.arg(method)
-
-  n <- switch(method,
-              "MAD" = {
-                .estimateNoiseMad(object@mass, object@intensity)
-              },
-              "SuperSmoother" = {
-                .estimateNoiseSuperSmoother(object@mass, object@intensity, ...)
-              },
-              {
-                stop("Unknown ", sQuote("method"), ".")
-              }
-  )
-
-  colnames(n) <- c("mass", "intensity")
-  return(n)
+  return(.estimateNoise(x=object@mass, y=object@intensity, method=method, ...))
 })
 
