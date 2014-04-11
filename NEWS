@@ -1,15 +1,37 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
-Version 1.9.10 [2014-04-11]:
-Defunct:
-- `intensityMatrix` for MassSpectrum objects.
+CHANGES IN MALDIquant VERSION 1.10 [2014-04-11]:
+------------------------------------------------
 
-- REMOVED:
-* `transformIntensity`, argument "fun": use "method" argument instead.
-* `determineWarpingFunctions`, argument "warpingFunction": use "method" argument
-  instead.
-* `detectPeaks`, argument "fun": use "method" argument instead.
+IMPROVEMENTS
+
+* Add a general vignette.
+* `createMassSpectrum`/`createPeaks`: a warning is shown if negative intensity
+  values are found.
+* `.transformIntensity`: a warning is shown if negative intensity values are
+  generated and set them to zero;
+  affected functions: `transformIntensity`, `smoothIntensity`,
+  `calibrateIntensity`.
+* `determineWarpingFunctions`: a warning is shown if the "reference" contains
+  less than ten peaks;
+  affected functions: `determineWarpingFunctions`, `alignSpectra`
+* `trim`: a warning is shown if the resulting MassSpectrum/MassPeaks object
+  does not contain any data points.
+
+MODIFICATIONS
+
+* Use `table` instead of `any(length(fiedler2009subset[[1]]) == sapply(...` in
+  demo/workflow.R.
+
+DEFUNCT ARGUMENTS/FUNCTIONS
+
+* `intensityMatrix` for MassSpectrum objects.
+
+REMOVED ARGUMENTS/FUNCTIONS
+
+* `isMassObject`/`isMassObjectList`: use `isMassSpectrum`, `isMassPeaks`,
+  `isMassSpectrumList` or `isMassPeaksList` instead.
 * `totalIonCurrent,MassPeaks-method`: TIC of peaks is meaningless.
 * `totalIonCurrent<-,MassSpectrum-method`:
   use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
@@ -21,55 +43,30 @@ Defunct:
   use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
   MassSpectrum objects.
 * `ltrim`/`rtrim`: use `trim(..., range=c(min, max))` instead.
+* `determineWarpingFunctions`, argument "warpingFunction": use "method" argument
+  instead.
 * `mergeMassPeaks`, argument "fun": use "method" argument instead.
 * `mergeMassSpectra`: use `averageMassSpectra`.
 * `savitzkyGolay`: use `smoothIntensity(..., method="SavitzkyGolay")` instead.
 * `movingAverage`: use `smoothIntensity(..., method="MovingAverage")` instead.
-* `isMassObject`/`isMassObjectList`: use `isMassSpectrum`, `isMassPeaks`,
-  `isMassSpectrumList` or `isMassPeaksList` instead.
-
+* `transformIntensity`, argument "fun": use "method" argument instead.
 * `removeBaseline`, argument "fun": use "method" argument instead.
+* `detectPeaks`, argument "fun": use "method" argument instead.
 
-Version 1.9.9 [2014-04-10]:
-- `.transformIntensity`: show a warning if negative intensity values are
-  generated and set them to zero;
-  affected functions: `transformIntensity`, `smoothIntensity`,
-  `calibrateIntensity`.
-- `createMassSpectrum`\`createPeaks`: show a warning if negative intensity
-  are found.
+BUG FIXES
 
-Version 1.9.8 [2014-04-10]:
-- INTERNAL: move body of estimateNoise,MassSpectrum to .estimateNoise.
-- REMOVED: `detectPeaks`, argument "fun": use "method" argument instead.
-
-Version 1.9.7 [2014-04-09]:
-- INTERNAL: check limits in `.which.closest` to avoid missing matches in some
+* `.which.closest`: check limits to avoid missing matches in some
   rare edge cases;
   affected functions: `labelPeaks`.
+* Add missing reference "Andrew 1979" to the `.estimateBaselineConvexHull`
+  manual page.
 
-Version 1.9.6 [2014-03-24]:
-- add basic vignette.
+INTERNAL CHANGES
 
-Version 1.9.5 [2014-03-23]:
-- `determineWarpingFunctions`: a warning is thrown if the "reference" contains
-  less than ten peaks;
-  affected functions: `determineWarpingFunctions`, `alignSpectra`
-
-Version 1.9.4 [2014-03-22]:
-- `trim`: a warning is thrown if the resulting MassSpectrum/MassPeaks object
-  does not contain any data points.
-
-Version 1.9.3 [2014-03-12]:
-- Use `table` instead of `any(length(fiedler2009subset[[1]]) == sapply(...` in
-  demo/workflow.R.
-
-Version 1.9.2 [2014-02-21]:
-- INTERNAL: move tests into tests/testthat to adapt to testthat 0.8 and new
-  CRAN policy; close #44.
-
-Version 1.9.1 [2014-01-26]:
-- Add missing reference "Andrew 1979" to the `.estimateBaselineConvexHull`
-  man page.
+* `estimateNoise`: move body of `estimateNoise,MassSpectrum` to internal
+  `.estimateNoise`.
+* Move tests into tests/testthat/ to adapt to testthat 0.8 and new
+  CRAN policy; closes #44.
 
 
 CHANGES IN MALDIquant VERSION 1.9 [2014-01-14]:

@@ -29,7 +29,7 @@ setMethod("trim",
   sel <- which(range[1L] <= object@mass & object@mass <= range[2L])
 
   if (!length(sel)) {
-    warning("The mass range (", paste0(range, collapse=":"), 
+    warning("The mass range (", paste0(range, collapse=":"),
             ") is outside of the stored mass values. No data points left.")
   }
 
