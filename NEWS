@@ -73,6 +73,8 @@ INTERNAL CHANGES
   in 0.2.
 * `.lowerConvexHullR`: removed. It was replaced by a C version of
   `.estimateBaselineConvexHull` in 0.3.
+* `.topHatR`: removed. It was never used and replaced by a C version of
+  `.estimateBaselineTopHat` in 1.6.
 
 
 CHANGES IN MALDIquant VERSION 1.9 [2014-01-14]:

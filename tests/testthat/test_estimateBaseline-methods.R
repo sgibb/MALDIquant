@@ -75,11 +75,8 @@ test_that("estimateBaselineTopHat", {
   m[, 2] <- c(rep(8, 3), 7:1, rep(6, 5), 5:1)
   m1 <- m
   m1[, 2] <- c(rep(9, 2), 8:1, rep(8, 3), 7:1)
-  ## C implementation
   expect_identical(MALDIquant:::.estimateBaselineTopHat(1:20, i, 1), m1)
   expect_identical(MALDIquant:::.estimateBaselineTopHat(1:20, i, 2), m)
-  ## obsolete (slow) R implementation
-  expect_equal(MALDIquant:::.topHatR(1:20, i, 2), m)
 
   ## user method
   colnames(m) <- c("mass", "intensity")

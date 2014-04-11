@@ -109,19 +109,3 @@
   return(cbind(x, y))
 }
 
-## R only: obsolete because too slow
-.topHatR <- function(x, y, halfWindowSize=100L) {
-
-  .stopIfNotIsValidHalfWindowSize(halfWindowSize=halfWindowSize, n=length(x))
-
-  windowSize <- 2L*halfWindowSize+1L
-
-  windows <- embed(c(rep(y[1L], halfWindowSize), y,
-                     rep(tail(y, 1L), halfWindowSize)), windowSize)
-  e <- apply(windows, 1L, min)
-  windows <- embed(c(rep(e[1L], halfWindowSize), e,
-                     rep(tail(e, 1L), halfWindowSize)), windowSize)
-  y <- apply(windows, 1L, max)
-  return(cbind(x, y))
-}
-
