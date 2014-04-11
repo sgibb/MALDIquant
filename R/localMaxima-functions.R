@@ -1,4 +1,4 @@
-## Copyright 2012-2013 Sebastian Gibb
+## Copyright 2012-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -28,24 +28,10 @@
 ##  logical vector of local maxima
 ##
 
-## C version
 .localMaxima <- function(y, halfWindowSize=1L) {
   y <- c(rep(0L, halfWindowSize), y, rep(0L, halfWindowSize))
   n <- length(y)
   i <- (halfWindowSize+1L):(n-halfWindowSize)
   return(.Call("C_localMaxima", y, halfWindowSize)[i])
-}
-
-## R only: obsolete because too slow and too much memory usage
-.localMaximaR <- function(y, halfWindowSize=1L) {
-  ## based on a posting of Brian Ripley on r-help mailinglist
-  ## https://stat.ethz.ch/pipermail/r-help/2001-January/010704.html
-  windowSize <- 2L*halfWindowSize+1L
-
-  windows <- embed(c(rep(0L, halfWindowSize), y, rep(0L, halfWindowSize)),
-                   windowSize)
-  localMaxima <- max.col(windows, "last") == halfWindowSize+1L
-
-  return(localMaxima)
 }
 
