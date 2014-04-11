@@ -58,15 +58,11 @@ test_that("estimateBaselineSnip", {
   for (j in seq(along=mlist)) {
     d <- names(mlist)[j] == "decreasing"
 
-    ## C implementation
     expect_identical(MALDIquant:::.estimateBaselineSnip(1:20, i, 2,
                                                         decreasing=d),
                      mlist[[j]]$m)
     expect_equal(MALDIquant:::.estimateBaselineSnip(1:20, i, decreasing=d),
                  mlist[[j]]$m100)
-    ## obsolete (slow) R implementation
-    expect_identical(MALDIquant:::.snipR(1:20, i, 2, decreasing=d),
-                     mlist[[j]]$m)
 
     ## user method
     colnames(mlist[[j]]$m100) <- colnames(mlist[[j]]$m) <- c("mass", "intensity")

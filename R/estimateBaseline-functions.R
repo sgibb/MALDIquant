@@ -119,32 +119,8 @@
 ## returns:
 ##  a matrix of the estimate baseline (col1: mass; col2: intensity)
 
-## C version
 .estimateBaselineSnip <- function(x, y, iterations=100L, decreasing=TRUE) {
   return(cbind(x=x, y=.Call("C_snip", y, iterations, decreasing)))
-}
-
-## R only: obsolete because too slow
-.snipR <- function(x, y, iterations=100L, decreasing=TRUE) {
-  n <- length(y)
-
-  if (decreasing) {
-    s <- seq(from=iterations, to=1L)
-  } else {
-    s <- seq(from=1L, to=iterations)
-  }
-
-  for (i in s) {
-    j <- (i+1L):(n-i)
-    jl <- j-i
-    ju <- j+i
-    m <- (y[jl]+y[ju])/2L
-    ## too slow
-    #y[j] <- ifelse(y[j] > m, m, y[j])
-    ml <- y[j]>m
-    y[j][ml] <- m[ml]
-  }
-  return(cbind(x, y))
 }
 
 ## estimateBaselineTopHat
