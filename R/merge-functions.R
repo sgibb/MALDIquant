@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2011-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -28,18 +28,10 @@
 ##  a new MassPeaks object or a list of new MassPeaks objects
 ##
 mergeMassPeaks  <- function(l, labels, method=c("mean", "median", "sum"),
-                            ignore.na=TRUE,
-                            fun, ... ## deprecated
-                            ) {
+                            ignore.na=TRUE) {
 
   ## test arguments
   .stopIfNotIsMassPeaksList(l)
-
-  if (!missing(fun)) {
-    .deprecatedArgument("1.7.12", "fun", "method")
-    return(.doByLabels(l=l, labels=labels, FUN=.mergeMassPeaksDeprecated,
-                       fun=fun, ...))
-  }
 
   method <- match.arg(method)
 

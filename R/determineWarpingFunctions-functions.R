@@ -1,4 +1,4 @@
-## Copyright 2012-2013 Sebastian Gibb
+## Copyright 2012-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -34,39 +34,32 @@
 determineWarpingFunctions <- function(l, reference, tolerance=0.002,
                                       method=c("lowess", "linear", "quadratic",
                                                "cubic"),
-                                      plot=FALSE, plotInteractive=FALSE, ...,
-                                      warpingFunction ## deprecated
-                                      ) {
+                                      plot=FALSE, plotInteractive=FALSE, ...) {
 
   ## test arguments
   if (!isMassPeaksList(l) && !isMassPeaks(l)) {
     stop(sQuote("l"), " is no list of MALDIquant::MassPeaks objects!")
   }
 
-  if (!missing(warpingFunction)) {
-    .deprecatedArgument("1.7.12", "warpingFunction", "method")
-    warpingFunction <- match.fun(warpingFunction)
-  } else {
-    method <- match.arg(method)
+  method <- match.arg(method)
 
-    warpingFunction <- switch(method,
-      "lowess" = {
-        .warpingFunctionLowess
-      },
-      "linear" = {
-        .warpingFunctionLinear
-      },
-      "quadratic" = {
-        .warpingFunctionQuadratic
-      },
-      "cubic" = {
-        .warpingFunctionCubic
-      },
-      {
-        stop("Unknown ", sQuote("method"), ".")
-      }
-    )
-  }
+  warpingFunction <- switch(method,
+    "lowess" = {
+      .warpingFunctionLowess
+    },
+    "linear" = {
+      .warpingFunctionLinear
+    },
+    "quadratic" = {
+      .warpingFunctionQuadratic
+    },
+    "cubic" = {
+      .warpingFunctionCubic
+    },
+    {
+      stop("Unknown ", sQuote("method"), ".")
+    }
+  )
 
   optArgs <- list(...)
 

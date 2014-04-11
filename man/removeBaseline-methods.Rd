@@ -13,7 +13,6 @@ The intensity of the mass spectrometry data would be reduced by
 \usage{
 \S4method{removeBaseline}{MassSpectrum}(object,
   method=c("SNIP", "TopHat", "ConvexHull", "median"),
-  fun,
   \dots)
 }
 \arguments{
@@ -25,7 +24,6 @@ The intensity of the mass spectrometry data would be reduced by
     \code{\link[MALDIquant]{.estimateBaselineConvexHull}},
     \code{\link[MALDIquant]{.estimateBaselineMedian}}.
   }
-  \item{fun}{deprecated.}
   \item{\dots}{arguments to be passed to
     \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}}.}
 }

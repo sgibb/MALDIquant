@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2011-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -22,7 +22,6 @@ setMethod(f="removeBaseline",
           definition=function(object,
                               method=c("SNIP", "TopHat", "ConvexHull",
                                        "median"),
-                              fun, ## deprecated
                               ...) {
 
   ## empty spectrum?
@@ -30,24 +29,8 @@ setMethod(f="removeBaseline",
     return(object)
   }
 
-  ## try to use user-defined baseline estimation function
-  if (!missing(fun)) {
-    .deprecatedArgument("1.7.12", old="fun", new="method", help="removeBaseline")
-    fun <- match.fun(fun)
-    baseline <- fun(object@mass, object@intensity, ...)
-
-    ## wrong baseline argument given?
-    isBaselineMatrix <- is.matrix(baseline) &&
-                        nrow(baseline) == length(object) &&
-                        ncol(baseline) == 2
-
-    if (!isBaselineMatrix) {
-      stop("The baseline is not a valid matrix!")
-    }
-  } else {
-    ## estimate baseline
-    baseline <- estimateBaseline(object=object, method=method, ...)
-  }
+  ## estimate baseline
+  baseline <- estimateBaseline(object=object, method=method, ...)
 
   ## substract baseline
   object@intensity <- object@intensity - baseline[, 2L]

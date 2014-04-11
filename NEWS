@@ -1,6 +1,35 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.9.10 [2014-04-11]:
+Defunct:
+- `intensityMatrix` for MassSpectrum objects.
+
+- REMOVED:
+* `transformIntensity`, argument "fun": use "method" argument instead.
+* `determineWarpingFunctions`, argument "warpingFunction": use "method" argument
+  instead.
+* `detectPeaks`, argument "fun": use "method" argument instead.
+* `totalIonCurrent,MassPeaks-method`: TIC of peaks is meaningless.
+* `totalIonCurrent<-,MassSpectrum-method`:
+  use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
+  MassSpectrum objects.
+* `standardizeTotalIonCurrent`:
+  use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
+  MassSpectrum objects.
+* `calibrate`:
+  use `calibrateIntensity(..., method="TIC")` instead to calibrate/normalize
+  MassSpectrum objects.
+* `ltrim`/`rtrim`: use `trim(..., range=c(min, max))` instead.
+* `mergeMassPeaks`, argument "fun": use "method" argument instead.
+* `mergeMassSpectra`: use `averageMassSpectra`.
+* `savitzkyGolay`: use `smoothIntensity(..., method="SavitzkyGolay")` instead.
+* `movingAverage`: use `smoothIntensity(..., method="MovingAverage")` instead.
+* `isMassObject`/`isMassObjectList`: use `isMassSpectrum`, `isMassPeaks`,
+  `isMassSpectrumList` or `isMassPeaksList` instead.
+
+* `removeBaseline`, argument "fun": use "method" argument instead.
+
 Version 1.9.9 [2014-04-10]:
 - `.transformIntensity`: show a warning if negative intensity values are
   generated and set them to zero;
@@ -77,7 +106,7 @@ MODIFICATIONS
 
 DEPRECATED ARGUMENTS/FUNCTIONS
 
-- `intensityMatrix` for MassSpectrum objects.
+* `intensityMatrix` for MassSpectrum objects.
 
 DEFUNCT ARGUMENTS/FUNCTIONS
 
