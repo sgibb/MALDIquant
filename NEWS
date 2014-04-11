@@ -67,10 +67,12 @@ INTERNAL CHANGES
   `.estimateNoise`.
 * Move tests into tests/testthat/ to adapt to testthat 0.8 and new
   CRAN policy; closes #44.
-* `.localMaximaR`: removed; it was replaced by a C version of `.localMaxima`
+* `.localMaximaR`: removed. It was replaced by a C version of `.localMaxima`
   in 1.5.
-* `.snipR`: removed; it was replaced by a C version of `.estimateBaselineSnip`
+* `.snipR`: removed. It was replaced by a C version of `.estimateBaselineSnip`
   in 0.2.
+* `.lowerConvexHullR`: removed. It was replaced by a C version of
+  `.estimateBaselineConvexHull` in 0.3.
 
 
 CHANGES IN MALDIquant VERSION 1.9 [2014-01-14]:

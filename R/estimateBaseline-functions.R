@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2011-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -31,43 +31,8 @@
 ##  a matrix of the estimate baseline (col1: mass; col2: intensity)
 ##
 
-## C version
 .estimateBaselineConvexHull <- function(x, y) {
   return(cbind(x=x, y=.Call("C_lowerConvexHull", x, y)))
-}
-
-## R only: obsolete because too slow
-.lowerConvexHullR <- function(x, y) {
-
-  ## .left()
-  ## build cross product of 2 vectors and compare to zero
-  ## returns true for >= P2(x2, y2) left/on the line of P0->P1
-  .left <- function(x0, y0, x1, y1, x2, y2) {
-    return(((x1-x0)*(y2-y0) - (x2-x0)*(y1-y0)) > 0)
-  }
-
-  # typically x values have to been sorted
-  # our x values are already sorted
-  index <- double(length(x))
-  k <- 1L
-
-  for (i in seq(along=x)) {
-    while (k > 2L && !.left(x[index[k-2L]], y[index[k-2L]],
-                            x[index[k-1L]], y[index[k-1L]],
-                            x[i], y[i])) {
-      ## remove last point
-      k <- k-1L
-    }
-    index[k] <- i
-    k <- k+1L
-  }
-
-  index <- index[1L:(k-1L)]
-
-  b <- matrix(.unlist(approx(x=x[index], y=y[index], xout=x, method="linear",
-                             rule=2L)), nrow=length(x), ncol=2L,
-              dimnames=list(list(), list("x", "y")))
-  return(b)
 }
 
 ## estimateBaselineMedian
