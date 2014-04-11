@@ -1,3 +1,2 @@
 #!/bin/bash
-exec make check
-
+cd .. && make check PKG=MALDIquant
