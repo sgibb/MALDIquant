@@ -45,4 +45,4 @@ data please find a number of example R scripts in the
 
 ## Build status
 
-[![Build Status](https://travis-ci.org/sgibb/MALDIquant.png?branch=master)](https://travis-ci.org/sgibb/MALDIquant)
+[![Build Status](https://travis-ci.org/sgibb/MALDIquant.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquant)
