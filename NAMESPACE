@@ -1,9 +1,5 @@
 import("methods")
 
-importFrom("grDevices",
-              "getGraphicsEvent",
-              "setGraphicsEventHandlers")
-
 importFrom("graphics",
               "lines",
               "plot",
