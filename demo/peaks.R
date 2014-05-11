@@ -24,7 +24,7 @@ s2 <- transformIntensity(s1, method="sqrt")
 ## 21 point Savitzky-Golay-Filter for smoothing spectra
 ## (maybe you have to adjust the halfWindowSize;
 ## you could use a simple moving average instead)
-## see ?smoothIntensity, ?.savitzkyGolay, ?.movingAverage
+## see ?smoothIntensity
 s3 <- smoothIntensity(s2, method="SavitzkyGolay", halfWindowSize=10)
 
 

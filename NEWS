@@ -1,6 +1,8 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+- move the content of the manual pages of .savitzkyGolay and .movingAverage to
+  smoothIntensity and remove the old ones.
 
 CHANGES IN MALDIquant VERSION 1.10 [2014-04-11]:
 ------------------------------------------------
