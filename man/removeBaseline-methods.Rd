@@ -18,11 +18,10 @@ The intensity of the mass spectrometry data would be reduced by
 \arguments{
   \item{object}{\code{\linkS4class{MassSpectrum}} object or a \code{list} of
     \code{\linkS4class{MassSpectrum}} objects.}
-  \item{method}{a baseline estimation function; see
-    \code{\link[MALDIquant]{.estimateBaselineSnip}},
-    \code{\link[MALDIquant]{.estimateBaselineTopHat}},
-    \code{\link[MALDIquant]{.estimateBaselineConvexHull}},
-    \code{\link[MALDIquant]{.estimateBaselineMedian}}.
+
+  \item{method}{used baseline estimation method, one of
+    \code{"SNIP"}, \code{"TopHat"}, \code{"ConvexHull"} or \code{"median"}. See
+    \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}} for details.
   }
   \item{\dots}{arguments to be passed to
     \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}}.}
@@ -31,15 +30,16 @@ The intensity of the mass spectrometry data would be reduced by
   Returns a modified \code{\linkS4class{MassSpectrum}} object with reduced
   intensities.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
 Sebastian Gibb
 }
 \seealso{
 \code{\linkS4class{MassSpectrum}},
 \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}}
+
+\code{demo("baseline")}
+
+See website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

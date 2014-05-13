@@ -36,9 +36,6 @@ This method smoothes the intensity values of a
   In general the \code{halfWindowSize} for the \code{MovingAverage} has to be
   much smaller than for \code{SavitzkyGolay} to conserve the peak shape.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
 Sebastian Gibb
 }
@@ -53,6 +50,8 @@ Analytical Chemistry, 53(11), 1583-1586.
 }
 \seealso{
 \code{\linkS4class{MassSpectrum}}
+
+See website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package
