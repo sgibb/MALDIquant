@@ -32,17 +32,16 @@ Class \code{\linkS4class{AbstractMassObject}}, directly.
     details.}
 }
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\link[MALDIquant]{createMassPeaks}},
 \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}},
 \code{\link[MALDIquant]{labelPeaks,MassPeaks-method}},
 \code{\linkS4class{AbstractMassObject}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 %\examples{
 %## load package

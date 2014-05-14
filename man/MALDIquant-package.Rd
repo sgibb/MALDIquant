@@ -43,7 +43,7 @@ MALDIquant: a versatile R package for the analysis of mass spectrometry data.
 Bioinformatics 28: 2270-2271.
 \url{http://bioinformatics.oxfordjournals.org/content/28/17/2270.abstract}
 
-See website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \seealso{
   \itemize{

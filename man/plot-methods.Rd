@@ -35,14 +35,13 @@ This is an overloaded method to allow plotting of an
   \item{abline.col}{colour for horizontal line at y=0}
   \item{\dots}{arguments to be passed to \code{\link[graphics]{plot}}}
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{AbstractMassObject}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

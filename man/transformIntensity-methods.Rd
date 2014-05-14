@@ -17,15 +17,14 @@ intensities of an \code{\linkS4class{AbstractMassObject}} object.
     \code{list} of \code{\linkS4class{AbstractMassObject}} objects.}
   \item{method}{used transformation method.}
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{AbstractMassObject}},
 \code{\linkS4class{MassSpectrum}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

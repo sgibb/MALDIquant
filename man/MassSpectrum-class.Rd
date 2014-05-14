@@ -62,11 +62,8 @@ Class \code{\linkS4class{AbstractMassObject}}, directly.
     Accessor function for Total Ion Current (TIC, area under the curve).}
 }
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\link[MALDIquant]{createMassSpectrum}},
@@ -77,6 +74,8 @@ Sebastian Gibb
 \code{\link[MALDIquant]{removeBaseline,MassSpectrum-method}},
 \code{\link[MALDIquant]{smoothIntensity,MassSpectrum-method}},
 \code{\linkS4class{AbstractMassObject}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

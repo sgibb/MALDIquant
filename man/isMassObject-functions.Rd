@@ -23,16 +23,15 @@ Returns \code{\link{TRUE}} or \code{\link{FALSE}} depending on whether its
 argument is an \code{\linkS4class{MassSpectrum}} or
 \code{\linkS4class{MassPeaks}} object.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{MassPeaks}},
 \code{\linkS4class{MassSpectrum}},
 \code{\linkS4class{AbstractMassObject}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

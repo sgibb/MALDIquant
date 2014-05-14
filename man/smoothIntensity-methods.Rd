@@ -37,7 +37,7 @@ This method smoothes the intensity values of a
   much smaller than for \code{SavitzkyGolay} to conserve the peak shape.
 }
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \references{
 A. Savitzky and M. J. Golay. 1964.
@@ -51,7 +51,7 @@ Analytical Chemistry, 53(11), 1583-1586.
 \seealso{
 \code{\linkS4class{MassSpectrum}}
 
-See website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

@@ -37,16 +37,15 @@ The \code{\link[MALDIquant]{intensity}} slot of the returned
 \code{\linkS4class{MassPeaks}} represents the frequency of this mass position
 in all samples.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\link[MALDIquant]{binPeaks}},
 \code{\link[MALDIquant]{filterPeaks}},
 \code{\linkS4class{MassPeaks}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

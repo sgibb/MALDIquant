@@ -34,16 +34,17 @@ A peak is a local maximum above a user defined noise threshold.
 \value{
 Returns a \code{\linkS4class{MassPeaks}} object.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{MassPeaks}},
 \code{\linkS4class{MassSpectrum}},
 \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}}
+
+\code{demo("peaks")}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

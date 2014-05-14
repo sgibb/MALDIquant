@@ -50,15 +50,14 @@ peaks are not changed.
 Returns a \code{\link{list}} of mass adjusted
 \code{\linkS4class{MassPeaks}} objects.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\link[MALDIquant]{intensityMatrix}},
 \code{\linkS4class{MassPeaks}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

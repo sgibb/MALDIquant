@@ -61,17 +61,18 @@ dev.off()
 \value{
 Returns a \code{list} of individual warping functions.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\link[MALDIquant]{referencePeaks}},
 \code{\link[MALDIquant]{warpMassPeaks}},
 \code{\link[MALDIquant]{warpMassSpectra}},
 \code{\linkS4class{MassPeaks}}
+
+\code{demo("warping")}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

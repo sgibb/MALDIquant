@@ -47,18 +47,18 @@ Returns a modified \code{\linkS4class{MassSpectrum}} object with calibrated
 intensities.
 }
 \references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-
 F. Dieterle, A. Ross, G. Schlotterbeck, and Hans Senn. 2006.
 Probabilistic quotient normalization as robust method to account for
 dilution of complex biological mixtures. Application in 1H NMR metabonomics.
 Analytical Chemistry 78(13): 4281-4290.
 }
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{MassSpectrum}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

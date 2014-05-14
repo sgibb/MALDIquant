@@ -8,7 +8,7 @@
 \describe{
   \item{totalIonCurrent}{\code{signature(object = "MassPeaks")}: removed.}
   \item{totalIonCurrent<-}{\code{signature(object = "AbstractMassObject",
-      value = "numeric")}: 
+      value = "numeric")}:
     use \code{\link[MALDIquant]{calibrateIntensity}} instead.}
   \item{calibrate}{\code{signature(x = "matrix")}:
     use \code{\link[MALDIquant]{calibrateIntensity}} instead.}

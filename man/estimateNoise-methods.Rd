@@ -38,7 +38,7 @@ Returns a two column matrix (first column: mass, second column: intensity)
 of the estimated noise.
 }
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{MassSpectrum}},
@@ -46,7 +46,7 @@ Sebastian Gibb
 \code{\link[stats]{mad}},
 \code{\link[stats]{supsmu}}
 
-See website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

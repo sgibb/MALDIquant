@@ -33,16 +33,15 @@ The \code{\link{matrix}} has \code{length(peaks)} rows
 (one row for each sample) and \code{length(unique(mass))} columns.
 The column names of the returned \code{\link{matrix}} store the mass values.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\link[MALDIquant]{binPeaks}},
 \code{\linkS4class{MassPeaks}},
 \code{\linkS4class{MassSpectrum}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

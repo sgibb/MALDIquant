@@ -9,7 +9,7 @@ shouldn't called by the user. Try
 \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}} instead.
 }
 \usage{
-createMassPeaks(mass, intensity, snr=as.double(rep(NA, length(intensity))), 
+createMassPeaks(mass, intensity, snr=as.double(rep(NA, length(intensity))),
                 metaData=list())
 }
 \arguments{
@@ -29,15 +29,14 @@ createMassPeaks(mass, intensity, snr=as.double(rep(NA, length(intensity))),
 \value{
 Returns a \code{\linkS4class{MassPeaks}} object.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}},
 \code{\linkS4class{MassPeaks}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

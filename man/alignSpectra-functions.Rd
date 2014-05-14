@@ -51,11 +51,8 @@ alignSpectra(spectra, halfWindowSize=20, noiseMethod="MAD", SNR=2,
 \value{
 Returns a \code{list} of aligned \code{\linkS4class{MassSpectrum}} objects.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\link[MALDIquant]{detectPeaks}},
@@ -63,6 +60,10 @@ Sebastian Gibb
 \code{\link[MALDIquant]{referencePeaks}},
 \code{\link[MALDIquant]{warpMassSpectra}},
 \code{\linkS4class{MassSpectrum}}
+
+\code{demo("warping")}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

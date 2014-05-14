@@ -4,8 +4,8 @@
 \alias{labelPeaks,MassPeaks-method}
 \title{Draws peak labels to plot.}
 \description{
-\code{\link[MALDIquant]{labelPeaks}} draws the corresponding mass values on top of the
-peaks stored in a \code{\linkS4class{MassPeaks}} object to a plot.
+\code{\link[MALDIquant]{labelPeaks}} draws the corresponding mass values on top
+of the peaks stored in a \code{\linkS4class{MassPeaks}} object to a plot.
 }
 \usage{
 \S4method{labelPeaks}{MassPeaks}(object,
@@ -46,6 +46,8 @@ peaks stored in a \code{\linkS4class{MassPeaks}} object to a plot.
 \seealso{
   \code{\linkS4class{MassPeaks}},
   \code{\link[MALDIquant]{plot,AbstractMassObject,missing-method}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

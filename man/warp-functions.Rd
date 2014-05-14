@@ -33,16 +33,15 @@ The warping function \code{w} is called in the following way:
 Returns a \code{list} of warped \code{\linkS4class{MassPeaks}} or
 \code{\linkS4class{MassSpectrum}} objects.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\link[MALDIquant]{determineWarpingFunctions}},
 \code{\linkS4class{MassPeaks}},
 \code{\linkS4class{MassSpectrum}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

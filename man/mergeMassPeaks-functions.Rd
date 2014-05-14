@@ -26,15 +26,14 @@ mergeMassPeaks(l, labels, method=c("mean", "median", "sum"), ignore.na=TRUE)
 Returns a single (no \code{labels} given) or a \code{\link{list}}
 (\code{labels} given) of merged \code{\linkS4class{MassPeaks}} objects.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{MassPeaks}},
 \code{\link[MALDIquant]{averageMassSpectra}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

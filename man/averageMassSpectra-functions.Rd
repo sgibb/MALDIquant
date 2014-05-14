@@ -28,15 +28,14 @@ will be the mass of the first non-empty
 Returns a single (no \code{labels} given) or a \code{\link{list}}
 (\code{labels} given) of averaged \code{\linkS4class{MassSpectrum}} objects.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{MassSpectrum}},
 \code{\link[MALDIquant]{mergeMassPeaks}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

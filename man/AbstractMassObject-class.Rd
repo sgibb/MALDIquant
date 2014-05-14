@@ -95,11 +95,8 @@ It shouldn't create or handle by the user because it is for internal use only.
     for details.}
 }
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{MassPeaks}},
@@ -107,6 +104,8 @@ Sebastian Gibb
 \code{\link[MALDIquant]{plot,AbstractMassObject,missing-method}},
 \code{\link[MALDIquant]{transformIntensity,AbstractMassObject-method}},
 \code{\link[MALDIquant]{trim,AbstractMassObject,numeric-method}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

@@ -31,7 +31,7 @@ The intensity of the mass spectrometry data would be reduced by
   intensities.
 }
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{MassSpectrum}},
@@ -39,7 +39,7 @@ Sebastian Gibb
 
 \code{demo("baseline")}
 
-See website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

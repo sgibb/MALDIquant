@@ -23,14 +23,13 @@ createMassSpectrum(mass, intensity, metaData=list())
 \value{
 Returns a \code{\linkS4class{MassSpectrum}} object.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{MassSpectrum}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

@@ -26,15 +26,14 @@ removeEmptyMassObjects(l)
 \code{removeEmptyMassObjects}: Returns a \code{\link{list}} of
 \code{\linkS4class{AbstractMassObject}} objects but without empty ones.
 }
-\references{
-See website: \url{http://strimmerlab.org/software/maldiquant/}
-}
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\link[MALDIquant]{isEmpty,AbstractMassObject-method}},
 \code{\linkS4class{AbstractMassObject}}
+
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

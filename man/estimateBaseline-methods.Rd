@@ -68,7 +68,7 @@ Returns a two column matrix (first column: mass, second column: intensity)
 of the estimated baseline.
 }
 \author{
-Sebastian Gibb
+Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \references{
 \code{"SNIP"}:\cr
@@ -106,7 +106,7 @@ Information Processing Letters, 9(5), 216-219.
 
 \code{demo("baseline")}
 
-See website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package
