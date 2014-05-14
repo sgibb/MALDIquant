@@ -6,6 +6,8 @@ RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 - move the content of the manual pages of
   .estimateBaseline{Snip,TopHat,ConvexHull,Median} to estimateBaseline and
   remove the old ones.
+- move the content of the manual pages of .estimateNoise{Mad,SuperSmoother} to
+  estimateNoise and remove the old ones.
 
 
 CHANGES IN MALDIquant VERSION 1.10 [2014-04-11]:

@@ -14,24 +14,39 @@ This method estimates the noise of mass spectrometry data
 }
 \arguments{
   \item{object}{\code{\linkS4class{MassSpectrum}} object}
-  \item{method}{a noise estimation function; see
-    \code{\link[MALDIquant]{.estimateNoiseMad}},
-    \code{\link[MALDIquant]{.estimateNoiseSuperSmoother}}.
+  \item{method}{used noise estimation method, one of
+    \code{"MAD"} or \code{"SuperSmoother"}.
   }
   \item{\dots}{arguments to be passed to \code{method}.}
 }
+\details{
+  \describe{
+    \item{\code{"MAD"}:}{
+      This function estimates the noise of mass spectrometry data
+      by calculating the median absolute deviation, see also
+      \code{\link[stats]{mad}}.
+    }
+    \item{\code{"SuperSmoother"}:}{
+      This function estimates the noise of mass spectrometry data using
+      Friedman's Super Smoother. Please refer
+      \code{\link[stats]{supsmu}} for details and additional arguments.
+    }
+  }
+}
 \value{
 Returns a two column matrix (first column: mass, second column: intensity)
-of the estimated baseline.
+of the estimated noise.
 }
 \author{
 Sebastian Gibb
 }
 \seealso{
 \code{\linkS4class{MassSpectrum}},
-\code{\link[MALDIquant]{.estimateNoiseMad}},
-\code{\link[MALDIquant]{.estimateNoiseSuperSmoother}},
-\code{\link[MALDIquant]{removeBaseline,MassSpectrum-method}}
+\code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}},
+\code{\link[stats]{mad}},
+\code{\link[stats]{supsmu}}
+
+See website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package
@@ -53,10 +68,16 @@ s <- removeBaseline(s)
 plot(s)
 
 ## estimate noise
-n <- estimateNoise(s)
+nm <- estimateNoise(s, method="MAD")
+nss <- estimateNoise(s, method="SuperSmoother")
 
 ## draw noise on the plot
-lines(n, col="red")
+lines(nm, col=2)
+lines(nss, col=4)
+
+## draw legend
+legend(x="topright", lwd=1, legend=c("MAD", "SuperSmoother"),
+       col=c(2, 4))
 }
 \keyword{methods}
 

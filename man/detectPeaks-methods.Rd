@@ -22,14 +22,14 @@ A peak is a local maximum above a user defined noise threshold.
     to \code{mass[currentIndex+halfWindowSize]}. A local maximum have to be
     the highest one in the given window to be recognized as peak.}
   \item{method}{a noise estimation function; see
-    \code{\link[MALDIquant]{.estimateNoiseMad}},
-    \code{\link[MALDIquant]{.estimateNoiseSuperSmoother}}.
+    \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}}.
   }
   \item{SNR}{single numeric value. \code{SNR} is an abbreviation for
     \emph{s}ignal-to-\emph{n}oise-\emph{r}atio. A local maximum has to
     be higher than \code{SNR*noise} to be recognize as peak.}
   \item{\dots}{arguments to be passed to
-    \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}}.}
+    \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}}.
+  }
 }
 \value{
 Returns a \code{\linkS4class{MassPeaks}} object.
