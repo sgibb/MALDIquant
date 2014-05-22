@@ -11,7 +11,7 @@ bibentry(
   url = "http://bioinformatics.oxfordjournals.org/content/28/17/2270.abstract",
   eprint = "http://bioinformatics.oxfordjournals.org/content/28/17/2270.full.pdf+html",
   journal = "Bioinformatics",
-  publisher= "Oxford Univ Press",
+  publisher= "Oxford University Press",
   key = "MALDIquant",
   header = "To cite the MALDIquant package in publications use:",
   textVersion = paste("S. Gibb and K. Strimmer. 2012.",
