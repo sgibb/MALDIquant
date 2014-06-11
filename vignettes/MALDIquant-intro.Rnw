@@ -333,6 +333,6 @@ toLatex(sessionInfo(), locale=FALSE)
 @
 
 \bibliographystyle{apalike}
-\bibliography{MALDIquant}
+\bibliography{bibliography}
 
 \end{document}

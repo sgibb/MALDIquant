@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.10.2 [2014-06-11]:
+- Vignette: rename the vignette to MALDIquant-intro.pdf.
+
+Version 1.10.1 [2014-05-14]:
 - move the content of the manual pages of .savitzkyGolay and .movingAverage to
   smoothIntensity and remove the old ones.
 - move the content of the manual pages of
