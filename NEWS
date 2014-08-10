@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.10.3 [2014-08-09]:
+- Add `plotImsSlice`: a function to plot Imaging Mass Spectrometry data.
+
 Version 1.10.2 [2014-06-11]:
 - Vignette: rename the vignette to MALDIquant-intro.pdf.
 
