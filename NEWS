@@ -1,20 +1,24 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
-Version 1.10.3 [2014-08-10]:
-- Add `plotImsSlice`: a function to plot Imaging Mass Spectrometry data.
 
-Version 1.10.2 [2014-06-11]:
-- Vignette: rename the vignette to MALDIquant-intro.pdf.
+CHANGES IN MALDIquant VERSION 1.11 [2014-08-11]:
+------------------------------------------------
 
-Version 1.10.1 [2014-05-14]:
-- move the content of the manual pages of .savitzkyGolay and .movingAverage to
-  smoothIntensity and remove the old ones.
-- move the content of the manual pages of
-  .estimateBaseline{Snip,TopHat,ConvexHull,Median} to estimateBaseline and
+NEW FEATURES
+
+* Add `plotImsSlice`: a function to plot Imaging Mass Spectrometry data.
+
+MODIFICATIONS
+
+* Rename the vignette to MALDIquant-intro.pdf.
+* Move the content of the manual pages of `.savitzkyGolay` and `.movingAverage`
+  to `smoothIntensity` and remove the old ones.
+* Move the content of the manual pages of
+  `.estimateBaseline{Snip,TopHat,ConvexHull,Median}` to `estimateBaseline` and
   remove the old ones.
-- move the content of the manual pages of .estimateNoise{Mad,SuperSmoother} to
-  estimateNoise and remove the old ones.
+* Move the content of the manual pages of `.estimateNoise{Mad,SuperSmoother}` to
+  `estimateNoise` and remove the old ones.
 
 
 CHANGES IN MALDIquant VERSION 1.10 [2014-04-11]:
@@ -23,8 +27,8 @@ CHANGES IN MALDIquant VERSION 1.10 [2014-04-11]:
 IMPROVEMENTS
 
 * Add a general vignette.
-* `createMassSpectrum`/`createPeaks`: a warning is shown if negative intensity
-  values are found.
+* `createMassSpectrum`/`createMassPeaks`: a warning is shown if negative
+  intensity values are found.
 * `.transformIntensity`: a warning is shown if negative intensity values are
   generated and set them to zero;
   affected functions: `transformIntensity`, `smoothIntensity`,
