@@ -26,13 +26,17 @@
 ##  removeEmptyRows: logical, Should empty rows be removed?
 ##  removeEmptyCols: logical, Should empty cols be removed?
 ##  colRamp: colours as colorRamp function
+##  interpolate: logical, see rasterImage for details
 ##  ...: passed to plot
 ##
-plotImsSlice <- function(x, range = c(0, Inf), sub,
-                         removeEmptyRows = TRUE,
-                         removeEmptyCols = TRUE,
-                         colRamp = colorRamp(c("black", "blue", "green",
-                                               "yellow", "red")), ...) {
+plotImsSlice <- function(x, range=c(0, Inf),
+                         sub=paste0("m/z: ", range[1L], "-", range[2L], ""),
+                         removeEmptyRows=TRUE,
+                         removeEmptyCols=TRUE,
+                         colRamp=colorRamp(c("black", "blue", "green",
+                                             "yellow", "red")),
+                         interpolate=FALSE, ...) {
+
   m <- .prepareImsSlice(x = x, range = range)
 
   if (removeEmptyRows) {
@@ -50,16 +54,12 @@ plotImsSlice <- function(x, range = c(0, Inf), sub,
   isNotNA <- which(!is.na(m))
   m[isNotNA] <- rgb(colRamp(m[isNotNA]), maxColorValue=255L)
 
-  if (missing(sub)) {
-    sub <- paste0(" (m/z: ", range[1L], "-", range[2L], ")")
-  }
-
   ## prepare plot area
   plot(NA, type="n", xlim=c(1L, nc), ylim=c(1L, nr), axes=FALSE, asp=1L,
        xlab="", ylab="", sub=sub, ...)
   ## plot image
   rasterImage(as.raster(m), xleft=1L, xright=nc, ybottom=1L, ytop=nr,
-              interpolate=FALSE)
+              interpolate=interpolate)
 }
 
 ## .prepareImsSlice

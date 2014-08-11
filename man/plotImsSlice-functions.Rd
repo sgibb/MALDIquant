@@ -6,10 +6,11 @@ This function allows to plot a slice of an Imaging Mass Spectrometry dataset
 represented by a \code{list} of \code{\linkS4class{AbstractMassObject}} objects.
 }
 \usage{
-plotImsSlice(x, range=c(0, Inf), sub,
+plotImsSlice(x, range=c(0, Inf),
+             sub=paste0("m/z: ", range[1L], "-", range[2L], ""),
              removeEmptyRows=TRUE, removeEmptyCols=TRUE,
              colRamp=colorRamp(c("black", "blue", "green", "yellow", "red")),
-             \dots)
+             interpolate=FALSE, \dots)
 }
 \arguments{
   \item{x}{\code{list}, list of
@@ -20,7 +21,9 @@ plotImsSlice(x, range=c(0, Inf), sub,
   \item{removeEmptyRows}{\code{logical}, Should empty rows be removed?}
   \item{removeEmptyCols}{\code{logical}, Should empty columns be removed?}
   \item{colRamp}{colours as \code{colorRamp} \code{function}, see
-    \code{\link[grDevices]{colorRamp}}.}
+    \code{\link[grDevices]{colorRamp}} for details.}
+  \item{interpolate}{logical, use linear interpolation when drawing the image,
+    see \code{\link[graphics]{rasterImage}} for details.}
   \item{\dots}{arguments to be passed to \code{\link[graphics]{plot}}.}
 }
 \details{
