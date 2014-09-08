@@ -7,13 +7,12 @@
   These functions/methods are provided for compatibility with older versions
   \code{\link{MALDIquant}} only, and may be defunct as soon as the next release.
 }
-\details{
-\describe{
-  % since MALDIquant 1.8.4
-  \item{intensityMatrix}{
-    deprecated for \code{\linkS4class{MassSpectrum}} objects.}
-}
-}
+%\details{
+%\describe{
+  % since MALDIquant x.y.7
+  %\item{function}{explanation}
+%}
+%}
 \seealso{
   \code{\link{Deprecated}}
 }

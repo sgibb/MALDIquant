@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2011-2014 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -27,13 +27,6 @@
 ##  a matrix
 ##
 intensityMatrix <- function(peaks, spectra) {
-
-  ## deprecated for MassSpectrum objects
-  if (isMassSpectrumList(peaks)) {
-    .deprecated("1.8.4", "\"intensityMatrix\" is deprecated ",
-                "for lists of MassSpectrum objects.")
-    return(.intensityMatrixDeprecated(peaks))
-  }
 
   ## test arguments
   .stopIfNotIsMassPeaksList(peaks)

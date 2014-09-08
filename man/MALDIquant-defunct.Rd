@@ -27,6 +27,8 @@
     instead.}
   \item{isMassObject}{removed.}
   \item{isMassObjectList}{removed.}
+  \item{intensityMatrix}{
+    does not support \code{\linkS4class{MassSpectrum}} objects anymore.}
 }
 }
 \keyword{internal}
