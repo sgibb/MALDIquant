@@ -31,7 +31,6 @@
     parentCall <- deparse(sys.call(-1L))
     stop(parentCall, " : ", sQuote(deparse(substitute(x))),
          " is no list of MALDIquant::AbstractMassObject objects!", call.=FALSE)
-    return(FALSE)
   }
   return(TRUE)
 }
@@ -51,7 +50,6 @@ isMassSpectrumList <- function(x) {
     parentCall <- deparse(sys.call(-1L))
     stop(parentCall, " : ", sQuote(deparse(substitute(x))),
          " is no list of MALDIquant::MassSpectrum objects!", call.=FALSE)
-    return(FALSE)
   }
   return(TRUE)
 }
@@ -71,7 +69,6 @@ isMassPeaksList <- function(x) {
     parentCall <- deparse(sys.call(-1L))
     stop(parentCall, " : ", sQuote(deparse(substitute(x))),
          " is no list of MALDIquant::MassPeaks objects!", call.=FALSE)
-    return(FALSE)
   }
   return(TRUE)
 }

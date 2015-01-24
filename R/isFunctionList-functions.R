@@ -31,7 +31,6 @@
     parentCall <- deparse(sys.call(-1L))
     stop(parentCall, " : ", sQuote(deparse(substitute(x))),
          " is no list of functions!", call.=FALSE)
-    return(FALSE)
   }
   return(TRUE)
 }
