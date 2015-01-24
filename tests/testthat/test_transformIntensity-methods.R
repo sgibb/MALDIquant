@@ -11,6 +11,9 @@ test_that("transformIntensity shows warnings", {
 test_that("transformIntensity", {
   expect_equal(intensity(transformIntensity(s, method="sqrt")), 1:10)
   expect_equal(intensity(transformIntensity(s, method="log")), log((1:10)^2))
+  expect_equal(intensity(transformIntensity(s, method="log2")), log2((1:10)^2))
+  expect_equal(intensity(transformIntensity(s, method="log10")),
+               log10((1:10)^2))
 })
 
 test_that("transformIntensity works with list of MassSpectrum objects", {
