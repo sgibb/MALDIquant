@@ -1,6 +1,7 @@
 context("removeBaseline")
 
 s <- createMassSpectrum(mass=1:20, intensity=rep(10:1, 2))
+e <- createMassSpectrum(double(), double())
 
 test_that("removeBaseline throws errors", {
   expect_error(removeBaseline(s, method="foobar"),
@@ -8,9 +9,11 @@ test_that("removeBaseline throws errors", {
 })
 
 test_that("removeBaseline shows warnings", {
-  expect_warning(estimateBaseline(
-                   createMassSpectrum(mass=double(), intensity=double()),
-                 "empty"))
+  expect_warning(estimateBaseline(e), "empty")
+})
+
+test_that("removeBaseline returns an empty spectrum if input is empty", {
+  expect_identical(suppressWarnings(removeBaseline(e)), e)
 })
 
 test_that("removeBaseline works with ConvexHull", {
