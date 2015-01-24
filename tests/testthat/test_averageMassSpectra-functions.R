@@ -7,7 +7,6 @@ meanS <- createMassSpectrum(mass=1:3, intensity=(2:4)+0.5,
                             metaData=list(a=1, b=2:3))
 sumS <- createMassSpectrum(mass=1:3, intensity=c(5, 7, 9),
                            metaData=list(a=1, b=2:3))
-
 p <- c(createMassPeaks(mass=1:3, intensity=1:3, snr=1:3,
                        metaData=list(a=1, b=2)),
        createMassPeaks(mass=1:3, intensity=4:6, snr=4:6,
@@ -17,6 +16,12 @@ test_that("averageMassSpectra", {
   expect_equal(unname(averageMassSpectra(list(s[[1]], s[[1]], s[[2]], s[[2]]),
                                          labels=c(1:2, 1:2))),
                list(meanS, meanS))
+  expect_equal(unname(averageMassSpectra(list(s[[1]], s[[1]], s[[2]], s[[2]]),
+                                         labels=c(1:2, 1:2), method="median")),
+               list(meanS, meanS))
+  expect_equal(unname(averageMassSpectra(list(s[[1]], s[[1]], s[[2]], s[[2]]),
+                                         labels=c(1, 1, 2, 2), method="median")),
+               s)
   expect_equal(unname(averageMassSpectra(list(s[[1]], s[[1]], s[[2]], s[[2]]),
                                          labels=c(1:2, 1:2), method="sum")),
                list(sumS, sumS))
