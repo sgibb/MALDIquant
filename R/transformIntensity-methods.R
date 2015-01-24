@@ -41,9 +41,6 @@ setMethod(f="transformIntensity",
          },
          "log10" = {
            log10
-         },
-         {
-           stop("Unknown ", sQuote("method"), ".")
          }
   )
 

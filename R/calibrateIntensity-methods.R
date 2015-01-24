@@ -36,9 +36,6 @@ setMethod(f="calibrateIntensity",
     "median" = {
       .transformIntensity(object, fun=.calibrateIntensitySimple,
                           offset=0L, scaling=median)
-    },
-    {
-      stop("Unknown ", sQuote("method"), ".")
     }
   )
 
@@ -63,9 +60,6 @@ setMethod(f="calibrateIntensity",
     },
     "PQN" = {
       .calibrateProbabilisticQuotientNormalization(object)
-    },
-    {
-      stop("Unknown ", sQuote("method"), ".")
     }
   )
   return(object)

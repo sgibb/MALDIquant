@@ -55,9 +55,6 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
     },
     "cubic" = {
       .warpingFunctionCubic
-    },
-    {
-      stop("Unknown ", sQuote("method"), ".")
     }
   )
 

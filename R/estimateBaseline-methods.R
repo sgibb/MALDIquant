@@ -42,9 +42,6 @@ setMethod(f="estimateBaseline",
               },
               "median" = {
                 .estimateBaselineMedian(object@mass, object@intensity, ...)
-              },
-              {
-                stop("Unknown ", sQuote("method"), ".")
               }
   )
 

@@ -67,9 +67,6 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
             },
             "relaxed" = {
               .grouperRelaxed
-            },
-            {
-              stop("Unknown ", sQuote("method"), ".")
             }
   )
 

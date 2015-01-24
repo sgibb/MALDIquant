@@ -43,9 +43,6 @@ averageMassSpectra <- function(l, labels, method=c("mean", "median", "sum")) {
               },
               "sum" = {
                 colSums
-              },
-              {
-                stop("Unknown ", sQuote("method"), ".")
               }
   )
 

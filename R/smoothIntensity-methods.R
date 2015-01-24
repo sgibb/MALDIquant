@@ -41,9 +41,6 @@ setMethod(f="smoothIntensity",
            if (missing(halfWindowSize)) {
              halfWindowSize <- 2L
            }
-         },
-         {
-           stop("Unknown ", sQuote("method"), ".")
          }
   )
 

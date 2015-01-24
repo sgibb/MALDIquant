@@ -38,9 +38,6 @@
               },
               "SuperSmoother" = {
                 .estimateNoiseSuperSmoother(x, y, ...)
-              },
-              {
-                stop("Unknown ", sQuote("method"), ".")
               }
   )
 
