@@ -8,14 +8,14 @@ test_that("show", {
    "Number of m/z values     : 10          ",
    "Range of m/z values      : 1 - 10      ",
    "Range of intensity values: 11 - 20     ",
-   "Memory usage             : 1.648 KiB   ",
+   paste("Memory usage             :", MALDIquant:::.memoryUsageStr(x), "  "),
    "Name                     : example     ",
    "File                     : example.mzML")
 
-  expect_identical(capture.output(show(x))[-5], r[-5])
+  expect_identical(capture.output(show(x)), r)
 
   x <- createMassPeaks(mass=1:10, intensity=11:20,
-                       metaData=list(name="example", file="example.mzML"))
+                       metaData=list(name="example"))
 
   r <- c(
    "S4 class type            : MassPeaks",
@@ -23,11 +23,10 @@ test_that("show", {
    "Range of m/z values      : 1 - 10   ",
    "Range of intensity values: 11 - 20  ",
    "Range of snr values      : NA - NA  ",
-   "Memory usage             : 1.844 KiB",
-   "Name                     : example  ",
-   "File                     : example.mzML")
+   paste("Memory usage             :", MALDIquant:::.memoryUsageStr(x)),
+   "Name                     : example  ")
 
-  expect_identical(capture.output(show(x))[-6], r[-6])
+  expect_identical(capture.output(show(x)), r)
 
   x <- createMassPeaks(mass=1:10, intensity=11:20, snr=1:10,
                        metaData=list(name=c("example1", "example2"),
@@ -38,12 +37,23 @@ test_that("show", {
    "Range of m/z values      : 1 - 10   ",
    "Range of intensity values: 11 - 20  ",
    "Range of snr values      : 1 - 10   ",
-   "Memory usage             : 1.977 KiB",
+   paste("Memory usage             :", MALDIquant:::.memoryUsageStr(x)),
    "Name1                    : example1 ",
    "Name2                    : example2 ",
    "File1                    : example1.txt",
    "File2                    : example2.txt")
 
-  expect_identical(capture.output(show(x))[-6], r[-6])
+  expect_identical(capture.output(show(x)), r)
+
+  x <- createMassPeaks(double(), double())
+  r <- c(
+   "S4 class type            : MassPeaks",
+   "Number of m/z values     : 0        ",
+   "Range of m/z values      : NA       ",
+   "Range of intensity values: NA       ",
+   "Range of snr values      : NA       ",
+   paste0("Memory usage             : ", MALDIquant:::.memoryUsageStr(x), " "))
+
+  expect_identical(capture.output(show(x)), r)
 })
 
