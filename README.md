@@ -1,4 +1,6 @@
 # MALDIquant
+[![Build Status](https://travis-ci.org/sgibb/MALDIquant.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquant)
+[![Coverage Status](https://coveralls.io/repos/sgibb/MALDIquant/badge.svg)](https://coveralls.io/r/sgibb/MALDIquant)
 
 [MALDIquant on CRAN](http://cran.r-project.org/web/packages/MALDIquant/)
 
@@ -42,7 +44,3 @@ To illustrate the application of MALDIquant for analyzis of mass spectrometry
 data please find a number of example R scripts in the
 [MALDIquantExamples](https://github.com/sgibb/MALDIquantExamples) repository.
 
-
-## Build status
-
-[![Build Status](https://travis-ci.org/sgibb/MALDIquant.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquant)
