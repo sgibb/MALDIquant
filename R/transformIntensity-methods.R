@@ -44,7 +44,7 @@ setMethod(f="transformIntensity",
          }
   )
 
-  return(.transformIntensity(object, fun=fun))
+  .transformIntensity(object, fun=fun)
 })
 
 ## AbstractMassObject
@@ -71,7 +71,7 @@ setMethod(f=".transformIntensity",
     }
   }
 
-  return(object)
+  object
 })
 
 ## list
@@ -83,7 +83,7 @@ setMethod(f="transformIntensity",
   ## test arguments
   .stopIfNotIsMassObjectList(object)
 
-  return(lapply(object, transformIntensity, ...))
+  lapply(object, transformIntensity, ...)
 })
 
 ## list
@@ -94,6 +94,6 @@ setMethod(f=".transformIntensity",
   ## test arguments
   .stopIfNotIsMassObjectList(object)
 
-  return(lapply(object, .transformIntensity, ...))
+  lapply(object, .transformIntensity, ...)
 })
 

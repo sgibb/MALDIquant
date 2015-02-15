@@ -27,11 +27,7 @@ setMethod(f=".findLocalMaxima",
 
   localMaxima <- .findLocalMaximaLogical(object, halfWindowSize=halfWindowSize)
 
-  m <- cbind(object@mass, object@intensity)[localMaxima,]
-
-  colnames(m) <- c("mass", "intensity")
-
-  return(m)
+  cbind(mass=object@mass, intensity=object@intensity)[localMaxima,]
 })
 
 setMethod(f=".findLocalMaximaLogical",
@@ -45,8 +41,6 @@ setMethod(f=".findLocalMaximaLogical",
   .stopIfNotIsValidHalfWindowSize(halfWindowSize=halfWindowSize,
                                   n=length(object))
 
-  localMaxima <- .localMaxima(object@intensity, halfWindowSize=halfWindowSize)
-
-  return(localMaxima)
+  .localMaxima(object@intensity, halfWindowSize=halfWindowSize)
 })
 

@@ -33,5 +33,5 @@
     }
     object@intensity[which(object@intensity < 0L)] <- 0L
   }
-  return(object)
+  object
 }

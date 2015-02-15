@@ -24,7 +24,7 @@ setMethod(f="[",
   x@mass <- x@mass[i]
   x@intensity <- x@intensity[i]
 
-  return(x)
+  x
 })
 
 ## AbstractMassObject
@@ -37,7 +37,7 @@ setMethod(f="[",
   x@mass <- x@mass[i]
   x@intensity <- x@intensity[i]
 
-  return(x)
+  x
 })
 
 setMethod(f="[",
@@ -48,7 +48,7 @@ setMethod(f="[",
   x@intensity <- x@intensity[i]
   x@snr <- x@snr[i]
 
-  return(x)
+  x
 })
 
 ## AbstractMassObject
@@ -62,6 +62,6 @@ setMethod(f="[",
   x@intensity <- x@intensity[i]
   x@snr <- x@snr[i]
 
-  return(x)
+  x
 })
 

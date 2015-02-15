@@ -26,7 +26,7 @@
 ##  see ?mapply
 ##
 .mapply <- function(FUN, ..., MoreArgs=NULL, SIMPLIFY=FALSE, USE.NAMES=FALSE) {
-  return(mapply(FUN=FUN, ..., MoreArgs=MoreArgs, SIMPLIFY=SIMPLIFY,
-                USE.NAMES=USE.NAMES))
+  mapply(FUN=FUN, ..., MoreArgs=MoreArgs, SIMPLIFY=SIMPLIFY,
+         USE.NAMES=USE.NAMES)
 }
 

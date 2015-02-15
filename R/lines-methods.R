@@ -23,6 +23,6 @@ setMethod(f="lines",
         type=ifelse(isMassPeaks(x), "h", "l"),
         ...) {
 
-    lines(x=x@mass, y=x@intensity, type, ...);
-});
+    lines(x=x@mass, y=x@intensity, type, ...)
+})
 

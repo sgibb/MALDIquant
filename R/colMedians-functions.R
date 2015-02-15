@@ -19,6 +19,6 @@
 .colMedians <- function(x, na.rm=FALSE) {
   stopifnot(is.matrix(x))
   stopifnot(is.logical(na.rm))
-  return(.Call("C_colMedians", x, na.rm))
+  .Call("C_colMedians", x, na.rm)
 }
 

@@ -26,6 +26,6 @@ setMethod(f="estimateNoise",
     return(0L)
   }
 
-  return(.estimateNoise(x=object@mass, y=object@intensity, method=method, ...))
+  .estimateNoise(x=object@mass, y=object@intensity, method=method, ...)
 })
 

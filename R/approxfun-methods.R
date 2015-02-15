@@ -22,10 +22,10 @@ setMethod(f="approxfun",
           definition=function(x, y=NULL, method="linear", yleft, yright,
                               rule=1L,  f=0L, ties=mean) {
   if (isEmpty(x)) {
-    return(function(x) { return(rep(NA, length.out=length(x))) })
+    function(x) { rep(NA, length.out=length(x)) }
   } else {
-    return(approxfun(x=x@mass, y=x@intensity, method=method, yleft=yleft,
-                     yright=yright, rule=rule, f=f, ties=ties))
+    approxfun(x=x@mass, y=x@intensity, method=method,
+              yleft=yleft, yright=yright, rule=rule, f=f, ties=ties)
   }
 })
 

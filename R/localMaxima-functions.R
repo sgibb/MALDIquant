@@ -32,6 +32,6 @@
   y <- c(rep(0L, halfWindowSize), y, rep(0L, halfWindowSize))
   n <- length(y)
   i <- (halfWindowSize+1L):(n-halfWindowSize)
-  return(.Call("C_localMaxima", y, halfWindowSize)[i])
+  .Call("C_localMaxima", y, halfWindowSize)[i]
 }
 

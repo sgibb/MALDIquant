@@ -37,6 +37,6 @@
     name <- NULL
   }
 
-  return(name)
+  name
 }
 

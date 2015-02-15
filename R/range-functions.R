@@ -1,4 +1,4 @@
-## Copyright 2013 Sebastian Gibb
+## Copyright 2013-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -42,7 +42,7 @@
   }
 
   ## no overlap
-  return(c(0L, 0L))
+  c(0L, 0L)
 }
 
 ## .reorderRange
@@ -60,5 +60,5 @@
     x <- x[2L:1L]
   }
 
-  return(x)
+  x
 }

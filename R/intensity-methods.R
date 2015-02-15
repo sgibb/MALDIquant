@@ -21,7 +21,7 @@ setMethod(f="intensity",
           signature=signature(object="AbstractMassObject"),
           definition=function(object) {
 
-  return(object@intensity)
+  object@intensity
 })
 
 ## AbstractMassObject
@@ -36,6 +36,6 @@ setReplaceMethod(f="intensity",
     stop("Lengths of intensity(", length(object@intensity),
          ") and value (", length(value), ") have to be equal.")
   }
-  return(object)
+  object
 })
 

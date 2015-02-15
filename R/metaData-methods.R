@@ -21,7 +21,7 @@ setMethod(f="metaData",
           signature=signature(object="AbstractMassObject"),
           definition=function(object) {
 
-  return(object@metaData)
+  object@metaData
 })
 
 ## AbstractMassObject
@@ -30,6 +30,6 @@ setReplaceMethod(f="metaData",
                   definition=function(object, value) {
 
   object@metaData <- value
-  return(object)
+  object
 })
 

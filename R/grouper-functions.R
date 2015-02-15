@@ -46,7 +46,7 @@
     return(NA)
   }
 
-  return(meanMass)
+  meanMass
 }
 
 ## .grouperRelaxed

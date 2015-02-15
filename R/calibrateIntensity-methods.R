@@ -24,7 +24,7 @@ setMethod(f="calibrateIntensity",
 
   method <- match.arg(method)
 
-  object <- switch(method,
+  switch(method,
     "TIC" = {
       .transformIntensity(object, fun=.calibrateIntensitySimple,
                           offset=0L, scaling=totalIonCurrent(object))
@@ -38,8 +38,6 @@ setMethod(f="calibrateIntensity",
                           offset=0L, scaling=median)
     }
   )
-
-  return(object)
 })
 
 ## list
@@ -53,7 +51,7 @@ setMethod(f="calibrateIntensity",
 
   method <- match.arg(method)
 
-  object <- switch(method,
+  switch(method,
     "TIC" = ,
     "median" = {
       lapply(object, calibrateIntensity, method=method, ...)
@@ -62,6 +60,5 @@ setMethod(f="calibrateIntensity",
       .calibrateProbabilisticQuotientNormalization(object)
     }
   )
-  return(object)
 })
 

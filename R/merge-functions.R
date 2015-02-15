@@ -47,8 +47,8 @@ mergeMassPeaks  <- function(l, labels, method=c("mean", "median", "sum"),
               }
   )
 
-  return(.doByLabels(l=l, labels=labels, FUN=.mergeMassPeaks, fun=fun,
-                     ignore.na=ignore.na))
+  .doByLabels(l=l, labels=labels, FUN=.mergeMassPeaks, fun=fun,
+              ignore.na=ignore.na)
 }
 
 ## .mergeMassPeaks
@@ -90,8 +90,7 @@ mergeMassPeaks  <- function(l, labels, method=c("mean", "median", "sum"),
   ## merge metaData
   metaData <- .mergeMetaData(lapply(l, function(x)x@metaData))
 
-  return(createMassPeaks(mass=mass, intensity=intensity, snr=snr,
-                         metaData=metaData))
+  createMassPeaks(mass=mass, intensity=intensity, snr=snr, metaData=metaData)
 }
 
 ## merge different metaData by equal list names
@@ -108,7 +107,7 @@ mergeMassPeaks  <- function(l, labels, method=c("mean", "median", "sum"),
 
   nm <- names(m[[1L]])
   names(nm) <- nm
-  m <- lapply(nm, function(n) {
+  lapply(nm, function(n) {
     cur <- m[[1L]][[n]]
     all <- lapply(m, function(x)x[[n]])
     len <- lapply(all, function(x)length(x))
@@ -123,6 +122,5 @@ mergeMassPeaks  <- function(l, labels, method=c("mean", "median", "sum"),
       return(cur)
     }
   })
-  return(m)
 }
 

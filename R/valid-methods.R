@@ -33,7 +33,7 @@
       any(object@intensity < 0L)) {
     warning("Negative intensity values found.")
   }
-  return(TRUE)
+  TRUE
 }
 
 setValidity("AbstractMassObject", method=.validAbstractMassObject)
@@ -44,7 +44,7 @@ setValidity("AbstractMassObject", method=.validAbstractMassObject)
                   ") and snr(", length(object@snr),
                   ") have to be equal."))
   }
-  return(.validAbstractMassObject(object))
+  .validAbstractMassObject(object)
 }
 
 setValidity("MassPeaks", method=.validMassPeaks)

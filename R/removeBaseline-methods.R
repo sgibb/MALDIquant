@@ -35,7 +35,7 @@ setMethod(f="removeBaseline",
   ## substract baseline
   object@intensity <- object@intensity - baseline[, 2L]
 
-  return(object)
+  object
 })
 
 ## list
@@ -46,6 +46,6 @@ setMethod(f="removeBaseline",
   ## test arguments
   .stopIfNotIsMassSpectrumList(object)
 
-  return(.mapply(removeBaseline, object, ...))
+  .mapply(removeBaseline, object, ...)
 })
 

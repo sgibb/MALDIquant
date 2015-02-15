@@ -40,6 +40,6 @@
   lDiff <- abs(vec[lIdx]-x)
   rDiff <- abs(vec[rIdx]-x)
 
-  return(ifelse(rDiff == pmin.int(lDiff, rDiff), rIdx, lIdx))
+  ifelse(rDiff == pmin.int(lDiff, rDiff), rIdx, lIdx)
 }
 

@@ -42,7 +42,7 @@
   )
 
   colnames(n) <- c("mass", "intensity")
-  return(n)
+  n
 }
 
 ## estimateNoiseMad
@@ -56,7 +56,7 @@
 ##  a matrix of the estimate noise (col1: mass; col2: intensity)
 ##
 .estimateNoiseMad <- function(x, y) {
-  return(cbind(x, rep(stats::mad(y), times=length(x))))
+  cbind(mass=x, intensity=rep(stats::mad(y), times=length(x)))
 }
 
 ## estimateNoiseSuperSmoother
@@ -71,6 +71,6 @@
 ##  a matrix of the estimate noise (col1: mass; col2: intensity)
 ##
 .estimateNoiseSuperSmoother <- function(x, y, ...) {
-  return(cbind(x, stats::supsmu(x=x, y=y, ...)$y))
+  cbind(x=x, y=stats::supsmu(x=x, y=y, ...)$y)
 }
 

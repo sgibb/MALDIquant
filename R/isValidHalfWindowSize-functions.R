@@ -41,6 +41,6 @@
          " is too large!", call.=FALSE)
   }
 
-  return(TRUE)
+  TRUE
 }
 

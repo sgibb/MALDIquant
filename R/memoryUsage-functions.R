@@ -31,6 +31,6 @@
   l <- trunc(log(os)/log(1024L))
   i <- pmin(l+1L, 9L)
 
-  return(paste(round(os/(1024L^l), digits=3L), iec[i]))
+  paste(round(os/(1024L^l), digits=3L), iec[i])
 }
 

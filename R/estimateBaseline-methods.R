@@ -46,6 +46,6 @@ setMethod(f="estimateBaseline",
   )
 
   colnames(b) <- c("mass", "intensity")
-  return(b)
+  b
 })
 

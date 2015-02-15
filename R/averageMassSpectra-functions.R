@@ -46,7 +46,7 @@ averageMassSpectra <- function(l, labels, method=c("mean", "median", "sum")) {
               }
   )
 
-  return(.doByLabels(l=l, labels=labels, FUN=.averageMassSpectra, fun=fun))
+  .doByLabels(l=l, labels=labels, FUN=.averageMassSpectra, fun=fun)
 }
 
 ## .averageMassSpectra
@@ -97,6 +97,6 @@ averageMassSpectra <- function(l, labels, method=c("mean", "median", "sum")) {
     mass <- double()
   }
 
-  return(createMassSpectrum(mass=mass, intensity=intensity, metaData=metaData))
+  createMassSpectrum(mass=mass, intensity=intensity, metaData=metaData)
 }
 

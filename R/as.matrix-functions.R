@@ -32,13 +32,13 @@
   uniqueMass <- unique(mass)
 
   ## build matrix
-  m <- do.call(rbind, lapply(l, function(x) {
-    return(x@intensity[match(x=uniqueMass, table=x@mass, nomatch=NA)])}))
+  m <- do.call(rbind, lapply(l, function(x)x@intensity[match(x=uniqueMass,
+                                                             table=x@mass)]))
 
   ## set column names
   dimnames(m) <- list(NULL, c(uniqueMass))
 
-  return(m)
+  m
 }
 
 ## .as.binary.matrix
@@ -54,6 +54,6 @@
   isNA <- which(is.na(m))
   m[] <- 1L
   m[isNA] <- 0L
-  return(m)
+  m
 }
 

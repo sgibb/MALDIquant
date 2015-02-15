@@ -107,7 +107,7 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
     l[[i]]@snr <- l[[i]]@snr[include]
   }
 
-  return(l)
+  l
 }
 
 ## .whitelist
@@ -149,6 +149,6 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   ## calculate minimal number of peaks
   minPeakNumber <- max(minFrequency*length(rows), minNumber, na.rm=TRUE)
 
-  return(colSums(m[rows, , drop=FALSE]) >= minPeakNumber)
+  colSums(m[rows, , drop=FALSE]) >= minPeakNumber
 }
 

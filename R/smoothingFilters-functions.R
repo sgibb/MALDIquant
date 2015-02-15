@@ -30,8 +30,8 @@
 .movingAverage <- function(y, halfWindowSize=2L) {
   .stopIfNotIsValidHalfWindowSize(halfWindowSize, n=length(y))
   windowSize <- 2L*halfWindowSize+1L
-  return(.filter(y, hws=halfWindowSize,
-                 coef=matrix(1L/windowSize, nrow=windowSize, ncol=windowSize)))
+  .filter(y, hws=halfWindowSize,
+          coef=matrix(1L/windowSize, nrow=windowSize, ncol=windowSize))
 }
 
 ## .savitzkyGolay
@@ -56,9 +56,8 @@
   if (windowSize < polynomialOrder) {
     stop("The window size has to be larger than the polynomial order.")
   }
-  return(.filter(y, hws=halfWindowSize,
-                 coef=.savitzkyGolayCoefficients(m=halfWindowSize,
-                                                 k=polynomialOrder)))
+  .filter(y, hws=halfWindowSize,
+          coef=.savitzkyGolayCoefficients(m=halfWindowSize, k=polynomialOrder))
 }
 
 ## .savitzkyGolayCoefficients
@@ -103,7 +102,7 @@
   ## rhs (row (n-m):n) are equal to reversed lhs
   F[(m+2L):nm, ] <- rev(F[1L:m, ])
 
-  return(F)
+  F
 }
 
 ## .filter
@@ -117,6 +116,6 @@
   ## fix left/right extrema
   y[1L:hws] <- head(coef, hws) %*% head(x, w)
   y[(n-hws+1L):n] <- tail(coef, hws) %*% tail(x, w)
-  return(y)
+  y
 }
 

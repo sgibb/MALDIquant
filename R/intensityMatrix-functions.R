@@ -51,5 +51,5 @@ intensityMatrix <- function(peaks, spectra) {
     }
   }
 
-  return(m)
+  m
 }

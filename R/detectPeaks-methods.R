@@ -40,10 +40,10 @@ setMethod(f="detectPeaks",
 
   peakIdx <- which(isAboveNoise & isLocalMaxima)
 
-  return(createMassPeaks(mass=object@mass[peakIdx],
-                         intensity=object@intensity[peakIdx],
-                         snr=object@intensity[peakIdx]/noise[peakIdx, 2L],
-                         metaData=object@metaData))
+  createMassPeaks(mass=object@mass[peakIdx],
+                  intensity=object@intensity[peakIdx],
+                  snr=object@intensity[peakIdx]/noise[peakIdx, 2L],
+                  metaData=object@metaData)
 })
 
 ## list
@@ -54,6 +54,6 @@ setMethod(f="detectPeaks",
   ## test arguments
   .stopIfNotIsMassSpectrumList(object)
 
-  return(.mapply(detectPeaks, object, ...))
+  .mapply(detectPeaks, object, ...)
 })
 

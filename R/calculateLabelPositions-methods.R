@@ -47,9 +47,9 @@ setMethod(f=".calculateLabelPositions",
   ## undo sorting
   rects[i, ] <- rects
 
-  return(list(x=rects[, "x"], y=rects[, "y"],
-              xleft=rects[, "x0"], ybottom=rects[, "y0"],
-              xright=rects[, "x1"], ytop=rects[, "y1"]))
+  list(x=rects[, "x"], y=rects[, "y"],
+       xleft=rects[, "x0"], ybottom=rects[, "y0"],
+       xright=rects[, "x1"], ytop=rects[, "y1"])
 })
 
 ## .testLabelOverlap
@@ -96,7 +96,7 @@ setMethod(f=".testLabelOverlap",
     }
   }
   ## no success, return original pos
-  return(rects[currentIndex, ])
+  rects[currentIndex, ]
 })
 
 ## .labelOverlap
@@ -134,6 +134,6 @@ setMethod(f=".labelOverlap",
                       (y[2L] > rects[, 2L] & y[2L] < rects[, 4L]) |
                       (y[1L] < rects[, 2L] & y[2L] > rects[, 4L])))
 
-  return(textOverlap)
+  textOverlap
 })
 

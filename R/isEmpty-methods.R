@@ -21,8 +21,7 @@ setMethod(f="isEmpty",
           signature=signature(x="AbstractMassObject"),
           definition=function(x) {
 
-  return(length(x@intensity) == 0L ||
-         sum(as.double(x@intensity), na.rm=TRUE) == 0L)
+  length(x@intensity) == 0L || sum(as.double(x@intensity), na.rm=TRUE) == 0L
 })
 
 setMethod(f=".isEmptyWarning",
@@ -42,6 +41,6 @@ setMethod(f=".isEmptyWarning",
     return(TRUE)
   }
 
-  return(FALSE)
+  FALSE
 })
 

@@ -33,5 +33,5 @@ removeEmptyMassObjects <- function(l) {
   notEmpty <- !(1L:length(l) %in% findEmptyMassObjects(l))
 
   ## exclude empty elements
-  return(l[notEmpty])
+  l[notEmpty]
 }

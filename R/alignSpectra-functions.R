@@ -46,5 +46,5 @@ alignSpectra <- function(spectra,
                        method=noiseMethod, SNR=SNR)
   wf <- determineWarpingFunctions(peaks, reference=reference,
                                   tolerance=tolerance, method=warpingMethod)
-  return(warpMassSpectra(spectra, wf))
+  warpMassSpectra(spectra, wf)
 }

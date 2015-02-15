@@ -60,6 +60,6 @@
     k <- FUN(l, ...)
   }
 
-  return(k)
+  k
 }
 

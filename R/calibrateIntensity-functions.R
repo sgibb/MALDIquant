@@ -34,7 +34,7 @@
   if (is.function(scaling)) {
     scaling <- scaling(y)
   }
-  return( (y-offset)/scaling )
+  (y-offset)/scaling
 }
 
 ## .calibrateProbabilisticQuotientNormalization
@@ -67,15 +67,13 @@
   ## 2. median reference spectrum
   reference <- .averageMassSpectra(l, fun=.colMedians, mergeMetaData=FALSE)
 
-  return(lapply(l, function(x) {
+  lapply(l, function(x) {
     ## 3. quotient calculation
     q <- approxfun(x)(reference@mass)/reference@intensity
     ## 4. median
     m <- median(q, na.rm=TRUE)
     ## 5. divide by median
-    x <- .transformIntensity(x, fun=.calibrateIntensitySimple,
-                             offset=0L, scaling=m)
-    return(x)
-  }))
+    .transformIntensity(x, fun=.calibrateIntensitySimple, offset=0L, scaling=m)
+  })
 }
 

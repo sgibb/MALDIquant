@@ -65,7 +65,7 @@ setMethod(f=".prepareShow",
   groups <- c(groups, .prepareShowGroupName(object@metaData$file, "File"))
   values <- c(values, object@metaData$file)
 
-  return(list(groups=groups, values=values))
+  list(groups=groups, values=values)
 })
 
 setMethod(f=".prepareShow",
@@ -86,6 +86,6 @@ setMethod(f=".prepareShow",
   l$groups <- append(l$groups, groups, after=4L)
   l$values <- append(l$values, values, after=4L)
 
-  return(list(groups=l$groups, values=l$values))
+  list(groups=l$groups, values=l$values)
 })
 

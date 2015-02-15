@@ -17,13 +17,13 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 .isMassObject <- function(x) {
-  return(inherits(x=x, what="AbstractMassObject"))
+  inherits(x=x, what="AbstractMassObject")
 }
 
 isMassSpectrum <- function(x) {
-  return(is(object=x, class2="MassSpectrum"))
+  is(object=x, class2="MassSpectrum")
 }
 
 isMassPeaks <- function(x) {
-  return(is(object=x, class2="MassPeaks"))
+  is(object=x, class2="MassPeaks")
 }

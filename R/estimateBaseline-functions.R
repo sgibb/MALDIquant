@@ -32,7 +32,7 @@
 ##
 
 .estimateBaselineConvexHull <- function(x, y) {
-  return(cbind(x=x, y=.Call("C_lowerConvexHull", x, y)))
+  cbind(x=x, y=.Call("C_lowerConvexHull", x, y))
 }
 
 ## estimateBaselineMedian
@@ -49,9 +49,7 @@
 .estimateBaselineMedian <- function(x, y, halfWindowSize=100L) {
   .stopIfNotIsValidHalfWindowSize(halfWindowSize=halfWindowSize, n=length(x))
 
-  y <- runmed(y, k=2L*halfWindowSize+1L)
-
-  return(cbind(x, y))
+  cbind(x=x, y=runmed(y, k=2L*halfWindowSize+1L))
 }
 
 ## estimateBaselineSnip
@@ -85,7 +83,7 @@
 ##  a matrix of the estimate baseline (col1: mass; col2: intensity)
 
 .estimateBaselineSnip <- function(x, y, iterations=100L, decreasing=TRUE) {
-  return(cbind(x=x, y=.Call("C_snip", y, iterations, decreasing)))
+  cbind(x=x, y=.Call("C_snip", y, iterations, decreasing))
 }
 
 ## estimateBaselineTopHat
@@ -106,6 +104,6 @@
   e <- .erosion(y, halfWindowSize=halfWindowSize)
   y <- .dilation(e, halfWindowSize=halfWindowSize)
 
-  return(cbind(x, y))
+  cbind(x=x, y=y)
 }
 
