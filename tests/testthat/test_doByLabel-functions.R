@@ -19,7 +19,7 @@ test_that(".doByLabels runs a function for group labels", {
                                             FUN=function(x){ return(1) }), 1)
   expect_identical(unname(MALDIquant:::.doByLabels(l=list(s, s),
                             labels=as.factor(c("a", "b")),
-                            FUN=function(x){ return(1) })),
+                            FUN=function(x)1)),
                    c(1, 1))
 
   l <- list(s, s, s, s)
@@ -35,7 +35,7 @@ test_that(".doByLabels runs a function for group labels", {
                   #labels=as.factor(paste("s", c(1, 2, 10, 11))),
                   labels=factor(paste("s", c(1, 2, 10, 11)),
                         levels=paste("s", c(1, 2, 10, 11))),
-                  FUN=function(x){return(x)})
+                  FUN=function(x)x)
 
   expect_equal(c(1:2, 10:11), unname(sapply(m, function(x)metaData(x)$file)))
 
@@ -43,7 +43,7 @@ test_that(".doByLabels runs a function for group labels", {
   m <- MALDIquant:::.doByLabels(l=l,
                   ## results in factor(c(2, 2, 1, 1), levels=2:1)
                   labels=rep(2:1, each=2),
-                  FUN=function(x){return(x[[1]])})
+                  FUN=function(x)x[[1]])
 
   expect_equal(c(1, 10), unname(sapply(m, function(x)metaData(x)$file)))
 
@@ -51,12 +51,13 @@ test_that(".doByLabels runs a function for group labels", {
   m <- MALDIquant:::.doByLabels(l=l,
                   ## results in factor(c(2, 2, 1, 1), levels=1:2)
                   labels=factor(rep(2:1, each=2)),
-                  FUN=function(x){return(x[[1]])})
+                  FUN=function(x)x[[1]])
 
   expect_equal(c(10, 1), unname(sapply(m, function(x)metaData(x)$file)))
 
 
   ## see https://github.com/sgibb/MALDIquant/issues/1
   expect_equal(unname(MALDIquant:::.doByLabels(l, 1:4, function(x)x[[1]])), l)
+  expect_equal(unname(MALDIquant:::.doByLabels(l, rep(1, 4), function(x)x)), l)
 })
 
