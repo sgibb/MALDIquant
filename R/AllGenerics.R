@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2011-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -52,13 +52,13 @@ if (is.null(getGeneric("trim"))) {
 
 ## get/set slots
 if (is.null(getGeneric("mass"))) {
-  setGeneric("mass", function(object) standardGeneric("mass"))
+  setGeneric("mass", function(object, ...) standardGeneric("mass"))
 }
 if (is.null(getGeneric("mass<-"))) {
   setGeneric("mass<-", function(object, value) standardGeneric("mass<-"))
 }
 if (is.null(getGeneric("intensity"))) {
-  setGeneric("intensity", function(object) standardGeneric("intensity"))
+  setGeneric("intensity", function(object, ...) standardGeneric("intensity"))
 }
 if (is.null(getGeneric("intensity<-"))) {
   setGeneric("intensity<-",

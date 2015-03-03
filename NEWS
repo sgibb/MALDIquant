@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.11.2 [2015-03-03 Tue]:
+- Change generics of `mass` and `intensity` from `function(object)` to
+  `function(object, ...)` to provide the same generics as Bioconductor's
+  ProtGenerics package.
+
 Version 1.11.1 [2014-09-08 Mon]:
 - Removed (was defunct since 1.10): `intensityMatrix` for MassSpectrum objects.
 
