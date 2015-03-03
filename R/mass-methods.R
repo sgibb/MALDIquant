@@ -19,7 +19,7 @@
 ## AbstractMassObject
 setMethod(f="mass",
           signature=signature(object="AbstractMassObject"),
-          definition=function(object) {
+          definition=function(object, ...) {
 
   object@mass
 })
