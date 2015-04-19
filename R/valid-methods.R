@@ -41,7 +41,7 @@ setValidity("AbstractMassObject", method=.validAbstractMassObject)
 .validMassPeaks <- function(object) {
   if (length(object@intensity) != length(object@snr)) {
     return(paste0("Lengths of intensity (", length(object@intensity),
-                  ") and snr(", length(object@snr),
+                  ") and snr (", length(object@snr),
                   ") have to be equal."))
   }
   .validAbstractMassObject(object)
