@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.11.3 [2015-04-19 Sun]:
+- `plotImsSlice`: fix plot function for slices with only one row or one column.
+
 Version 1.11.2 [2015-03-03 Tue]:
 - Change generics of `mass` and `intensity` from `function(object)` to
   `function(object, ...)` to provide the same generics as Bioconductor's

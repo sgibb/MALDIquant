@@ -41,14 +41,15 @@ plotImsSlice <- function(x, range=c(0, Inf),
 
   if (removeEmptyRows) {
     kr <- rowSums(is.na(m)) != ncol(m)
-    m <- m[kr, ]
-    nr <- nrow(m)
+    m <- m[kr, , drop=FALSE]
   }
   if (removeEmptyCols) {
     kc <- colSums(is.na(m)) != nrow(m)
-    m <- m[, kc]
-    nc <- ncol(m)
+    m <- m[, kc, drop=FALSE]
   }
+
+  nr <- nrow(m)
+  nc <- ncol(m)
 
   ## create color raster
   isNotNA <- which(!is.na(m))
