@@ -50,8 +50,7 @@ Website: \url{http://strimmerlab.org/software/maldiquant/}
 Example:
 \url{https://github.com/sgibb/MALDIquantExamples/blob/master/vignettes/ims.Rnw}
 
-Shiny example: \url{http://spark.rstudio.com/sgibb/ims/},
-\url{https://github.com/sgibb/ims-shiny/}
+Shiny example: \url{https://github.com/sgibb/ims-shiny/}
 }
 \examples{
 \dontrun{
