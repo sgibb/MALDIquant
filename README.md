@@ -1,6 +1,6 @@
 # MALDIquant
 [![Build Status](https://travis-ci.org/sgibb/MALDIquant.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquant)
-[![Coverage Status](https://coveralls.io/repos/sgibb/MALDIquant/badge.svg)](https://coveralls.io/r/sgibb/MALDIquant)
+[![codecov.io](https://codecov.io/github/sgibb/MALDIquant/coverage.svg?branch=master)](https://codecov.io/github/sgibb/MALDIquant/?branch=master)
 [![metacran version](http://www.r-pkg.org/badges/version/MALDIquant)](http://cran.r-project.org/web/packages/MALDIquant/index.html)
 
 [MALDIquant on CRAN](http://cran.r-project.org/web/packages/MALDIquant/index.html)
