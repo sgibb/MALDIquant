@@ -28,16 +28,17 @@
 .as.matrix.MassObjectList <- function(l) {
   .stopIfNotIsMassObjectList(l)
 
-  mass <- sort(x=.unlist(lapply(l, function(x)x@mass)), method="quick")
-  uniqueMass <- unique(mass)
+  mass <- .unlist(lapply(l, function(x)x@mass))
+  intensity <- .unlist(lapply(l, function(x)x@intensity))
+  uniqueMass <- sort.int(unique(mass), method="quick")
+  n <- vapply(l, length, double(1L))
+  r <- rep(1L:length(l), times=n)
 
-  ## build matrix
-  m <- do.call(rbind, lapply(l, function(x)x@intensity[match(x=uniqueMass,
-                                                             table=x@mass)]))
+  i <- findInterval(mass, uniqueMass)
 
-  ## set column names
-  dimnames(m) <- list(NULL, c(uniqueMass))
-
+  m <- matrix(NA_integer_, nrow=length(l), ncol=length(uniqueMass),
+              dimnames=list(NULL, uniqueMass))
+  m[cbind(r, i)] <- intensity
   m
 }
 
