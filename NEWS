@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.11.6 [2015-05-07 Thu]:
+- Rewrite `trim` to improve execution time.
+
 Version 1.11.5 [2015-05-06 Wed]:
 - Rewrite `intensityMatrix` to improve execution time.
 
