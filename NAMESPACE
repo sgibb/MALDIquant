@@ -39,6 +39,8 @@ export("alignSpectra",
 
 exportMethods("as.matrix",
               "calibrateIntensity",
+              "coordinates",
+              "coordinates<-",
               "detectPeaks",
               "estimateBaseline",
               "estimateNoise",

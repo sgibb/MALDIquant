@@ -26,9 +26,10 @@
 \alias{coordinates}
 \alias{coordinates<-}
 \alias{coordinates,AbstractMassObject-method}
-\alias{coordinates<-,AbstractMassObject-method}
+\alias{coordinates<-,AbstractMassObject,numeric-method}
+\alias{coordinates<-,AbstractMassObject,matrix-method}
 \alias{coordinates,list-method}
-\alias{coordinates<-,list-method}
+\alias{coordinates<-,list,matrix-method}
 \alias{points,AbstractMassObject-method}
 
 \title{Class "AbstractMassObject"}
