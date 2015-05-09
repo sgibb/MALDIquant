@@ -16,6 +16,8 @@ test_that("coordinates<- throws errors", {
   expect_error(coordinates(s[[1]]) <- 1, "2 or 3 coordinates are needed!")
   expect_error(coordinates(s[[1]]) <- 4, "2 or 3 coordinates are needed!")
   expect_error(coordinates(s) <- cbind(x=1:4), "2 or 3 coordinates are needed!")
+  expect_error(coordinates(s) <- cbind(x=1:2, y=1:2, z=1:2, zz=1:2),
+               "2 or 3 coordinates are needed!")
   l <- list(1:10)
   expect_error(coordinates(l) <- cbind(x=2:3, y=3:4),
                "is no list of MALDIquant::AbstractMassObject objects!")
