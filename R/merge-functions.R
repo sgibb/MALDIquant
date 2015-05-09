@@ -68,7 +68,7 @@ mergeMassPeaks  <- function(l, labels, method=c("mean", "median", "sum"),
   ## create a matrix which could merged
   m <- .as.matrix.MassObjectList(l)
 
-  mass <- as.double(colnames(m))
+  mass <- attr(m, "mass")
 
   ## avoid named intensity/snr slot
   colnames(m) <- NULL

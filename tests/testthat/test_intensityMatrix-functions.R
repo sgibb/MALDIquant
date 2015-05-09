@@ -5,10 +5,11 @@ p <- list(createMassPeaks(mass=1:4, intensity=11:14),
 s <- list(createMassSpectrum(mass=1:5, intensity=11:15),
           createMassSpectrum(mass=1:5, intensity=21:25))
 
-m <- matrix(c(11:14, NA, NA, 22:25), byrow=T, ncol=5, nrow=2,
+m <- matrix(c(11:14, NA, NA, 22:25), byrow=TRUE, ncol=5, nrow=2,
             dimnames=list(NULL, 1:5))
-e <- matrix(c(11:15, 21:25), byrow=T, ncol=5, nrow=2,
+e <- matrix(c(11:15, 21:25), byrow=TRUE, ncol=5, nrow=2,
             dimnames=list(NULL, 1:5))
+attr(m, "mass") <- attr(e, "mass") <- 1:5
 
 test_that("intensityMatrix throws errors", {
   expect_error(intensityMatrix(p[[1]]),

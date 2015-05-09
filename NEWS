@@ -1,6 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.11.8 [2015-05-09 Sat]:
+- The return value of the internal `.as.matrix.MassObjectList` function gains an
+  attribute "mass" that stores the unique mass (conversions of the colnames are
+  not needed anymore);
+  affected functions: `intensityMatrix`
+
 Version 1.11.7 [2015-05-09 Sat]:
 - Add `coordinates` methods for AbstractMassObjects and list objects to
   access/set coordinates for IMS datasets.
