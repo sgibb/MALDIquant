@@ -37,17 +37,14 @@ if (is.null(getGeneric(".prepareShow"))) {
 }
 if (is.null(getGeneric("transformIntensity"))) {
   setGeneric("transformIntensity",
-             function(object, ...)
-               standardGeneric("transformIntensity"))
+             function(object, ...) standardGeneric("transformIntensity"))
 }
 if (is.null(getGeneric(".transformIntensity"))) {
   setGeneric(".transformIntensity",
-             function(object, ...)
-               standardGeneric(".transformIntensity"))
+             function(object, ...) standardGeneric(".transformIntensity"))
 }
 if (is.null(getGeneric("trim"))) {
-  setGeneric("trim",
-             function(object, range) standardGeneric("trim"))
+  setGeneric("trim", function(object, range) standardGeneric("trim"))
 }
 
 ## get/set slots
@@ -77,6 +74,15 @@ if (is.null(getGeneric("metaData<-"))) {
   setGeneric("metaData<-",
              function(object, value) standardGeneric("metaData<-"))
 }
+if (is.null(getGeneric("coordinates"))) {
+  setGeneric("coordinates",
+             function(object, ...) standardGeneric("coordinates"))
+}
+if (is.null(getGeneric("coordinates<-"))) {
+  setGeneric("coordinates<-",
+             function(object, value) standardGeneric("coordinates<-"))
+}
+
 ## end of AbstractMassObject
 
 ## MassSpectrum

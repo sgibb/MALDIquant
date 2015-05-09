@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.11.7 [2015-05-09 Sat]:
+- Add `coordinates` methods for AbstractMassObjects and list objects to
+  access/set coordinates for IMS datasets.
+
 Version 1.11.6 [2015-05-07 Thu]:
 - Rewrite `trim` to improve execution time.
 

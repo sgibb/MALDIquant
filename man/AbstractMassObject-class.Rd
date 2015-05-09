@@ -23,6 +23,12 @@
 \alias{metaData<-}
 \alias{metaData,AbstractMassObject-method}
 \alias{metaData<-,AbstractMassObject-method}
+\alias{coordinates}
+\alias{coordinates<-}
+\alias{coordinates,AbstractMassObject-method}
+\alias{coordinates<-,AbstractMassObject-method}
+\alias{coordinates,list-method}
+\alias{coordinates<-,list-method}
 \alias{points,AbstractMassObject-method}
 
 \title{Class "AbstractMassObject"}
@@ -53,6 +59,13 @@ It shouldn't create or handle by the user because it is for internal use only.
   \item{as.matrix}{\code{signature(x = "AbstractMassObject")}:
     Converts an \code{\linkS4class{AbstractMassObject}} object to a
     matrix with 2 columns (\code{mass}, \code{intensity}).}
+  \item{coordinates}{\code{signature(object = "AbstractMassObject")}:
+    Accessor function for coordinates stored in object generated from imaging
+    mass spectrometry data.}
+  \item{coordinates<-}{\code{signature(object = "AbstractMassObject",
+      value = "numeric|matrix")}
+    Replacement function for coordinates used in imaging mass spectrometry
+    datasets.}
   \item{intensity}{\code{signature(object = "AbstractMassObject")}:
     Accessor function for slot \code{intensity}.}
   \item{intensity<-}{\code{signature(object = "AbstractMassObject",
