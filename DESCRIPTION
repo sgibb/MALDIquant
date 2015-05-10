@@ -1,5 +1,5 @@
 Package: MALDIquant
-Version: 1.11.10
+Version: 1.11.11
 Date: 2015-05-10
 Title: Quantitative Analysis of Mass Spectrometry Data
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),

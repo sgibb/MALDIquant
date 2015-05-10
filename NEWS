@@ -1,6 +1,13 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.11.11 [2015-05-10 Sun]:
+- Add parallel support on unix-base platforms using the parallel package. The
+  following functions/methods supports the "mc.cores" argument (default is 1):
+  `trim`, `transformIntensity`, `removeBaseline`, `calibrateIntensity`,
+  `detectPeaks`, `alignSpectra`, `averageMassSpectra`, `mergeMassPeaks`;
+  Please read also `?"MALDIquant-parallel"`.
+
 Version 1.11.10 [2015-05-10 Sun]:
 - `calibratyIntensity(object, method="TIC")` gains a "range" argument allowing
   to calibrate spectra by TIC on a specific mass range; closes #27;
