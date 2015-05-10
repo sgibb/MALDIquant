@@ -102,11 +102,11 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
   intensities <- .unlist(lapply(tmpPeakList, function(x)x@intensity))
 
   ## store original mass sample number/id
-  samples <- .unlist(lapply(1L:length(tmpPeakList),
-                            function(x)rep(x, length(tmpPeakList[[x]]))))
+  samples <- rep.int(1L:length(tmpPeakList),
+                     .unlist(lapply(tmpPeakList, length)))
 
   ## sort values by mass
-  s <- sort(mass, method="quick", index.return=TRUE)
+  s <- sort.int(mass, method="quick", index.return=TRUE)
 
   mass <- s$x
   intensities <- intensities[s$ix]
@@ -119,7 +119,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
                           grouper=.grouperRelaxedHighestAtReference)
 
   ## group mass/intensities by sample ids
-  lIdx <- tapply(X=1L:length(binnedMass), INDEX=samples, FUN=function(x)x)
+  lIdx <- split(1L:length(binnedMass), samples)
 
   ## calculate differences
   binnedMass[binnedMass == 0L] <- NA

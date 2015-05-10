@@ -48,7 +48,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
   snr <- .unlist(lapply(l, function(x)x@snr))
 
   ## store original mass sample number/id
-  samples <- .unlist(lapply(1L:length(l), function(x)rep(x, length(l[[x]]))))
+  samples <- rep.int(1L:length(l), .unlist(lapply(l, length)))
 
   ## sort values by mass
   s <- sort.int(mass, method="quick", index.return=TRUE)
@@ -82,7 +82,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
   }
 
   ## group mass/intensities/snr by sample ids
-  lIdx <- tapply(X=1L:length(mass), INDEX=samples, FUN=function(x)x)
+  lIdx <- split(1L:length(mass), samples)
 
   ## create adjusted peak list
   l <- .mapply(FUN=function(p, i) {
