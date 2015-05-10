@@ -16,7 +16,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## estimateNoise
+## .estimateNoise
 ##  estimating the noise of a spectrum
 ##
 ## params:
@@ -26,7 +26,7 @@
 ##  ...: further arguments passed to "method"
 ##
 ## returns:
-##  a numeric of the estimate noise (y)
+##  numeric, estimated noise (y)
 ##
 .estimateNoise <- function(x, y, method=c("MAD", "SuperSmoother"), ...) {
 
@@ -50,7 +50,7 @@
 ##  y: vector of y values
 ##
 ## returns:
-##  a numeric of the estimate noise (y)
+##  numeric, estimated noise (y)
 ##
 .estimateNoiseMad <- function(x, y) {
   rep(stats::mad(y), times=length(x))
@@ -65,7 +65,7 @@
 ##  ...: further arguments to passed to supsmu
 ##
 ## returns:
-##  a numeric of the estimate noise (y)
+##  numeric, estimated noise (y)
 ##
 .estimateNoiseSuperSmoother <- function(x, y, ...) {
   stats::supsmu(x=x, y=y, ...)$y

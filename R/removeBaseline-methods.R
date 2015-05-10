@@ -23,17 +23,17 @@ setMethod(f="removeBaseline",
                               method=c("SNIP", "TopHat", "ConvexHull",
                                        "median"),
                               ...) {
-
   ## empty spectrum?
   if (.isEmptyWarning(object)) {
     return(object)
   }
 
   ## estimate baseline
-  baseline <- estimateBaseline(object=object, method=method, ...)
+  baseline <- .estimateBaseline(x=object@mass, y=object@intensity,
+                                method=method, ...)
 
   ## substract baseline
-  object@intensity <- object@intensity - baseline[, 2L]
+  object@intensity <- object@intensity - baseline
 
   object
 })

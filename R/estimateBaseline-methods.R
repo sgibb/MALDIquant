@@ -22,29 +22,11 @@ setMethod(f="estimateBaseline",
           definition=function(object, method=c("SNIP", "TopHat", "ConvexHull",
                                                "median"),
                               ...) {
-
-  ## empty spectrum?
   if (.isEmptyWarning(object)) {
     return(NA)
   }
 
-  method <- match.arg(method)
-
-  b <- switch(method,
-              "SNIP" = {
-                .estimateBaselineSnip(object@mass, object@intensity, ...)
-              },
-              "TopHat" = {
-                .estimateBaselineTopHat(object@mass, object@intensity, ...)
-              },
-              "ConvexHull" = {
-                .estimateBaselineConvexHull(object@mass, object@intensity)
-              },
-              "median" = {
-                .estimateBaselineMedian(object@mass, object@intensity, ...)
-              }
-  )
-
-  colnames(b) <- c("mass", "intensity")
-  b
+  cbind(mass=object@mass,
+        intensity=.estimateBaseline(x=object@mass, y=object@intensity,
+                                    method=method, ...))
 })
