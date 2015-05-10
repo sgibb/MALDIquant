@@ -14,6 +14,7 @@ The intensity of the mass spectrometry data would be reduced by
 \S4method{removeBaseline}{MassSpectrum}(object,
   method=c("SNIP", "TopHat", "ConvexHull", "median"),
   \dots)
+\S4method{removeBaseline}{list}(object, \dots)
 }
 \arguments{
   \item{object}{\code{\linkS4class{MassSpectrum}} object or a \code{list} of
@@ -24,7 +25,8 @@ The intensity of the mass spectrometry data would be reduced by
     \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}} for details.
   }
   \item{\dots}{arguments to be passed to
-    \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}}.}
+    \code{\link[MALDIquant]{estimateBaseline,MassSpectrum-method}}. If
+    \code{object} is a \code{list} \code{mc.cores} is also supported.}
 }
 \value{
   Returns a modified \code{\linkS4class{MassSpectrum}} object with reduced

@@ -12,6 +12,8 @@ This function calibrates (normalize) intensities of
 \usage{
 \S4method{calibrateIntensity}{MassSpectrum}(object,
   method=c("TIC", "PQN", "median"), \dots)
+\S4method{calibrateIntensity}{list}(object,
+  method=c("TIC", "PQN", "median"), \dots)
 }
 \arguments{
   \item{object}{\code{\linkS4class{MassSpectrum}} object or a \code{list} of
@@ -20,7 +22,8 @@ This function calibrates (normalize) intensities of
     \code{"TIC"}, \code{"PQN"} or \code{"median"}.
     See \sQuote{Details} section.}
   \item{\dots}{arguments to be passed to other functions. Currently only
-    \code{range} is for \code{method="TIC"} is supported.}
+    \code{range} is for \code{method="TIC"} is supported. If
+    \code{object} is a \code{list} \code{mc.cores} is also supported.}
 }
 \details{
   A number of different calibration methods are provided:

@@ -11,11 +11,14 @@ intensities of an \code{\linkS4class{AbstractMassObject}} object.
 \usage{
 \S4method{transformIntensity}{AbstractMassObject}(object,
   method=c("sqrt", "log", "log2", "log10"))
+\S4method{transformIntensity}{list}(object, \dots)
 }
 \arguments{
   \item{object}{\code{\linkS4class{AbstractMassObject}} object or a
     \code{list} of \code{\linkS4class{AbstractMassObject}} objects.}
   \item{method}{used transformation method.}
+  \item{\dots}{arguments to be passed to underlying functions. If
+    \code{object} is a \code{list} \code{mc.cores} is also supported.}
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}

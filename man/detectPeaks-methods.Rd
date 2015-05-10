@@ -13,6 +13,7 @@ A peak is a local maximum above a user defined noise threshold.
 \S4method{detectPeaks}{MassSpectrum}(object,
   halfWindowSize=20, method=c("MAD", "SuperSmoother"), SNR=2,
   \dots)
+\S4method{detectPeaks}{list}(object, \dots)
 }
 \arguments{
   \item{object}{\code{\linkS4class{MassSpectrum}} object or a \code{list} of
@@ -28,8 +29,8 @@ A peak is a local maximum above a user defined noise threshold.
     \emph{s}ignal-to-\emph{n}oise-\emph{r}atio. A local maximum has to
     be higher than \code{SNR*noise} to be recognize as peak.}
   \item{\dots}{arguments to be passed to
-    \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}}.
-  }
+    \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}}. If
+    \code{object} is a \code{list} \code{mc.cores} is also supported.}
 }
 \value{
 Returns a \code{\linkS4class{MassPeaks}} object.
