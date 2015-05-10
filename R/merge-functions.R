@@ -1,4 +1,4 @@
-## Copyright 2011-2014 Sebastian Gibb
+## Copyright 2011-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -27,8 +27,8 @@
 ## returns:
 ##  a new MassPeaks object or a list of new MassPeaks objects
 ##
-mergeMassPeaks  <- function(l, labels, method=c("mean", "median", "sum"),
-                            ignore.na=TRUE) {
+mergeMassPeaks <- function(l, labels, method=c("mean", "median", "sum"),
+                           ignore.na=TRUE, ...) {
 
   ## test arguments
   .stopIfNotIsMassPeaksList(l)
@@ -48,7 +48,7 @@ mergeMassPeaks  <- function(l, labels, method=c("mean", "median", "sum"),
   )
 
   .doByLabels(l=l, labels=labels, FUN=.mergeMassPeaks, fun=fun,
-              ignore.na=ignore.na)
+              ignore.na=ignore.na, ...)
 }
 
 ## .mergeMassPeaks

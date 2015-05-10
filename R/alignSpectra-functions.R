@@ -37,13 +37,14 @@ alignSpectra <- function(spectra,
                          ## peak detection
                          halfWindowSize=20, noiseMethod="MAD", SNR=2,
                          ## warping
-                         reference, tolerance=0.002, warpingMethod="lowess") {
+                         reference, tolerance=0.002, warpingMethod="lowess",
+                         ...) {
 
   ## test arguments
   .stopIfNotIsMassSpectrumList(spectra)
 
   peaks <- detectPeaks(spectra, halfWindowSize=halfWindowSize,
-                       method=noiseMethod, SNR=SNR)
+                       method=noiseMethod, SNR=SNR, ...)
   wf <- determineWarpingFunctions(peaks, reference=reference,
                                   tolerance=tolerance, method=warpingMethod)
   warpMassSpectra(spectra, wf)

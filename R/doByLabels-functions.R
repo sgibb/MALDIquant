@@ -1,4 +1,4 @@
-## Copyright 2012-2013 Sebastian Gibb
+## Copyright 2012-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -27,7 +27,7 @@
 ## returns:
 ##  list of modified AbstractMassObject objects
 ##
-.doByLabels <- function(l, labels, FUN, ...) {
+.doByLabels <- function(l, labels, FUN, ..., mc.cores=1L) {
 
   ## test parameters
   .stopIfNotIsMassObjectList(l)
@@ -49,7 +49,7 @@
     }
 
     ## replace tapply by split to preserve order
-    tmp <- lapply(split(unlist(l), labels), FUN=FUN, ...)
+    tmp <- .lapply(split(unlist(l), labels), FUN=FUN, ..., mc.cores=mc.cores)
 
     k <- unlist(tmp)
 
