@@ -44,7 +44,7 @@ if (is.null(getGeneric(".transformIntensity"))) {
              function(object, ...) standardGeneric(".transformIntensity"))
 }
 if (is.null(getGeneric("trim"))) {
-  setGeneric("trim", function(object, range) standardGeneric("trim"))
+  setGeneric("trim", function(object, range, ...) standardGeneric("trim"))
 }
 
 ## get/set slots

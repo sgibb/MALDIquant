@@ -1,4 +1,4 @@
-## Copyright 2013 Sebastian Gibb
+## Copyright 2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,17 +16,15 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## .mapply
-##  wrapper for mapply with different defaults
+## .lapply
+##  wrapper for lapply with different defaults
 ##
 ## params:
-##  see ?mapply
+##  see ?lapply
 ##
 ## returns:
-##  see ?mapply
+##  see ?lapply
 ##
-.mapply <- function(FUN, ..., MoreArgs=NULL, SIMPLIFY=FALSE, USE.NAMES=FALSE,
-                    mc.cores=1L) {
-  mcmapply(FUN=FUN, ..., MoreArgs=MoreArgs, SIMPLIFY=SIMPLIFY,
-           USE.NAMES=USE.NAMES, mc.cores=mc.cores)
+.lapply <- function(X, FUN, ..., mc.cores=1L) {
+  mclapply(X, FUN, ..., mc.cores=mc.cores)
 }

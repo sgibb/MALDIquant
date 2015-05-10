@@ -78,7 +78,7 @@ setMethod(f="transformIntensity",
   ## test arguments
   .stopIfNotIsMassObjectList(object)
 
-  lapply(object, transformIntensity, ...)
+  .lapply(object, transformIntensity, ...)
 })
 
 ## list
@@ -89,5 +89,5 @@ setMethod(f=".transformIntensity",
   ## test arguments
   .stopIfNotIsMassObjectList(object)
 
-  lapply(object, .transformIntensity, ...)
+  .lapply(object, .transformIntensity, ...)
 })

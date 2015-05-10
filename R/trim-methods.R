@@ -39,18 +39,18 @@ setMethod("trim",
 ## list
 setMethod("trim",
           signature=signature(object="list", range="numeric"),
-          definition=function(object, range) {
-  lapply(X=object, FUN=trim, range=range)
+          definition=function(object, range, ...) {
+  .lapply(X=object, FUN=trim, range=range, ...)
 })
 
 setMethod("trim",
           signature=signature(object="list", range="missing"),
-          definition=function(object) {
+          definition=function(object, ...) {
   range <- .overlap(object)
 
   if (all(range == 0L)) {
     stop("No overlap found!")
   }
 
-  lapply(X=object, FUN=trim, range=range)
+  .lapply(X=object, FUN=trim, range=range, ...)
 })

@@ -1,5 +1,9 @@
 import("methods")
 
+importFrom("parallel",
+              "mclapply",
+              "mcmapply")
+
 importFrom("graphics",
               "lines",
               "plot",
