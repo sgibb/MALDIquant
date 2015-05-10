@@ -75,7 +75,8 @@
 
   ## choose highest peak in duplicates
   if (anyDuplicated(samples)) {
-    s <- sort(intensities, method="quick", decreasing=TRUE, index.return=TRUE)
+    s <- sort.int(intensities, method="quick", decreasing=TRUE,
+                  index.return=TRUE)
     samples <- samples[s$ix]
 
     noDup <- !duplicated(samples)
@@ -129,7 +130,8 @@
 
   ## choose highest peak in duplicates
   if (anyDuplicated(samples)) {
-    s <- sort(intensities, method="quick", decreasing=TRUE, index.return=TRUE)
+    s <- sort.int(intensities, method="quick", decreasing=TRUE,
+                  index.return=TRUE)
     sSamples <- samples[s$ix]
 
     noDup <- !duplicated(sSamples)

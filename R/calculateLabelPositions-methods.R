@@ -34,7 +34,7 @@ setMethod(f=".calculateLabelPositions",
   signature=signature(object="MassPeaks"),
   definition=function(object, x, y, peakLabels, adj, cex, maxSteps=100L) {
   ## start with smallest peak
-  i <- sort(y, index.return=TRUE, method="quick")$ix
+  i <- sort.int(y, index.return=TRUE, method="quick")$ix
 
   ## calculate label rectangles
   rects <- .textLabelRects(x[i], y[i], peakLabels[i], adj=adj, cex=cex)
