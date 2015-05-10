@@ -35,7 +35,7 @@ setMethod(f="calibrateIntensity",
     },
     "median" = {
       .transformIntensity(object, fun=.calibrateIntensitySimple,
-                          offset=0L, scaling=median)
+                          offset=0L, scaling=median(object@intensity))
     }
   )
 })

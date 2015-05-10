@@ -5,6 +5,7 @@ Version 1.11.9 [2015-05-10 Sun]:
 - Remove some useless `cbind` calls in `.estimateNoise*` and
   `.estimateBaseline`; no user visible changes;
   affected functions: `estimateNoise`, `estimateBaseline`, `detectPeaks`
+- Remove superfluous arguments in internal `.calibrateIntensitySimple`.
 
 Version 1.11.8 [2015-05-09 Sat]:
 - The return value of the internal `.as.matrix.MassObjectList` function gains an

@@ -1,4 +1,4 @@
-## Copyright 2013 Sebastian Gibb
+## Copyright 2013-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -28,12 +28,6 @@
 ##  double, calibrated intensity values
 ##
 .calibrateIntensitySimple <- function(y, offset=0L, scaling=1L) {
-  if (is.function(offset)) {
-    offset <- offset(y)
-  }
-  if (is.function(scaling)) {
-    scaling <- scaling(y)
-  }
   (y-offset)/scaling
 }
 
