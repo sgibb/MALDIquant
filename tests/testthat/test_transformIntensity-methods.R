@@ -31,7 +31,7 @@ test_that(".transformIntensity throws errors", {
 
 test_that(".transformIntensity shows warnings", {
   expect_warning(.transformIntensity(s, fun=function(x)return(-x)),
-                 "Negative intensities generated")
+                 "Negative intensity values are replaced by zeros.")
 })
 
 test_that(".transformIntensity", {

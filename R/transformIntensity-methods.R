@@ -57,18 +57,13 @@ setMethod(f=".transformIntensity",
 
     object@intensity <- fun(object@intensity, ...)
 
-    belowZeroIdx <- which(object@intensity < 0L)
-
-    if (length(belowZeroIdx)) {
-      warning("Negative intensities generated. Replaced by zeros.")
-      object <- .replaceNegativeIntensityValues(object, warn=FALSE)
-    }
-
     if (na.rm) {
       naIdx <- which(!is.na(object@intensity))
       object@intensity <- object@intensity[naIdx]
       object@mass <- object@mass[naIdx]
     }
+
+    object <- .replaceNegativeIntensityValues(object)
   }
 
   object
