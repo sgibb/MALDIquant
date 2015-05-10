@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.11.9 [2015-05-10 Sun]:
+- Remove some useless `cbind` calls in `.estimateNoise*` and
+  `.estimateBaseline`; no user visible changes;
+  affected functions: `estimateNoise`, `estimateBaseline`, `detectPeaks`
+
 Version 1.11.8 [2015-05-09 Sat]:
 - The return value of the internal `.as.matrix.MassObjectList` function gains an
   attribute "mass" that stores the unique mass (conversions of the colnames are

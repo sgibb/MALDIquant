@@ -1,17 +1,17 @@
 Package: MALDIquant
-Version: 1.11.7
-Date: 2015-05-09
+Version: 1.11.9
+Date: 2015-05-10
 Title: Quantitative Analysis of Mass Spectrometry Data
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
         email="mail@sebastiangibb.de"), person("Korbinian", "Strimmer",
         role="ths"))
 Depends: R (>= 3.0.0), methods
 Suggests: knitr, testthat (>= 0.8)
-Description: A complete analysis pipeline for MALDI-TOF and other
-        mass spectrometry data. Distinctive features include baseline
-        subtraction methods such as TopHat or SNIP, peak alignment using
-        warping functions, handling of replicated measurements as well as
-        allowing spectra with different resolutions.
+Description: A complete analysis pipeline for MALDI-TOF and other mass
+        spectrometry data. Distinctive features include baseline
+        subtraction methods such as TopHat or SNIP, peak alignment
+        using warping functions, handling of replicated measurements as
+        well as allowing spectra with different resolutions.
 License: GPL (>= 3)
 URL: http://strimmerlab.org/software/maldiquant/
         https://github.com/sgibb/MALDIquant/
