@@ -96,4 +96,3 @@ setMethod(f=".transformIntensity",
 
   lapply(object, .transformIntensity, ...)
 })
-

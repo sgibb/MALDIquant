@@ -37,4 +37,3 @@ setReplaceMethod(f="mass",
   }
   object
 })
-

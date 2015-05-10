@@ -6,4 +6,3 @@ test_that("as", {
   s <- createMassSpectrum(mass=1:10, intensity=11:20, metaData=list(file="foo"))
   expect_equal(as(p, "MassSpectrum"), s)
 })
-

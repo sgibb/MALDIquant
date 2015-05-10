@@ -31,4 +31,3 @@ test_that("smoothIntensity works with list of MassSpectrum objects", {
                           MALDIquant:::.movingAverage(i))
   expect_equal(smoothIntensity(list(s, s), method="MovingAverage"), list(r, r))
 })
-

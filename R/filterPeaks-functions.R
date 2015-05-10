@@ -151,4 +151,3 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
 
   colSums(m[rows, , drop=FALSE]) >= minPeakNumber
 }
-

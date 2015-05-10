@@ -56,4 +56,3 @@ createMassPeaks <- function(mass, intensity,
 }
 
 ## end of MassPeaks
-

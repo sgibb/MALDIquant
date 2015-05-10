@@ -60,4 +60,3 @@ test_that(".doByLabels runs a function for group labels", {
   expect_equal(unname(MALDIquant:::.doByLabels(l, 1:4, function(x)x[[1]])), l)
   expect_equal(unname(MALDIquant:::.doByLabels(l, rep(1, 4), function(x)x)), l)
 })
-

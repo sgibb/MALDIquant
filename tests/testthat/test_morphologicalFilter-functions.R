@@ -20,4 +20,3 @@ test_that(".dilation", {
     expect_equal(.dilation(x[[i]], halfWindowSize=2), d[[i]])
   }
 })
-

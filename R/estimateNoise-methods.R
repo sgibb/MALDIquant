@@ -28,4 +28,3 @@ setMethod(f="estimateNoise",
 
   .estimateNoise(x=object@mass, y=object@intensity, method=method, ...)
 })
-

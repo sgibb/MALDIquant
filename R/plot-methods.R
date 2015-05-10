@@ -44,4 +44,3 @@ setMethod(f="plot",
        col.sub=col.sub, ...)
   abline(h=0L, col=abline.col)
 })
-

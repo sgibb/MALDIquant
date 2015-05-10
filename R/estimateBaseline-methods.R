@@ -48,4 +48,3 @@ setMethod(f="estimateBaseline",
   colnames(b) <- c("mass", "intensity")
   b
 })
-

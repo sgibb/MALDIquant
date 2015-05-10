@@ -71,4 +71,3 @@ SEXP C_localMaxima(SEXP y, SEXP s) {
   UNPROTECT(2);
   return(output);
 }
-

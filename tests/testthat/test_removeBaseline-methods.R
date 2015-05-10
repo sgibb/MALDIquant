@@ -50,4 +50,3 @@ test_that("removeBaseline works with list of MassSpectrum objects", {
                           intensity=c(rep(0, 10), 7.5, 5, 2.5, rep(0, 7)))
   expect_equal(removeBaseline(list(s, s), iterations=2), list(r, r))
 })
-

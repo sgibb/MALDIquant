@@ -24,4 +24,3 @@ test_that("isEmptyWarning", {
   expect_true(suppressWarnings(MALDIquant:::.isEmptyWarning(e[[1]])))
   expect_false(MALDIquant:::.isEmptyWarning(s[[1]]))
 })
-

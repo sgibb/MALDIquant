@@ -47,4 +47,3 @@ referencePeaks <- function(l, method=c("strict", "relaxed"), minFrequency=0.9,
 
   createMassPeaks(mass=attr(m, "mass"), intensity=intensity)
 }
-

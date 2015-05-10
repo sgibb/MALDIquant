@@ -24,4 +24,3 @@ setMethod(f="as.matrix",
   matrix(c(x@mass[index], x@intensity[index]), ncol=2L, byrow=FALSE,
          dimnames=list(NULL, c("mass", "intensity")))
 })
-

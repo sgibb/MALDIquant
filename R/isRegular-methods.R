@@ -24,4 +24,3 @@ setMethod(f="isRegular",
   s <- .irregularScore(object@mass) <= threshold
   !is.na(s) & s
 })
-

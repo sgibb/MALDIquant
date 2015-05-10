@@ -29,4 +29,3 @@
   mapply(FUN=FUN, ..., MoreArgs=MoreArgs, SIMPLIFY=SIMPLIFY,
          USE.NAMES=USE.NAMES)
 }
-

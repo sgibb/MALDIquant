@@ -16,4 +16,3 @@ test_that("removeEmptyMassObjects", {
   expect_identical(removeEmptyMassObjects(list(s, e)), list(s))
   expect_identical(removeEmptyMassObjects(list(e, s)), list(s))
 })
-

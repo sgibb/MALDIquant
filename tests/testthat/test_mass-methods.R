@@ -18,4 +18,3 @@ test_that("mass<-", {
   mass(s)[5:10] <- 5:10
   expect_equal(mass(s), c(11:14, 5:10))
 })
-

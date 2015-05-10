@@ -54,4 +54,3 @@ setMethod("trim",
 
   lapply(X=object, FUN=trim, range=range)
 })
-

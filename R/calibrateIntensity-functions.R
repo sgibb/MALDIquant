@@ -76,4 +76,3 @@
     .transformIntensity(x, fun=.calibrateIntensitySimple, offset=0L, scaling=m)
   })
 }
-

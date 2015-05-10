@@ -23,4 +23,3 @@ setMethod(f="points",
 
   points(x=x@mass, y=x@intensity, ...)
 })
-

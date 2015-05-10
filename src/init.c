@@ -42,4 +42,3 @@ R_init_MALDIquant(DllInfo *info)
     /* no .C, .Fortran, or .External routines => NULL */
     R_registerRoutines(info, NULL, callMethods, NULL, NULL);
 }
-

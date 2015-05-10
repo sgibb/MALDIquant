@@ -23,4 +23,3 @@ setMethod(f="length",
 
   length(x@intensity)
 })
-

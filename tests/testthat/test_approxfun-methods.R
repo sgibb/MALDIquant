@@ -11,4 +11,3 @@ test_that("approxfun", {
                c(NA, NA, seq(11, 20, by=0.5), NA, NA))
   expect_equal(approxfun(e)(1:20), rep(NA, 20))
 })
-

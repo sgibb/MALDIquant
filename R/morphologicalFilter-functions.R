@@ -57,4 +57,3 @@
 .erosion <- function(x, halfWindowSize) {
   .Call("C_erosion", x, halfWindowSize)
 }
-

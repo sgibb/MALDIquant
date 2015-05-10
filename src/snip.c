@@ -102,4 +102,3 @@ SEXP C_snip(SEXP y, SEXP iterations, SEXP decreasing) {
 
   return(output);
 }
-

@@ -33,4 +33,3 @@ setClass("MassPeaks",
          slots=list(snr="numeric"),
          prototype=list(snr=numeric()),
          contains="AbstractMassObject")
-

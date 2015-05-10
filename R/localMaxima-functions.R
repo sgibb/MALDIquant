@@ -34,4 +34,3 @@
   i <- (halfWindowSize+1L):(n-halfWindowSize)
   .Call("C_localMaxima", y, halfWindowSize)[i]
 }
-

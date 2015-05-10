@@ -15,4 +15,3 @@ test_that(".reorderRange", {
   expect_identical(MALDIquant:::.reorderRange(c(5L, 10L)), c(5L, 10L))
   expect_identical(MALDIquant:::.reorderRange(c(10L, 5L)), c(5L, 10L))
 })
-

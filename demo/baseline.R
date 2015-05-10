@@ -31,4 +31,3 @@ lines(bConvexHull, lwd=2, col=2)
 bMedian <- estimateBaseline(s, method="median")
 plot(s, main="Median Baseline")
 lines(bMedian, lwd=2, col=2)
-

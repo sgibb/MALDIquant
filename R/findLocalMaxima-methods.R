@@ -43,4 +43,3 @@ setMethod(f=".findLocalMaximaLogical",
 
   .localMaxima(object@intensity, halfWindowSize=halfWindowSize)
 })
-

@@ -41,4 +41,3 @@ test_that("referencePeaks works with different methods", {
                               tolerance=0.05),
                createMassPeaks(mass=c(1+1/300, 3), intensity=rep(1, 2)))
 })
-

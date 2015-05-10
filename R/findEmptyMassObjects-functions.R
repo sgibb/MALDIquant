@@ -33,4 +33,3 @@ findEmptyMassObjects <- function(l) {
 
   which(isEmpty)
 }
-

@@ -40,4 +40,3 @@ test_that(".warp", {
                list(createMassSpectrum(mass=2:11, intensity=1:10),
                     createMassSpectrum(mass=seq(3, 21, by=2), intensity=1:10)))
 })
-

@@ -26,4 +26,3 @@ test_that("logical index based subsetting works on MassPeaks", {
   expect_equal(p[intensity(p) <= 15],
                createMassPeaks(mass=1:5, intensity=11:15, snr=21:25))
 })
-

@@ -8,4 +8,3 @@ test_that(".localMaxima", {
   expect_identical(MALDIquant:::.localMaxima(y, 1),
                    c(T, F, T, F, F, F, T))
 })
-

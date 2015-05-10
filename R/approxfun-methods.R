@@ -28,4 +28,3 @@ setMethod(f="approxfun",
               yleft=yleft, yright=yright, rule=rule, f=f, ties=ties)
   }
 })
-

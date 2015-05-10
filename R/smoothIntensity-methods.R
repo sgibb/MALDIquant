@@ -57,4 +57,3 @@ setMethod(f="smoothIntensity",
 
   .mapply(smoothIntensity, object, ...)
 })
-

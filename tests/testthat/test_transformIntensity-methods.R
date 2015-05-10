@@ -54,4 +54,3 @@ test_that(".transformIntensity works with list of AbstractMassObject objects", {
   r <- createMassSpectrum(mass=1:10, intensity=1:10)
   expect_equal(.transformIntensity(list(s, s), fun=sqrt), list(r, r))
 })
-

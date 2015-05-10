@@ -21,4 +21,3 @@
   stopifnot(is.logical(na.rm))
   .Call("C_colMedians", x, na.rm)
 }
-

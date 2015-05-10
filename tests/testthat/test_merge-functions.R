@@ -66,4 +66,3 @@ test_that(".mergeMetaData", {
             characters=c("a", "b", "c", "b", "c"))
   expect_identical(MALDIquant:::.mergeMetaData(l), r)
 })
-

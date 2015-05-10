@@ -25,4 +25,3 @@ setMethod(f="lines",
 
     lines(x=x@mass, y=x@intensity, type, ...)
 })
-

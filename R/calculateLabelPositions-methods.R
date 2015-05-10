@@ -136,4 +136,3 @@ setMethod(f=".labelOverlap",
 
   textOverlap
 })
-

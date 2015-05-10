@@ -61,4 +61,3 @@ setMethod(f="calibrateIntensity",
     }
   )
 })
-

@@ -41,4 +41,3 @@ test_that(".deprecatedArgument", {
     "Argument .*x.* is deprecated..*Use .*y.* instead. See help(.*barfoo.*).")
 
 })
-

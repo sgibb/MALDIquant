@@ -21,4 +21,3 @@ test_that(".colMedians", {
   expect_equal(MALDIquant:::.colMedians(m), colMedians(m))
   expect_equal(MALDIquant:::.colMedians(m, TRUE), colMedians(m, TRUE))
 })
-

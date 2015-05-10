@@ -79,4 +79,3 @@ setReplaceMethod(f="coordinates",
 
   .mapply("coordinates<-", object, split(value, 1:nrow(value)))
 })
-

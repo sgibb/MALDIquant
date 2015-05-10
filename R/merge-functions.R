@@ -123,4 +123,3 @@ mergeMassPeaks  <- function(l, labels, method=c("mean", "median", "sum"),
     }
   })
 }
-

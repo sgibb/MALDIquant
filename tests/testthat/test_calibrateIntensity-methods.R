@@ -42,4 +42,3 @@ test_that("calibrateIntensity works with PQN", {
   expect_equal(unlist(lapply(mPQN, totalIonCurrent)),
                c(1, 1, 0.96875))
 })
-

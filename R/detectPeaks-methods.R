@@ -56,4 +56,3 @@ setMethod(f="detectPeaks",
 
   .mapply(detectPeaks, object, ...)
 })
-

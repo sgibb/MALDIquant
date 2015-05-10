@@ -47,4 +47,3 @@ test_that(".averageMassSpectra", {
   expect_equal(MALDIquant:::.averageMassSpectra(s), meanS)
   expect_equal(MALDIquant:::.averageMassSpectra(s, fun=colSums), sumS)
 })
-

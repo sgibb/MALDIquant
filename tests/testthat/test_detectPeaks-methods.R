@@ -19,4 +19,3 @@ test_that("detectPeaks works with list of MassSpectrum objects", {
                "no list of MALDIquant::MassSpectrum objects"))
   expect_equal(detectPeaks(list(s, s), halfWindowSize=1), list(p, p))
 })
-

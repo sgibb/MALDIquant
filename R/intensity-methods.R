@@ -38,4 +38,3 @@ setReplaceMethod(f="intensity",
   }
   object
 })
-

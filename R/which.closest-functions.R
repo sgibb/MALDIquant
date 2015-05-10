@@ -42,4 +42,3 @@
 
   ifelse(rDiff == pmin.int(lDiff, rDiff), rIdx, lIdx)
 }
-

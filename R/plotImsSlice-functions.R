@@ -101,4 +101,3 @@ plotImsSlice <- function(x, range=c(0, Inf),
   ## scale matrix (better contrast)
   m/max(m, na.rm=TRUE)
 }
-

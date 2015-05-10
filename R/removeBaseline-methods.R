@@ -48,4 +48,3 @@ setMethod(f="removeBaseline",
 
   .mapply(removeBaseline, object, ...)
 })
-

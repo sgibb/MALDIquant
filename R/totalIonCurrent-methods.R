@@ -26,4 +26,3 @@ setMethod(f="totalIonCurrent",
 
   as.double(sum((left+right)/2*diff(object@mass), na.rm=TRUE))
 })
-

@@ -73,4 +73,3 @@
 .estimateNoiseSuperSmoother <- function(x, y, ...) {
   cbind(x=x, y=stats::supsmu(x=x, y=y, ...)$y)
 }
-

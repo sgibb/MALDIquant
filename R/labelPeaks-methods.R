@@ -90,4 +90,3 @@ setMethod(f="labelPeaks",
   }
   text(x=x, y=y, labels=labels, adj=adj, cex=cex, ...)
 })
-

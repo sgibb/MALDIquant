@@ -8,4 +8,3 @@ test_that(".mapply", {
   expect_identical(MALDIquant:::.mapply(f, a, b),
                    mapply(f, a, b, USE.NAMES=FALSE, SIMPLIFY=FALSE))
 })
-

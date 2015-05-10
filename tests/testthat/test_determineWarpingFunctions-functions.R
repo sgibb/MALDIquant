@@ -30,4 +30,3 @@ test_that("determineWarpingFunctions works with list of MassPeaks objects", {
   wp <- warpMassPeaks(list(p, p), w)
   expect_equal(list(r, r), wp)
 })
-

@@ -32,4 +32,3 @@ setReplaceMethod(f="metaData",
   object@metaData <- value
   object
 })
-

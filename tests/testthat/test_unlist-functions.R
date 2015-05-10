@@ -5,4 +5,3 @@ test_that(".unlist doesn't work recursive", {
                                              b=list(c=7:9))),
                    list(1:3, 4:6, 7:9))
 })
-

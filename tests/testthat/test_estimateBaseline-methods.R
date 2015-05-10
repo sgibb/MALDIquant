@@ -89,4 +89,3 @@ test_that("estimateBaselineTopHat", {
                "too large")
 
 })
-

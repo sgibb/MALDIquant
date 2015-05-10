@@ -11,4 +11,3 @@ test_that("metaData<-", {
   metaData(s) <- l
   expect_identical(metaData(s), l)
 })
-

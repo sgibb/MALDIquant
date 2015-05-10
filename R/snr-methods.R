@@ -23,4 +23,3 @@ setMethod(f="snr",
 
   object@snr
 })
-

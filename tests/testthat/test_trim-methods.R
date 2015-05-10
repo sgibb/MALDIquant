@@ -23,4 +23,3 @@ test_that("trim works with list of AbstractMassObject objects", {
   expect_equal(trim(list(s, s), c(2, 9)), list(r, r))
   expect_equal(trim(list(s, r)), list(r, r))
 })
-

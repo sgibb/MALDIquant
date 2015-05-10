@@ -118,4 +118,3 @@
   y[(n-hws+1L):n] <- tail(coef, hws) %*% tail(x, w)
   y
 }
-

@@ -48,4 +48,3 @@ setValidity("AbstractMassObject", method=.validAbstractMassObject)
 }
 
 setValidity("MassPeaks", method=.validMassPeaks)
-

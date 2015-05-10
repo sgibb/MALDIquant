@@ -99,4 +99,3 @@ averageMassSpectra <- function(l, labels, method=c("mean", "median", "sum")) {
 
   createMassSpectrum(mass=mass, intensity=intensity, metaData=metaData)
 }
-

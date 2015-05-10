@@ -43,4 +43,3 @@ setMethod(f=".isEmptyWarning",
 
   FALSE
 })
-

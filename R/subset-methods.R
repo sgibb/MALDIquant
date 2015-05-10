@@ -64,4 +64,3 @@ setMethod(f="[",
 
   x
 })
-

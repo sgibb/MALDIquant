@@ -66,4 +66,3 @@ isMassPeaksList <- function(x) {
   }
   TRUE
 }
-

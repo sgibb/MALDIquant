@@ -42,4 +42,3 @@
              x=xc, y=yc, w=w, h=h))
   }, xc=x, yc=y, t=text))
 }
-

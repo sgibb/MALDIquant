@@ -5,4 +5,3 @@ test_that("length", {
   expect_identical(length(createMassSpectrum(mass=double(),
                                              intensity=double())), 0L)
 })
-

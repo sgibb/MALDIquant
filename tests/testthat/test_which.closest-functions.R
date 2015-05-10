@@ -8,4 +8,3 @@ test_that(".which.closest", {
   expect_equal(MALDIquant:::.which.closest(c(0.5, 1.5, exp(1), pi), 1:10),
                c(1, 2, 3, 3))
 })
-

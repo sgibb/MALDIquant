@@ -8,4 +8,3 @@ test_that("totalIonCurrent", {
   expect_equal(totalIonCurrent(s), 49.5)
   expect_equal(totalIonCurrent(i), as.double(.Machine$integer.max))
 })
-

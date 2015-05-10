@@ -9,4 +9,3 @@ test_that("isRegular", {
   expect_false(isRegular(createMassSpectrum((1:10)[-8], 1:9)))
   expect_true(isRegular(createMassSpectrum((1:10)[-8], 1:9), threshold=0.15))
 })
-

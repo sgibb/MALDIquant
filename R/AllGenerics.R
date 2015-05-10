@@ -163,4 +163,3 @@ if (is.null(getGeneric(".labelOverlap"))) {
              function(object, ...) standardGeneric(".labelOverlap"))
 }
 ## end of MassPeaks
-

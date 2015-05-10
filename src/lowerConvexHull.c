@@ -88,4 +88,3 @@ SEXP C_lowerConvexHull(SEXP x, SEXP y) {
 
   return(output);
 }
-

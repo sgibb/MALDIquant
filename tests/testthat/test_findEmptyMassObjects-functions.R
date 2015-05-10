@@ -16,4 +16,3 @@ test_that("findEmptyMassObjects", {
   expect_identical(findEmptyMassObjects(list(s, e)), 2L)
   expect_identical(findEmptyMassObjects(list(e, s)), 1L)
 })
-

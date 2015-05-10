@@ -59,4 +59,3 @@ test_that(".savitzkyGolay throws errors", {
                                            polynomialOrder=10),
                "The window size has to be larger than the polynomial order.")
 })
-

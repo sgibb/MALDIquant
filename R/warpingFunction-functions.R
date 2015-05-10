@@ -89,4 +89,3 @@
   co <- coef(l)
   function(x) { co[1L]+x*co[2L]+x*x*co[3L]+x*x*x*co[4L] }
 }
-

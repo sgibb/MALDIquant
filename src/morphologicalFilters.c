@@ -192,4 +192,3 @@ SEXP C_erosion(SEXP y, SEXP s) {
   UNPROTECT(5);
   return(output);
 }
-

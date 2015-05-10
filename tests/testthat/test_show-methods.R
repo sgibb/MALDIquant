@@ -56,4 +56,3 @@ test_that("show", {
 
   expect_identical(capture.output(show(x)), r)
 })
-
