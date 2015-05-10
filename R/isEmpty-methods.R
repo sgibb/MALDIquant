@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2011-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -21,7 +21,7 @@ setMethod(f="isEmpty",
           signature=signature(x="AbstractMassObject"),
           definition=function(x) {
 
-  length(x@intensity) == 0L || sum(as.double(x@intensity), na.rm=TRUE) == 0L
+  !sum(as.double(x@intensity), na.rm=TRUE)
 })
 
 setMethod(f=".isEmptyWarning",
