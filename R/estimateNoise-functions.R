@@ -1,4 +1,4 @@
-## Copyright 2011-2014 Sebastian Gibb
+## Copyright 2011-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -26,23 +26,20 @@
 ##  ...: further arguments passed to "method"
 ##
 ## returns:
-##  a matrix of the estimate noise (col1: mass; col2: intensity)
+##  a numeric of the estimate noise (y)
 ##
 .estimateNoise <- function(x, y, method=c("MAD", "SuperSmoother"), ...) {
 
   method <- match.arg(method)
 
-  n <- switch(method,
-              "MAD" = {
-                .estimateNoiseMad(x, y)
-              },
-              "SuperSmoother" = {
-                .estimateNoiseSuperSmoother(x, y, ...)
-              }
+  switch(method,
+         "MAD" = {
+           .estimateNoiseMad(x, y)
+         },
+         "SuperSmoother" = {
+           .estimateNoiseSuperSmoother(x, y, ...)
+         }
   )
-
-  colnames(n) <- c("mass", "intensity")
-  n
 }
 
 ## estimateNoiseMad
@@ -53,10 +50,10 @@
 ##  y: vector of y values
 ##
 ## returns:
-##  a matrix of the estimate noise (col1: mass; col2: intensity)
+##  a numeric of the estimate noise (y)
 ##
 .estimateNoiseMad <- function(x, y) {
-  cbind(mass=x, intensity=rep(stats::mad(y), times=length(x)))
+  rep(stats::mad(y), times=length(x))
 }
 
 ## estimateNoiseSuperSmoother
@@ -68,8 +65,8 @@
 ##  ...: further arguments to passed to supsmu
 ##
 ## returns:
-##  a matrix of the estimate noise (col1: mass; col2: intensity)
+##  a numeric of the estimate noise (y)
 ##
 .estimateNoiseSuperSmoother <- function(x, y, ...) {
-  cbind(x=x, y=stats::supsmu(x=x, y=y, ...)$y)
+  stats::supsmu(x=x, y=y, ...)$y
 }

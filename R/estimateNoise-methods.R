@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2011-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -26,5 +26,7 @@ setMethod(f="estimateNoise",
     return(0L)
   }
 
-  .estimateNoise(x=object@mass, y=object@intensity, method=method, ...)
+  cbind(mass=object@mass,
+        intensity=.estimateNoise(x=object@mass, y=object@intensity,
+                                 method=method, ...))
 })

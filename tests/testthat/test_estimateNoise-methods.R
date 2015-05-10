@@ -1,9 +1,6 @@
 context("estimateNoise-methods")
 
-i <- rep(10:1, 2)
-s <- createMassSpectrum(mass=1:20, intensity=i)
-m <- matrix(c(1:20, rep(NA, 20)), ncol=2, byrow=FALSE,
-            dimnames=list(list(), list("mass", "intensity")))
+s <- createMassSpectrum(mass=1:20, intensity=rep(10:1, 2))
 
 test_that("estimateNoise throws errors", {
   expect_error(estimateNoise(s, method="foobar"),
@@ -20,16 +17,22 @@ test_that("estimateNoise shows warnings", {
 })
 
 test_that(".estimateNoiseMad", {
-  m[, 2] <- stats::mad(i)
-  expect_identical(unname(MALDIquant:::.estimateNoiseMad(1:20, i)),
-                   unname(m))
+  n <- rep(stats::mad(intensity(s)), length(s))
+  m <- cbind(mass=mass(s), intensity=n)
+  expect_identical(MALDIquant:::.estimateNoiseMad(1:20, intensity(s)), n)
+  expect_identical(MALDIquant:::.estimateNoise(mass(s), intensity(s)), n)
+  expect_identical(MALDIquant:::.estimateNoise(mass(s), intensity(s),
+                                               method="MAD"), n)
   expect_identical(estimateNoise(s), m)
   expect_identical(estimateNoise(s, method="MAD"), m)
 })
 
 test_that(".estimateNoiseSuperSmoother", {
-  m[, 2] <- stats::supsmu(x=1:20, y=i)$y
-  expect_identical(unname(MALDIquant:::.estimateNoiseSuperSmoother(1:20, i)),
-                   unname(m))
+  n <- stats::supsmu(x=1:20, y=intensity(s))$y
+  m <- cbind(mass=mass(s), intensity=n)
+  expect_identical(MALDIquant:::.estimateNoiseSuperSmoother(mass(s),
+                                                            intensity(s)), n)
+  expect_identical(MALDIquant:::.estimateNoise(mass(s), intensity(s),
+                                               method="SuperSmoother"), n)
   expect_identical(estimateNoise(s, method="SuperSmoother"), m)
 })
