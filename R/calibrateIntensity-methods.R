@@ -26,8 +26,15 @@ setMethod(f="calibrateIntensity",
 
   switch(method,
     "TIC" = {
-      .transformIntensity(object, fun=.calibrateIntensitySimple,
-                          offset=0L, scaling=totalIonCurrent(object))
+      optArgs <- list(...)
+
+      if (!is.null(optArgs$range)) {
+        tic <- totalIonCurrent(trim(object, range=optArgs$range))
+      } else {
+        tic <- totalIonCurrent(object)
+      }
+      .transformIntensity(object, fun=.calibrateIntensitySimple, offset=0L,
+                          scaling=tic)
     },
     "PQN" = {
       stop(dQuote("PQN"),

@@ -23,6 +23,8 @@ test_that("calibrateIntensity works with TIC", {
   expect_equal(totalIonCurrent(sTIC), 1)
   sTIC <- calibrateIntensity(s, method="TIC")
   expect_equal(unlist(lapply(sTIC, totalIonCurrent)), rep(1, 3))
+  sTIC <- calibrateIntensity(s, method="TIC", range=c(2, 4))
+  expect_equal(unlist(lapply(sTIC, totalIonCurrent)), rep(2, 3))
 })
 
 test_that("calibrateIntensity works with median", {

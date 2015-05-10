@@ -19,13 +19,16 @@ This function calibrates (normalize) intensities of
   \item{method}{the calibration method to be used. This should be one of
     \code{"TIC"}, \code{"PQN"} or \code{"median"}.
     See \sQuote{Details} section.}
-  \item{\dots}{arguments to be passed to other functions (unneeded until now).}
+  \item{\dots}{arguments to be passed to other functions. Currently only
+    \code{range} is for \code{method="TIC"} is supported.}
 }
 \details{
   A number of different calibration methods are provided:
   \describe{
     \item{\code{"TIC"}:}{The TIC (\emph{T}otal \emph{I}on \emph{C}urrent) of a
-      \code{\linkS4class{MassSpectrum}} object is set to one.}
+      \code{\linkS4class{MassSpectrum}} object is set to one. If \code{range} is
+      given the \emph{TIC} is only calculated for the intensities in the
+      specified mass range.}
     \item{\code{"PQN"}:}{The PQN (\emph{P}robabilistic \emph{Q}uotient
       \emph{N}ormalization) is described in \emph{Dieterle et al 2006}.
       \code{calibrateIntensity} uses the following algorithm:
@@ -72,5 +75,8 @@ b <- removeBaseline(fiedler2009subset)
 
 ## calibrate intensity values
 calibrateIntensity(b, method="TIC")
+
+## calibrate intensity values using TIC for a specific mass range
+calibrateIntensity(b, method="TIC", range=c(3000, 5000))
 }
 \keyword{methods}

@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.11.10 [2015-05-10 Sun]:
+- `calibratyIntensity(object, method="TIC")` gains a "range" argument allowing
+  to calibrate spectra by TIC on a specific mass range; closes #27;
+
 Version 1.11.9 [2015-05-10 Sun]:
 - Remove some useless `cbind` calls in `.estimateNoise*` and
   `.estimateBaseline`; no user visible changes;
