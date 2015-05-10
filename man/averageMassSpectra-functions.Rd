@@ -7,7 +7,7 @@ Averages \code{\linkS4class{MassSpectrum}} objects.
 This function averages \code{\linkS4class{MassSpectrum}} objects.
 }
 \usage{
-averageMassSpectra(l, labels, method=c("mean", "median", "sum"))
+averageMassSpectra(l, labels, method=c("mean", "median", "sum"), \dots)
 }
 \arguments{
   \item{l}{
@@ -18,6 +18,8 @@ averageMassSpectra(l, labels, method=c("mean", "median", "sum"))
     \code{\linkS4class{MassSpectrum}} object) to do groupwise averaging.
   }
   \item{method}{used aggregation function.}
+  \item{\dots}{arguments to be passed to underlying functions (currently only
+    \code{mc.cores} is supported).}
 }
 \details{
 The mass of the averaged \code{\linkS4class{MassSpectrum}} object

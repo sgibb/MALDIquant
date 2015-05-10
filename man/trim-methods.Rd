@@ -11,8 +11,8 @@ This is useful if some mass ranges should be excluded from further analysis.
 }
 \usage{
 \S4method{trim}{AbstractMassObject,numeric}(object, range)
-\S4method{trim}{list,numeric}(object, range)
-\S4method{trim}{list,missing}(object)
+\S4method{trim}{list,numeric}(object, range, \dots)
+\S4method{trim}{list,missing}(object, range, \dots)
 }
 \arguments{
   \item{object}{\code{\linkS4class{AbstractMassObject}} object or a
@@ -21,6 +21,8 @@ This is useful if some mass ranges should be excluded from further analysis.
     right/maximal mass). If missing it is automatically determined (largest
     overlapping mass range) for a \code{list} of
     \code{\linkS4class{AbstractMassObject}}.}
+  \item{\dots}{arguments to be passed to underlying functions (currently only
+    \code{mc.cores} is supported).}
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}

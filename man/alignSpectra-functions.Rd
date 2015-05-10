@@ -9,7 +9,7 @@ This function aligns a list of \code{\linkS4class{MassSpectrum}} objects
 }
 \usage{
 alignSpectra(spectra, halfWindowSize=20, noiseMethod="MAD", SNR=2,
-  reference, tolerance=0.002, warpingMethod="lowess")
+  reference, tolerance=0.002, warpingMethod="lowess", \dots)
 }
 \arguments{
   \item{spectra}{
@@ -40,6 +40,8 @@ alignSpectra(spectra, halfWindowSize=20, noiseMethod="MAD", SNR=2,
     used basic warping function; see
     \code{\link[MALDIquant]{determineWarpingFunctions}}.
   }
+  \item{\dots}{arguments to be passed to
+    \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}}.}
 }
 \details{
   \code{alignSpectra} is a wrapper function around
