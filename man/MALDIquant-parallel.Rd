@@ -2,7 +2,7 @@
 \alias{MALDIquant-parallel}
 \title{Parallel Support in Package \pkg{MALDIquant}}
 \description{
-  \code{\link{MALDIquant}} offers multicore support using
+  \code{\link{MALDIquant}} offers multi-core support using
   \code{\link[parallel]{mclapply}} and \code{\link[parallel]{mcmapply}}. This
   approach is limited to unix-based platforms.
 
@@ -33,5 +33,25 @@
 \seealso{
   \code{\link[parallel]{mclapply}},
   \code{\link[parallel]{mcmapply}}
+}
+\examples{
+## load package
+library("MALDIquant")
+
+## load example data
+data("fiedler2009subset", package="MALDIquant")
+
+## run single-core baseline correction
+print(system.time(
+  b1 <- removeBaseline(fiedler2009subset, method="SNIP")
+))
+
+if(.Platform$OS.type == "unix") {
+  ## run multi-core baseline correction
+  print(system.time(
+    b2 <- removeBaseline(fiedler2009subset, method="SNIP", mc.cores=2)
+  ))
+  print(all.equal(b1, b2))
+}
 }
 \keyword{misc}
