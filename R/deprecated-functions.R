@@ -56,7 +56,7 @@
 ##
 .deprecatedFunction <- function(version, old, new) {
   if (missing(old)) {
-    old <- parentCall <- sys.call(-1L)[[1]]
+    old <- sys.call(-1L)[[1]]
   }
 
   msg <- paste0("\"", old , "\" is deprecated.")
