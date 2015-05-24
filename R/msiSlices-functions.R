@@ -56,6 +56,11 @@ msiSlices <- function(x, center, tolerance, method=c("sum", "mean", "median"),
 
   for (i in seq(along=center)) {
     slice <- fun(m[, l[i]:r[i], drop=FALSE], na.rm=TRUE)
+
+    if (scale) {
+      slice <- slice/max(slice, na.rm=TRUE)
+    }
+
     slices[cbind(coord, i)] <- slice
   }
 
