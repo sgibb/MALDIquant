@@ -1,4 +1,4 @@
-## Copyright 2014 Sebastian Gibb
+## Copyright 2014-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -16,88 +16,45 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## plotImsSlice
-##  plot IMS slice from a list of MassSpectrum/MassPeaks objects
-##
-## params:
-##  x: list of MassSpectrum/MassPeaks objects
-##  range: double, length == 2, range/thickness of the slice
-##  sub: sub-title
-##  removeEmptyRows: logical, Should empty rows be removed?
-##  removeEmptyCols: logical, Should empty cols be removed?
-##  colRamp: colours as colorRamp function
-##  interpolate: logical, see rasterImage for details
-##  ...: passed to plot
-##
-plotImsSlice <- function(x, range=c(0, Inf),
-                         sub=paste0("m/z: ", range[1L], "-", range[2L], ""),
-                         removeEmptyRows=TRUE,
-                         removeEmptyCols=TRUE,
-                         colRamp=colorRamp(c("black", "blue", "green",
-                                             "yellow", "red")),
-                         interpolate=FALSE, ...) {
+.plotMsiSlice <- function(x, colRamp=colorRamp(c("black", "blue", "green",
+                                                 "yellow", "red")),
+                          xlab="", ylab="", interpolate=FALSE, scale=TRUE,
+                          legend=TRUE, ...) {
+  stopifnot(is.matrix(x))
 
-  m <- .prepareImsSlice(x = x, range = range)
-
-  if (removeEmptyRows) {
-    kr <- rowSums(is.na(m)) != ncol(m)
-    m <- m[kr, , drop=FALSE]
-  }
-  if (removeEmptyCols) {
-    kc <- colSums(is.na(m)) != nrow(m)
-    m <- m[, kc, drop=FALSE]
+  if (scale) {
+    x <- x/max(x, na.rm=TRUE)
   }
 
-  nr <- nrow(m)
-  nc <- ncol(m)
+  notNA <- which(!is.na(x))
+  x[notNA] <- rgb(colRamp(x[notNA]), maxColorValue=255L)
 
-  ## create color raster
-  isNotNA <- which(!is.na(m))
-  m[isNotNA] <- rgb(colRamp(m[isNotNA]), maxColorValue=255L)
+  xlim <- c(0L, nrow(x) + (2L * legend))
+  ylim <- c(0L, ncol(x))
 
   ## prepare plot area
-  plot(NA, type="n", xlim=c(1L, nc), ylim=c(1L, nr), axes=FALSE, asp=1L,
-       xlab="", ylab="", sub=sub, ...)
+  plot(NA, type="n", xlim=xlim, ylim=ylim,
+       axes=FALSE, xlab=xlab, ylab=ylab,
+       asp=1L, ...)
+
   ## plot image
-  rasterImage(as.raster(m), xleft=1L, xright=nc, ybottom=1L, ytop=nr,
+  rasterImage(as.raster(t(x)),
+              xleft=0L, xright=nrow(x), ybottom=0L, ytop=ncol(x),
               interpolate=interpolate)
+
+  if (legend) {
+    .msiLegend(xlim[2L]-1L, xlim[2L], ylim[1L], ylim[2L],
+               colRamp=colRamp, interpolate=interpolate)
+  }
 }
 
-## .prepareImsSlice
-##  create intensity matrix for a slice from a list of MassSpectrum/MassPeaks
-##  objects
-##
-## params:
-##  x: list of MassSpectrum/MassPeaks objects
-##  range: double, length == 2, range/thickness of the slice
-##
-.prepareImsSlice <- function(x, range) {
-
-  .stopIfNotIsMassObjectList(x)
-
-  ## display only mass in range
-  suppressWarnings(x <- trim(x, range=range))
-
-  ## find x and y positions
-  pos <- lapply(x, function(y)metaData(y)$imaging$pos)
-  pos <- do.call(rbind, pos)
-
-  if (is.null(pos)) {
-    stop("The spectra do not have any position information.")
-  }
-
-  ## max x/y to build image matrix
-  nc <- max(pos[, "x"])
-  nr <- max(pos[, "y"])
-
-  ## init matrix
-  m <- matrix(NA, nrow=nr, ncol=nc)
-
-  ## fill matrix with intensity values
-  for (i in seq(along=x)) {
-    m[pos[i, "y"], pos[i, "x"]] <- sum(intensity(x[[i]]), na.rm=TRUE)
-  }
-
-  ## scale matrix (better contrast)
-  m/max(m, na.rm=TRUE)
+.msiLegend <- function(xleft, xright, ybottom, ytop,
+                       colRamp=colorRamp(c("black", "blue", "green", "yellow",
+                                           "red")),
+                       interpolate=FALSE) {
+  col <- rgb(colRamp(seq.int(1, 0, length.out=100L)), maxColorValue=255L)
+  gradient <- as.raster(matrix(col, ncol=1))
+  rect(xleft=xleft, xright=xright, ybottom=ybottom, ytop=ytop, col="black")
+  rasterImage(gradient, xleft=xleft, xright=xright, ybottom=ybottom, ytop=ytop,
+              interpolate=interpolate)
 }
