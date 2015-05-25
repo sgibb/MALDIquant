@@ -37,7 +37,7 @@ msiSlices <- function(x, center, tolerance, method=c("sum", "mean", "median"),
 }
 
 .msiSlices <- function(m, coord, center, tolerance,
-                       method=c("sum", "mean", "median"), scale=TRUE) {
+                       method=c("sum", "mean", "median")) {
   method <- match.arg(method)
 
   fun <- switch(method,
@@ -55,13 +55,7 @@ msiSlices <- function(x, center, tolerance, method=c("sum", "mean", "median"),
   slices <- array(NA, dim=c(x=n[1L], y=n[2L], z=length(center)))
 
   for (i in seq(along=center)) {
-    slice <- fun(m[, l[i]:r[i], drop=FALSE], na.rm=TRUE)
-
-    if (scale) {
-      slice <- slice/max(slice, na.rm=TRUE)
-    }
-
-    slices[cbind(coord, i)] <- slice
+    slices[cbind(coord, i)] <- fun(m[, l[i]:r[i], drop=FALSE], na.rm=TRUE)
   }
 
   attr(slices, "center") <- center
