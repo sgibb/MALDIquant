@@ -16,13 +16,16 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## .msiSlices
+## msiSlices
 ##  create intensity matrix for each slice from a list of MassSpectrum/MassPeaks
 ##  objects
 ##
 ## params:
 ##  x: list of MassSpectrum/MassPeaks objects
-##  range: double, length == 2, range/thickness of the slice
+##  center: position(s) of interest (in mass values)
+##  tolerance: aggregate data around center +/- tolerance
+##  method: aggregate method
+##  adjust: set coordinates to 1,1 (if there are empty/missing spectra before)
 ##
 ## returns:
 ##  an array (dim: x, y, z=slice nr)
