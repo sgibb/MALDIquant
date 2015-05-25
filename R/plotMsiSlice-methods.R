@@ -16,7 +16,6 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-## list
 setMethod(f="plotMsiSlice",
           signature=signature(x="list"),
           definition=function(x, center, tolerance,
@@ -29,7 +28,6 @@ setMethod(f="plotMsiSlice",
                legend=legend, ...)
 })
 
-## array
 setMethod(f="plotMsiSlice",
           signature=signature(x="array"),
           definition=function(x, colRamp=colorRamp(c("black", "blue", "green",
@@ -56,7 +54,6 @@ setMethod(f="plotMsiSlice",
   }
 })
 
-## matrix
 setMethod(f="plotMsiSlice",
           signature=signature(x="matrix"),
           definition=function(x, colRamp=colorRamp(c("black", "blue", "green",

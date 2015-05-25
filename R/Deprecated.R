@@ -1,18 +1,4 @@
-## deprecated since MALDIquant 1.11.11
-
-## plotImsSlice
-##  plot IMS slice from a list of MassSpectrum/MassPeaks objects
-##
-## params:
-##  x: list of MassSpectrum/MassPeaks objects
-##  range: double, length == 2, range/thickness of the slice
-##  sub: sub-title
-##  removeEmptyRows: logical, Should empty rows be removed?
-##  removeEmptyCols: logical, Should empty cols be removed?
-##  colRamp: colours as colorRamp function
-##  interpolate: logical, see rasterImage for details
-##  ...: passed to plot
-##
+## deprecated since MALDIquant 1.11.12
 plotImsSlice <- function(x, range=c(0, Inf),
                          sub=paste0("m/z: ", range[1L], "-", range[2L], ""),
                          removeEmptyRows=TRUE,
@@ -20,6 +6,38 @@ plotImsSlice <- function(x, range=c(0, Inf),
                          colRamp=colorRamp(c("black", "blue", "green",
                                              "yellow", "red")),
                          interpolate=FALSE, ...) {
+  .deprecatedFunction("1.11.12", new="plotMsiSlice")
+
+  .prepareImsSlice <- function(x, range) {
+
+    .stopIfNotIsMassObjectList(x)
+
+    ## display only mass in range
+    suppressWarnings(x <- trim(x, range=range))
+
+    ## find x and y positions
+    pos <- lapply(x, function(y)metaData(y)$imaging$pos)
+    pos <- do.call(rbind, pos)
+
+    if (is.null(pos)) {
+      stop("The spectra do not have any position information.")
+    }
+
+    ## max x/y to build image matrix
+    nc <- max(pos[, "x"])
+    nr <- max(pos[, "y"])
+
+    ## init matrix
+    m <- matrix(NA, nrow=nr, ncol=nc)
+
+    ## fill matrix with intensity values
+    for (i in seq(along=x)) {
+      m[pos[i, "y"], pos[i, "x"]] <- sum(intensity(x[[i]]), na.rm=TRUE)
+    }
+
+    ## scale matrix (better contrast)
+    m/max(m, na.rm=TRUE)
+  }
 
   m <- .prepareImsSlice(x = x, range = range)
 
@@ -46,44 +64,3 @@ plotImsSlice <- function(x, range=c(0, Inf),
   rasterImage(as.raster(m), xleft=1L, xright=nc, ybottom=1L, ytop=nr,
               interpolate=interpolate)
 }
-
-## .prepareImsSlice
-##  create intensity matrix for a slice from a list of MassSpectrum/MassPeaks
-##  objects
-##
-## params:
-##  x: list of MassSpectrum/MassPeaks objects
-##  range: double, length == 2, range/thickness of the slice
-##
-.prepareImsSlice <- function(x, range) {
-
-  .stopIfNotIsMassObjectList(x)
-
-  ## display only mass in range
-  suppressWarnings(x <- trim(x, range=range))
-
-  ## find x and y positions
-  pos <- lapply(x, function(y)metaData(y)$imaging$pos)
-  pos <- do.call(rbind, pos)
-
-  if (is.null(pos)) {
-    stop("The spectra do not have any position information.")
-  }
-
-  ## max x/y to build image matrix
-  nc <- max(pos[, "x"])
-  nr <- max(pos[, "y"])
-
-  ## init matrix
-  m <- matrix(NA, nrow=nr, ncol=nc)
-
-  ## fill matrix with intensity values
-  for (i in seq(along=x)) {
-    m[pos[i, "y"], pos[i, "x"]] <- sum(intensity(x[[i]]), na.rm=TRUE)
-  }
-
-  ## scale matrix (better contrast)
-  m/max(m, na.rm=TRUE)
-}
-
-
