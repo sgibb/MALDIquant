@@ -31,7 +31,7 @@ intensity values for missing peaks if \code{spectra} was given or \code{NA}
 otherwise. \cr
 The \code{\link{matrix}} has \code{length(peaks)} rows
 (one row for each sample) and \code{length(unique(mass))} columns.
-The column names of the returned \code{\link{matrix}} store the mass values.
+There is an additional attribute \code{"mass"} that stores the mass values.
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}
