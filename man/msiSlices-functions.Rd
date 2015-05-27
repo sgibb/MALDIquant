@@ -7,22 +7,6 @@ This function turns a mass spectrometry imaging dataset represented by a
 \code{list} of \code{\linkS4class{AbstractMassObject}} objects into an
 \code{\link[MALDIquant]{intensityMatrix}} for each slice (stored in an
 \code{array}).
-
-## msiSlices
-##  create intensity matrix for each slice from a list of MassSpectrum/MassPeaks
-##  objects
-##
-## params:
-##  x: list of MassSpectrum/MassPeaks objects
-##  center: position(s) of interest (in mass values)
-##  tolerance: aggregate data around center +/- tolerance
-##  method: aggregate method
-##  adjust: set coordinates to 1,1 (if there are empty/missing spectra before)
-##
-## returns:
-##  an array (dim: x, y, z=slice nr)
-##
-
 }
 \usage{
 msiSlices(x, center, tolerance, method=c("sum", "mean", "median"), adjust=TRUE)
@@ -63,8 +47,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \code{\linkS4class{AbstractMassObject}},
 \code{\linkS4class{MassSpectrum}},
 \code{\linkS4class{MassPeaks}},
-\code{\link[MALDIquant]{msiSlices}},
-\code{\link[MALDIquant]{plot,MassSpectrum,missing-method}}
+\code{\link[MALDIquant]{plotMsiSlice,list-method}}
 
 Website: \url{http://strimmerlab.org/software/maldiquant/}
 
@@ -78,4 +61,3 @@ Shiny example: \url{https://github.com/sgibb/ims-shiny/}
 msiSlices(spectra, center=3362.3, tolerance=0.25)
 }
 }
-\keyword{Graphics|hplot}
