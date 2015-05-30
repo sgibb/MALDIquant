@@ -5,6 +5,8 @@
 [![metacran version](http://www.r-pkg.org/badges/version/MALDIquant)](http://cran.r-project.org/web/packages/MALDIquant/index.html)
 [![metacran downloads](http://cranlogs.r-pkg.org/badges/MALDIquant?color=brightgreen)](http://cran.r-project.org/web/packages/MALDIquant/index.html)
 
+[CRAN check](http://cran.r-project.org/web/checks/check_results_MALDIquant.html)
+
 Quantitative Analysis of Mass Spectrometry Data
 
 
