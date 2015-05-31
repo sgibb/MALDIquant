@@ -13,10 +13,11 @@ or an \code{array} or a \code{matrix}.
 \usage{
 \S4method{plotMsiSlice}{list}(x, center, tolerance,
   colRamp=colorRamp(c("black", "blue", "green", "yellow", "red")),
-  interpolate=FALSE, scale=TRUE, legend=TRUE, \dots)
+  interpolate=FALSE, legend=TRUE, alignLabels=FALSE, combine=FALSE,
+  \dots)
 \S4method{plotMsiSlice}{array}(x,
   colRamp=colorRamp(c("black", "blue", "green", "yellow", "red")),
-  interpolate=FALSE, scale=TRUE, legend=TRUE, sub=NULL, \dots)
+  interpolate=FALSE, legend=TRUE, alignLabels=FALSE, combine=FALSE, \dots)
 \S4method{plotMsiSlice}{matrix}(x,
   colRamp=colorRamp(c("black", "blue", "green", "yellow", "red")),
   interpolate=FALSE, scale=TRUE, legend=TRUE, \dots)
@@ -34,7 +35,9 @@ or an \code{array} or a \code{matrix}.
     specifies the thickness of the slices (\code{center + c(-tolerance,
     tolerance)}), see \code{\link[MALDIquant]{msiSlices}} for details.}
   \item{colRamp}{colours as \code{colorRamp} \code{function}, see
-    \code{\link[grDevices]{colorRamp}} for details.}
+    \code{\link[grDevices]{colorRamp}} for details. If \code{combine=TRUE}
+    multiple colour functions must be applied as \code{list} with an length that
+    equals the number of given centers.}
   \item{interpolate}{\code{logical}, use linear interpolation when drawing the
     image, see \code{\link[graphics]{rasterImage}} for details.}
   \item{scale}{\code{logical}, if \code{TRUE} all values are divided by the
@@ -43,8 +46,14 @@ or an \code{array} or a \code{matrix}.
     plotted on the right hand side of the plot. The upper color represents the
     highest value in the slice and the lower color the lowest value
     respectively.}
-  \item{sub}{\code{character}, sub title for the plot, see
-    \code{\link[graphics]{title}}.}
+  \item{alignLabels}{\code{logical}, if \code{combine=TRUE} and
+    \code{alignLabels=TRUE} the center positions below the legend are aligned
+    on the right margin otherwise the aligned to their corresponding gradient.}
+  \item{combine}{\code{logical}, if \code{TRUE} multiple centers are plotted in
+    one image. Therefore it would be necessary to apply a list of \code{colRamp}
+    functions (one function for each center). The intensity values for each
+    center of each pixel are compared against each other and the highest scaled
+    intensity determines the center (and the corresponding \code{colRamp}).}
   \item{\dots}{arguments to be passed to \code{\link[graphics]{plot}}.}
 }
 \details{
