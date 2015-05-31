@@ -29,6 +29,9 @@ if (is.null(getGeneric("lines"))) {
 if (is.null(getGeneric("plot"))) {
   setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
 }
+if (is.null(getGeneric("plotMsiSlice"))) {
+  setGeneric("plotMsiSlice", function(x, ...) standardGeneric("plotMsiSlice"))
+}
 if (is.null(getGeneric("points"))) {
   setGeneric("points", function(x, ...) standardGeneric("points"))
 }

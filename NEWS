@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.11.12 [2015-05-25 Mo]:
+- Mark `plotImsSlice` as deprecated. Use `plotMsiSlice` (with slightly different
+  arguments) instead.
+
 Version 1.11.11 [2015-05-10 Sun]:
 - Add parallel support on unix-base platforms using the parallel package. The
   following functions/methods supports the "mc.cores" argument (default is 1):
