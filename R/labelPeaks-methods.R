@@ -70,7 +70,7 @@ setMethod(f="labelPeaks",
   }
 
   if (missing(absoluteVerticalPos)) {
-    y <- object@intensity[index]+verticalOffset
+    y <- object@intensity[index] + verticalOffset
   } else {
     y <- absoluteVerticalPos
   }

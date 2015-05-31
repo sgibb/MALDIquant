@@ -192,7 +192,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
 
     for (i in seq_along(l)) {
       ## fetch changed mass == aligned peaks
-      notNA <- !is.na(binnedMass[lIdx[[i+1L]]])
+      notNA <- !is.na(binnedMass[lIdx[[i + 1L]]])
 
       if (is.null(givenPlotArgs$main)) {
         plotArgs$main <- paste0("sample ", i, " vs reference\n",
