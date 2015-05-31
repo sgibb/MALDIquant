@@ -28,19 +28,20 @@
 ##  adjust: set coordinates to 1,1 (if there are empty/missing spectra before)
 ##
 ## returns:
-##  an array (dim: x, y, z=slice nr)
+##  an array (dim: x, y, z = slice nr)
 ##
-msiSlices <- function(x, center, tolerance, method=c("sum", "mean", "median"),
-                      adjust=TRUE) {
-  x <- suppressWarnings(trim(x, range=range(center)+c(-tolerance, tolerance)))
+msiSlices <- function(x, center, tolerance, method = c("sum", "mean", "median"),
+                      adjust = TRUE) {
+  x <- suppressWarnings(trim(x,
+                             range = range(center) + c(-tolerance, tolerance)))
 
-  .msiSlices(m=.as.matrix.MassObjectList(x),
-             coord=coordinates(x, adjust=adjust),
-             center=center, tolerance=tolerance, method=method)
+  .msiSlices(m = .as.matrix.MassObjectList(x),
+             coord = coordinates(x, adjust = adjust),
+             center = center, tolerance = tolerance, method = method)
 }
 
 .msiSlices <- function(m, coord, center, tolerance,
-                       method=c("sum", "mean", "median")) {
+                       method = c("sum", "mean", "median")) {
   method <- match.arg(method)
 
   fun <- switch(method,
@@ -48,17 +49,15 @@ msiSlices <- function(x, center, tolerance, method=c("sum", "mean", "median"),
                 "mean" = rowMeans,
                 "median" = function(x, ...).colMedians(t(x), ...))
 
-  n <- unname(apply(coord, MARGIN=2L, FUN=max))
+  n <- unname(apply(coord, MARGIN = 2L, FUN = max))
 
-  l <- findInterval(center-tolerance, attr(m, "mass"), all.inside=TRUE)
-  r <- findInterval(center+tolerance, attr(m, "mass"), all.inside=TRUE)
+  l <- pmin(findInterval(center - tolerance, attr(m, "mass")) + 1L, ncol(m))
+  r <- findInterval(center + tolerance, attr(m, "mass"))
 
-  nr <- nrow(coord)
+  slices <- array(NA, dim = c(x = n[1L], y = n[2L], z = length(center)))
 
-  slices <- array(NA, dim=c(x=n[1L], y=n[2L], z=length(center)))
-
-  for (i in seq(along=center)) {
-    slices[cbind(coord, i)] <- fun(m[, l[i]:r[i], drop=FALSE], na.rm=TRUE)
+  for (i in seq(along = center)) {
+    slices[cbind(coord, i)] <- fun(m[, l[i]:r[i], drop = FALSE], na.rm = TRUE)
   }
 
   attr(slices, "center") <- center
