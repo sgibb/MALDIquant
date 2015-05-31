@@ -46,7 +46,7 @@ intensityMatrix <- function(peaks, spectra) {
 
     approxSpectra <- lapply(spectra, approxfun, yleft=0L, yright=0L)
 
-    for (i in seq(along=approxSpectra)) {
+    for (i in seq_along(approxSpectra)) {
       m[i, isNa[i, ]] <- approxSpectra[[i]](uniqueMass[isNa[i, ]])
     }
   }

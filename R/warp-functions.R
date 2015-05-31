@@ -27,8 +27,6 @@
 ##  a list of warped MassSpectrum objects
 ##
 warpMassSpectra <- function(l, w) {
-
-  ## test parameters
   .stopIfNotIsMassSpectrumList(l)
   .stopIfNotIsFunctionList(w)
 
@@ -46,8 +44,6 @@ warpMassSpectra <- function(l, w) {
 ##  a list of warped MassPeaks objects
 ##
 warpMassPeaks <- function(l, w) {
-
-  ## test parameters
   .stopIfNotIsMassPeaksList(l)
   .stopIfNotIsFunctionList(w)
 
@@ -67,7 +63,7 @@ warpMassPeaks <- function(l, w) {
 ##
 .warp <- function(l, w) {
   .mapply(function(m, wf) {
-           m@mass <- m@mass+wf(m@mass)
+           m@mass <- m@mass + wf(m@mass)
            m
   }, m=l, wf=w)
 }

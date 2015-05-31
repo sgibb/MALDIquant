@@ -37,7 +37,7 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
 
   ## labels
   if (missing(labels)) {
-    labels <- rep_len(0L, length(l))
+    labels <- rep.int(0L, length(l))
   }
 
   ## drop unused levels and turn argument into factor
@@ -79,7 +79,7 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   idx <- lapply(ll, function(x)which(labels == x))
 
   ## collect whitelists
-  for (i in seq(along=idx)) {
+  for (i in seq_along(idx)) {
     wl <- .whitelist(m, idx[[i]],
                      minFrequency=minFrequency[i], minNumber=minNumber[i])
     if (sum(wl)) {
@@ -99,7 +99,7 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   w <- w & m
 
   ## turn matrix back into MassPeaks objects
-  for (i in seq(along=l)) {
+  for (i in seq_along(l)) {
     j <- which(as.logical(m[i, ]))
     include <- which(w[i, j])
     l[[i]]@mass <- l[[i]]@mass[include]
@@ -147,7 +147,7 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   }
 
   ## calculate minimal number of peaks
-  minPeakNumber <- max(minFrequency*length(rows), minNumber, na.rm=TRUE)
+  minPeakNumber <- max(minFrequency * length(rows), minNumber, na.rm=TRUE)
 
   colSums(m[rows, , drop=FALSE]) >= minPeakNumber
 }

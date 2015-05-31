@@ -30,15 +30,15 @@
 
   ## find left interval
   lIdx <- findInterval(x, vec, rightmost.closed=FALSE, all.inside=TRUE)
-  rIdx <- lIdx+1L
+  rIdx <- lIdx + 1L
 
   ## respect limits
   lIdx[which(lIdx < 1L)] <- 1L
   rIdx[which(rIdx > length(vec))] <- length(vec)
 
   ## calculate differences for left and right
-  lDiff <- abs(vec[lIdx]-x)
-  rDiff <- abs(vec[rIdx]-x)
+  lDiff <- abs(vec[lIdx] - x)
+  rDiff <- abs(vec[rIdx] - x)
 
   ifelse(rDiff == pmin.int(lDiff, rDiff), rIdx, lIdx)
 }

@@ -80,7 +80,7 @@
 .estimateBaselineMedian <- function(x, y, halfWindowSize=100L) {
   .stopIfNotIsValidHalfWindowSize(halfWindowSize=halfWindowSize, n=length(x))
 
-  as.vector(runmed(y, k=2L*halfWindowSize+1L))
+  as.vector(runmed(y, k=2L * halfWindowSize + 1L))
 }
 
 ## estimateBaselineSnip

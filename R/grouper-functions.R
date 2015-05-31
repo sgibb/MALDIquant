@@ -1,4 +1,4 @@
-## Copyright 2012-2013 Sebastian Gibb
+## Copyright 2012-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -42,7 +42,7 @@
   meanMass <- mean(mass)
 
   ## all peaks in range?
-  if (any(abs(mass-meanMass)/meanMass > tolerance)) {
+  if (any(abs(mass - meanMass) / meanMass > tolerance)) {
     return(NA)
   }
 
@@ -69,7 +69,7 @@
   meanMass <- mean(mass)
 
   ## all peaks in range?
-  if (any(abs(mass-meanMass)/meanMass > tolerance)) {
+  if (any(abs(mass - meanMass) / meanMass > tolerance)) {
     return(NA)
   }
 
@@ -87,9 +87,9 @@
     mass[noDup] <- mean(mass[noDup])
 
     return(mass)
-  } else {
-    return(meanMass)
   }
+
+  meanMass
 }
 
 ## .grouperRelaxedHighestAtReference
@@ -124,7 +124,7 @@
   meanMass <- mass[ref]
 
   ## all peaks in range?
-  if (any(abs(mass-meanMass)/meanMass > tolerance)) {
+  if (any(abs(mass - meanMass) / meanMass > tolerance)) {
     return(NA)
   }
 
@@ -140,7 +140,7 @@
     mass[s$ix] <- sMass
 
     return(mass)
-  } else {
-    return(meanMass)
   }
+
+  meanMass
 }

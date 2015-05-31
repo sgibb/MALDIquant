@@ -32,7 +32,7 @@
   intensity <- .unlist(lapply(l, function(x)x@intensity))
   uniqueMass <- sort.int(unique(mass), method="quick")
   n <- vapply(l, length, double(1L))
-  r <- rep(1L:length(l), times=n)
+  r <- rep.int(seq_along(l), n)
 
   i <- findInterval(mass, uniqueMass)
 

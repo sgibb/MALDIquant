@@ -53,7 +53,7 @@
 ##  numeric, estimated noise (y)
 ##
 .estimateNoiseMad <- function(x, y) {
-  rep(stats::mad(y), times=length(x))
+  rep.int(stats::mad(y), length(x))
 }
 
 ## estimateNoiseSuperSmoother

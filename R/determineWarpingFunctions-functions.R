@@ -75,7 +75,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
     stop("Reference MassPeaks object contains no peaks!")
   }
 
-  if (length(reference) < 10) {
+  if (length(reference) < 10L) {
     warning("Reference MassPeaks object contains very few peaks (n == ",
             length(reference), "). The warping could be instable. ",
             "Consider to reduce ", sQuote("minFrequency"),
@@ -102,7 +102,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
   intensities <- .unlist(lapply(tmpPeakList, function(x)x@intensity))
 
   ## store original mass sample number/id
-  samples <- rep.int(1L:length(tmpPeakList),
+  samples <- rep.int(seq_along(tmpPeakList),
                      .unlist(lapply(tmpPeakList, length)))
 
   ## sort values by mass
@@ -119,11 +119,11 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
                           grouper=.grouperRelaxedHighestAtReference)
 
   ## group mass/intensities by sample ids
-  lIdx <- split(1L:length(binnedMass), samples)
+  lIdx <- split(seq_along(binnedMass), samples)
 
   ## calculate differences
   binnedMass[binnedMass == 0L] <- NA
-  d <- binnedMass-mass
+  d <- binnedMass - mass
 
   ## each function which determines a warping function uses these 3 arguments
   arguments <- list(x=NULL, d=NULL)
@@ -140,7 +140,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
     arguments$d <- d[i][notNA]  ## difference to reference
 
     if (!length(arguments$x)) {
-      stop("Could not match any peak in spectrum ", samples[i[1L]]-1L,
+      stop("Could not match any peak in spectrum ", samples[i[1L]] - 1L,
            " to a reference peak.")
     }
 
@@ -190,7 +190,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
       l <- list(l)
     }
 
-    for (i in seq(along=l)) {
+    for (i in seq_along(l)) {
       ## fetch changed mass == aligned peaks
       notNA <- !is.na(binnedMass[lIdx[[i+1L]]])
 
@@ -206,7 +206,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
 
       ## plot reference vs sample
       plotArgs$x <- l[[i]]@mass[notNA]
-      plotArgs$y <- d[lIdx[[i+1L]]][notNA]
+      plotArgs$y <- d[lIdx[[i + 1L]]][notNA]
       do.call(plot.default, plotArgs)
 
       ## draw warping function

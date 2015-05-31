@@ -24,5 +24,5 @@ setMethod(f="totalIonCurrent",
   left <- as.double(head(object@intensity, -1L))
   right <- as.double(tail(object@intensity, -1L))
 
-  as.double(sum((left+right)/2*diff(object@mass), na.rm=TRUE))
+  as.double(sum((left + right) / 2L * diff(object@mass), na.rm=TRUE))
 })

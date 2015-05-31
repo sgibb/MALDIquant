@@ -26,5 +26,5 @@
 ##  see ?lapply
 ##
 .lapply <- function(X, FUN, ..., mc.cores=1L) {
-  mclapply(X, FUN, ..., mc.cores=mc.cores)
+  parallel::mclapply(X, FUN, ..., mc.cores=mc.cores)
 }

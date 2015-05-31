@@ -61,7 +61,7 @@ setMethod(f="plotMsiSlice",
               "See ", sQuote("?plotMsiSlice"), " for details.")
       n <- 1L
     }
-    for (i in 1L:n) {
+    for (i in seq_len(n)) {
       .plotMsiSlice(x[,, i, drop=FALSE],
                     center=attr(x, "center")[i],
                     tolerance=attr(x, "tolerance")[i],

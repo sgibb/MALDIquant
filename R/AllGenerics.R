@@ -145,7 +145,7 @@ if (is.null(getGeneric("totalIonCurrent"))) {
 if (is.null(getGeneric("labelPeaks"))) {
   setGeneric("labelPeaks",
              function(object, index, mass, labels, digits=3L, underline=TRUE,
-                      verticalOffset=abs(diff(par("usr")[3:4]))*0.0125,
+                      verticalOffset=abs(diff(par("usr")[3:4])) * 0.0125,
                       absoluteVerticalPos, adj=c(0.5, 0L), cex=0.7,
                       avoidOverlap=FALSE, arrowLength=0L, arrowLwd=0.5,
                       arrowCol=1, ...) standardGeneric("labelPeaks"))

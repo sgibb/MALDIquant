@@ -29,9 +29,9 @@
 ##
 .movingAverage <- function(y, halfWindowSize=2L) {
   .stopIfNotIsValidHalfWindowSize(halfWindowSize, n=length(y))
-  windowSize <- 2L*halfWindowSize+1L
+  windowSize <- 2L * halfWindowSize + 1L
   .filter(y, hws=halfWindowSize,
-          coef=matrix(1L/windowSize, nrow=windowSize, ncol=windowSize))
+          coef=matrix(1L / windowSize, nrow=windowSize, ncol=windowSize))
 }
 
 ## .savitzkyGolay
@@ -51,7 +51,7 @@
 .savitzkyGolay <- function(y, halfWindowSize=10L, polynomialOrder=3L) {
   .stopIfNotIsValidHalfWindowSize(halfWindowSize, n=length(y))
 
-  windowSize <- 2L*halfWindowSize+1L
+  windowSize <- 2L * halfWindowSize + 1L
 
   if (windowSize < polynomialOrder) {
     stop("The window size has to be larger than the polynomial order.")
@@ -79,7 +79,7 @@
 ##  k: integer, polynomial order (k == 0 = moving average)
 .savitzkyGolayCoefficients <- function(m, k=3L) {
   k <- 0L:k
-  nm <- 2L*m+1L
+  nm <- 2L * m + 1L
   nk <- length(k)
   K <- matrix(k, nrow=nm, ncol=nk, byrow=TRUE)
 
@@ -93,14 +93,14 @@
   ## row m+1 == typical sg coef
   ## row (n-m-1):n == rhs coef
   F <- matrix(double(), nrow=nm, ncol=nm)
-  for (i in 1L:(m+1L)) {
-    M <- matrix((1L:nm)-i, nrow=nm, ncol=nk, byrow=FALSE)
+  for (i in seq_len(m + 1L)) {
+    M <- matrix(seq_len(nm) - i, nrow=nm, ncol=nk, byrow=FALSE)
     X <- M^K
     T <- solve(t(X) %*% X) %*% t(X)
     F[i, ] <- T[1L, ]
   }
   ## rhs (row (n-m):n) are equal to reversed lhs
-  F[(m+2L):nm, ] <- rev(F[1L:m, ])
+  F[(m + 2L):nm, ] <- rev(F[seq_len(m), ])
 
   F
 }
@@ -109,12 +109,12 @@
 ##  remove time series attributes and NA at left/right extrema
 .filter <- function(x, hws, coef) {
   n <- length(x)
-  w <- 2L*hws+1L
-  y <- stats::filter(x=x, filter=coef[hws+1L, ], sides=2L)
+  w <- 2L * hws + 1L
+  y <- stats::filter(x=x, filter=coef[hws + 1L, ], sides=2L)
   attributes(y) <- NULL
 
   ## fix left/right extrema
-  y[1L:hws] <- head(coef, hws) %*% head(x, w)
-  y[(n-hws+1L):n] <- tail(coef, hws) %*% tail(x, w)
+  y[seq_len(hws)] <- head(coef, hws) %*% head(x, w)
+  y[(n - hws + 1L):n] <- tail(coef, hws) %*% tail(x, w)
   y
 }

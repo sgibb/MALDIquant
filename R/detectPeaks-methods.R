@@ -42,7 +42,7 @@ setMethod(f="detectPeaks",
 
   createMassPeaks(mass=object@mass[peakIdx],
                   intensity=object@intensity[peakIdx],
-                  snr=object@intensity[peakIdx]/noise[peakIdx],
+                  snr=object@intensity[peakIdx] / noise[peakIdx],
                   metaData=object@metaData)
 })
 

@@ -28,7 +28,7 @@
 ##  double, calibrated intensity values
 ##
 .calibrateIntensitySimple <- function(y, offset=0L, scaling=1L) {
-  (y-offset)/scaling
+  (y - offset) / scaling
 }
 
 ## .calibrateProbabilisticQuotientNormalization
@@ -63,7 +63,7 @@
 
   lapply(l, function(x) {
     ## 3. quotient calculation
-    q <- approxfun(x)(reference@mass)/reference@intensity
+    q <- approxfun(x)(reference@mass) / reference@intensity
     ## 4. median
     m <- median(q, na.rm=TRUE)
     ## 5. divide by median

@@ -49,7 +49,7 @@ createMassSpectrum <- function(mass, intensity, metaData=list()) {
 ##  a MassPeaks object
 ##
 createMassPeaks <- function(mass, intensity,
-                            snr=as.double(rep(NA, length(intensity))),
+                            snr=as.double(rep.int(NA, length(intensity))),
                             metaData=list()) {
   new(Class="MassPeaks", mass=mass, intensity=intensity, snr=snr,
       metaData=metaData)

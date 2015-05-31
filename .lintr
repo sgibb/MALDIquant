@@ -1,0 +1,8 @@
+linters: with_defaults(line_length_linter(80),
+                       camel_case_linter=NULL,
+                       multiple_dots_linter=NULL,
+                       snake_case_linter)
+exclusions: as.list(c(list.files(path="tests/", recursive=TRUE,
+                                 full.names=TRUE),
+                      "R/Deprecated.R",
+                      "R/warpingFunction-functions.R"))

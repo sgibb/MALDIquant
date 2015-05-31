@@ -38,7 +38,7 @@
   if (d[3L] > 1L) {
     col <- x
 
-    for (i in 1L:d[3L]) {
+    for (i in seq_len(d[3L])) {
       col[,, i] <- .colorMatrix(x[,, i], colRamp=colRampList[[i]], scale=scale)
     }
 
@@ -78,7 +78,7 @@
       label.col <- lapply(colRampList, function(x).rgb(x(1L)))
     }
 
-    for (i in 1L:d[3L]) {
+    for (i in seq_len(d[3L])) {
       .msiLegend(xleft=xleft[i], xright=xright[i],
                  ybottom=ybottom[1L], ytop=ylim[2L],
                  colRamp=colRampList[[i]], interpolate=interpolate)
@@ -118,7 +118,8 @@
 
 .combineColorMatrices <- function(x, col) {
   i <- apply(x, 2L, max.col, ties.method="first")
-  j <- cbind(x=rep(1L:nrow(x), ncol(x)), y=rep(1L:ncol(x), each=nrow(x)),
+  j <- cbind(x=rep.int(seq_len(nrow(x)), ncol(x)),
+             y=rep(seq_len(ncol(x)), each=nrow(x)),
              z=as.vector(i))
   y <- col[,, 1L]
   y[] <- col[j]

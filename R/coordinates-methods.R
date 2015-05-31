@@ -60,10 +60,10 @@ setMethod(f="coordinates",
   .stopIfNotIsMassObjectList(object)
 
   m <- do.call(rbind, lapply(object, coordinates))
-  colnames(m) <- c("x", "y", "z")[1L:ncol(m)]
+  colnames(m) <- c("x", "y", "z")[seq_len(ncol(m))]
 
   if (adjust) {
-    m <- apply(m, MARGIN=2L, function(x)x-min(x)+1L)
+    m <- apply(m, MARGIN=2L, function(x)x - min(x) + 1L)
   }
   m
 
@@ -77,5 +77,5 @@ setReplaceMethod(f="coordinates",
   ## test arguments
   .stopIfNotIsMassObjectList(object)
 
-  .mapply("coordinates<-", object, split(value, 1:nrow(value)))
+  .mapply("coordinates<-", object, split(value, seq_len(nrow(value))))
 })

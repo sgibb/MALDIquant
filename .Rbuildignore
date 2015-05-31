@@ -1,6 +1,7 @@
 ^README\.md$
 ^\.git$
 ^\.gitignore$
+^\.lintr$
 ^\.travis.yml$
 ^hooks$
 ^playground$

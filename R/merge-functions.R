@@ -82,7 +82,7 @@ mergeMassPeaks <- function(l, labels, method=c("mean", "median", "sum"),
   intensity <- fun(m, na.rm=TRUE)
 
   ## merge snr
-  for (i in seq(along=l)) {
+  for (i in seq_along(l)) {
     m[i, !isNA[i, ]] <- l[[i]]@snr
   }
   snr <- fun(m, na.rm=TRUE)
@@ -103,7 +103,7 @@ mergeMassPeaks <- function(l, labels, method=c("mean", "median", "sum"),
 ##
 .mergeMetaData <- function(m) {
 
-  .flat <- function(x) {return(unname(unlist(x)))}
+  .flat <- function(x)unname(unlist(x))
 
   nm <- names(m[[1L]])
   names(nm) <- nm

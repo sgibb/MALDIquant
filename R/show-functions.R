@@ -30,7 +30,7 @@
     n <- length(x)
 
     if (n > 1L) {
-      name <- paste0(name, 1L:n)
+      name <- paste0(name, seq_len(n))
     }
 
   } else {
