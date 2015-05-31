@@ -16,14 +16,13 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-.plotMsiSlice <- function(x, center = attr(x, "center"),
-                          tolerance = attr(x, "tolerance"),
-                          colRampList = list(colorRamp(c("black", "blue",
-                                                         "green", "yellow",
-                                                         "red"))),
-                          xlab = "", ylab = "", interpolate = FALSE,
-                          scale = TRUE, legend = TRUE, alignLabels = FALSE,
-                          label.cex = 0.75, label.col = NULL, ...) {
+.plotMsiSlice <- function(x, center=attr(x, "center"),
+                          tolerance=attr(x, "tolerance"),
+                          colRampList=list(colorRamp(c("black", "blue", "green",
+                                                       "yellow", "red"))),
+                          xlab="", ylab="", interpolate=FALSE, scale=TRUE,
+                          legend=TRUE, alignLabels=FALSE, label.cex=0.75,
+                          label.col=NULL, ...) {
   stopifnot(is.array(x))
 
   d <- dim(x)
@@ -33,37 +32,36 @@
   ylim <- c(0L, d[2L])
 
   ## prepare plot area
-  plot(NA, type = "n", xlim = xlim, ylim = ylim,
-       axes = FALSE, xlab = xlab, ylab = ylab, asp = 1L, ...)
+  plot(NA, type="n", xlim=xlim, ylim=ylim,
+       axes=FALSE, xlab=xlab, ylab=ylab, asp=1L, ...)
 
   if (d[3L] > 1L) {
     col <- x
 
     for (i in 1L:d[3L]) {
-      col[,, i] <- .colorMatrix(x[,, i], colRamp = colRampList[[i]],
-                                scale = scale)
+      col[,, i] <- .colorMatrix(x[,, i], colRamp=colRampList[[i]], scale=scale)
     }
 
     x <- .combineColorMatrices(x, col)
   } else {
-    x <- .colorMatrix(x[,, 1L], colRamp = colRampList[[1L]], scale = scale)
+    x <- .colorMatrix(x[,, 1L], colRamp=colRampList[[1L]], scale=scale)
   }
 
   ## plot image
-  .rasterSlice(x, interpolate = interpolate)
+  .rasterSlice(x, interpolate=interpolate)
 
   if (legend) {
 
     if (!is.null(center)) {
       labels <- .mapply(function(cnt, tol)bquote(.(cnt) %+-% .(tol)),
-                        cnt = center, tol = tolerance)
-      strh <- max(strheight(labels, cex = label.cex)) * 1.2
+                        cnt=center, tol=tolerance)
+      strh <- max(strheight(labels, cex=label.cex)) * 1.2
     } else {
       labels <- character(d[3L])
       strh <- 0L
     }
 
-    xleft <- xlim[2L] - seq(from = d[3L] * 2L - 1L, to = 1L, by = -2L)
+    xleft <- xlim[2L] - seq(from=d[3L] * 2L - 1L, to=1L, by=-2L)
     xright <- xleft + 1L
     ybottom <- rep.int(d[3L] * strh, d[3L])
     ytext <- (d[3L] - 1L):0L * strh
@@ -81,37 +79,36 @@
     }
 
     for (i in 1L:d[3L]) {
-      .msiLegend(xleft = xleft[i], xright = xright[i],
-                 ybottom = ybottom[1L], ytop = ylim[2L],
-                 colRamp = colRampList[[i]], interpolate = interpolate)
-      text(x = xtext[i], y = ytext[i], labels = as.expression(labels[i]),
-           col = label.col[[i]], cex = label.cex, adj = c(1L, 0L))
+      .msiLegend(xleft=xleft[i], xright=xright[i],
+                 ybottom=ybottom[1L], ytop=ylim[2L],
+                 colRamp=colRampList[[i]], interpolate=interpolate)
+      text(x=xtext[i], y=ytext[i], labels=as.expression(labels[i]),
+           col=label.col[[i]], cex=label.cex, adj=c(1L, 0L))
     }
   }
 }
 
-.rasterSlice <- function(x, interpolate = FALSE) {
+.rasterSlice <- function(x, interpolate=FALSE) {
   rasterImage(as.raster(t(x)),
-              xleft = 0L, xright = nrow(x), ybottom = 0L, ytop = ncol(x),
-              interpolate = interpolate)
+              xleft=0L, xright=nrow(x), ybottom=0L, ytop=ncol(x),
+              interpolate=interpolate)
 }
 
 .msiLegend <- function(xleft, xright, ybottom, ytop,
-                       colRamp = colorRamp(c("black", "blue", "green", "yellow",
-                                             "red")),
-                       interpolate = FALSE) {
-  gradient <- matrix(.rgb(colRamp(seq.int(1L, 0L, length.out = 100L))),
-                     ncol = 1L)
-  rect(xleft = xleft, xright = xright, ybottom = ybottom, ytop = ytop,
-       col = "black")
+                       colRamp=colorRamp(c("black", "blue", "green", "yellow",
+                                           "red")), interpolate=FALSE) {
+  gradient <- matrix(.rgb(colRamp(seq.int(1L, 0L, length.out=100L))),
+                     ncol=1L)
+  rect(xleft=xleft, xright=xright, ybottom=ybottom, ytop=ytop,
+       col="black")
   rasterImage(as.raster(gradient),
-              xleft = xleft, xright = xright, ybottom = ybottom, ytop = ytop,
-              interpolate = interpolate)
+              xleft=xleft, xright=xright, ybottom=ybottom, ytop=ytop,
+              interpolate=interpolate)
 }
 
-.colorMatrix <- function(x, colRamp, scale = TRUE) {
+.colorMatrix <- function(x, colRamp, scale=TRUE) {
   if (scale) {
-    x <- x / max(x, na.rm = TRUE)
+    x <- x / max(x, na.rm=TRUE)
   }
 
   notNA <- which(!is.na(x))
@@ -120,14 +117,14 @@
 }
 
 .combineColorMatrices <- function(x, col) {
-  i <- apply(x, 2L, max.col, ties.method = "first")
-  j <- cbind(x = rep(1L:nrow(x), ncol(x)), y = rep(1L:ncol(x), each = nrow(x)),
-             z = as.vector(i))
+  i <- apply(x, 2L, max.col, ties.method="first")
+  j <- cbind(x=rep(1L:nrow(x), ncol(x)), y=rep(1L:ncol(x), each=nrow(x)),
+             z=as.vector(i))
   y <- col[,, 1L]
   y[] <- col[j]
   y
 }
 
 .rgb <- function(x) {
-  rgb(x, maxColorValue = 255L)
+  rgb(x, maxColorValue=255L)
 }

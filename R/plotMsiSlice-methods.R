@@ -16,26 +16,25 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
-setMethod(f = "plotMsiSlice",
-          signature = signature(x = "list"),
-          definition = function(x, center, tolerance,
-                              colRamp = colorRamp(c("black", "blue", "green",
-                                                    "yellow", "red")),
-                              interpolate = FALSE, legend = TRUE,
-                              alignLabels = FALSE, combine = FALSE, ...) {
+setMethod(f="plotMsiSlice",
+          signature=signature(x="list"),
+          definition=function(x, center, tolerance,
+                              colRamp=colorRamp(c("black", "blue", "green",
+                                                   "yellow", "red")),
+                              interpolate=FALSE, legend=TRUE, alignLabels=FALSE,
+                              combine=FALSE, ...) {
   .stopIfNotIsMassObjectList(x)
-  slides <- msiSlices(x, center = center, tolerance = tolerance)
-  plotMsiSlice(slides, colRamp = colRamp, interpolate = interpolate,
-               legend = legend, alignLabels=alignLabels, combine = combine, ...)
+  slides <- msiSlices(x, center=center, tolerance=tolerance)
+  plotMsiSlice(slides, colRamp=colRamp, interpolate=interpolate, legend=legend,
+               alignLabels=alignLabels, combine=combine, ...)
 })
 
-setMethod(f = "plotMsiSlice",
-          signature = signature(x = "array"),
-          definition = function(x, colRamp = colorRamp(c("black", "blue",
-                                                         "green", "yellow",
-                                                         "red")),
-                              interpolate = FALSE, legend = TRUE,
-                              alignLabels = FALSE, combine = FALSE, ...) {
+setMethod(f="plotMsiSlice",
+          signature=signature(x="array"),
+          definition=function(x, colRamp=colorRamp(c("black", "blue", "green",
+                                                     "yellow", "red")),
+                              interpolate=FALSE, legend=TRUE, alignLabels=FALSE,
+                              combine=FALSE, ...) {
 
   if (!is.list(colRamp)) {
     colRamp <- list(colRamp)
@@ -49,8 +48,8 @@ setMethod(f = "plotMsiSlice",
            "the length of the list ", sQuote("colRamp"), "!\n",
            "See ", sQuote("?plotMsiSlice"), " for details.")
     }
-    .plotMsiSlice(x, colRampList = colRamp, interpolate = interpolate,
-                  legend = legend, alignLabels = alignLabels, ...)
+    .plotMsiSlice(x, colRampList=colRamp, interpolate=interpolate,
+                  legend=legend, alignLabels=alignLabels, ...)
 
   } else {
     if (n > 1L && dev.interactive()) {
@@ -64,27 +63,26 @@ setMethod(f = "plotMsiSlice",
     }
     for (i in 1L:n) {
       .plotMsiSlice(x[,, i, drop=FALSE],
-                    center = attr(x, "center")[i],
-                    tolerance = attr(x, "tolerance")[i],
-                    colRampList = colRamp[i], interpolate = interpolate,
-                    legend = legend, ...)
+                    center=attr(x, "center")[i],
+                    tolerance=attr(x, "tolerance")[i],
+                    colRampList=colRamp[i], interpolate=interpolate,
+                    legend=legend, ...)
     }
   }
 })
 
-setMethod(f = "plotMsiSlice",
-          signature = signature(x = "matrix"),
-          definition = function(x, colRamp = colorRamp(c("black", "blue",
-                                                         "green", "yellow",
-                                                         "red")),
-                                interpolate = FALSE, scale = TRUE,
-                                legend = TRUE, ...) {
+setMethod(f="plotMsiSlice",
+          signature=signature(x="matrix"),
+          definition=function(x, colRamp=colorRamp(c("black", "blue", "green",
+                                                     "yellow", "red")),
+                                interpolate=FALSE, scale=TRUE, legend=TRUE,
+                                ...) {
   if (!is.list(colRamp)) {
     colRamp <- list(colRamp)
   }
 
   dim(x) <- c(dim(x), 1L)
 
-  .plotMsiSlice(x, colRamp = colRamp, interpolate = interpolate,
-                scale = scale, legend = legend, ...)
+  .plotMsiSlice(x, colRamp=colRamp, interpolate=interpolate, scale=scale,
+                legend=legend, ...)
 })
