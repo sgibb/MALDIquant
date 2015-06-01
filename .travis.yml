@@ -4,6 +4,7 @@ apt_packages:
 - pgf
 r_github_packages:
 - jimhester/covr
+- eddelbuettel/drat
 r_binary_packages:
 - testthat
 - knitr
