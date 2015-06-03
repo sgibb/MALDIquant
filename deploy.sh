@@ -4,6 +4,7 @@
 set -o errexit -o nounset
 
 addToDrat() {
+  PKG_REPO=$PWD
   cd ..; mkdir drat; cd drat
 
   ## Set up Repo parameters
@@ -17,9 +18,9 @@ addToDrat() {
   git fetch upstream
   git checkout gh-pages
 
-  Rscript -e "drat::insertPackage(devtools::build('../MALDIquant'), \
+  Rscript -e "drat::insertPackage('$PKG_REPO/$PKG_TARBALL', \
     repodir = '.', \
-    commit='Travis update: build $TRAVIS_BUILD_NUMBER')"
+    commit = 'Update $PKG_TARBALL (travis build $TRAVIS_BUILD_NUMBER)')"
   git push
 }
 
