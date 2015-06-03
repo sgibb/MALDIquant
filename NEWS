@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.11.13 [2015-06-03 Mi]:
+- Fix vignette call in `?MALDIquant-package`.
+
 Version 1.11.12 [2015-05-25 Mo]:
 - Mark `plotImsSlice` as deprecated. Use `plotMsiSlice` (with slightly different
   arguments) instead.

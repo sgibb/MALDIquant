@@ -47,9 +47,12 @@ Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
 \seealso{
   \itemize{
-    \item Introduction: \code{vignette("MALDIquant", package="MALDIquant")}.
+    \item Introduction:
+      \code{vignette("MALDIquant-intro", package="MALDIquant")}.
     \item Run demo files: \code{demo("MALDIquant")}.
     \item List all available manual pages: \code{library(help="MALDIquant")}.
     \item MALDIquant website: \url{http://strimmerlab.org/software/maldiquant/}.
+    \item MALDIquant examples:
+    \url{https://github.com/sgibb/MALDIquantExamples/}.
   }
 }
