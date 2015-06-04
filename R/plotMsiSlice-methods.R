@@ -35,20 +35,20 @@ setMethod(f="plotMsiSlice",
                                                      "yellow", "red")),
                               interpolate=FALSE, legend=TRUE, alignLabels=FALSE,
                               combine=FALSE, ...) {
-
-  if (!is.list(colRamp)) {
-    colRamp <- list(colRamp)
-  }
-
   n <- dim(x)[3L]
 
+  if (!is.list(colRamp)) {
+    colRamp <- rep_len(list(colRamp), n)
+  }
+
+  if (n != length(colRamp)) {
+    stop(sQuote("dim(x)[3L]"), " (number of centers) has to be the same as ",
+         "the length of the list ", sQuote("colRamp"), "!\n",
+         "See ", sQuote("?plotMsiSlice"), " for details.")
+  }
+
   if (combine) {
-    if (n != length(colRamp)) {
-      stop(sQuote("dim(x)[3L]"), " (number of centers) has to be the same as ",
-           "the length of the list ", sQuote("colRamp"), "!\n",
-           "See ", sQuote("?plotMsiSlice"), " for details.")
-    }
-    .plotMsiSlice(x, colRampList=colRamp, interpolate=interpolate,
+   .plotMsiSlice(x, colRampList=colRamp, interpolate=interpolate,
                   legend=legend, alignLabels=alignLabels, ...)
 
   } else {
@@ -61,10 +61,13 @@ setMethod(f="plotMsiSlice",
               "See ", sQuote("?plotMsiSlice"), " for details.")
       n <- 1L
     }
+
+    tolerance <- rep_len(attr(x, "tolerance"), n)
+
     for (i in seq_len(n)) {
       .plotMsiSlice(x[,, i, drop=FALSE],
                     center=attr(x, "center")[i],
-                    tolerance=attr(x, "tolerance")[i],
+                    tolerance=tolerance[i],
                     colRampList=colRamp[i], interpolate=interpolate,
                     legend=legend, ...)
     }
