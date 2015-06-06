@@ -78,7 +78,7 @@ setMethod(f="plotMsiSlice",
           signature=signature(x="matrix"),
           definition=function(x, colRamp=colorRamp(c("black", "blue", "green",
                                                      "yellow", "red")),
-                                interpolate=FALSE, scale=TRUE, legend=TRUE,
+                                interpolate=FALSE, scale=TRUE, legend=scale,
                                 ...) {
   if (!is.list(colRamp)) {
     colRamp <- list(colRamp)

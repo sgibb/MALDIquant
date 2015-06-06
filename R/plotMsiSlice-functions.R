@@ -21,7 +21,7 @@
                           colRampList=list(colorRamp(c("black", "blue", "green",
                                                        "yellow", "red"))),
                           xlab="", ylab="", interpolate=FALSE, scale=TRUE,
-                          legend=TRUE, alignLabels=FALSE, label.cex=0.75,
+                          legend=scale, alignLabels=FALSE, label.cex=0.75,
                           label.col=NULL, ...) {
   stopifnot(is.array(x))
 

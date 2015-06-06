@@ -20,7 +20,7 @@ or an \code{array} or a \code{matrix}.
   interpolate=FALSE, legend=TRUE, alignLabels=FALSE, combine=FALSE, \dots)
 \S4method{plotMsiSlice}{matrix}(x,
   colRamp=colorRamp(c("black", "blue", "green", "yellow", "red")),
-  interpolate=FALSE, scale=TRUE, legend=TRUE, \dots)
+  interpolate=FALSE, scale=TRUE, legend=scale, \dots)
 }
 \arguments{
   \item{x}{The mass spectrometry imaging dataset. It could be a \code{list} of
@@ -45,7 +45,7 @@ or an \code{array} or a \code{matrix}.
   \item{legend}{\code{logical}, if \code{TRUE} a reference color gradient is
     plotted on the right hand side of the plot. The upper color represents the
     highest value in the slice and the lower color the lowest value
-    respectively.}
+    respectively. The \code{legend} is disabled if \code{scale=FALSE}.}
   \item{alignLabels}{\code{logical}, if \code{combine=TRUE} and
     \code{alignLabels=TRUE} the center positions below the legend are aligned
     on the right margin otherwise the aligned to their corresponding gradient.}

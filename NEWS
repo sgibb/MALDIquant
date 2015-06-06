@@ -1,10 +1,13 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
-Version 1.11.13 [2015-06-03 Mi]:
+Version 1.11.14 [2015-06-06 Sat]:
+- `plotMsiSlice`: disable "legend" if "scale==FALSE".
+
+Version 1.11.13 [2015-06-03 Wed]:
 - Fix vignette call in `?MALDIquant-package`.
 
-Version 1.11.12 [2015-05-25 Mo]:
+Version 1.11.12 [2015-05-25 Mon]:
 - Mark `plotImsSlice` as deprecated. Use `plotMsiSlice` (with slightly different
   arguments) instead.
 
