@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.11.15 [2015-06-07 Sun]:
+- `plotMsiSlice`: add "plotInteractive" argument.
+
 Version 1.11.14 [2015-06-06 Sat]:
 - `plotMsiSlice`: disable "legend" if "scale==FALSE".
 

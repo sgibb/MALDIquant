@@ -34,7 +34,7 @@ setMethod(f="plotMsiSlice",
           definition=function(x, colRamp=colorRamp(c("black", "blue", "green",
                                                      "yellow", "red")),
                               interpolate=FALSE, legend=TRUE, alignLabels=FALSE,
-                              combine=FALSE, ...) {
+                              combine=FALSE, plotInteractive=FALSE, ...) {
   n <- dim(x)[3L]
 
   if (!is.list(colRamp)) {
@@ -52,11 +52,11 @@ setMethod(f="plotMsiSlice",
                   legend=legend, alignLabels=alignLabels, ...)
 
   } else {
-    if (n > 1L && dev.interactive()) {
+    if (n > 1L && dev.interactive() && !plotInteractive) {
       warning(sQuote("plotMsiSlice"), " was called for multiple slice on an ",
               "interactive device. Only the first slice is plotted. Use ",
               sQuote("pdf"), " or a similar device to plot all slices at once.",
-              "Alternatively use ", dQuote("combine=TRUE"), " to plot ",
+              " Alternatively use ", dQuote("combine=TRUE"), " to plot ",
               "multiple centers in one plot.\n",
               "See ", sQuote("?plotMsiSlice"), " for details.")
       n <- 1L

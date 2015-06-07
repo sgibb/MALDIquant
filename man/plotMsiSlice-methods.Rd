@@ -17,7 +17,8 @@ or an \code{array} or a \code{matrix}.
   \dots)
 \S4method{plotMsiSlice}{array}(x,
   colRamp=colorRamp(c("black", "blue", "green", "yellow", "red")),
-  interpolate=FALSE, legend=TRUE, alignLabels=FALSE, combine=FALSE, \dots)
+  interpolate=FALSE, legend=TRUE, alignLabels=FALSE, combine=FALSE,
+  plotInteractive=FALSE, \dots)
 \S4method{plotMsiSlice}{matrix}(x,
   colRamp=colorRamp(c("black", "blue", "green", "yellow", "red")),
   interpolate=FALSE, scale=TRUE, legend=scale, \dots)
@@ -54,7 +55,14 @@ or an \code{array} or a \code{matrix}.
     functions (one function for each center). The intensity values for each
     center of each pixel are compared against each other and the highest scaled
     intensity determines the center (and the corresponding \code{colRamp}).}
-  \item{\dots}{arguments to be passed to \code{\link[graphics]{plot}}.}
+  \item{plotInteractive}{
+    \code{logical}, if the slice \code{array} contains multiple centers,
+    \code{combine=FALSE} and an interactive plotting device is used a warning is
+    thrown and only the first center would be plotted. Use
+    \code{plotInteractive=TRUE} to overwrite this behaviour and to plot multiple
+    centers on an interactive device.}
+  \item{\dots}{arguments to be passed to \code{\link[graphics]{plot}}, e.g.
+    \code{main}.}
 }
 \details{
 Each \code{\linkS4class{MassSpectrum}}/\code{\linkS4class{MassPeaks}} object in
