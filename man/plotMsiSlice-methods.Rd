@@ -73,19 +73,34 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \code{\linkS4class{AbstractMassObject}},
 \code{\linkS4class{MassSpectrum}},
 \code{\linkS4class{MassPeaks}},
+\code{\link[MALDIquant]{coordinates,AbstractMassObject-method}},
 \code{\link[MALDIquant]{msiSlices}},
 \code{\link[MALDIquant]{plot,MassSpectrum,missing-method}}
 
+Please find real examples on:
+
 Website: \url{http://strimmerlab.org/software/maldiquant/}
 
-Example:
-\url{https://github.com/sgibb/MALDIquantExamples/blob/master/vignettes/ims.Rnw}
+Vignette: \url{https://github.com/sgibb/MALDIquantExamples/raw/master/inst/doc/nyakas2013.pdf}
 
-Shiny example: \url{https://github.com/sgibb/ims-shiny/}
+Shiny: \url{https://github.com/sgibb/ims-shiny/}
 }
 \examples{
-\dontrun{
-plotMsiSlice(spectra, center=3362.3, tolerance=0.25)
-}
+## load package
+library("MALDIquant")
+
+## load example data
+data("fiedler2009subset", package="MALDIquant")
+
+## please note: this is NOT a MSI data set
+## we just add some coordinates for demonstration
+coordinates(fiedler2009subset) <- cbind(x=rep(1:4, 2), y=rep(1:2, each=4))
+
+plotMsiSlice(fiedler2009subset, center=8936.97, tolerance=0.25)
+
+plotMsiSlice(fiedler2009subset, center=c(5864.49, 8936.97), tolerance=0.25,
+             combine=TRUE,
+             colRamp=list(colorRamp(c("#000000", "#FF00FF")),
+                          colorRamp(c("#000000", "#00FF00"))))
 }
 \keyword{Graphics|hplot}
