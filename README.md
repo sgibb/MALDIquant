@@ -31,16 +31,32 @@ You are welcome to:
 
 ## Install
 
-```s
+You can install the latest release directly from
+[CRAN](http://cran.r-project.org/web/packages/MALDIquant/index.html).
+
+```r
 install.packages("MALDIquant")
 ```
 
 ## Install development version (not recommended)
 
-```s
-install.packages("devtools")
-library("devtools")
-install_github("MALDIquant", "sgibb")
+[GitHub](https://github.com) is not directly supported by the basic
+`install.packages` command. You could use the
+[drat](http://dirk.eddelbuettel.com/code/drat.html) package
+to install the development version of MALDIquant
+(you will need a complete development environment to compile the some c code).
+
+```r
+# first install drat from CRAN if you haven't already done it:
+install.packages("drat")
+
+# add our repository
+# (add this line to your `~/.Rprofile` to add it for future use,
+#  i.e. if you want to get updates via `update.packages()` ):
+drat::addRepo("sgibb")
+
+# now use `install.packages`
+install.packages("MALDIquant")
 ```
 
 ## Examples
