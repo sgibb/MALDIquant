@@ -5,6 +5,8 @@ set -o errexit -o nounset
 
 addToDrat() {
   PKG_REPO=$PWD
+  GIT_REPO=${PKG_REPO##*/}
+
   cd ..; mkdir drat; cd drat
 
   ## Set up Repo parameters
@@ -20,7 +22,7 @@ addToDrat() {
 
   Rscript -e "drat::insertPackage('$PKG_REPO/$PKG_TARBALL', \
     repodir = '.', \
-    commit = 'Update $PKG_TARBALL (travis build $TRAVIS_BUILD_NUMBER)')"
+    commit = 'Update $PKG_TARBALL (sgibb/$GIT_REPO@$TRAVIS_COMMIT (travis build $TRAVIS_BUILD_NUMBER)')"
   git push
 }
 
