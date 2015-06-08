@@ -4,17 +4,12 @@ apt_packages:
 - pgf
 r_github_packages:
 - jimhester/covr
-- eddelbuettel/drat
 r_binary_packages:
 - testthat
 - knitr
 after_success:
 - Rscript -e 'library(covr);codecov(exclusions="R/Deprecated.R");coveralls(exclusions="R/Deprecated.R")'
-- test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash deploy.sh
 notifications:
   email:
     on_success: change
     on_failure: change
-env:
-  global:
-    secure: BXBpJoAh5ZyXv/odaZYTWGlxOB1t/jsftOcIHrZNIM9Gq/zhGK1SX3Bjza0E6ra2Ru4qiwoLcQ1YNf8x8BhrBpEmCTbpz2GqzBoox9nJd/N4rWYyIjRl8BGTAGIRZ/a/QKPzwuhPaRJfiR5u76GWWzoDiZLa2JZfcGgjsdgjRP0=

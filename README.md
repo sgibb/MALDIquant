@@ -42,25 +42,17 @@ install.packages("MALDIquant")
 
 [GitHub](https://github.com) is not directly supported by the basic
 `install.packages` command. You could use the
-[drat](http://dirk.eddelbuettel.com/code/drat.html) package
+[devtools](http://cran.r-project.org/web/packages/devtools/index.html) package
 to install the development version of MALDIquant
 (you will need a complete development environment to compile the some c code).
 
 ```r
-# first install drat from CRAN if you haven't already done it:
-install.packages("drat")
-
-# add our repository
-# (add this line to your `~/.Rprofile` to add it for future use,
-#  i.e. if you want to get updates via `update.packages()` ):
-drat::addRepo("sgibb")
-
-# now use `install.packages`
-install.packages("MALDIquant")
+install.packages("devtools")
+library("devtools")
+install_github("MALDIquant", "sgibb")
 ```
 
 ## Examples
 To illustrate the application of MALDIquant for analyzis of mass spectrometry
 data please find a number of example R scripts in the
 [MALDIquantExamples](https://github.com/sgibb/MALDIquantExamples) repository.
-

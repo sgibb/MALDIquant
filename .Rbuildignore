@@ -3,6 +3,5 @@
 ^\.gitignore$
 ^\.lintr$
 ^\.travis.yml$
-^deploy.sh$
 ^hooks$
 ^playground$
