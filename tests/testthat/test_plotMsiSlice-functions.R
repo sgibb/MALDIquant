@@ -1,5 +1,15 @@
 context(".plotMsiSlice")
 
+test_that(".array2matrix", {
+  x1 <- array(1:12, dim=c(x=2, y=3, z=2))
+  x2 <- array(1:12, dim=c(1, 12, 1))
+  r1 <- matrix(1:12, nrow=2, ncol=3)
+  r2 <- matrix(1:12, nrow=1, ncol=12)
+
+  expect_identical(MALDIquant:::.array2matrix(x1), r1)
+  expect_identical(MALDIquant:::.array2matrix(x2), r2)
+})
+
 test_that(".colorMatrix", {
   x <- matrix(c(NA, 1:8, NA), nrow=2)
   colRamp1 <- colorRamp(c("black", "green"))

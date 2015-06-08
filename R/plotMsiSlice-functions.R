@@ -39,12 +39,13 @@
     col <- x
 
     for (i in seq_len(d[3L])) {
-      col[,, i] <- .colorMatrix(x[,, i], colRamp=colRampList[[i]], scale=scale)
+      col[,, i, drop=FALSE] <- .colorMatrix(.array2matrix(x),
+                                            colRamp=colRampList[[i]], scale=scale)
     }
 
     x <- .combineColorMatrices(x, col)
   } else {
-    x <- .colorMatrix(x[,, 1L], colRamp=colRampList[[1L]], scale=scale)
+    x <- .colorMatrix(.array2matrix(x), colRamp=colRampList[[1L]], scale=scale)
   }
 
   ## plot image
@@ -94,6 +95,13 @@
               interpolate=interpolate)
 }
 
+.array2matrix <- function(a, z=1L) {
+## subset function that preserves a matrix even if x or y 1
+## ([,,drop=TRUE]) creates a vector
+  d <- dim(a)
+  matrix(a[,, z, drop=TRUE], nrow=d[1L], ncol=d[2L])
+}
+
 .msiLegend <- function(xleft, xright, ybottom, ytop,
                        colRamp=colorRamp(c("black", "blue", "green", "yellow",
                                            "red")), interpolate=FALSE) {
@@ -121,7 +129,7 @@
   j <- cbind(x=rep.int(seq_len(nrow(x)), ncol(x)),
              y=rep(seq_len(ncol(x)), each=nrow(x)),
              z=as.vector(i))
-  y <- col[,, 1L]
+  y <- .array2matrix(col)
   y[] <- col[j]
   y
 }
