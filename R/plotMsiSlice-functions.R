@@ -39,8 +39,8 @@
     col <- x
 
     for (i in seq_len(d[3L])) {
-      col[,, i, drop=FALSE] <- .colorMatrix(.array2matrix(x),
-                                            colRamp=colRampList[[i]], scale=scale)
+      col[,, i] <- .colorMatrix(.array2matrix(x), colRamp=colRampList[[i]],
+                                scale=scale)
     }
 
     x <- .combineColorMatrices(x, col)
