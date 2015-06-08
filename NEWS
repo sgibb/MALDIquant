@@ -1,66 +1,55 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
-Version 1.11.15 [2015-06-07 Sun]:
-- `plotMsiSlice`: add "plotInteractive" argument.
+NEW FEATURES
 
-Version 1.11.14 [2015-06-06 Sat]:
-- `plotMsiSlice`: disable "legend" if "scale==FALSE".
-
-Version 1.11.13 [2015-06-03 Wed]:
-- Fix vignette call in `?MALDIquant-package`.
-
-Version 1.11.12 [2015-05-25 Mon]:
-- Mark `plotImsSlice` as deprecated. Use `plotMsiSlice` (with slightly different
-  arguments) instead.
-
-Version 1.11.11 [2015-05-10 Sun]:
-- Add parallel support on unix-base platforms using the parallel package. The
+* Add `as` for MassPeaks to convert them into MassSpectrum objects.
+* Add `coordinates` methods for AbstractMassObjects and list objects to
+  access/set coordinates for MSI datasets.
+* `calibratyIntensity(object, method="TIC")`: gains a "range" argument allowing
+  to calibrate spectra by TIC on a specific mass range; closes #27.
+* Add parallel support on unix-based platforms using the parallel package. The
   following functions/methods supports the "mc.cores" argument (default is 1):
   `trim`, `transformIntensity`, `removeBaseline`, `calibrateIntensity`,
   `detectPeaks`, `alignSpectra`, `averageMassSpectra`, `mergeMassPeaks`;
   Please read also `?"MALDIquant-parallel"`.
 
-Version 1.11.10 [2015-05-10 Sun]:
-- `calibratyIntensity(object, method="TIC")` gains a "range" argument allowing
-  to calibrate spectra by TIC on a specific mass range; closes #27;
+IMPROVEMENTS
 
-Version 1.11.9 [2015-05-10 Sun]:
-- Remove some useless `cbind` calls in `.estimateNoise*` and
-  `.estimateBaseline`; no user visible changes;
-  affected functions: `estimateNoise`, `estimateBaseline`, `detectPeaks`
-- Remove superfluous arguments in internal `.calibrateIntensitySimple`.
-- Avoid double check for negative intensity values in `transformIntensity`.
+* `intensityMatrix`: rewrite to improve execution time.
+* `trim`: rewrite to improve execution time.
 
-Version 1.11.8 [2015-05-09 Sat]:
-- The return value of the internal `.as.matrix.MassObjectList` function gains an
+MODIFICATIONS
+
+* Change generics of `mass` and `intensity` from `function(object)` to
+  `function(object, ...)` to provide the same generics as Bioconductor's
+  ProtGenerics package.
+* `intensityMatrix`: gains an attribute "mass" that stores the unique mass.
+
+DEPRECATED ARGUMENTS/FUNCTIONS
+
+* `plotImsSlice`: use `plotMsiSlice` instead. It has slightly different
+  arguments; see `?plotMsiSlice` for details.
+
+REMOVED ARGUMENTS/FUNCTIONS
+
+* `intensityMatrix` for MassSpectrum objects (was defunct since 1.10).
+
+BUGFIXES
+
+* Fix vignette call in `?MALDIquant-package`.
+
+INTERNAL CHANGES
+
+* The return value of the internal `.as.matrix.MassObjectList` function gains an
   attribute "mass" that stores the unique mass (conversions of the colnames are
   not needed anymore);
   affected functions: `intensityMatrix`
-
-Version 1.11.7 [2015-05-09 Sat]:
-- Add `coordinates` methods for AbstractMassObjects and list objects to
-  access/set coordinates for IMS datasets.
-
-Version 1.11.6 [2015-05-07 Thu]:
-- Rewrite `trim` to improve execution time.
-
-Version 1.11.5 [2015-05-06 Wed]:
-- Rewrite `intensityMatrix` to improve execution time.
-
-Version 1.11.4 [2015-04-22 Wed]:
-- Add `as` for MassPeaks to convert them into MassSpectrum objects.
-
-Version 1.11.3 [2015-04-19 Sun]:
-- `plotImsSlice`: fix plot function for slices with only one row or one column.
-
-Version 1.11.2 [2015-03-03 Tue]:
-- Change generics of `mass` and `intensity` from `function(object)` to
-  `function(object, ...)` to provide the same generics as Bioconductor's
-  ProtGenerics package.
-
-Version 1.11.1 [2014-09-08 Mon]:
-- Removed (was defunct since 1.10): `intensityMatrix` for MassSpectrum objects.
+* Remove some useless `cbind` calls in `.estimateNoise*` and
+  `.estimateBaseline`; no user visible changes;
+  affected functions: `estimateNoise`, `estimateBaseline`, `detectPeaks`
+* Remove superfluous arguments in internal `.calibrateIntensitySimple`.
+* Avoid double check for negative intensity values in `transformIntensity`.
 
 
 CHANGES IN MALDIquant VERSION 1.11 [2014-08-11]:
@@ -134,7 +123,7 @@ REMOVED ARGUMENTS/FUNCTIONS
 * `removeBaseline`, argument "fun": use "method" argument instead.
 * `detectPeaks`, argument "fun": use "method" argument instead.
 
-BUG FIXES
+BUGFIXES
 
 * `.which.closest`: check limits to avoid missing matches in some
   rare edge cases;
@@ -303,7 +292,7 @@ REMOVED FUNCTIONS
   nasty bugs, e.g.: https://bugs.r-project.org/bugzilla3/show_bug.cgi?id=15208
   Also the "zoom" R package provides similar functionality.
 
-BUG FIXES
+BUGFIXES
 
 * `totalIonCurrent`: fix calculation by estimating the integral; fixes #29.
   affected functions: `totalIonCurrent`,
@@ -351,7 +340,7 @@ IMPROVEMENTS
 * `movingAverage`: left/right extrema now calculated for 0:windowSize and
   (n-windowSize+1):n (before they were set to NA).
 
-BUG FIXES
+BUGFIXES
 
 * `filterPeaks`: doesn't round (floor) minFrequency argument anymore; led to
   unexpected results; fixes #22.
@@ -386,7 +375,7 @@ IMPROVEMENTS
 
 * Include tests in inst/tests.
 
-BUG FIXES
+BUGFIXES
 
 * `.which.closest`: rounding .5 to the next highest integer (before: to the next
   lowest one); affected functions: `labelPeaks`.
@@ -460,7 +449,7 @@ MODIFICATIONS
 * `labelPeaks`: change default value for verticalOffset argument.
 * `labelPeaks`: remove family argument.
 
-BUG FIXES
+BUGFIXES
 
 * Fix `isMassSpectrumList`.
 
@@ -588,7 +577,7 @@ MODIFICATIONS
 * Move importing functions to the following R-packages: readBrukerFlexData,
   readMzXmlData.
 
-BUG FIXES
+BUGFIXES
 
 * change `.C(..., DUP=F)` to `.C(..., DUP=T)` in `.estimateBaselineSnip`
   to avoid changes of global variables.
