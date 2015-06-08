@@ -49,7 +49,7 @@ to install the development version of MALDIquant
 ```r
 install.packages("devtools")
 library("devtools")
-install_github("MALDIquant", "sgibb")
+install_github("sgibb/MALDIquant")
 ```
 
 ## Examples
