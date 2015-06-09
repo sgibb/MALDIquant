@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+
+CHANGES IN MALDIquant VERSION 1.12 [2015-06-09]:
+------------------------------------------------
+
 NEW FEATURES
 
 * Add `as` for MassPeaks to convert them into MassSpectrum objects.
