@@ -10,6 +10,7 @@ NEW FEATURES
 * Add `as` for MassPeaks to convert them into MassSpectrum objects.
 * Add `coordinates` methods for AbstractMassObjects and list objects to
   access/set coordinates for MSI datasets.
+* Add `msiSlices` functions to create slices of a MSI dataset.
 * `calibratyIntensity(object, method="TIC")`: gains a "range" argument allowing
   to calibrate spectra by TIC on a specific mass range; closes #27.
 * Add parallel support on unix-based platforms using the parallel package. The
