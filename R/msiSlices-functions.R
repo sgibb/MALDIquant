@@ -54,7 +54,7 @@ msiSlices <- function(x, center, tolerance, method=c("sum", "mean", "median"),
                          attr(m, "mass")) + 1L, ncol(m))
   r <- findInterval(center + tolerance + .Machine$double.eps, attr(m, "mass"))
 
-  slices <- array(NA, dim=c(x=n[1L], y=n[2L], z=length(center)))
+  slices <- array(NA_real_, dim=c(x=n[1L], y=n[2L], z=length(center)))
 
   for (i in seq_along(center)) {
     slices[cbind(coord, i)] <- fun(m[, l[i]:r[i], drop=FALSE], na.rm=TRUE)
