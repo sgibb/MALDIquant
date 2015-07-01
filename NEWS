@@ -1,6 +1,13 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.12.2 [2015-07-01 Wed]:
+- Importing non-base functions/methods from recommended R packages (graphics,
+  stats, ...), to avoid NOTE on CRAN.
+
+Version 1.12.1 [2015-06-14 Tue]:
+- `msiSlices`: use NA__real_ instead of logical NA.
+
 
 CHANGES IN MALDIquant VERSION 1.12 [2015-06-11]:
 ------------------------------------------------

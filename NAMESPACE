@@ -5,17 +5,44 @@ importFrom("parallel",
               "mcmapply")
 
 importFrom("graphics",
+              "arrows",
               "lines",
+              "par",
               "plot",
-              "points")
+              "plot.default",
+              "points",
+              "rasterImage",
+              "rect",
+              "strheight",
+              "strwidth",
+              "text")
+
+importFrom("grDevices",
+              "as.raster",
+              "colorRamp",
+              "dev.cur",
+              "dev.interactive",
+              "dev.new",
+              "dev.off",
+              "pdf",
+              "rgb")
 
 importFrom("stats",
+              "coef",
               "filter",
+              "lm",
+              "lowess",
               "mad",
+              "median",
+              "runmed",
               "supsmu")
 
 importFrom("utils",
-              "packageVersion")
+              "head",
+              "modifyList",
+              "object.size",
+              "packageVersion",
+              "tail")
 
 
 exportClasses("MassPeaks",
