@@ -28,7 +28,12 @@
 ##  double, calibrated intensity values
 ##
 .calibrateIntensitySimple <- function(y, offset=0L, scaling=1L) {
-  (y - offset) / scaling
+  if (scaling == 0L) {
+    warning("Scaling factor is zero. No calibration applied.")
+    y
+  } else {
+    (y - offset) / scaling
+  }
 }
 
 ## .calibrateProbabilisticQuotientNormalization

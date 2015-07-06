@@ -18,6 +18,13 @@ test_that("calibrateIntensity,list throws errors", {
                ".*arg.* should be one of .*TIC.*, .*PQN.*, .*median.*")
 })
 
+test_that("calibrateIntensity,MassSpectrum throws warnings", {
+  # median == zero; see #51
+  m <- createMassSpectrum(mass=1:5, intensity=c(rep(0, 4), 5))
+  expect_warning(calibrateIntensity(m, method="median"),
+               "Scaling factor is zero. No calibration applied.")
+})
+
 test_that("calibrateIntensity works with TIC", {
   sTIC <- calibrateIntensity(s[[1]], method="TIC")
   expect_equal(totalIonCurrent(sTIC), 1)
@@ -33,6 +40,9 @@ test_that("calibrateIntensity works with median", {
   sMed <- calibrateIntensity(s, method="median")
   expect_equal(lapply(sMed, intensity),
                lapply(s, function(x)intensity(x)/median(intensity(x))))
+  # median == zero; see #51
+  m <- createMassSpectrum(mass=1:5, intensity=c(rep(0, 4), 5))
+  expect_equal(suppressWarnings(calibrateIntensity(m, method="median")), m)
 })
 
 test_that("calibrateIntensity works with PQN", {

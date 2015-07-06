@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.12.3 [2015-07-06 Mon]:
+- `calibrateIntensity`: doesn't apply a scaling factor that equals zero
+  (sometimes happen for method="median"). It throws a warning instead and
+  leaves the spectrum untouched; fixes #51.
+
 Version 1.12.2 [2015-07-01 Wed]:
 - Importing non-base functions/methods from recommended R packages (graphics,
   stats, ...), to avoid NOTE on CRAN.
