@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.12.4 [2015-07-06 Mon]:
+- INTERNAL: turn `.calculateLabelPositions`, `.testLabelOverlap`,
+  `.labelOverlap` into normal functions (where methods before).
+
 Version 1.12.3 [2015-07-06 Mon]:
 - `calibrateIntensity`: doesn't apply a scaling factor that equals zero
   (sometimes happen for method="median"). It throws a warning instead and

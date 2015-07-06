@@ -20,6 +20,7 @@
 ##  calculate label positions to avoid collisions
 ##
 ## params:
+##  object: a single MassPeaks object
 ##  x: original x coordinates for labels
 ##  y: original y coordinates for labels
 ##  peakLabels: peak labels
@@ -30,9 +31,8 @@
 ## returns:
 ##  a matrix of coordinates
 ##
-setMethod(f=".calculateLabelPositions",
-  signature=signature(object="MassPeaks"),
-  definition=function(object, x, y, peakLabels, adj, cex, maxSteps=100L) {
+.calculateLabelPositions <- function(object, x, y, peakLabels, adj, cex,
+                                     maxSteps=100L) {
   ## start with smallest peak
   i <- sort.int(y, index.return=TRUE, method="quick")$ix
 
@@ -51,12 +51,13 @@ setMethod(f=".calculateLabelPositions",
   list(x=rects[, "x"], y=rects[, "y"],
        xleft=rects[, "x0"], ybottom=rects[, "y0"],
        xright=rects[, "x1"], ytop=rects[, "y1"])
-})
+}
 
 ## .testLabelOverlap
 ##  try to avoid overlap/collisions
 ##
 ## params:
+##  object: a single MassPeaks object
 ##  rects: a matrix of coordinates (created by .textRects)
 ##  currentIndex: which coordinates should moved around
 ##  maxSteps: max tries to avoid collisons
@@ -64,10 +65,7 @@ setMethod(f=".calculateLabelPositions",
 ## returns:
 ##  a vector of coordinates
 ##
-setMethod(f=".testLabelOverlap",
-  signature=signature(object="MassPeaks"),
-  definition=function(object, rects, currentIndex, maxSteps) {
-
+.testLabelOverlap <- function(object, rects, currentIndex, maxSteps) {
   r <- pi / 180L * c(90, as.vector(rbind(seq(80L, 40L, by=-10L),
                                          seq(100L, 140L, by=10L))))
 
@@ -101,22 +99,20 @@ setMethod(f=".testLabelOverlap",
   }
   ## no success, return original pos
   rects[currentIndex, ]
-})
+}
 
 ## .labelOverlap
 ##  does current rect overlap any other one?
 ##
 ## params:
+##  object: a single MassPeaks object
 ##  cur: vector of coordinates (which should test agains 'rects')
 ##  rects: a matrix of coordinates (created by .textRects)
 ##
 ## returns:
 ##  TRUE/FALSE
 ##
-setMethod(f=".labelOverlap",
-  signature=signature(object="MassPeaks"),
-  definition=function(object, cur, rects) {
-
+.labelOverlap <- function(object, cur, rects) {
   x <- cur[c(1L, 3L)]
   y <- cur[c(2L, 4L)]
 
@@ -139,4 +135,4 @@ setMethod(f=".labelOverlap",
                       (y[1L] < rects[, 2L] & y[2L] > rects[, 4L])))
 
   textOverlap
-})
+}

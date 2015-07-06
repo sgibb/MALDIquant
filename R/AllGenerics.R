@@ -153,16 +153,4 @@ if (is.null(getGeneric("labelPeaks"))) {
 if (is.null(getGeneric("snr"))) {
   setGeneric("snr", function(object) standardGeneric("snr"))
 }
-if (is.null(getGeneric(".calculateLabelPositions"))) {
-  setGeneric(".calculateLabelPositions",
-             function(object, ...) standardGeneric(".calculateLabelPositions"))
-}
-if (is.null(getGeneric(".testLabelOverlap"))) {
-  setGeneric(".testLabelOverlap",
-             function(object, ...) standardGeneric(".testLabelOverlap"))
-}
-if (is.null(getGeneric(".labelOverlap"))) {
-  setGeneric(".labelOverlap",
-             function(object, ...) standardGeneric(".labelOverlap"))
-}
 ## end of MassPeaks
