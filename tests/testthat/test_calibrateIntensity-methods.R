@@ -40,6 +40,9 @@ test_that("calibrateIntensity works with median", {
   sMed <- calibrateIntensity(s, method="median")
   expect_equal(lapply(sMed, intensity),
                lapply(s, function(x)intensity(x)/median(intensity(x))))
+  sMed <- calibrateIntensity(s, method="median", range=c(2, 4))
+  expect_equal(unlist(lapply(sMed, intensity)),
+               as.vector(mapply(function(sp, m)intensity(sp)/m, sp=s, m=3:5)))
   # median == zero; see #51
   m <- createMassSpectrum(mass=1:5, intensity=c(rep(0, 4), 5))
   expect_equal(suppressWarnings(calibrateIntensity(m, method="median")), m)
@@ -53,4 +56,6 @@ test_that("calibrateIntensity works with PQN", {
   mPQN <- calibrateIntensity(m, method="PQN")
   expect_equal(unlist(lapply(mPQN, totalIonCurrent)),
                c(1, 1, 0.96875))
+  sPQN <- calibrateIntensity(s, method="PQN", range=c(2, 4))
+  expect_equal(sPQN, calibrateIntensity(s, method="TIC", range=c(2, 4)))
 })

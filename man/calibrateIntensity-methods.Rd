@@ -11,9 +11,9 @@ This function calibrates (normalize) intensities of
 
 \usage{
 \S4method{calibrateIntensity}{MassSpectrum}(object,
-  method=c("TIC", "PQN", "median"), \dots)
+  method=c("TIC", "PQN", "median"), range, \dots)
 \S4method{calibrateIntensity}{list}(object,
-  method=c("TIC", "PQN", "median"), \dots)
+  method=c("TIC", "PQN", "median"), range, \dots)
 }
 \arguments{
   \item{object}{\code{\linkS4class{MassSpectrum}} object or a \code{list} of
@@ -21,9 +21,11 @@ This function calibrates (normalize) intensities of
   \item{method}{the calibration method to be used. This should be one of
     \code{"TIC"}, \code{"PQN"} or \code{"median"}.
     See \sQuote{Details} section.}
+  \item{range}{\code{numeric} of length 2, if given the scaling factor is
+    calculated on the mass range from \code{range[1L]} to \code{range[2L]} and
+    applied to the whole spectrum.}
   \item{\dots}{arguments to be passed to other functions. Currently only
-    \code{range} is for \code{method="TIC"} is supported. If
-    \code{object} is a \code{list} \code{mc.cores} is also supported.}
+    \code{mc.cores} is supported if \code{object} is a \code{list}.}
 }
 \details{
   A number of different calibration methods are provided:
@@ -41,10 +43,11 @@ This function calibrates (normalize) intensities of
         \item{Calculate the quotients of all intensities of the spectra with
           those of the reference spectrum.}
         \item{Calculate the median of these quotients for each spectrum.}
-        \item{Divide all intensities of each spectrum by its median of quotients.}
+        \item{Divide all intensities of each spectrum by its median of
+          quotients.}
       }
     }
-    \item{\code{"Median"}:}{The median of intensities of a
+    \item{\code{"median"}:}{The median of intensities of a
       \code{\linkS4class{MassSpectrum}} object is set to one.}
   }
 }

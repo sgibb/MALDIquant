@@ -20,38 +20,30 @@
 setMethod(f="calibrateIntensity",
           signature=signature(object="MassSpectrum"),
           definition=function(object,
-                              method=c("TIC", "PQN", "median"), ...) {
+                              method=c("TIC", "PQN", "median"),
+                              range, ...) {
 
   method <- match.arg(method)
 
   switch(method,
-    "TIC" = {
-      optArgs <- list(...)
-
-      if (!is.null(optArgs$range)) {
-        tic <- totalIonCurrent(trim(object, range=optArgs$range))
-      } else {
-        tic <- totalIonCurrent(object)
-      }
-      .transformIntensity(object, fun=.calibrateIntensitySimple, offset=0L,
-                          scaling=tic)
+    "TIC" = ,
+    "median" = {
+      .transformIntensity(object, fun=.calibrateIntensitySimple,
+                          offset=0L,
+                          scaling=.scalingFactor(object, method=method,
+                                                 range=range))
     },
     "PQN" = {
       stop(dQuote("PQN"),
            " is not supported for a single MassSpectrum object.")
-    },
-    "median" = {
-      .transformIntensity(object, fun=.calibrateIntensitySimple,
-                          offset=0L, scaling=median(object@intensity))
-    }
-  )
+    })
 })
 
 ## list
 setMethod(f="calibrateIntensity",
           signature=signature(object="list"),
           definition=function(object,
-                              method=c("TIC", "PQN", "median"), ...) {
+                              method=c("TIC", "PQN", "median"), range, ...) {
 
   ## test arguments
   .stopIfNotIsMassSpectrumList(object)
@@ -61,10 +53,10 @@ setMethod(f="calibrateIntensity",
   switch(method,
     "TIC" = ,
     "median" = {
-      lapply(object, calibrateIntensity, method=method, ...)
+      lapply(object, calibrateIntensity, method=method, range=range, ...)
     },
     "PQN" = {
-      .calibrateProbabilisticQuotientNormalization(object)
+      .calibrateProbabilisticQuotientNormalization(object, range=range)
     }
   )
 })

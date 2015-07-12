@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.12.5 [2015-07-12 Sun]:
+- `calibratyIntensity`: gains a "range" argument for "median" and "PQN" as well;
+  in 1.12 just "TIC" was supported.
+
 Version 1.12.4 [2015-07-06 Mon]:
 - INTERNAL: turn `.calculateLabelPositions`, `.testLabelOverlap`,
   `.labelOverlap` into normal functions (where methods before).

@@ -16,13 +16,42 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
+## .scalingFactor
+## calculate scaling factor for TIC/median ranged calibration
+##
+## params:
+##  object: AbstractMassObject
+##  method: character
+##  range: double
+##
+## returns:
+##  double
+##
+.scalingFactor <- function(object, method=c("TIC", "median"), range) {
+
+  method <- match.arg(method)
+
+  if (!missing(range)) {
+    object <- trim(object, range=range)
+  }
+
+  switch(method,
+    "TIC" = {
+      totalIonCurrent(object)
+    },
+    "median" = {
+      median(object@intensity)
+    }
+  )
+}
+
 ## .calibrateIntensitySimple
 ## calibrate intensity values by offset and scaling factor
 ##
 ## params:
 ##  y: double, intensity values
-##  offset: double/function
-##  scaling: double/function
+##  offset: double
+##  scaling: double
 ##
 ## returns:
 ##  double, calibrated intensity values
@@ -56,15 +85,21 @@
 ##
 ## params:
 ##  l: list of MassSpectrum objects
+##  range: double
 ##
 ## returns:
 ##  list of calibrated MassSpectrum objects
 ##
-.calibrateProbabilisticQuotientNormalization <- function(l) {
+.calibrateProbabilisticQuotientNormalization <- function(l, range) {
   ## 1. integral normalization (==TIC)
-  l <- calibrateIntensity(l, method="TIC")
+  l <- calibrateIntensity(l, method="TIC", range=range)
   ## 2. median reference spectrum
-  reference <- .averageMassSpectra(l, fun=.colMedians, mergeMetaData=FALSE)
+  if (missing(range)) {
+    reference <- .averageMassSpectra(l, fun=.colMedians, mergeMetaData=FALSE)
+  } else {
+    reference <- .averageMassSpectra(trim(l, range=range), fun=.colMedians,
+                                     mergeMetaData=FALSE)
+  }
 
   lapply(l, function(x) {
     ## 3. quotient calculation
