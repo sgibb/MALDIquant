@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.12.6 [2015-07-13 Mon]:
+- BUGFIX: `.plotMsiSlice` just used the first center if "combine=TRUE";
+  affected functions: `plotMsiSlice`.
+
 Version 1.12.5 [2015-07-12 Sun]:
 - `calibratyIntensity`: gains a "range" argument for "median" and "PQN" as well;
   in 1.12 just "TIC" was supported.
