@@ -86,6 +86,6 @@ setMethod(f="plotMsiSlice",
 
   dim(x) <- c(dim(x), 1L)
 
-  .plotMsiSlice(x, colRamp=colRamp, interpolate=interpolate, scale=scale,
+  .plotMsiSlice(x, colRampList=colRamp, interpolate=interpolate, scale=scale,
                 legend=legend, ...)
 })
