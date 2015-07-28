@@ -21,6 +21,7 @@
   \itemize{
     \item{\code{\link[MALDIquant]{trim,list,numeric-method}}}
     \item{\code{\link[MALDIquant]{transformIntensity,list-method}}}
+    \item{\code{\link[MALDIquant]{smoothIntensity,list-method}}}
     \item{\code{\link[MALDIquant]{removeBaseline,list-method}}}
     \item{\code{\link[MALDIquant]{calibrateIntensity,list-method}}}
     \item{\code{\link[MALDIquant]{detectPeaks,list-method}}}
