@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.12.8 [2015-08-11 Tue]:
+- Extend example `?MALDIquant-parallel` manual page.
+
 Version 1.12.7 [2015-07-28 Tue]:
 - FIX: add `smoothIntensity` to the `?MALDIquant-parallel` manual page. Thanks
   Leiming Yu <leimingyu830@gmail.com> for reporting the missing entry.

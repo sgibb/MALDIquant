@@ -13,7 +13,12 @@
   \code{mc.cores} argument in all functions is \code{1L}.
   It depends on the size of the dataset which step (often only
   \code{\link[MALDIquant]{removeBaseline}} and
-  \code{\link[MALDIquant]{detectPeaks}}) benefits from parallelisation.
+  \code{\link[MALDIquant]{detectPeaks}}) benefits from parallelisation. \cr
+  In general it is faster to encapsulate the complete workflow into a function
+  and parallelise it using \code{\link[parallel]{mclapply}} instead of using the
+  \code{mc.cores} argument of each method. The reason is the reduced overhead
+  for object management (only one split/combine is needed instead of doing these
+  operations in each function again and again).
 }
 \details{
 \describe{
@@ -52,7 +57,32 @@ if(.Platform$OS.type == "unix") {
   print(system.time(
     b2 <- removeBaseline(fiedler2009subset, method="SNIP", mc.cores=2)
   ))
-  print(all.equal(b1, b2))
+  stopifnot(all.equal(b1, b2))
 }
+
+## parallelise complete workflow
+workflow <- function(spectra, cores) {
+  s <- transformIntensity(spectra, method="sqrt", mc.cores=cores)
+  s <- smoothIntensity(s, method="SavitzkyGolay", halfWindowSize=10,
+                       mc.cores=cores)
+  s <- removeBaseline(s, method="SNIP", iterations=100, mc.cores=cores)
+  s <- calibrateIntensity(s, method="TIC", mc.cores=cores)
+  detectPeaks(s, method="MAD", halfWindowSize=20, SNR=2, mc.cores=cores)
+}
+
+if(.Platform$OS.type == "unix") {
+  ## parallelise the complete workflow is often faster because the overhead is
+  ## reduced
+  print(system.time(
+    p1 <- unlist(parallel::mclapply(fiedler2009subset,
+                                    function(x)workflow(list(x), cores=1),
+                                    mc.cores=2), use.names=FALSE)
+  ))
+  print(system.time(
+    p2 <- workflow(fiedler2009subset, cores=2)
+  ))
+  stopifnot(all.equal(p1, p2))
+}
+
 }
 \keyword{misc}
