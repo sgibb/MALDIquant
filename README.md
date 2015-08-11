@@ -1,6 +1,6 @@
 # MALDIquant
 [![build status](https://travis-ci.org/sgibb/MALDIquant.svg?branch=master)](https://travis-ci.org/sgibb/MALDIquant)
-[![codecov.io](https://img.shields.io/codecov/c/github/sgibb/MALDIquant.svg?branch=master)](https://codecov.io/github/sgibb/MALDIquant/?branch=master)
+[![codecov.io](http://codecov.io/github/sgibb/MALDIquant/coverage.svg?branch=master)](http://codecov.io/github/sgibb/MALDIquant?branch=master)
 [![license](http://img.shields.io/badge/license-GPL%20%28%3E=%203%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
 [![metacran version](http://www.r-pkg.org/badges/version/MALDIquant)](http://cran.r-project.org/web/packages/MALDIquant/index.html)
 [![metacran downloads](http://cranlogs.r-pkg.org/badges/MALDIquant?color=brightgreen)](http://cran.r-project.org/web/packages/MALDIquant/index.html)
