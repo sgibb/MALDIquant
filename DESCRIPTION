@@ -8,11 +8,16 @@ Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
 Depends: R (>= 3.0.0), methods
 Imports: parallel
 Suggests: knitr, testthat (>= 0.8)
-Description: A complete analysis pipeline for MALDI-TOF and other mass
-        spectrometry data. Distinctive features include baseline
-        subtraction methods such as TopHat or SNIP, peak alignment
-        using warping functions, handling of replicated measurements as
-        well as allowing spectra with different resolutions.
+Description: A complete analysis pipeline for matrix-assisted laser
+        desorption/ionization-time-of-flight (MALDI-TOF) and other
+        two-dimensional mass spectrometry data. In addition to commonly
+        used plotting and processing methods it includes distinctive
+        features, namely baseline subtraction methods such as
+        morphological filters (TopHat) or the statistics-sensitive
+        non-linear iterative peak-clipping algorithm (SNIP), peak
+        alignment using warping functions, handling of replicated
+        measurements as well as allowing spectra with different
+        resolutions.
 License: GPL (>= 3)
 URL: http://strimmerlab.org/software/maldiquant/
         https://github.com/sgibb/MALDIquant/

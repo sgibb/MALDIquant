@@ -11,11 +11,16 @@ Quantitative Analysis of Mass Spectrometry Data
 
 ## Description
 
-MALDIquant provides a complete analysis pipeline for MALDI-TOF and other mass
-spectrometry data. Distinctive features include baseline subtraction methods
-such as TopHat or SNIP, peak alignment using warping functions,
-handling of replicated measurements as well as allowing spectra with
-different resolutions.
+MALDIquant provides a complete analysis pipeline for
+matrix-assisted laser desorption/ionization-time-of-flight (MALDI-TOF)
+and other two-dimensional mass spectrometry data.
+
+In addition to commonly used plotting and processing methods it
+includes distinctive features, namely baseline
+subtraction methods such as morphological filters (TopHat) or the
+statistics-sensitive non-linear iterative peak-clipping algorithm
+(SNIP), peak alignment using warping functions, handling of replicated
+measurements as well as allowing spectra with different resolutions.
 
 Please visit: http://strimmerlab.org/software/maldiquant/
 
