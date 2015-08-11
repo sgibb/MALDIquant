@@ -58,6 +58,6 @@ install_github("sgibb/MALDIquant")
 ```
 
 ## Examples
-To illustrate the application of MALDIquant for analyzis of mass spectrometry
+To illustrate the application of MALDIquant for analyses of mass spectrometry
 data please find a number of example R scripts in the
 [MALDIquantExamples](https://github.com/sgibb/MALDIquantExamples) repository.
