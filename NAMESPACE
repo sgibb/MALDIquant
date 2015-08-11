@@ -5,6 +5,7 @@ importFrom("parallel",
               "mcmapply")
 
 importFrom("graphics",
+              "abline",
               "arrows",
               "lines",
               "par",
