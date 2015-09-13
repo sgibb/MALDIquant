@@ -2,8 +2,8 @@ language: r
 warnings_are_errors: true
 apt_packages:
 - pgf
-r_github_packages:
-- jimhester/covr
+r_packages:
+- covr
 r_binary_packages:
 - testthat
 - knitr
