@@ -27,7 +27,7 @@ referencePeaks(l, method=c("strict", "relaxed"), minFrequency=0.9,
     objects.
   }
   \item{tolerance}{
-    \code{double}, maximal deviation of a peak position (mass) to be
+    \code{double}, maximal relative deviation of a peak position (mass) to be
     considered as identical.
   }
 }

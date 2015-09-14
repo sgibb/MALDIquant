@@ -23,7 +23,7 @@ determineWarpingFunctions(l, reference, tolerance=0.002,
     \code{\link[MALDIquant]{referencePeaks}} is used.
   }
   \item{tolerance}{
-    \code{double}, maximal deviation of a peak position (mass) to be
+    \code{double}, maximal relative deviation of a peak position (mass) to be
     considered as identical.
   }
   \item{method}{

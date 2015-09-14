@@ -19,7 +19,7 @@ binPeaks(l, method=c("strict", "relaxed"), tolerance=0.002)
     or more peaks of the sampe sample. \code{"relaxed"} allows multiple
     peaks of the same sample in one bin.}
   \item{tolerance}{
-    \code{double}, maximal deviation of a peak position (mass) to be
+    \code{double}, maximal relative deviation of a peak position (mass) to be
     considered as identical.
   }
 }

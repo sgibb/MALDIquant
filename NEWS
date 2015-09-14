@@ -1,6 +1,12 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.12.9 [2015-09-14 Mon]:
+- Add hint about _relative_ tolerance in manual pages `?alignSpectra`,
+  `?binPeaks`, `?determineWarpingFunctions` and `?referencePeaks`;
+  Thanks to Damien Portevin <damien.portevin@unibas.ch> for reporting of the
+  ambiguous phrase.
+
 Version 1.12.8 [2015-08-11 Tue]:
 - Extend example `?MALDIquant-parallel` manual page.
 - Rewrite DESCRIPTION and explain akronyms to satisfy CRAN maintainers;
@@ -8,7 +14,7 @@ Version 1.12.8 [2015-08-11 Tue]:
 
 Version 1.12.7 [2015-07-28 Tue]:
 - FIX: add `smoothIntensity` to the `?MALDIquant-parallel` manual page. Thanks
-  Leiming Yu <leimingyu830@gmail.com> for reporting the missing entry.
+  to Leiming Yu <leimingyu830@gmail.com> for reporting the missing entry.
 
 Version 1.12.6 [2015-07-13 Mon]:
 - BUGFIX: `.plotMsiSlice` just used the first center if "combine=TRUE";

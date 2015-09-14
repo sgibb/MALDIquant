@@ -32,7 +32,7 @@ alignSpectra(spectra, halfWindowSize=20, noiseMethod="MAD", SNR=2,
     \code{\link[MALDIquant]{determineWarpingFunctions}}.
   }
   \item{tolerance}{
-    \code{double}, maximal deviation of a peak position (mass) to be
+    \code{double}, maximal relative deviation of a peak position (mass) to be
     considered as identical; see
     \code{\link[MALDIquant]{determineWarpingFunctions}}.
   }
