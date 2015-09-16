@@ -1,44 +1,47 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
-Version 1.12.9 [2015-09-14 Mon]:
-- Add hint about _relative_ tolerance in manual pages `?alignSpectra`,
+
+CHANGES IN MALDIquant VERSION 1.13 [2015-09-16]:
+------------------------------------------------
+
+IMPROVEMENTS
+
+* `calibratyIntensity` gains a "range" argument for "median" and "PQN" as well;
+  in 1.12 just "TIC" was supported.
+* Extend example section in `?MALDIquant-parallel` manual page.
+* Add hint about _relative_ tolerance in manual pages `?alignSpectra`,
   `?binPeaks`, `?determineWarpingFunctions` and `?referencePeaks`;
   Thanks to Damien Portevin <damien.portevin@unibas.ch> for reporting of the
   ambiguous phrase.
 
-Version 1.12.8 [2015-08-11 Tue]:
-- Extend example `?MALDIquant-parallel` manual page.
-- Rewrite DESCRIPTION and explain akronyms to satisfy CRAN maintainers;
-  closes #50.
+MODIFICATIONS
 
-Version 1.12.7 [2015-07-28 Tue]:
-- FIX: add `smoothIntensity` to the `?MALDIquant-parallel` manual page. Thanks
+* Rewrite DESCRIPTION and explain acronyms to follow the latest version of the
+  CRAN Repository Policy.
+
+DEFUNCT ARGUMENTS/FUNCTIONS
+
+* `plotImsSlice`: use `plotMsiSlice` instead. It has slightly different
+  arguments; see `?plotMsiSlice` for details.
+
+BUGFIXES
+
+* `calibrateIntensity`: don't apply a scaling factor that equals zero anymore
+  (happens in rare cases for method="median"). It throws a warning instead and
+  leaves the spectrum untouched; fixes #51.
+* `.plotMsiSlice` just used the first center if "combine=TRUE";
+  affected functions: `plotMsiSlice`.
+* Add `smoothIntensity` to the `?MALDIquant-parallel` manual page. Thanks
   to Leiming Yu <leimingyu830@gmail.com> for reporting the missing entry.
 
-Version 1.12.6 [2015-07-13 Mon]:
-- BUGFIX: `.plotMsiSlice` just used the first center if "combine=TRUE";
-  affected functions: `plotMsiSlice`.
+INTERNAL CHANGES
 
-Version 1.12.5 [2015-07-12 Sun]:
-- `calibratyIntensity`: gains a "range" argument for "median" and "PQN" as well;
-  in 1.12 just "TIC" was supported.
-
-Version 1.12.4 [2015-07-06 Mon]:
-- INTERNAL: turn `.calculateLabelPositions`, `.testLabelOverlap`,
-  `.labelOverlap` into normal functions (where methods before).
-
-Version 1.12.3 [2015-07-06 Mon]:
-- `calibrateIntensity`: doesn't apply a scaling factor that equals zero
-  (sometimes happen for method="median"). It throws a warning instead and
-  leaves the spectrum untouched; fixes #51.
-
-Version 1.12.2 [2015-07-01 Wed]:
-- Importing non-base functions/methods from recommended R packages (graphics,
-  stats, ...), to avoid NOTE on CRAN.
-
-Version 1.12.1 [2015-06-14 Tue]:
-- `msiSlices`: use NA__real_ instead of logical NA.
+* Importing non-base functions/methods from recommended R packages (graphics,
+  stats, ...) as required by R-devel.
+* Turn `.calculateLabelPositions`, `.testLabelOverlap`, `.labelOverlap` into
+  normal functions (were methods before).
+* `msiSlices`: use NA__real_ instead of logical NA.
 
 
 CHANGES IN MALDIquant VERSION 1.12 [2015-06-11]:
