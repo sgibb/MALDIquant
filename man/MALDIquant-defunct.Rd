@@ -1,11 +1,14 @@
 \name{MALDIquant-defunct}
 \alias{MALDIquant-defunct}
+\alias{plotImsSlice}
 \title{Removed Functions/Methods in Package \pkg{MALDIquant}}
 \description{
   These functions/methods are removed.
 }
 \details{
 \describe{
+  \item{\code{plotImsSlice}}{use \code{\link[MALDIquant]{plotMsiSlice}}
+    instead.}
   \item{totalIonCurrent}{\code{signature(object = "MassPeaks")}: removed.}
   \item{totalIonCurrent<-}{\code{signature(object = "AbstractMassObject",
       value = "numeric")}:
