@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.13.1 [2015-09-16 Mon]:
+REMOVED ARGUMENTS/FUNCTIONS: plotImsSlice (was defunct since 1.13)
+
 
 CHANGES IN MALDIquant VERSION 1.13 [2015-09-16]:
 ------------------------------------------------
