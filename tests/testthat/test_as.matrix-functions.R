@@ -5,9 +5,9 @@ p <- list(createMassPeaks(mass=1:4, intensity=11:14),
 s <- list(createMassSpectrum(mass=1:5, intensity=11:15),
           createMassSpectrum(mass=1:5, intensity=21:25))
 
-mp <- matrix(c(11:14, NA, NA, 22:25), byrow=TRUE, ncol=5, nrow=2,
+mp <- matrix(c(11:14, NA_real_, NA_real_, 22:25), byrow=TRUE, ncol=5, nrow=2,
              dimnames=list(NULL, 1:5))
-ms <- matrix(c(11:15, 21:25), byrow=TRUE, ncol=5, nrow=2,
+ms <- matrix(as.double(c(11:15, 21:25)), byrow=TRUE, ncol=5, nrow=2,
              dimnames=list(NULL, 1:5))
 
 mb <- matrix(c(rep(1L, 4), 0L, 0L, rep(1L, 4)), byrow=TRUE, ncol=5, nrow=2,
@@ -28,10 +28,10 @@ test_that(".as.binary.matrix", {
 })
 
 test_that(".as.matrix.MassObjectsList", {
-    expect_identical(MALDIquant:::.as.matrix.MassObjectList(p), mp)
-    expect_identical(MALDIquant:::.as.matrix.MassObjectList(s), ms)
+  expect_identical(MALDIquant:::.as.matrix.MassObjectList(p), mp)
+  expect_identical(MALDIquant:::.as.matrix.MassObjectList(s), ms)
 })
 
 test_that(".as.binary.matrix", {
-    expect_identical(MALDIquant:::.as.binary.matrix(mp), mb)
+  expect_identical(MALDIquant:::.as.binary.matrix(mp), mb)
 })

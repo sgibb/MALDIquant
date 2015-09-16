@@ -77,7 +77,7 @@ averageMassSpectra <- function(l, labels, method=c("mean", "median", "sum"),
   if (!is.na(i)) {
     mass <- l[[i]]@mass
   } else {
-    mass <- NA
+    mass <- NA_real_
   }
 
   ## interpolate not existing masses

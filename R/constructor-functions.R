@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2011-2015 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -41,15 +41,16 @@ createMassSpectrum <- function(mass, intensity, metaData=list()) {
 ##  default constructor: MassPeaks class
 ##
 ## params:
-##  mass: vector, spectrum mass
-##  intensity: vector, spectrum intensities
+##  mass: vector, peaks mass
+##  intensity: vector, peaks intensities
+##  snr: vector, peaks snr
 ##  metaData: list, metadata
 ##
 ## returns:
 ##  a MassPeaks object
 ##
 createMassPeaks <- function(mass, intensity,
-                            snr=as.double(rep.int(NA, length(intensity))),
+                            snr=rep.int(NA_real_, length(intensity)),
                             metaData=list()) {
   new(Class="MassPeaks", mass=mass, intensity=intensity, snr=snr,
       metaData=metaData)

@@ -122,7 +122,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
   lIdx <- split(seq_along(binnedMass), samples)
 
   ## calculate differences
-  binnedMass[binnedMass == 0L] <- NA
+  binnedMass[binnedMass == 0L] <- NA_real_
   d <- binnedMass - mass
 
   ## each function which determines a warping function uses these 3 arguments

@@ -36,7 +36,7 @@
 
   i <- findInterval(mass, uniqueMass)
 
-  m <- matrix(NA_integer_, nrow=length(l), ncol=length(uniqueMass),
+  m <- matrix(NA_real_, nrow=length(l), ncol=length(uniqueMass),
               dimnames=list(NULL, uniqueMass))
   m[cbind(r, i)] <- intensity
   attr(m, "mass") <- uniqueMass
@@ -56,5 +56,6 @@
   isNA <- which(is.na(m))
   m[] <- 1L
   m[isNA] <- 0L
+  mode(m) <- "integer"
   m
 }
