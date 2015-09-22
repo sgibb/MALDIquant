@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.13.2 [2015-09-22 Tue]:
+MALDIquant depends on R 3.2.0 now. Due to a bug in R
+(PR#15707, fixed in R 3.2.0) the ... argument was not interpreted in nested
+function calls.
+
 Version 1.13.1 [2015-09-16 Mon]:
 REMOVED ARGUMENTS/FUNCTIONS: plotImsSlice (was defunct since 1.13)
 INTERNAL CHANGES: `.as.binary.matrix` now always returns an integer matrix.
