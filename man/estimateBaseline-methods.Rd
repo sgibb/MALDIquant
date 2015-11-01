@@ -37,7 +37,8 @@ This method estimates the baseline of mass spectrometry data
       \code{decreasing}: In Morhac 2009 a decreasing clipping window is
       suggested to get a smoother baseline.  For \code{decreasing = TRUE}
       (\code{decreasing = FALSE}) \emph{k}=\code{iterations} is decreased
-      (increased) by one until zero (\code{iterations}) is reached.
+      (increased) by one until zero (\code{iterations}) is reached. The default
+      setting is \code{decreasing = TRUE}.
     }
     \item{\code{"TopHat"}:}{
       This algorithm applies a moving minimum (erosion filter) and subsequently
