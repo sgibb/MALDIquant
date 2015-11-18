@@ -1,18 +1,29 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
-Version 1.13.3 [2015-11-01 Sun]:
-`?estimateBaseline`: clarify that "decreasing=TRUE" is the default for the SNIP
-baseline estimation algorithm (`estimateBaseline(..., method="SNIP")`).
 
-Version 1.13.2 [2015-09-22 Tue]:
-MALDIquant depends on R 3.2.0 now. Due to a bug in R
-(PR#15707, fixed in R 3.2.0) the ... argument was not interpreted in nested
-function calls.
+CHANGES IN MALDIquant VERSION 1.14 [2015-11-18]:
+------------------------------------------------
 
-Version 1.13.1 [2015-09-16 Mon]:
-REMOVED ARGUMENTS/FUNCTIONS: plotImsSlice (was defunct since 1.13)
-INTERNAL CHANGES: `.as.binary.matrix` now always returns an integer matrix.
+IMPROVEMENTS
+
+* `?estimateBaseline`: clarify that "decreasing=TRUE" is the default for the
+  SNIP baseline estimation algorithm (`estimateBaseline(..., method="SNIP")`).
+
+BUGFIXES
+
+* MALDIquant depends on R 3.2.0 now. Due to a bug in R (PR#15707, fixed in
+  R 3.2.0) the ... argument was not interpreted in nested function calls. This
+  results in failures of `calibratyIntensity` on R < 3.2.0.
+
+REMOVED ARGUMENTS/FUNCTIONS
+
+* `plotImsSlice`: (was defunct since 1.13) use `plotMsiSlice` instead. It has
+  slightly different arguments; see `?plotMsiSlice` for details.
+
+INTERNAL CHANGES:
+
+* `.as.binary.matrix` now always returns an integer matrix.
 
 
 CHANGES IN MALDIquant VERSION 1.13 [2015-09-16]:
