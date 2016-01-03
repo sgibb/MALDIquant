@@ -2,11 +2,10 @@ language: r
 warnings_are_errors: true
 apt_packages:
 - pgf
-r_packages:
-- covr
 r_binary_packages:
 - testthat
 - knitr
+- covr
 after_success:
 - Rscript -e 'library(covr);codecov(exclusions="R/Deprecated.R")'
 notifications:
