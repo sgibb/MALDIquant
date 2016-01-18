@@ -1,4 +1,4 @@
-## Copyright 2012 Sebastian Gibb
+## Copyright 2012-2016 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -69,72 +69,32 @@
   r <- pi / 180L * c(90, as.vector(rbind(seq(80L, 40L, by=-10L),
                                          seq(100L, 140L, by=10L))))
 
+  testrects <- rbind(matrix(c(object@mass, rep(0L, length(object)),
+                              object@mass, object@intensity), ncol=4L),
+                       rects[seq_len(currentIndex - 1L),
+                             c("x0", "y0", "x1", "y1")])
+
   for (k in 0L:maxSteps) {
     ## move up
     cur <- rects[currentIndex, ]
-    cur[c("y0", "y1", "y")] <- cur[c("y0", "y1", "y")] + k * cur[c("h")]
-    isOverlapped <- .labelOverlap(object, cur,
-                                  rects[seq_len(currentIndex - 1L), ])
+    cur[c("y0", "y1", "y")] <- cur[c("y0", "y1", "y")] + k * cur["h"]
 
-    if (isOverlapped) {
-      for (l in r) {
+    for (l in r) {
         ## move in curve
         oldcur <- cur
         cur[c("y0", "y1", "y")] <- cur[c("y0", "y1", "y")] +
-                                   sin(l) * cur[c("h")]
+                                   sin(l) * k * cur["h"]
         cur[c("x0", "x1", "x")] <- cur[c("x0", "x1", "x")] +
-                                   cos(l) * cur[c("w")]
-        isOverlapped <- .labelOverlap(object, cur,
-                                      rects[seq_len(currentIndex - 1L), ])
-        if (!isOverlapped) {
-          ## success
-          return(cur)
-        }
-        cur <- oldcur
-      }
-    } else {
+                                   cos(l) * k * cur["w"]
       ## success
-      return(cur)
+      if (!.overlaps(cur, testrects)) {
+        return(cur)
+      }
+      cur <- oldcur
     }
   }
   ## no success, return original pos
   rects[currentIndex, ]
-}
-
-## .labelOverlap
-##  does current rect overlap any other one?
-##
-## params:
-##  object: a single MassPeaks object
-##  cur: vector of coordinates (which should test agains 'rects')
-##  rects: a matrix of coordinates (created by .textRects)
-##
-## returns:
-##  TRUE/FALSE
-##
-.labelOverlap <- function(object, cur, rects) {
-  x <- cur[c(1L, 3L)]
-  y <- cur[c(2L, 4L)]
-
-  rects <- matrix(rects, ncol=8L)
-
-  ## peak overlap?
-  peakOverlap <- any(x[1L] <= object@mass & x[2L] >= object@mass &
-                     y[1L] <= object@intensity)
-
-  if (peakOverlap) {
-    return(TRUE)
-  }
-
-  ## text overlap?
-  textOverlap <- any(((x[1L] > rects[, 1L] & x[1L] < rects[, 3L]) |
-                      (x[2L] > rects[, 1L] & x[2L] < rects[, 3L]) |
-                      (x[1L] < rects[, 1L] & x[2L] > rects[, 3L])) &
-                     ((y[1L] > rects[, 2L] & y[1L] < rects[, 4L]) |
-                      (y[2L] > rects[, 2L] & y[2L] < rects[, 4L]) |
-                      (y[1L] < rects[, 2L] & y[2L] > rects[, 4L])))
-
-  textOverlap
 }
 
 ## .textLabelRects
@@ -151,17 +111,39 @@
 ## returns:
 ##  a matrix of coordinates
 ##
-.textLabelRects <- function(x, y, text, adj, cex, offset=c(0.0, 0.2)) {
-  t(mapply(function(xc, yc, t) {
-    w <- strwidth(t, cex=cex)
-    h <- strheight(t, cex=cex)
-    ## extra calculation of offsets to be independend of adj
-    woffset <- w * offset[1L]
-    hoffset <- h * offset[2L]
-    return(c(x0=xc - w * adj[1L] - woffset,
-             y0=yc - h * adj[2L] - hoffset,
-             x1=xc + w * (1L - adj[1L]) + woffset,
-             y1=yc + h * (1L - adj[2L]) + hoffset,
-             x=xc, y=yc, w=w, h=h))
-  }, xc=x, yc=y, t=text))
+.textLabelRects <- function(x, y, text, adj=c(0.5, 0L), cex=0.7,
+                            offset=c(0.0, 0.2)) {
+  w <- strwidth(text, cex=cex)
+  h <- strheight(text, cex=cex)
+
+  ## extra calculation of offsets to be independend of adj
+  woffset <- w * offset[1L]
+  hoffset <- h * offset[2L]
+
+  matrix(c(x - w * adj[1L] - woffset,
+           y - h * adj[2L] - hoffset,
+           x + w * (1L - adj[1L]) + woffset,
+           y + h * (1L - adj[2L]) + hoffset,
+           x, y, w, h),
+         ncol = 8L, dimnames = list(c(), c("x0", "y0", "x1", "y1",
+                                           "x", "y", "w", "h")))
+}
+
+## .overlaps
+## does rectangles overlap?
+##
+## params:
+##  a: vector, length 4, c(x0, y0, x1, y1); c(x0, y0) bottom left
+##  b: matrix, at least 4 columns, c(x0, y0, x1, y1)
+##
+## returns:
+##  TRUE/FALSE
+.overlaps <- function(a, b) {
+  if (is.vector(b)) {
+    b <- t(b)
+  }
+  any(# rectangles on left/right of each other?
+      !((a[1L] >= b[, 3L] | a[3L] <= b[, 1L]) |
+      # rectangles on top/bottom of each other?
+      (a[2L] >= b[, 4L] | a[4L] <= b[, 2L])))
 }
