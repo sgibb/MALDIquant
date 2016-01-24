@@ -15,7 +15,7 @@ of the peaks stored in a \code{\linkS4class{MassPeaks}} object to a plot.
   digits=3, underline=TRUE,
   verticalOffset=abs(diff(par("usr")[3:4]))*0.01,
   absoluteVerticalPos,
-  adj=c(0.5, 0), cex=0.7,
+  adj=c(0.5, 0), cex=0.7, srt=0,
   avoidOverlap=FALSE,
   arrowLength=0, arrowLwd=0.5, arrowCol=1,
   \dots)
@@ -35,12 +35,17 @@ of the peaks stored in a \code{\linkS4class{MassPeaks}} object to a plot.
   \item{adj}{\code{numeric}, adjust text to the left, center, right and top,
     center, bottom; see \code{\link[graphics]{text}}.}
   \item{cex}{\code{numeric}, font size, see \code{\link[graphics]{par}}.}
+  \item{srt}{\code{numeric}, the label rotation in degrees.}
   \item{avoidOverlap}{\code{logical}, try to find label coordinates to avoid
     overlap.}
   \item{arrowLength, arrowLwd, arrowCol}{arrow parameters, possible vectors.
     \code{NA} values in \code{arrowCol} cause the arrow to be omitted, see
     \code{\link[graphics]{arrows}}.}
   \item{...}{arguments to be passed to \code{\link[graphics]{text}}.}
+}
+\details{
+  Please note that \code{avoidOverlap = TRUE} is just supported for
+  \code{srt \%\% 90 == 0} (means \code{srt} has to be a multiple of 90 degree).
 }
 \author{Sebastian Gibb}
 \seealso{

@@ -26,18 +26,19 @@
 ##  peakLabels: peak labels
 ##  adj: text alignment ?par("adj")
 ##  cex: font size ?par("cex")
+##  srt: rotation in degree
 ##  maxSteps: max tries to avoid collisons
 ##
 ## returns:
 ##  a matrix of coordinates
 ##
-.calculateLabelPositions <- function(object, x, y, peakLabels, adj, cex,
+.calculateLabelPositions <- function(object, x, y, peakLabels, adj, cex, srt,
                                      maxSteps=100L) {
   ## start with smallest peak
   i <- sort.int(y, index.return=TRUE, method="quick")$ix
 
   ## calculate label rectangles
-  rects <- .textLabelRects(x[i], y[i], peakLabels[i], adj=adj, cex=cex)
+  rects <- .textLabelRects(x[i], y[i], peakLabels[i], adj=adj, cex=cex, srt=srt)
 
   ## move rectangles around to avoid collisons
   for (j in seq_along(x)) {
@@ -48,9 +49,7 @@
   ## undo sorting
   rects[i, ] <- rects
 
-  list(x=rects[, "x"], y=rects[, "y"],
-       xleft=rects[, "x0"], ybottom=rects[, "y0"],
-       xright=rects[, "x1"], ytop=rects[, "y1"])
+  rects
 }
 
 ## .testLabelOverlap
@@ -76,16 +75,17 @@
 
   for (k in 0L:maxSteps) {
     ## move up
+    s <- k/4L
     cur <- rects[currentIndex, ]
-    cur[c("y0", "y1", "y")] <- cur[c("y0", "y1", "y")] + k * cur["h"]
+    cur[c("y0", "y1", "y")] <- cur[c("y0", "y1", "y")] + s * cur["h"]
 
     for (l in r) {
         ## move in curve
         oldcur <- cur
         cur[c("y0", "y1", "y")] <- cur[c("y0", "y1", "y")] +
-                                   sin(l) * k * cur["h"]
+                                   sin(l) * s * cur["h"]
         cur[c("x0", "x1", "x")] <- cur[c("x0", "x1", "x")] +
-                                   cos(l) * k * cur["w"]
+                                   cos(l) * s * cur["w"]
       ## success
       if (!.overlaps(cur, testrects)) {
         return(cur)
@@ -106,31 +106,45 @@
 ##  text: peak labels
 ##  adj: text alignment ?par("adj")
 ##  cex: font size ?par("cex")
+##  srt: rotation in degree
 ##  offset: offset
 ##
 ## returns:
 ##  a matrix of coordinates
 ##
-.textLabelRects <- function(x, y, text, adj=c(0.5, 0L), cex=0.7,
+.textLabelRects <- function(x, y, text, adj=c(0.5, 0L), cex=0.7, srt=0,
                             offset=c(0.0, 0.2)) {
-  w <- strwidth(text, cex=cex)
-  h <- strheight(text, cex=cex)
-
+  wh <- .strWH(text, srt=srt, cex=cex)
   ## extra calculation of offsets to be independend of adj
-  woffset <- w * offset[1L]
-  hoffset <- h * offset[2L]
+  offset <- t(t(wh) * offset)
 
-  matrix(c(x - w * adj[1L] - woffset,
-           y - h * adj[2L] - hoffset,
-           x + w * (1L - adj[1L]) + woffset,
-           y + h * (1L - adj[2L]) + hoffset,
-           x, y, w, h),
-         ncol = 8L, dimnames = list(c(), c("x0", "y0", "x1", "y1",
-                                           "x", "y", "w", "h")))
+  m <- matrix(c(x - wh[, "w"] * adj[1L] - offset[, "w"],
+                y - wh[, "h"] * adj[2L] - offset[, "h"],
+                x + wh[, "w"] * (1L - adj[1L]) + offset[, "w"],
+                y + wh[, "h"] * (1L - adj[2L]) + offset[, "h"],
+                x, y, wh[, "w"], wh[, "h"]),
+              ncol = 8L, dimnames = list(c(), c("x0", "y0", "x1", "y1",
+                                                "x", "y", "w", "h")))
+  if (srt) {
+    m[, c("x0", "x1", "y0", "y1")] <-
+      .rotate(rbind(m[, c("x0", "y0")], m[, c("x1", "y1")]),
+              center=m[, c("x", "y")], srt=srt)
+
+    if (m[1L, "x0"] > m[1L,  "x1"]) {
+      m[, c("x1", "x0")] <- m[, c("x0", "x1")]
+    }
+    if (m[1L, "y0"] > m[1L,  "y1"]) {
+      m[, c("y1", "y0")] <- m[, c("y0", "y1")]
+    }
+    m[, c("w", "h")] <- m[, c("x1", "y1")] - m[, c("x0", "y0")]
+  }
+  m
 }
 
 ## .overlaps
 ## does rectangles overlap?
+##
+## HINT: doesn't work for rotated rectangles (!= 0, 90, 180, 270, 360)
 ##
 ## params:
 ##  a: vector, length 4, c(x0, y0, x1, y1); c(x0, y0) bottom left
@@ -146,4 +160,70 @@
       !((a[1L] >= b[, 3L] | a[3L] <= b[, 1L]) |
       # rectangles on top/bottom of each other?
       (a[2L] >= b[, 4L] | a[4L] <= b[, 2L])))
+}
+
+## .scaleFactor
+## get height to width scale factor of a graphic device
+##
+## returns:
+##  double, scale factor
+##
+.scaleFactor <- function() {
+  usr <- par("usr")
+  pin <- par("pin")
+
+  dx <- usr[2L] - usr[1L]
+  dy <- usr[4L] - usr[3L]
+
+  (dy * pin[1L])/(dx * pin[2L])
+}
+
+## .rotate
+## rotate rectangle
+##
+## params:
+##  x: matrix, 2 columns, x,y coordinates
+##  center: matrix, 2 columns, rotation center x,y coordinate
+##  srt: rotation in degree
+## returns:
+##  double, length 2, x, y, rotated
+##
+.rotate <- function(x, center, srt) {
+  stopifnot(all(dim(x)) == all(dim(center)))
+  a <- pi * srt / 180L
+  cosa <- cos(a)
+  sina <- sin(a)
+
+  dx <- x[, 1L] - center[, 1L]
+  dy <- x[, 2L] - center[, 2L]
+
+  x[, 1L] <- center[, 1L] + dx * cosa - dy * sina
+  x[, 2L] <- center[, 2L] + dx * sina + dy * cosa
+
+  x
+}
+
+## .strWH
+## string width and height scaled to device scale and rotatet
+##
+## TODO: doesn't work for srt != 0, 90, 180, ... (.overlaps doesn't work for
+## rotated rectangles)
+##
+## params:
+##  text: text
+##  cex: character scaling factor (see ?par)
+##  srt: rotation in degree
+##  scale: scale factor
+##
+## returns:
+##  double, length 2, w, h
+##
+.strWH <- function(text, srt, cex=0.7, scale=.scaleFactor()) {
+  a <- pi * srt / 180L
+
+  scale <- abs(cos(a) + sin(a) * scale)
+
+  matrix(c(strwidth(text, cex=cex) * scale,
+           strheight(text, cex=cex) / scale), ncol = 2L,
+         dimnames = list(c(), c("w", "h")))
 }

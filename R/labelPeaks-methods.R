@@ -1,4 +1,4 @@
-## Copyright 2011-2013 Sebastian Gibb
+## Copyright 2011-2016 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -23,8 +23,8 @@ setMethod(f="labelPeaks",
                               ## verticalOffset ca. 0.01 of plot height
                               verticalOffset=abs(diff(par("usr")[3L:4L]))*0.01,
                               absoluteVerticalPos, adj=c(0.5, 0L), cex=0.7,
-                              avoidOverlap=FALSE, arrowLength=0L, arrowLwd=0.5,
-                              arrowCol=1L, ...) {
+                              srt=0L, avoidOverlap=FALSE,
+                              arrowLength=0L, arrowLwd=0.5, arrowCol=1L, ...) {
 
   ## index
   if (missing(index) && missing(mass)) {
@@ -76,17 +76,23 @@ setMethod(f="labelPeaks",
   }
 
   if (avoidOverlap) {
+    if (srt %% 90L != 0L) {
+      stop(sQuote("avoidOverlap = TRUE"), " and ", sQuote("srt != x * 90"),
+           " is not supported.")
+    }
+
     ## inspired by Ian Fellows' wordcloud::wordlayout
-    p <- .calculateLabelPositions(object, x, y, labels, adj=adj, cex=cex)
+    p <- .calculateLabelPositions(object, x, y, labels, adj=adj, cex=cex,
+                                  srt=srt)
 
     ## create arrows from label to peak
-    arrows(x0=p$x, y0=p$y, x1=x, y1=y, col=arrowCol, length=arrowLength,
-           lwd=arrowLwd)
+    arrows(x0=p[, "x"], y0=p[, "y"], x1=x, y1=y, col=arrowCol,
+           length=arrowLength, lwd=arrowLwd)
     ## no transparent background
-    rect(xleft=p$xleft, ybottom=p$ybottom, xright=p$xright, ytop=p$ytop,
+    rect(xleft=p[, "x0"], ybottom=p[, "y0"], xright=p[, "x1"], ytop=p[, "y1"],
          col="white", border=NA, density=-1L)
-    x <- p$x
-    y <- p$y
+    x <- p[, "x"]
+    y <- p[, "y"]
   }
-  text(x=x, y=y, labels=labels, adj=adj, cex=cex, ...)
+  text(x=x, y=y, labels=labels, adj=adj, cex=cex, srt=srt, ...)
 })
