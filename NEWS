@@ -71,7 +71,7 @@ INTERNAL CHANGES
   stats, ...) as required by R-devel.
 * Turn `.calculateLabelPositions`, `.testLabelOverlap`, `.labelOverlap` into
   normal functions (were methods before).
-* `msiSlices`: use NA__real_ instead of logical NA.
+* `msiSlices`: use NA_real_ instead of logical NA.
 
 
 CHANGES IN MALDIquant VERSION 1.12 [2015-06-11]:
