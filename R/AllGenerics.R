@@ -159,4 +159,7 @@ if (is.null(getGeneric("monoisotopicPeaks"))) {
 if (is.null(getGeneric("snr"))) {
   setGeneric("snr", function(object) standardGeneric("snr"))
 }
+if (is.null(getGeneric("topN"))) {
+  setGeneric("topN", function(object, ...) standardGeneric("topN"))
+}
 ## end of MassPeaks

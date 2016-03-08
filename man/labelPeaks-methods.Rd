@@ -75,6 +75,9 @@ labelPeaks(p, mass=15:20, underline=FALSE)
 top5 <- intensity(p) \%in\% sort(intensity(p), decreasing=TRUE)[1:5]
 labelPeaks(p, index=top5, col="red")
 
+## another way would be to select only the five highest peaks
+# labelPeaks(topN(p, n=5), col="red")
+
 
 ## real example
 data("fiedler2009subset")

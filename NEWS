@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.14.5 [2016-03-13 Wed]:
+- Add `topN`.
+
 Version 1.14.4 [2016-04-03 Sun]:
 - Add `monoisotopicPeaks` to find monoisotopic peaks in `MassPeaks` objects.
 
