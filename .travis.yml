@@ -1,10 +1,7 @@
 language: r
+cache: packages
 warnings_are_errors: true
-apt_packages:
-- pgf
 r_binary_packages:
-- testthat
-- knitr
 - covr
 after_success:
 - Rscript -e 'library(covr);codecov(exclusions="R/Deprecated.R")'
@@ -12,3 +9,7 @@ notifications:
   email:
     on_success: change
     on_failure: change
+r:
+  - oldrel
+  - release
+  - devel
