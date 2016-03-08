@@ -19,7 +19,8 @@
 ## AbstractMassObject
 setMethod(f="plot",
           signature=signature(x="AbstractMassObject", y="missing"),
-          definition=function(x, col="black", xlab="mass", ylab="intensity",
+          definition=function(x, col="black",
+                              xlab=expression(italic(m/z)), ylab="intensity",
                               type=ifelse(isMassPeaks(x), "h", "l"),
                               xlim=c(ifelse(length(x@mass),
                                             min(x@mass, na.rm=TRUE), 0L),

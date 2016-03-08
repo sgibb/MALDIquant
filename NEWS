@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.14.2 [2016-03-08 Tue]:
+- `plot`: x-axis label is "m/z" now (was "mass" before).
+  Thanks to Robert Winkler <robert.winkler@bioprocess.org> for reporting of the
+  sometimes misleading label.
+
 Version 1.14.1 [2016-01-17 Sun]:
 - BUGFIX: `labelPeaks` didn't respect "srt=c(90, 180, 270, 360)" if
   "avoidOverlap=TRUE". Please note that "srt %% 90 != 0" in combination with

@@ -9,7 +9,7 @@ This is an overloaded method to allow plotting of an
 }
 \usage{
 \S4method{plot}{AbstractMassObject,missing}(x, col="black",
-   xlab="mass", ylab="intensity",
+   xlab=expression(italic(m/z)), ylab="intensity",
    type=ifelse(isMassPeaks(x), "h", "l"),
    xlim=c(ifelse(length(x@mass), min(x@mass, na.rm=TRUE), 0),
       ifelse(length(x@mass), max(x@mass, na.rm=TRUE), 1)),
