@@ -51,3 +51,13 @@ test_that(".colCors", {
                colCors(mna, nna, use="na.or.complete"))
 })
 
+test_that(".colSd", {
+  colSd <- function(x, na.rm=FALSE)apply(x, 2, sd, na.rm=na.rm)
+  set.seed(1234)
+  m <- matrix(rnorm(10), ncol=2)
+  mna <- m
+  mna[c(1, 8)] <- NA
+  expect_equal(MALDIquant:::.colSd(m), colSd(m))
+  expect_equal(MALDIquant:::.colSd(mna), colSd(mna, na.rm=FALSE))
+  expect_equal(MALDIquant:::.colSd(mna, na.rm=TRUE), colSd(mna, na.rm=TRUE))
+})

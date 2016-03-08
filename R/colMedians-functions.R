@@ -58,3 +58,25 @@
     (sqrt(colMeans(x * x, na.rm=na.rm) - cmX * cmX) *
      sqrt(colMeans(y * y, na.rm=na.rm) - cmY * cmY))
 }
+
+#' .colSd
+#'
+#' Similar to colMeans but calculates the sd. Should be identical to
+#' apply(x, 2, sd, na.rm).
+#' based on: http://stackoverflow.com/questions/17549762/is-there-such-colsd-in-r/17551600#17551600
+#'
+#' @param x matrix/data.frame
+#' @param na.rm logical. Should missing values (including \code{NaN})
+#' be omitted from the calculations?
+#' @return double
+#' @author Sebastian Gibb <mail@@sebastiangibb.de>
+#' @noRd
+.colSd <- function(x, na.rm=FALSE) {
+  if (na.rm) {
+    n <- colSums(!is.na(x))
+  } else {
+    n <- nrow(x)
+  }
+  colVar <- colMeans(x * x, na.rm=na.rm) - (colMeans(x, na.rm=na.rm))^2L
+  sqrt(colVar * n/(n - 1L))
+}
