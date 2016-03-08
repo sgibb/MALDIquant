@@ -6,7 +6,7 @@ test_that(".colMedians throws errors", {
 })
 
 test_that(".colMedians", {
-  colMedians <- function(x, na.rm=FALSE)apply(m, 2, median, na.rm=na.rm)
+  colMedians <- function(x, na.rm=FALSE)apply(x, 2, median, na.rm=na.rm)
   set.seed(1234)
   ## even nrow
   m <- matrix(rnorm(1e5), ncol=1e2)
