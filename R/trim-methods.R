@@ -40,12 +40,14 @@ setMethod("trim",
 setMethod("trim",
           signature=signature(object="list", range="numeric"),
           definition=function(object, range, ...) {
+  .stopIfNotIsMassObjectList(object)
   .lapply(X=object, FUN=trim, range=range, ...)
 })
 
 setMethod("trim",
           signature=signature(object="list", range="missing"),
           definition=function(object, ...) {
+  .stopIfNotIsMassObjectList(object)
   range <- .overlap(object)
 
   if (all(range == 0L)) {

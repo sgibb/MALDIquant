@@ -18,6 +18,11 @@ test_that("trim", {
          createMassSpectrum(mass=2:9, intensity=12:19))
 })
 
+test_that("trim,list throws errors", {
+  expect_error(trim(list(x=1, y=2)),
+               "no list of MALDIquant::AbstractMassObject objects")
+})
+
 test_that("trim works with list of AbstractMassObject objects", {
   r <- createMassSpectrum(mass=2:9, intensity=12:19)
   expect_equal(trim(list(s, s), c(2, 9)), list(r, r))
