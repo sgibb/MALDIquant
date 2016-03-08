@@ -16,8 +16,34 @@
 ## You should have received a copy of the GNU General Public License
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
+## .colMedians
+##  column-wise median (similar to colSums/colMeans)
+##
+## params:
+##  x: vector of x values
+##  na.rm: should missing values excluded?
+##
+## returns:
+##  numeric
+##
 .colMedians <- function(x, na.rm=FALSE) {
   stopifnot(is.matrix(x))
   stopifnot(is.logical(na.rm))
   .Call("C_colMedians", x, na.rm)
+}
+
+## .colMads
+##  column-wise mad (similar to colSums/colMeans)
+##
+## params:
+##  x: vector of x values
+##  constant: scale factor
+##  na.rm: should missing values excluded?
+##
+## returns:
+##  numeric
+##
+.colMads <- function(x, constant=1.4826, na.rm=FALSE) {
+  center <- .colMedians(x, na.rm=na.rm)
+  constant * .colMedians(t(abs(t(x) - center)), na.rm=na.rm)
 }
