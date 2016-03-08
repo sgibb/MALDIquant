@@ -57,6 +57,13 @@ if (is.null(getGeneric("mass"))) {
 if (is.null(getGeneric("mass<-"))) {
   setGeneric("mass<-", function(object, value) standardGeneric("mass<-"))
 }
+# from ProtGenerics (same as mass)
+if (is.null(getGeneric("mz"))) {
+  setGeneric("mz", function(object, ...) standardGeneric("mz"))
+}
+if (is.null(getGeneric("mz<-"))) {
+  setGeneric("mz<-", function(object, value) standardGeneric("mz<-"))
+}
 if (is.null(getGeneric("intensity"))) {
   setGeneric("intensity", function(object, ...) standardGeneric("intensity"))
 }

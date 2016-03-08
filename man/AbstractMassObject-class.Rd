@@ -19,6 +19,10 @@
 \alias{mass<-}
 \alias{mass,AbstractMassObject-method}
 \alias{mass<-,AbstractMassObject,numeric-method}
+\alias{mz}
+\alias{mz<-}
+\alias{mz,AbstractMassObject-method}
+\alias{mz<-,AbstractMassObject,numeric-method}
 \alias{metaData}
 \alias{metaData<-}
 \alias{metaData,AbstractMassObject-method}
@@ -84,6 +88,11 @@ It shouldn't create or handle by the user because it is for internal use only.
   \item{mass}{\code{signature(object = "AbstractMassObject")}:
     Accessor function for slot \code{mass}.}
   \item{mass<-}{\code{signature(object = "AbstractMassObject",
+      value = "numeric")}
+    Replacement function for slot \code{mass}.}
+  \item{mz}{\code{signature(object = "AbstractMassObject")}:
+    Accessor function for slot \code{mass}.}
+  \item{mz<-}{\code{signature(object = "AbstractMassObject",
       value = "numeric")}
     Replacement function for slot \code{mass}.}
   \item{metaData}{\code{signature(object = "AbstractMassObject")}:
