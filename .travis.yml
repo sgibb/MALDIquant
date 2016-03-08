@@ -10,6 +10,6 @@ notifications:
     on_success: change
     on_failure: change
 r:
-  - oldrel
+#  - oldrel
   - release
   - devel
