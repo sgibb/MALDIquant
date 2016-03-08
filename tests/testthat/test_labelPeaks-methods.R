@@ -1,6 +1,10 @@
 context("labelPeaks")
 
 test_that("labelPeaks", {
+  pdf(NULL)
+  on.exit(dev.off())
+  plot.new()
+
   p <- createMassPeaks(1:5, 1:5)
   expect_error(labelPeaks(p, index=-1),
                "No valid .*index.* nor .*mass.* given.")
