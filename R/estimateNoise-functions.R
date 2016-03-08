@@ -1,4 +1,4 @@
-## Copyright 2011-2015 Sebastian Gibb
+## Copyright 2011-2016 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -28,13 +28,16 @@
 ## returns:
 ##  numeric, estimated noise (y)
 ##
-.estimateNoise <- function(x, y, method=c("MAD", "SuperSmoother"), ...) {
+.estimateNoise <- function(x, y, method=c("MAD", "MovingMAD", "SuperSmoother"), halfWindowSize=20L, ...) {
 
   method <- match.arg(method)
 
   switch(method,
          "MAD" = {
            .estimateNoiseMad(x, y)
+         },
+         "MovingMAD" = {
+           .estimateNoiseMovingMad(x, y, halfWindowSize=halfWindowSize, ...)
          },
          "SuperSmoother" = {
            .estimateNoiseSuperSmoother(x, y, ...)
@@ -52,8 +55,27 @@
 ## returns:
 ##  numeric, estimated noise (y)
 ##
-.estimateNoiseMad <- function(x, y) {
+.estimateNoiseMad <- function(x, y, ...) {
   rep.int(stats::mad(y), length(x))
+}
+
+## estimateNoiseMovingMad
+##  estimate noise by calculating moving mad over intensity values
+##
+## params:
+##  x: vector of x values
+##  y: vector of y values
+##  halfWindowSize: size of local window
+##
+## returns:
+##  numeric, estimated noise (y)
+##
+.estimateNoiseMovingMad <- function(x, y, halfWindowSize=20L, ...) {
+  .stopIfNotIsValidHalfWindowSize(halfWindowSize=halfWindowSize, n=length(x))
+
+  noise <- .colMads(t(embed(y, 2L * halfWindowSize + 1L)), ...)
+  c(rep(noise[1L], halfWindowSize), noise, rep(noise[length(noise)],
+                                               halfWindowSize))
 }
 
 ## estimateNoiseSuperSmoother

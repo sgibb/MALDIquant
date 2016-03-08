@@ -37,5 +37,4 @@ test_that(".colMads", {
   m[na] <- NA
   expect_equal(MALDIquant:::.colMads(m), colMads(m))
   expect_equal(MALDIquant:::.colMads(m, na.rm=TRUE), colMads(m, TRUE))
-
 })

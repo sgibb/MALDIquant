@@ -19,7 +19,8 @@
 ## MassSpectrum
 setMethod(f="estimateNoise",
           signature=signature(object="MassSpectrum"),
-          definition=function(object, method=c("MAD", "SuperSmoother"),
+          definition=function(object,
+                              method=c("MAD", "MovingMAD", "SuperSmoother"),
                               ...) {
   if (.isEmptyWarning(object)) {
     return(0L)

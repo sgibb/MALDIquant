@@ -20,7 +20,8 @@
 setMethod(f="detectPeaks",
           signature=signature(object="MassSpectrum"),
           definition=function(object, halfWindowSize=20L,
-                              method=c("MAD", "SuperSmoother"), SNR=2L, ...) {
+                              method=c("MAD", "MovingMAD", "SuperSmoother"),
+                              SNR=2L, ...) {
 
   ## empty spectrum?
   if (.isEmptyWarning(object)) {
@@ -29,7 +30,8 @@ setMethod(f="detectPeaks",
   }
 
   ## estimate noise
-  noise <- .estimateNoise(x=object@mass, y=object@intensity, method=method, ...)
+  noise <- .estimateNoise(x=object@mass, y=object@intensity, method=method,
+                          halfWindowSize=halfWindowSize, ...)
 
   ## find local maxima
   isLocalMaxima <- .findLocalMaximaLogical(object,
