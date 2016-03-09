@@ -1,4 +1,4 @@
-context("topN functions")
+context(".topN")
 
 test_that(".topNIndices", {
   x <- c(100, 3, 4, 1, 100, 99, 99, 99, 98, 98, 4, 3)
