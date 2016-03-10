@@ -86,3 +86,27 @@
   dim(d) <- c(dimension, m)
   d
 }
+
+#' .consecutiveIndices
+#'
+#' returns n consecutive peaks around the center peak; center would be in the
+#' middle (if n is even and method == "left", length(LHS) == length(RHS) + 1;
+#' if center - n/2 < 0 RHS would be extended)
+#'
+#' @param x double, mass of a MassPeaks object
+#' @param center integer, center index
+#' @param n integer, how many peaks?
+#' @param method prefer left/right if n is even
+#' @return indices around the center
+#' @author Sebastian Gibb <mail@@sebastiangibb.de>
+#' @noRd
+.consecutiveIndices <- function(x, center, n,
+                                method=c("left", "right")) {
+  method <- match.arg(method)
+  if (method == "right") {
+    center <- center + 1L
+  }
+  n <- min(length(x), n)
+  left <- max(1L, center - floor(n/2L))
+  left:(left + n - 1L)
+}

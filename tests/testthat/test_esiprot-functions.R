@@ -42,3 +42,23 @@ test_that(".tembed", {
   expect_equal(MALDIquant:::.tembed(1:5, 3), t(embed(1:5, 3)))
   expect_equal(MALDIquant:::.tembed(1:10, 5), t(embed(1:10, 5)))
 })
+
+test_that(".consecutiveIndices", {
+  m <- seq(1000, 1100, by=10)
+  expect_equal(MALDIquant:::.consecutiveIndices(m, center=2, n=6), 1:6)
+  expect_equal(MALDIquant:::.consecutiveIndices(m, center=4, n=4), 2:5)
+  expect_equal(MALDIquant:::.consecutiveIndices(m, center=4, n=4,
+                                                method="right"), 3:6)
+  expect_equal(MALDIquant:::.consecutiveIndices(m, center=4, n=5), 2:6)
+  expect_equal(MALDIquant:::.consecutiveIndices(m, center=4, n=10),
+               1:10)
+  expect_equal(MALDIquant:::.consecutiveIndices(m, center=4, n=10,
+                                                method="right"), 1:10)
+  expect_equal(MALDIquant:::.consecutiveIndices(m, center=4, n=11),
+               seq_along(m))
+  expect_equal(MALDIquant:::.consecutiveIndices(m, center=4, n=11,
+                                                method="right"),
+               seq_along(m))
+  expect_equal(MALDIquant:::.consecutiveIndices(m, center=2, n=100),
+               seq_along(m))
+})

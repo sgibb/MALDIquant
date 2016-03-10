@@ -149,6 +149,9 @@ if (is.null(getGeneric("totalIonCurrent"))) {
 ## end of MassSpectrum
 
 ## MassPeaks
+if (is.null(getGeneric("esiprot"))) {
+  setGeneric("esiprot", function(object, ...) standardGeneric("esiprot"))
+}
 if (is.null(getGeneric("labelPeaks"))) {
   setGeneric("labelPeaks", function(object, ...) standardGeneric("labelPeaks"))
 }
