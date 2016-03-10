@@ -1,15 +1,17 @@
 language: r
+sudo: false
 cache: packages
 warnings_are_errors: true
-r_binary_packages:
-- covr
+
 after_success:
-- Rscript -e 'library(covr);codecov(exclusions="R/Deprecated.R")'
-notifications:
-  email:
-    on_success: change
-    on_failure: change
+  - Rscript -e 'covr::codecov(exclusions="R/Deprecated.R")'
+
 r:
 #  - oldrel
   - release
   - devel
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
