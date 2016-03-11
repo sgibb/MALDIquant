@@ -77,5 +77,5 @@ setReplaceMethod(f="coordinates",
   ## test arguments
   .stopIfNotIsMassObjectList(object)
 
-  .mapply("coordinates<-", object, split(value, seq_len(nrow(value))))
+  .mapply("coordinates<-", object, split(value, row(value)))
 })
