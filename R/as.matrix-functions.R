@@ -1,4 +1,4 @@
-## Copyright 2013-2014 Sebastian Gibb
+## Copyright 2013-2016 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -31,7 +31,7 @@
   mass <- .unlist(lapply(l, function(x)x@mass))
   intensity <- .unlist(lapply(l, function(x)x@intensity))
   uniqueMass <- sort.int(unique(mass), method="quick")
-  n <- vapply(l, length, double(1L))
+  n <- lengths(l)
   r <- rep.int(seq_along(l), n)
 
   i <- findInterval(mass, uniqueMass)

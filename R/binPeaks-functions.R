@@ -1,4 +1,4 @@
-## Copyright 2012-2015 Sebastian Gibb
+## Copyright 2012-2016 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -48,7 +48,7 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
   snr <- .unlist(lapply(l, function(x)x@snr))
 
   ## store original mass sample number/id
-  samples <- rep.int(seq_along(l), .unlist(lapply(l, length)))
+  samples <- rep.int(seq_along(l), lengths(l))
 
   ## sort values by mass
   s <- sort.int(mass, method="quick", index.return=TRUE)

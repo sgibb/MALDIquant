@@ -1,4 +1,4 @@
-## Copyright 2011-2015 Sebastian Gibb
+## Copyright 2011-2016 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -109,8 +109,8 @@ mergeMassPeaks <- function(l, labels, method=c("mean", "median", "sum"),
   names(nm) <- nm
   lapply(nm, function(n) {
     cur <- m[[1L]][[n]]
-    all <- lapply(m, function(x)x[[n]])
-    len <- lapply(all, function(x)length(x))
+    all <- lapply(m, "[[", n)
+    len <- lengths(all)
 
     if (!all(length(cur) == len) ||
         !all(.flat(cur) == .flat(all))) {

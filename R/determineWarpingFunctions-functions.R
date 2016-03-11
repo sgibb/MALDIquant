@@ -1,4 +1,4 @@
-## Copyright 2012-2014 Sebastian Gibb
+## Copyright 2012-2016 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This file is part of MALDIquant for R and related languages.
@@ -102,8 +102,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
   intensities <- .unlist(lapply(tmpPeakList, function(x)x@intensity))
 
   ## store original mass sample number/id
-  samples <- rep.int(seq_along(tmpPeakList),
-                     .unlist(lapply(tmpPeakList, length)))
+  samples <- rep.int(seq_along(tmpPeakList), lengths(tmpPeakList))
 
   ## sort values by mass
   s <- sort.int(mass, method="quick", index.return=TRUE)
