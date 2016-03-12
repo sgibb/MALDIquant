@@ -156,12 +156,12 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
 
     if (!isNonInteractivePlot && !plotInteractive) {
       warning(sQuote("plot"), " is ", sQuote("TRUE"),
-              " but no non-interactive devices is available. ",
+              " but no non-interactive device is available. ",
               "Using pdf() to create a default one.")
       pdf(paper="a4r", width=12)
     } else if (dev.cur() == 1L && plotInteractive) {
       warning(sQuote("plot"), " is ", sQuote("TRUE"),
-              " but no interactive devices is available. ",
+              " but no interactive device is available. ",
               "Using dev.new() to create a default one.")
       dev.new()
     }
