@@ -52,7 +52,8 @@ setMethod(f="plotMsiSlice",
                   legend=legend, alignLabels=alignLabels, ...)
 
   } else {
-    if (n > 1L && dev.interactive() && !plotInteractive) {
+    isNonInteractivePlot <- dev.cur() != 1L && !dev.interactive()
+    if (n > 1L && !isNonInteractivePlot && !plotInteractive) {
       warning(sQuote("plotMsiSlice"), " was called for multiple slices on an ",
               "interactive device. Only the first slice is plotted. Use ",
               sQuote("pdf"), " or a similar device to plot all slices at once.",

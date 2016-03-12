@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+Version 1.14.3 [2016-03-12 Sat]:
+- BUG: throw a warning if `plotMsiSlice` was called on a interactive device with
+  multiple centers (the warning was not thrown correctly before).
+
 Version 1.14.2 [2016-03-08 Tue]:
 - `plot`: x-axis label is "m/z" now (was "mass" before).
   Thanks to Robert Winkler <robert.winkler@bioprocess.org> for reporting of the
