@@ -53,7 +53,7 @@ setMethod(f="plotMsiSlice",
 
   } else {
     if (n > 1L && dev.interactive() && !plotInteractive) {
-      warning(sQuote("plotMsiSlice"), " was called for multiple slice on an ",
+      warning(sQuote("plotMsiSlice"), " was called for multiple slices on an ",
               "interactive device. Only the first slice is plotted. Use ",
               sQuote("pdf"), " or a similar device to plot all slices at once.",
               " Alternatively use ", dQuote("combine=TRUE"), " to plot ",
