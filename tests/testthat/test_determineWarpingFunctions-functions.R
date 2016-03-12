@@ -17,6 +17,15 @@ test_that("determineWarpingFunctions throws errors", {
 test_that("determineWarpingFunctions throws warnings", {
   expect_warning(determineWarpingFunctions(p, reference=r[6:10]),
                  "Reference MassPeaks object contains very few peaks")
+  expect_error(tryCatch(determineWarpingFunctions(list(p, p), plot=TRUE),
+                        warning=function(w)stop(conditionMessage(w))),
+               paste0(".*plot.* is .*TRUE.* but no non-interactive device ",
+                      "is available. Using pdf.* to create a default one."))
+  expect_error(tryCatch(determineWarpingFunctions(list(p, p), plot=TRUE,
+                                                  plotInteractive=TRUE),
+                        warning=function(w)stop(conditionMessage(w))),
+               paste0(".*plot.* is .*TRUE.* but no interactive device is ",
+                      "available. Using dev.new.* to create a default one."))
 })
 
 test_that("determineWarpingFunctions works with single MassPeaks object", {
