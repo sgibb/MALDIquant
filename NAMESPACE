@@ -30,6 +30,7 @@ importFrom("grDevices",
 
 importFrom("stats",
               "coef",
+              "dpois",
               "filter",
               "lm",
               "lowess",
