@@ -3,6 +3,9 @@ sudo: false
 cache: packages
 warnings_are_errors: true
 
+r_packages:
+  - covr
+
 after_success:
   - Rscript -e 'covr::codecov(exclusions="R/Deprecated.R")'
 
