@@ -47,7 +47,6 @@
 
   if (na.rm) {
     isNA <- is.na(x) | is.na(y)
-    n <- colSums(!isNA)
     x[isNA] <- NA_real_
     y[isNA] <- NA_real_
   } else {
@@ -58,6 +57,6 @@
   cmY <- colMeans(y, na.rm=na.rm)
 
   (colMeans(x * y, na.rm=na.rm) - (cmX*cmY)) /
-    (sqrt(colMeans(x * x, na.rm=na.rm) - cmX*cmX) *
-     sqrt(colMeans(y * y, na.rm=na.rm) - cmY*cmY))
+    (sqrt(colMeans(x * x, na.rm=na.rm) - cmX * cmX) *
+     sqrt(colMeans(y * y, na.rm=na.rm) - cmY * cmY))
 }
