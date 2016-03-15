@@ -17,7 +17,6 @@
 ## along with MALDIquant. If not, see <http://www.gnu.org/licenses/>
 
 .colMedians <- function(x, na.rm=FALSE) {
-  stopifnot(is.matrix(x))
-  stopifnot(is.logical(na.rm))
+  stopifnot(is.matrix(x), is.logical(na.rm))
   .Call("C_colMedians", x, na.rm)
 }
