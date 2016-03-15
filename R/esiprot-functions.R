@@ -61,11 +61,11 @@
 
   x <- x - hydrogen
   n <- length(x)
-  z <- seq.int(floor(max(range[1L], n)), ceiling(max(range[2L], n)))
+  z <- floor(max(range[1L], n)):ceiling(max(range[2L], n))
   m <- .tembed(z, n) * x
   s <- .colSd(m)
   i <- which.min(s)
-  c(mw=mean(m[, i]), sd=s[i], z=z[i])
+  c(mw=mean(m[, i]), sd=s[i], z=z[i] + n - 1L)
 }
 
 #' .tembed

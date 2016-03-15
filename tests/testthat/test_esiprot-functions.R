@@ -29,7 +29,7 @@ test_that(".esiprot", {
                           1391.7, 1420.3, 1451.4))
   pub <- matrix(c(12359.8, 13682.5, 14178.3, 14305.5, 25449.2, 66737.6,
                   1.0, 0.9, 0.6, 0.6, 0.6, 38.7,
-                  11, 9, 8, 9, 17, 46), ncol = 3,
+                  19, rep(13, 3), 25, 54), ncol = 3,
                 dimnames = list(names(proteins), c("mw", "sd", "z")))
 
   res <- lapply(proteins, MALDIquant:::.esiprot)
