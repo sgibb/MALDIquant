@@ -32,4 +32,3 @@ setReplaceMethod(f="mz",
   mass(object) <- value
   object
 })
-
