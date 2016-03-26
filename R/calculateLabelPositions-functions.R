@@ -75,7 +75,7 @@
 
   for (k in 0L:maxSteps) {
     ## move up
-    s <- k/4L
+    s <- k / 4L
     cur <- rects[currentIndex, ]
     cur[c("y0", "y1", "y")] <- cur[c("y0", "y1", "y")] + s * cur["h"]
 
@@ -175,7 +175,7 @@
   dx <- usr[2L] - usr[1L]
   dy <- usr[4L] - usr[3L]
 
-  (dy * pin[1L])/(dx * pin[2L])
+  (dy * pin[1L]) / (dx * pin[2L])
 }
 
 ## .rotate
