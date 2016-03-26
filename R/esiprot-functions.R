@@ -103,10 +103,11 @@
 .consecutiveIndices <- function(x, center, n,
                                 method=c("left", "right")) {
   method <- match.arg(method)
-  if (method == "right") {
+  n <- min(length(x), n)
+  n2 <- floor(n/2L)
+  if (method == "right" && center + n2 < length(x)) {
     center <- center + 1L
   }
-  n <- min(length(x), n)
-  left <- max(1L, center - floor(n/2L))
+  left <- max(1L, center - n2)
   left:(left + n - 1L)
 }

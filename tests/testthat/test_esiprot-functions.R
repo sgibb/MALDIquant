@@ -47,6 +47,7 @@ test_that(".consecutiveIndices", {
   m <- seq(1000, 1100, by=10)
   expect_equal(MALDIquant:::.consecutiveIndices(m, center=2, n=6), 1:6)
   expect_equal(MALDIquant:::.consecutiveIndices(m, center=4, n=4), 2:5)
+  expect_equal(MALDIquant:::.consecutiveIndices(m, center=8, n=8), 4:11)
   expect_equal(MALDIquant:::.consecutiveIndices(m, center=4, n=4,
                                                 method="right"), 3:6)
   expect_equal(MALDIquant:::.consecutiveIndices(m, center=4, n=5), 2:6)
@@ -59,6 +60,7 @@ test_that(".consecutiveIndices", {
   expect_equal(MALDIquant:::.consecutiveIndices(m, center=4, n=11,
                                                 method="right"),
                seq_along(m))
+  expect_equal(MALDIquant:::.consecutiveIndices(m, center=8, n=8, method="right"), 4:11)
   expect_equal(MALDIquant:::.consecutiveIndices(m, center=2, n=100),
                seq_along(m))
 })
