@@ -97,7 +97,7 @@
   t(t(p)/colSums(p))
 }
 
-#' .monoisotopic
+#' .monoisotopicPattern
 #'
 #' Model isotopic distribution by poisson distribution.
 #'
@@ -110,14 +110,14 @@
 #' Park et al 2008)
 #' @param size integer, cluster size (number of peaks for a possible cluster),
 #' see .pseudoCluster
-#' @return double, index of monoisotopic masses
+#' @return matrix, index of monoisotopic masses in first row
 #' @references
 #' K.L. Williams, and M.R. Wilkins.
 #' Automatic poisson peak harvesting for high throughput protein identification.
 #' Electrophoresis 21 (2000): 2243-2251.
 #' @noRd
-.monoisotopic <- function(x, y, minCor=0.95, tolerance=1e-4, stepSize=1.00235,
-                          size=3L) {
+.monoisotopicPattern <- function(x, y, minCor=0.95, tolerance=1e-4,
+                                 stepSize=1.00235, size=3L) {
   pc <- .pseudoCluster(x, size=size, stepSize=stepSize, tolerance=tolerance)
   y <- y[pc]
   dim(y) <- dim(pc)
@@ -126,5 +126,22 @@
   cr <- .colCors(y, p)
   pc <- pc[, cr > minCor, drop=FALSE]
   pc[duplicated(as.vector(pc))] <- NA_real_
-  pc[1L, colSums(is.na(pc)) == 0L]
+  pc[, colSums(is.na(pc)) == 0L, drop=FALSE]
+}
+
+#' .monoisotopic
+#'
+#' @param x double, mass from experimental peak list
+#' @param y double, intensity from experimental peak list
+#' @param size integer vector, cluster size
+#' @param \ldots further arguments passed to .monoisotopicPattern
+#' @return double, index of monoisotopic masses
+#' @noRd
+.monoisotopic <- function(x, y, size=3L:10L, ...) {
+  pattern <- lapply(sort.int(size, decreasing=TRUE),
+                    function(s).monoisotopicPattern(x=x, y=y, size=s, ...))
+  upattern <- .unlist(pattern)
+  upattern[duplicated(upattern)] <- NA_real_
+  upattern <- relist(upattern, pattern)
+  sort.int(.unlist(lapply(upattern, function(p)p[1L, colSums(is.na(p)) == 0L])))
 }

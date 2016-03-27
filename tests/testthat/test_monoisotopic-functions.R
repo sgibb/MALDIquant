@@ -36,12 +36,21 @@ test_that(".Psum", {
   expect_equal(MALDIquant:::.Psum(x, isotopes), p)
 })
 
+test_that(".monoisotopicPattern", {
+  x <- c(1, 2, 3, 5, 8, 9, 10, 12, 15)
+  y <- c(96, 3, 1, 5, 78, 20, 2, 12, 15)
+
+  expect_equal(MALDIquant:::.monoisotopicPattern(x, y, stepSize=1, size=3),
+               cbind(1:3, 5:7))
+  expect_equal(MALDIquant:::.monoisotopicPattern(x, y, stepSize=1, size=2),
+               cbind(1:2, 5:6))
+  expect_equal(MALDIquant:::.monoisotopicPattern(x, y, stepSize=1, minCor=0.99), as.matrix(1:3))
+})
+
 test_that(".monoisotopic", {
   x <- c(1, 2, 3, 5, 8, 9, 10, 12, 15)
   y <- c(96, 3, 1, 5, 78, 20, 2, 12, 15)
 
-  expect_equal(MALDIquant:::.monoisotopic(x, y, stepSize=1), c(1, 5))
+  expect_equal(MALDIquant:::.monoisotopic(x, y, stepSize=1, size=2:5), c(1, 5))
   expect_equal(MALDIquant:::.monoisotopic(x, y, stepSize=1, minCor=0.99), 1)
 })
-
-
