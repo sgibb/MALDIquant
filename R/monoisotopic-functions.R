@@ -23,7 +23,8 @@
 #' @param x double, mass
 #' @param size integer, cluster size, number of peaks per cluster
 #' @param stepSize double, distance between isotopes (mass of a neutron; see
-#' Park et al 2008)
+#' Park et al 2008); could be of length > 1 (if > 1: order will affect later
+#' removal in .monoisotopicPattern).
 #' @param tolerance double, mass tolerance
 #' @return a matrix of indices (nrow(x) == n) of potential clusters
 #' @references
@@ -32,21 +33,19 @@
 #' clusters and monoisotopic masses of polypeptides from high-resolution
 #' mass spectrometric data.
 #' Analytical Chemistry, 80: 7294-7303.
-#'
+#' @noRd
 .pseudoCluster <- function(x, size=3L, stepSize=1.00235, tolerance=1e-4) {
   if (size < 2L) {
     stop("The ", sQuote("size"), " of a cluster has to be at least 2!")
   }
-  stepSize <- stepSize * 0L:(size - 1L)
-  nr <- length(stepSize)
-  mm <- matrix(x, nrow=nr, ncol=length(x), byrow=TRUE)
-  ms <- mm + stepSize
+  mm <- matrix(x, nrow=size, ncol=length(x) * length(stepSize), byrow=TRUE)
+  ms <- mm + (rep(stepSize, each=size) * 0L:(size - 1L))
 
   i <- MALDIquant:::.which.closest(ms, x)
   m <- x[i]
   dim(m) <- dim(i)
 
-  i[, colSums(abs(ms - m)/mm < tolerance) == nr, drop=FALSE]
+  i[, colSums(abs(ms - m)/mm < tolerance) == size, drop=FALSE]
 }
 
 #' .F
@@ -107,7 +106,9 @@
 #' @param minCor double, minimal correlation between experimental and model
 #' intensities
 #' @param stepSize double, distance between isotopes (mass of a neutron; see
-#' Park et al 2008)
+#' Park et al 2008); could be of length > 1; if length > 1 the order matters.
+#' The first stepSize elements are prefered (the last elements are possible
+#' removed because the contain duplicated indices).
 #' @param size integer, cluster size (number of peaks for a possible cluster),
 #' see .pseudoCluster
 #' @return matrix, index of monoisotopic masses in first row
