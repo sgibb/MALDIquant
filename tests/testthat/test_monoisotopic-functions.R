@@ -40,6 +40,8 @@ test_that(".monoisotopicPattern", {
   x <- c(1, 2, 3, 5, 8, 9, 10, 12, 15)
   y <- c(96, 3, 1, 5, 78, 20, 2, 12, 15)
 
+  expect_equal(MALDIquant:::.monoisotopicPattern(1:10, 1:10),
+               matrix(NA_real_, nrow=3, ncol=0))
   expect_equal(MALDIquant:::.monoisotopicPattern(x, y, stepSize=1, size=3),
                cbind(1:3, 5:7))
   expect_equal(MALDIquant:::.monoisotopicPattern(x, y, stepSize=1, size=2),
@@ -51,6 +53,7 @@ test_that(".monoisotopic", {
   x <- c(1, 2, 3, 5, 8, 9, 10, 12, 15)
   y <- c(96, 3, 1, 5, 78, 20, 2, 12, 15)
 
+  expect_equal(MALDIquant:::.monoisotopic(1:10, 1:10), numeric())
   expect_equal(MALDIquant:::.monoisotopic(x, y, stepSize=1, size=2:5), c(1, 5))
   expect_equal(MALDIquant:::.monoisotopic(x, y, stepSize=1, minCor=0.99), 1)
 })
