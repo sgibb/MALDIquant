@@ -139,10 +139,15 @@
 #' @return double, index of monoisotopic masses
 #' @noRd
 .monoisotopic <- function(x, y, size=3L:10L, ...) {
-  pattern <- lapply(sort.int(size, decreasing=TRUE),
-                    function(s).monoisotopicPattern(x=x, y=y, size=s, ...))
-  upattern <- .unlist(pattern)
-  upattern[duplicated(upattern)] <- NA_real_
-  upattern <- relist(upattern, pattern)
-  sort.int(.unlist(lapply(upattern, function(p)p[1L, colSums(is.na(p)) == 0L])))
+  if (length(x) && length(x) == length(y)) {
+    pattern <- lapply(sort.int(size, decreasing=TRUE),
+                      function(s).monoisotopicPattern(x=x, y=y, size=s, ...))
+    upattern <- .unlist(pattern)
+    upattern[duplicated(upattern)] <- NA_real_
+    upattern <- relist(upattern, pattern)
+    sort.int(.unlist(lapply(upattern,
+                            function(p)p[1L, colSums(is.na(p)) == 0L])))
+  } else {
+    double()
+  }
 }
