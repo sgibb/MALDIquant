@@ -30,6 +30,10 @@ Class \code{\linkS4class{AbstractMassObject}}, directly.
     Draws peak labels to plot.
     See \code{\link{labelPeaks,MassPeaks-method}} for
     details.}
+  \item{monoisotopicPeaks}{\code{signature(x = "MassPeaks")}:
+    Finds monoisotopic peaks in peak lists.
+    See \code{\link{monoisotopicPeaks,MassPeaks-method}} for
+    details.}
 }
 }
 \author{

@@ -44,6 +44,7 @@ importFrom("utils",
               "modifyList",
               "object.size",
               "packageVersion",
+              "relist",
               "tail")
 
 
@@ -88,6 +89,7 @@ exportMethods("as.matrix",
               "mass<-",
               "metaData",
               "metaData<-",
+              "monoisotopicPeaks",
               "mz",
               "mz<-",
               "plot",

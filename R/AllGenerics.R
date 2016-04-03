@@ -152,6 +152,10 @@ if (is.null(getGeneric("totalIonCurrent"))) {
 if (is.null(getGeneric("labelPeaks"))) {
   setGeneric("labelPeaks", function(object, ...) standardGeneric("labelPeaks"))
 }
+if (is.null(getGeneric("monoisotopicPeaks"))) {
+  setGeneric("monoisotopicPeaks",
+             function(object, ...) standardGeneric("monoisotopicPeaks"))
+}
 if (is.null(getGeneric("snr"))) {
   setGeneric("snr", function(object) standardGeneric("snr"))
 }
