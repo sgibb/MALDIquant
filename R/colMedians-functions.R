@@ -54,7 +54,7 @@
   cmX <- colMeans(x, na.rm=na.rm)
   cmY <- colMeans(y, na.rm=na.rm)
 
-  (colMeans(x * y, na.rm=na.rm) - (cmX*cmY)) /
+  (colMeans(x * y, na.rm=na.rm) - (cmX * cmY)) /
     (sqrt(colMeans(x * x, na.rm=na.rm) - cmX * cmX) *
      sqrt(colMeans(y * y, na.rm=na.rm) - cmY * cmY))
 }

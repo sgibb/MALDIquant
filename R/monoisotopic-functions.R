@@ -45,7 +45,7 @@
   m <- x[i]
   dim(m) <- dim(i)
 
-  i[, colSums(abs(ms - m)/mm < tolerance) == size, drop=FALSE]
+  i[, colSums(abs(ms - m) / mm < tolerance) == size, drop=FALSE]
 }
 
 #' .F
@@ -93,7 +93,7 @@
   nx <- length(x)
   p <- .P(rep.int(x, rep.int(ni, nx)), isotopes)
   dim(p) <- c(ni, nx)
-  t(t(p)/colSums(p))
+  t(t(p) / colSums(p))
 }
 
 #' .monoisotopicPattern
