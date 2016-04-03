@@ -49,8 +49,6 @@
     isNA <- is.na(x) | is.na(y)
     x[isNA] <- NA_real_
     y[isNA] <- NA_real_
-  } else {
-    n <- nrow(x)
   }
 
   cmX <- colMeans(x, na.rm=na.rm)
