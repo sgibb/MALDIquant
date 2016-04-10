@@ -9,6 +9,8 @@ test_that(".esiprot throws errors", {
                ".*range.* has to be a numeric vector of length 2")
   expect_error(MALDIquant:::.esiprot(1:10, range=1),
                ".*range.* has to be a numeric vector of length 2")
+  expect_error(MALDIquant:::.esiprot(1:10, range=1:2),
+               ".*range.* is too small for this many peaks")
 })
 
 test_that(".esiprot", {
@@ -27,18 +29,27 @@ test_that(".esiprot", {
                           1340.4, 1414.8, 1498.0),
     "BSA"             = c(1236.1, 1261.4, 1285.6, 1309.3, 1335.6, 1362.5,
                           1391.7, 1420.3, 1451.4))
+
+  z <- c(19, rep(13, 3), 25, 54)
+  z <- mapply(function(from, to)from:to,
+              from=z, to=(z-lengths(proteins)+1))
+
   pub <- matrix(c(12359.8, 13682.5, 14178.3, 14305.5, 25449.2, 66737.6,
-                  1.0, 0.9, 0.6, 0.6, 0.6, 38.7,
-                  19, rep(13, 3), 25, 54), ncol = 3,
-                dimnames = list(names(proteins), c("mw", "sd", "z")))
+                  1.0, 0.9, 0.6, 0.6, 0.6, 38.7), ncol = 2,
+                dimnames = list(names(proteins), c("mw", "sd")))
+  mz <- lapply(seq_along(proteins), function(i)cbind(mz=proteins[[i]], z=z[[i]]))
+  pub <- cbind(pub, mz=mz)
+
 
   res <- lapply(proteins, MALDIquant:::.esiprot)
   res <- do.call(rbind, res)
 
-  expect_equal(round(res - 1e-3, 1), pub)
+  expect_equal(res, pub, tolerance=0.6)
 })
 
 test_that(".tembed", {
+  expect_error(MALDIquant:::.tembed(1:10, 0), "wrong embedding dimension")
+  expect_error(MALDIquant:::.tembed(1:10, 20), "wrong embedding dimension")
   expect_equal(MALDIquant:::.tembed(1:5, 3), t(embed(1:5, 3)))
   expect_equal(MALDIquant:::.tembed(1:10, 5), t(embed(1:10, 5)))
 })
@@ -63,4 +74,17 @@ test_that(".consecutiveIndices", {
   expect_equal(MALDIquant:::.consecutiveIndices(m, center=8, n=8, method="right"), 4:11)
   expect_equal(MALDIquant:::.consecutiveIndices(m, center=2, n=100),
                seq_along(m))
+})
+
+test_that(".esiprotMonoisotopic", {
+  expect_equal(MALDIquant:::.esiprotMonoisotopic(c(1:5, 10:15)), 6)
+  expect_equal(MALDIquant:::.esiprotMonoisotopic(c(1:5, 10:15), p=0.99),
+               integer())
+})
+
+test_that(".esiprotAuto", {
+  p <- createMassPeaks(mass=c(1:5, 10:15, seq(20, 25, by=0.5)),
+                       intensity=c(rep(1, 5), 2, rep(1, 5), 3, rep(1, 10)))
+  res <- list(mw=32.48, sd=7.78, mz=cbind(mz=c(9, 19), z=3:2))
+  expect_equal(MALDIquant:::.esiprotAuto(p), res, tolerance=1e-3)
 })

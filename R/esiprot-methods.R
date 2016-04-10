@@ -26,30 +26,13 @@ setMethod("esiprot",
 ## MassPeaks
 setMethod("esiprot",
           signature=signature(object="MassPeaks"),
-          definition=function(object, n=2L:10L, ...) {
+          definition=function(object, method=c("manual", "automatic"),
+                              ...) {
+  method <- match.arg(method)
 
-  if (!is.integer(n) || any(n < 2L)) {
-    stop(sQuote("n"), " has to be an integer >= 2.")
-  }
-
-  n <- unique(pmin(n, length(object)))
-
-  center <- .topNIndices(intensity(object), n=1L)[1L]
-
-  ## build indices to test
-  i <- lapply(n, .consecutiveIndices,
-              x=mass(object), center=center)
-  ## test left and right preferation for n %% 2L == 0
-  i <- c(i, lapply(n[!n %% 2L], .consecutiveIndices,
-                   x=mass(object), center=center, method="right"))
-  i <- unique(i)
-
-  res <- lapply(i, function(ii).esiprot(mass(object)[ii], ...))
-  res <- do.call(rbind, res)
-  res
-  m <- which.min(res[, "sd"])
-  n <- length(i[[m]])
-  c(res[m,], n=n, fpi=i[[m]][1L], lpi=i[[m]][n])
+  switch(method,
+         "manual" = .esiprot(mass(object), ...),
+         "automatic" = .esiprotAuto(object, ...))
 })
 
 ## list

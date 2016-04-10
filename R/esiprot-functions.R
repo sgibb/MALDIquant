@@ -62,10 +62,18 @@
   x <- x - hydrogen
   n <- length(x)
   z <- floor(max(range[1L], n)):ceiling(max(range[2L], n))
+
+  if (length(z) < length(x)) {
+    stop(sQuote("range"), " is too small for this many peaks.")
+  }
+
   m <- .tembed(z, n) * x
   s <- .colSd(m)
   i <- which.min(s)
-  c(mw=mean(m[, i]), sd=s[i], z=z[i] + n - 1L)
+  z <- z[i] + n - 1L
+  list(mw=mean(m[, i]), sd=s[i],
+       mz=matrix(c(x, z:(z - n + 1L)), ncol=2L, nrow=n,
+                 dimnames=list(c(), c("mz", "z"))))
 }
 
 #' .tembed
@@ -81,6 +89,9 @@
 #' @noRd
 .tembed <- function(x, dimension=1L) {
   n <- length(x)
+  if ((dimension < 1L) | (dimension > n)) {
+    stop("wrong embedding dimension")
+  }
   m <- n - dimension + 1L
   d <- x[rep.int(dimension:n, rep.int(dimension, m)) - 0L:(dimension - 1L)]
   dim(d) <- c(dimension, m)
@@ -110,4 +121,54 @@
   }
   left <- max(1L, center - n2)
   left:(left + n - 1L)
+}
+
+#' .esiprotMonoisotopic
+#'
+#' finds the first peak in a peaks group based on the distance between
+#' consecutive mz values.
+#'
+#' @param x double, mass of a MassPeaks object
+#' @param p double, see ?qpois
+#' @return indices of monoisotopic peaks
+#' @author Sebastian Gibb <mail@@sebastiangibb.de>
+#' @noRd
+.esiprotMonoisotopic <- function(x, p=0.95) {
+  d <- diff(x)
+  which(d > qpois(p, mean(d))) + 1L
+}
+
+#' .esiprotAuto
+#'
+#' @param x double, mass of a MassPeaks object
+#' @param n how many consecutive peaks should be tried?
+#' @param p double, see ?qpois
+#' @param ... further arguments passed to .esiprot
+#' @author Sebastian Gibb <mail@@sebastiangibb.de>
+#' @noRd
+.esiprotAuto <- function(object, n=2L:10L, p=0.95, ...) {
+
+  if (!is.integer(n) || any(n < 2L)) {
+    stop(sQuote("n"), " has to be an integer >= 2.")
+  }
+
+  object <- object[.esiprotMonoisotopic(mass(object), p=p)]
+
+  n <- unique(pmin(n, length(object)))
+
+  center <- .topNIndices(intensity(object), n=1L)[1L]
+
+  ## build indices to test
+  i <- lapply(n, .consecutiveIndices,
+              x=mass(object), center=center)
+  ## test left and right preferation for n %% 2L == 0
+  i <- c(i, lapply(n[!n %% 2L], .consecutiveIndices,
+                   x=mass(object), center=center, method="right"))
+  i <- unique(i)
+
+  res <- lapply(i, function(ii).esiprot(mass(object)[ii], ...))
+  res <- do.call(rbind, res)
+  m <- which.min(res[, "sd"])
+  n <- length(i[[m]])
+  res[m, ]
 }
