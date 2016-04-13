@@ -115,12 +115,10 @@
                                 method=c("left", "right")) {
   method <- match.arg(method)
   n <- min(length(x), n)
-  n2 <- floor(n/2L)
-  if (method == "right" && center + n2 < length(x)) {
-    center <- center + 1L
-  }
-  left <- max(1L, center - n2)
-  left:(left + n - 1L)
+  sel <- 1L:n + center - floor(n/2L) - (method == "left")
+  rhs <- length(x) - sel[n]
+  lhs <- 1L - sel[1L]
+  sel + (lhs > 0) * lhs + (rhs < 0) * rhs
 }
 
 #' .esiprotMonoisotopic

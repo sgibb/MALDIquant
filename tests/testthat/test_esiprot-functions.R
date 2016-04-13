@@ -74,6 +74,7 @@ test_that(".consecutiveIndices", {
   expect_equal(MALDIquant:::.consecutiveIndices(m, center=8, n=8, method="right"), 4:11)
   expect_equal(MALDIquant:::.consecutiveIndices(m, center=2, n=100),
                seq_along(m))
+  expect_equal(MALDIquant:::.consecutiveIndices(1:7, center=5, n=7), 1:7)
 })
 
 test_that(".esiprotMonoisotopic", {
