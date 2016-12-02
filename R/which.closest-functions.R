@@ -39,7 +39,7 @@
   lDiff <- abs(vec[lIdx] - x)
   rDiff <- abs(vec[rIdx] - x)
 
-  if (!is.infinite(tolerance)) {
+  if (any(is.finite(tolerance))) {
     lIdx[lDiff > tolerance] <- nomatch
     rIdx[rDiff > tolerance] <- nomatch
   }

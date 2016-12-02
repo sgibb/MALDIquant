@@ -9,6 +9,8 @@ RELEASE HISTORY OF THE "MALDIquant" PACKAGE
   difference to the target is identical for the left (smaller) and the
   right (larger) index (should not change anything because `.which.closest` was
   not exported yet).
+- INTERNAL `.pseudoCluster` use new `.which.closest` implementation (could
+  result in slightly different tolerance values).
 
 CHANGES IN MALDIquant VERSION 1.15 [2016-06-25]:
 ------------------------------------------------

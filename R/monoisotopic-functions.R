@@ -41,11 +41,10 @@
   mm <- matrix(x, nrow=size, ncol=length(x) * length(distance), byrow=TRUE)
   ms <- mm + (rep(distance, each=size) * 0L:(size - 1L))
 
-  i <- .which.closest(ms, x)
-  m <- x[i]
-  dim(m) <- dim(i)
+  i <- .which.closest(ms, x, tolerance=mm * tolerance)
+  dim(i) <- dim(ms)
 
-  i[, colSums(abs(ms - m) / mm < tolerance) == size, drop=FALSE]
+  i[, !is.na(colSums(i)), drop=FALSE]
 }
 
 #' .F
@@ -127,7 +126,7 @@
   cr <- .colCors(y, p)
   pc <- pc[, cr > minCor, drop=FALSE]
   pc[duplicated(as.vector(pc))] <- NA_real_
-  pc[, colSums(is.na(pc)) == 0L, drop=FALSE]
+  pc[, !is.na(colSums(pc)), drop=FALSE]
 }
 
 #' .monoisotopic
@@ -149,7 +148,7 @@
     upattern[duplicated(upattern)] <- NA_real_
     upattern <- relist(upattern, pattern)
     sort.int(.unlist(lapply(upattern,
-                            function(p)p[1L, colSums(is.na(p)) == 0L])))
+                            function(p)p[1L, !is.na(colSums(p))])))
   } else {
     double()
   }
