@@ -3,13 +3,14 @@ RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 
 1.15.1
 
-- NEW FEATURES `.which.closest` gains a "tolerance" and "nomatch" argument to
-  allow relaxed matching.
-- INTERNAL `.which.closest` now returns the left (smaller) index if the
+- NEW FEATURES the former hidden `.which.closest` is renamed into the exported
+  `match.closest` and gains a "tolerance" and "nomatch" argument to allow
+  relaxed matching.
+- INTERNAL `match.closest` now returns the left (smaller) index if the
   difference to the target is identical for the left (smaller) and the
-  right (larger) index (should not change anything because `.which.closest` was
-  not exported yet).
-- INTERNAL `.pseudoCluster` use new `.which.closest` implementation (could
+  right (larger) index (should not change anything because its predecessor
+  `.which.closest` was not exported yet).
+- INTERNAL `.pseudoCluster` use new `match.closest` implementation (could
   result in slightly different tolerance values).
 
 CHANGES IN MALDIquant VERSION 1.15 [2016-06-25]:

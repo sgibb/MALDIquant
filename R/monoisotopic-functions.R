@@ -23,7 +23,7 @@
   mm <- matrix(x, nrow=size, ncol=length(x) * length(distance), byrow=TRUE)
   ms <- mm + (rep(distance, each=size) * 0L:(size - 1L))
 
-  i <- .which.closest(ms, x, tolerance=mm * tolerance)
+  i <- match.closest(ms, x, tolerance=mm * tolerance)
   dim(i) <- dim(ms)
 
   i[, !is.na(colSums(i)), drop=FALSE]

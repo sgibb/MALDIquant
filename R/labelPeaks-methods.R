@@ -16,7 +16,7 @@ setMethod(f="labelPeaks",
   }
 
   if (!missing(mass) && is.numeric(mass)) {
-    massIdx <- .which.closest(mass, object@mass)
+    massIdx <- match.closest(mass, object@mass)
 
     if (missing(index)) {
       index <- massIdx
