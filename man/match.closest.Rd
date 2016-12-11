@@ -13,7 +13,7 @@ match.closest(x, table, tolerance = Inf, nomatch = NA_integer_)
 \code{\link{match}} \code{table} has to be sorted in increasing order.}
 
 \item{tolerance}{\code{numeric}, accepted tolerance. Use \code{Inf} to match without
-restrictions.}
+restrictions. Could be of length one or the same length as \code{table}.}
 
 \item{nomatch}{\code{numeric}, if the difference
 between the value in \code{x} and \code{table} is larger than

@@ -10,7 +10,7 @@
 #' @param table \code{numeric}, the values to be matched against. In contrast to
 #' \code{\link{match}} \code{table} has to be sorted in increasing order.
 #' @param tolerance \code{numeric}, accepted tolerance. Use \code{Inf} to match without
-#' restrictions.
+#' restrictions. Could be of length one or the same length as \code{table}.
 #' @param nomatch \code{numeric}, if the difference
 #' between the value in \code{x} and \code{table} is larger than
 #' \code{tolerance} \code{nomatch} is returned.
@@ -53,32 +53,29 @@
 #' # [2,] 4 10
 #'
 match.closest <- function(x, table, tolerance=Inf, nomatch=NA_integer_) {
-
-  if (any(tolerance < 0L)) {
-    warning(sQuote("tolerance"), " < 0 is meaningless. Set to zero.")
-    tolerance[tolerance < 0L] <- 0L
-  }
-
-  if (length(tolerance) != 1L && length(x) != length(tolerance)) {
-    stop("Length of ", sQuote("tolerance"), " has to be 1 or equal to ",
-         "length of ", sQuote("x"), ".")
-  }
-
   ## find left interval
   lIdx <- findInterval(x, table, rightmost.closed=FALSE, all.inside=TRUE)
-  lIdx[lIdx == 0L] <- 1L
   rIdx <- lIdx + 1L
 
   ## calculate differences for left and right
   lDiff <- abs(table[lIdx] - x)
   rDiff <- abs(table[rIdx] - x)
 
+  d <- which(lDiff >= rDiff)
+
+  lIdx[d] <- rIdx[d]
+
   if (any(is.finite(tolerance))) {
-    lIdx[lDiff > tolerance] <- nomatch
-    rIdx[rDiff > tolerance] <- nomatch
+    if (any(tolerance < 0L)) {
+      warning(sQuote("tolerance"), " < 0 is meaningless. Set to zero.")
+      tolerance[tolerance < 0L] <- 0L
+    }
+
+    tolerance <- rep_len(tolerance, length(table))
+
+    lDiff[d] <- rDiff[d]
+    lIdx[lDiff > tolerance[lIdx]] <- nomatch
   }
 
-  d <- which(lDiff != pmin.int(lDiff, rDiff))
-  lIdx[d] <- rIdx[d]
   lIdx
 }
