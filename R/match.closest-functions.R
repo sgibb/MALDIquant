@@ -13,7 +13,7 @@
 #' restrictions. Could be of length one or the same length as \code{table}.
 #' @param nomatch \code{numeric}, if the difference
 #' between the value in \code{x} and \code{table} is larger than
-#' \code{tolerance} \code{nomatch} is returned.
+#' \code{tolerance} \code{nomatch} is returned. Has to be of length one.
 #'
 #' @return An \code{integer} vector of the same length as \code{x} giving the
 #' closest position in \code{table} of the first match or \code{nomatch} if
@@ -53,11 +53,9 @@
 #' # [2,] 4 10
 #'
 match.closest <- function(x, table, tolerance=Inf, nomatch=NA_integer_) {
-  ## find left interval
   lIdx <- findInterval(x, table, rightmost.closed=FALSE, all.inside=TRUE)
   rIdx <- lIdx + 1L
 
-  ## calculate differences for left and right
   lDiff <- abs(table[lIdx] - x)
   rDiff <- abs(table[rIdx] - x)
 
@@ -69,6 +67,10 @@ match.closest <- function(x, table, tolerance=Inf, nomatch=NA_integer_) {
     if (any(tolerance < 0L)) {
       warning(sQuote("tolerance"), " < 0 is meaningless. Set to zero.")
       tolerance[tolerance < 0L] <- 0L
+    }
+
+    if (length(nomatch) != 1L) {
+      stop("Length of ", sQuote("nomatch"), " has to be one.")
     }
 
     tolerance <- rep_len(tolerance, length(table))

@@ -17,7 +17,7 @@ restrictions. Could be of length one or the same length as \code{table}.}
 
 \item{nomatch}{\code{numeric}, if the difference
 between the value in \code{x} and \code{table} is larger than
-\code{tolerance} \code{nomatch} is returned.}
+\code{tolerance} \code{nomatch} is returned. Has to be of length one.}
 }
 \value{
 An \code{integer} vector of the same length as \code{x} giving the

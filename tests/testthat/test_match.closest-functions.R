@@ -12,6 +12,7 @@ test_that("match.closest", {
 })
 
 test_that("match.closest, tolerance", {
+  expect_error(match.closest(1, 1, tolerance=1, nomatch=1:2), "Length of .*nomatch.* has to be one")
   expect_warning(match.closest(1, 1, tolerance=-1), ".*tolerance.* < 0 is meaningless")
   expect_equal(match.closest(1.001, 1:10, tolerance=0), NA_integer_)
   expect_equal(suppressWarnings(match.closest(c(1,2,3.1), 1:3, tolerance=-1)), c(1, 2, NA_integer_))
