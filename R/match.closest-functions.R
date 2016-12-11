@@ -66,6 +66,7 @@ match.closest <- function(x, table, tolerance=Inf, nomatch=NA_integer_) {
 
   ## find left interval
   lIdx <- findInterval(x, table, rightmost.closed=FALSE, all.inside=TRUE)
+  lIdx[lIdx == 0L] <- 1L
   rIdx <- lIdx + 1L
 
   ## calculate differences for left and right
