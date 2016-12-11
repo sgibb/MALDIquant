@@ -2,6 +2,8 @@ context("match.closest")
 
 test_that("match.closest", {
   expect_error(match.closest(1, c(0, -1, 3)), "sorted non-decreasingly")
+  expect_error(match.closest(1, 3, tolerance=1:2),
+               "Length of .*tolerance.* has to be 1 or equal to length of .*x.*")
   expect_equal(match.closest(1.001, 1:10), 1)
   expect_equal(match.closest(1.4, 1:10), 1)
   expect_equal(match.closest(9.8, 1:10), 10)

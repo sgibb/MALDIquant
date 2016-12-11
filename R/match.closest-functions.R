@@ -59,6 +59,11 @@ match.closest <- function(x, table, tolerance=Inf, nomatch=NA_integer_) {
     tolerance[tolerance < 0L] <- 0L
   }
 
+  if (length(tolerance) != 1L && length(x) != length(tolerance)) {
+    stop("Length of ", sQuote("tolerance"), " has to be 1 or equal to ",
+         "length of ", sQuote("x"), ".")
+  }
+
   ## find left interval
   lIdx <- findInterval(x, table, rightmost.closed=FALSE, all.inside=TRUE)
   rIdx <- lIdx + 1L
