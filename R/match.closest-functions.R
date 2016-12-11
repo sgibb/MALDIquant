@@ -54,6 +54,11 @@
 #'
 match.closest <- function(x, table, tolerance=Inf, nomatch=NA_integer_) {
 
+  if (any(tolerance < 0L)) {
+    warning(sQuote("tolerance"), " < 0 is meaningless. Set to zero.")
+    tolerance[tolerance < 0L] <- 0L
+  }
+
   ## find left interval
   lIdx <- findInterval(x, table, rightmost.closed=FALSE, all.inside=TRUE)
   rIdx <- lIdx + 1L
