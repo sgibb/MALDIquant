@@ -11,6 +11,14 @@ test_that("match.closest", {
                c(1, 2, 3, 3))
 })
 
+test_that("match.closest, length(table) == 1", {
+  expect_equal(match.closest(1:3, 0, nomatch=0, tolerance=0), c(0, 0, 0))
+  expect_equal(match.closest(1:3, 1, nomatch=0, tolerance=0), c(1, 0, 0))
+  expect_equal(match.closest(1:3, 2, nomatch=0, tolerance=0), c(0, 1, 0))
+  expect_equal(match.closest(1:3, 3, nomatch=0, tolerance=0), c(0, 0, 1))
+  expect_equal(match.closest(1:3, 4, nomatch=0, tolerance=0), c(0, 0, 0))
+})
+
 test_that("match.closest, tolerance", {
   expect_error(match.closest(1, 1, tolerance=1, nomatch=1:2), "Length of .*nomatch.* has to be one")
   expect_warning(match.closest(1, 1, tolerance=-1), ".*tolerance.* < 0 is meaningless")
