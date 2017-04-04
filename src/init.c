@@ -37,8 +37,10 @@ void
 #ifdef HAVE_VISIBILITY_ATTRIBUTE
 __attribute__ ((visibility ("default")))
 #endif
-R_init_MALDIquant(DllInfo *info)
+R_init_MALDIquant(DllInfo *dll)
 {
     /* no .C, .Fortran, or .External routines => NULL */
-    R_registerRoutines(info, NULL, callMethods, NULL, NULL);
+    R_registerRoutines(dll, NULL, callMethods, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
+    R_forceSymbols(dll, TRUE);
 }
