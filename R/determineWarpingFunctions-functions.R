@@ -87,7 +87,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
   samples <- rep.int(seq_along(tmpPeakList), lengths(tmpPeakList))
 
   ## sort values by mass
-  s <- sort.int(mass, method="quick", index.return=TRUE)
+  s <- sort.int(mass, index.return=TRUE)
 
   mass <- s$x
   intensities <- intensities[s$ix]

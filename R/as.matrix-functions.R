@@ -12,7 +12,7 @@
 
   mass <- .unlist(lapply(l, function(x)x@mass))
   intensity <- .unlist(lapply(l, function(x)x@intensity))
-  uniqueMass <- sort.int(unique(mass), method="quick")
+  uniqueMass <- sort.int(unique(mass))
   n <- lengths(l)
   r <- rep.int(seq_along(l), n)
 

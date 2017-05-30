@@ -17,7 +17,7 @@
 .calculateLabelPositions <- function(object, x, y, peakLabels, adj, cex, srt,
                                      maxSteps=100L) {
   ## start with smallest peak
-  i <- sort.int(y, index.return=TRUE, method="quick")$ix
+  i <- sort.int(y, index.return=TRUE)$ix
 
   ## calculate label rectangles
   rects <- .textLabelRects(x[i], y[i], peakLabels[i], adj=adj, cex=cex, srt=srt)

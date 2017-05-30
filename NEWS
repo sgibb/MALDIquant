@@ -9,6 +9,12 @@ IMPROVEMENTS
 * Mass values are sorted now if they were not before;
   affected functions: `createMassSpectrum`, `createMassPeaks`, `validObject`.
 
+INTERNAL
+
+* Replace `sort.int(..., method="quick")` by `sort.int(...)` and let R decide
+  which sorting method is appropriated ("radix"/"insert" [default] is often
+  faster than "quick").
+
 
 CHANGES IN MALDIquant VERSION 1.16.2 [2017-04-04]:
 --------------------------------------------------
