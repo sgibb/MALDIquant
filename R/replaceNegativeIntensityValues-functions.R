@@ -1,12 +1,12 @@
 ## .replaceNegativeIntensityValues
-##  replace negative intensity valus by zeros
+##  replaces negative intensity valus by zeros
 ##
 ## params:
 ##  object AbstractMass Object
 ##  warn: throw a warning?
 ##
 ## returns:
-##  a AbstractMass object
+##  an AbstractMass object
 ##
 .replaceNegativeIntensityValues <- function(object, warn=TRUE) {
   if (any(object@intensity < 0L, na.rm=TRUE) && !isEmpty(object)) {

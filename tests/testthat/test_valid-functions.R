@@ -13,6 +13,11 @@ test_that(".validAbstractMassObject", {
   s@intensity <- -1
   expect_warning(MALDIquant:::.validAbstractMassObject(s),
                  "Negative intensity values found.")
+
+  s@mass <- 2:1
+  s@intensity <- 1:2
+  expect_warning(MALDIquant:::.validAbstractMassObject(s),
+                 "Unsorted mass values found.")
 })
 
 test_that(".validMassPeaks", {

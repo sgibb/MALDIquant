@@ -12,7 +12,8 @@
 ##  a MassSpectrum object
 ##
 createMassSpectrum <- function(mass, intensity, metaData=list()) {
-  new(Class="MassSpectrum", mass=mass, intensity=intensity, metaData=metaData)
+  object <- new(Class="MassSpectrum", mass=mass, intensity=intensity, metaData=metaData)
+  .reorder(object)
 }
 
 ## end of MassSpectrum
@@ -34,8 +35,9 @@ createMassSpectrum <- function(mass, intensity, metaData=list()) {
 createMassPeaks <- function(mass, intensity,
                             snr=rep.int(NA_real_, length(intensity)),
                             metaData=list()) {
-  new(Class="MassPeaks", mass=mass, intensity=intensity, snr=snr,
-      metaData=metaData)
+  object <- new(Class="MassPeaks", mass=mass, intensity=intensity, snr=snr,
+                metaData=metaData)
+  .reorder(object)
 }
 
 ## end of MassPeaks

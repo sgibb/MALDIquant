@@ -15,6 +15,9 @@
       any(object@intensity < 0L)) {
     warning("Negative intensity values found.")
   }
+  if (is.unsorted(object@mass)) {
+    warning("Unsorted mass values found.")
+  }
   TRUE
 }
 
