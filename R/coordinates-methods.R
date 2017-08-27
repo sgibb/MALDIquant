@@ -42,13 +42,15 @@ setMethod(f="coordinates",
   .stopIfNotIsMassObjectList(object)
 
   m <- do.call(rbind, lapply(object, coordinates))
-  colnames(m) <- c("x", "y", "z")[seq_len(ncol(m))]
 
-  if (adjust) {
-    m <- apply(m, MARGIN=2L, function(x)x - min(x) + 1L)
+  if (!is.null(m)) {
+    colnames(m) <- c("x", "y", "z")[seq_len(ncol(m))]
+
+    if (adjust) {
+        m <- apply(m, MARGIN=2L, function(x)x - min(x) + 1L)
+    }
   }
   m
-
 })
 
 ## list
