@@ -9,6 +9,8 @@ test_that("coordinates", {
   expect_identical(coordinates(s[[1]]), c(5, 2))
   expect_identical(coordinates(s), cbind(x=5:6, y=c(2, 2)))
   expect_identical(coordinates(s, adjust=TRUE), cbind(x=1:2, y=c(1, 1)))
+  expect_null(coordinates(list(createMassSpectrum(1:5, 1:5),
+                               createMassSpectrum(1:5, 1:5))))
 })
 
 test_that("coordinates<- throws errors", {
