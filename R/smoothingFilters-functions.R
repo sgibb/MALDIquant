@@ -15,7 +15,7 @@
   myweigths<-1/2**abs(-halfWindowSize:halfWindowSize)
   myweigths<-myweigths/sum(myweigths)
   .filter(y, hws=halfWindowSize,
-          coef=matrix(myweigths, nrow=windowSize, ncol=windowSize))
+          coef=matrix(myweigths, nrow=windowSize, ncol=windowSize, byrow = TRUE))
 }
 
 ## .movingAverage

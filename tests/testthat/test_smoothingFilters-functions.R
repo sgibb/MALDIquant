@@ -8,8 +8,8 @@ test_that(".movingAverage", {
   expect_equal(MALDIquant:::.movingAverage(1:10, 3), values)
 })
 
-test_that(".movingWegithedAverage", {
-  values <- c(rep(3, 3), 4:7, rep(8, 3))
+test_that(".movingWeightedAverage", {
+  values <- c(rep(3,3),4:7,rep(8,3))
   expect_equal(MALDIquant:::.movingWeightedAverage(1:10, halfWindowSize=2), values)
 
   values <- c(rep(4, 4), 5:6, rep(7, 4))
