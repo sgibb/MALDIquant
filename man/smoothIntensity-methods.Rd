@@ -10,7 +10,8 @@ This method smoothes the intensity values of a
 }
 \usage{
 \S4method{smoothIntensity}{MassSpectrum}(object,
-  method=c("SavitzkyGolay", "MovingAverage","MovingWeightedAverage"), halfWindowSize,
+  method=c("SavitzkyGolay", "MovingAverage","MovingWeightedAverage"),
+  halfWindowSize,
   \dots)
 }
 \arguments{
@@ -37,14 +38,14 @@ This method smoothes the intensity values of a
   In general the \code{halfWindowSize} for the \code{MovingAverage} and the
   \code{MovingWeightedAverage} has to be   much smaller than for
   \code{SavitzkyGolay} to conserve the peak shape.
-  \code{MovingWeightedAverage} uses a simple weight function \code{1/2**i} where 
-  i is the distance from the center of the window, calculated as 
+  \code{MovingWeightedAverage} uses a simple weight function \code{1/2**i}
+  where i is the distance from the center of the window, calculated as 
   \code{1/2**abs(-halfWindowSize:halfWindowSize)} in R and normalized to the 
   total sum of the weights.
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}
-Sigurður Smárason (WeightedAverage smoothing)
+Sigurdur Smarason (WeightedAverage smoothing)
 }
 \references{
 A. Savitzky and M. J. Golay. 1964.
@@ -69,6 +70,9 @@ data("fiedler2009subset", package="MALDIquant")
 
 ## smooth spectra
 s <- smoothIntensity(fiedler2009subset, method="MovingAverage",
+                     halfWindowSize=2)
+## or
+s <- smoothIntensity(fiedler2009subset, method="MovingWeightedAverage",
                      halfWindowSize=2)
 ## or
 s <- smoothIntensity(fiedler2009subset, method="SavitzkyGolay",
