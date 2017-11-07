@@ -23,6 +23,12 @@ setMethod(f="smoothIntensity",
                     halfWindowSize <- 2L
                   }
                   .movingAverage
+                },
+                "MovingWeightedAverage" = {
+                  if (missing(halfWindowSize)) {
+                    halfWindowSize <- 2L
+                  }
+                  .movingWeightedAverage
                 }
   )
 

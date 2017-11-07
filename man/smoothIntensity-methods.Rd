@@ -10,14 +10,14 @@ This method smoothes the intensity values of a
 }
 \usage{
 \S4method{smoothIntensity}{MassSpectrum}(object,
-  method=c("SavitzkyGolay", "MovingAverage"), halfWindowSize,
+  method=c("SavitzkyGolay", "MovingAverage","MovingWeightedAverage"), halfWindowSize,
   \dots)
 }
 \arguments{
   \item{object}{\code{\linkS4class{AbstractMassObject}} object or a
     \code{list} of \code{\linkS4class{AbstractMassObject}} objects.}
   \item{method}{used smoothing method, one of \code{"SavitzkyGolay"} or
-    \code{"MovingAverage"}.}
+    \code{"MovingAverage"} or \code{"MovingWeightedAverage"}.}
   \item{halfWindowSize}{half window size. The resulting
     window reaches from \code{mass[currentIndex-halfWindowSize]} to
     \code{mass[currentIndex+halfWindowSize]} (window size is
@@ -26,15 +26,16 @@ This method smoothes the intensity values of a
     selected \code{method}.}
   \item{\dots}{arguments to be passed to \code{method}. \code{SavitzkyGolay} has
     an additional \code{polynomialOrder} argument (default: \code{3}) to control
-    the order of the filter. Unused for \code{MovingAverage}}
+    the order of the filter. Unused for \code{MovingAverage} and \code{MovingWeightedAverage}}
 }
 \details{
   \code{halfWindowSize}: Depends on the selected \code{method}.
   For the \code{SavitzkyGolay} the \code{halfWindowSize} should be smaller than
   \emph{FWHM} of the peaks (full width at half maximum; please find details in
   Bromba and Ziegler 1981).
-  In general the \code{halfWindowSize} for the \code{MovingAverage} has to be
-  much smaller than for \code{SavitzkyGolay} to conserve the peak shape.
+  In general the \code{halfWindowSize} for the \code{MovingAverage} and the
+  \code{MovingWeightedAverage} has to be   much smaller than for
+  \code{SavitzkyGolay} to conserve the peak shape.
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}

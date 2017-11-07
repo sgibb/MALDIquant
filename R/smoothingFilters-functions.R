@@ -1,3 +1,22 @@
+## .movingWeightedAverage
+## runs a weighted 2-side moving average where 
+## the weight is calculated as:
+## w=1/(2**i)   where i is the distance from the center of the window
+##
+## params:
+##  y: double, intensity values
+##  halfWindowSize integer, half window size.
+##
+## returns:
+##  double
+##
+.movingWeightedAverage<-function(y, halfWindowSize=2L) {
+  windowSize <- 2L * halfWindowSize + 1L
+  myweigths<-1/2**abs(-halfWindowSize:halfWindowSize)
+  myweigths<-myweigths/sum(myweigths)
+  .filter(y, hws=halfWindowSize,
+          coef=matrix(myweigths, nrow=windowSize, ncol=windowSize))
+}
 
 ## .movingAverage
 ##  runs a simple 2-side moving average.
