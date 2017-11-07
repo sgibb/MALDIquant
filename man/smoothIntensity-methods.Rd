@@ -44,6 +44,7 @@ This method smoothes the intensity values of a
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}
+Sigurður Smárason (WeightedAverage smoothing)
 }
 \references{
 A. Savitzky and M. J. Golay. 1964.
