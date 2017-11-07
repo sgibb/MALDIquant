@@ -26,7 +26,8 @@ This method smoothes the intensity values of a
     selected \code{method}.}
   \item{\dots}{arguments to be passed to \code{method}. \code{SavitzkyGolay} has
     an additional \code{polynomialOrder} argument (default: \code{3}) to control
-    the order of the filter. Unused for \code{MovingAverage} and \code{MovingWeightedAverage}}
+    the order of the filter. Unused for \code{MovingAverage} and 
+    \code{MovingWeightedAverage}}.
 }
 \details{
   \code{halfWindowSize}: Depends on the selected \code{method}.
@@ -36,6 +37,10 @@ This method smoothes the intensity values of a
   In general the \code{halfWindowSize} for the \code{MovingAverage} and the
   \code{MovingWeightedAverage} has to be   much smaller than for
   \code{SavitzkyGolay} to conserve the peak shape.
+  \code{MovingWeightedAverage} uses a simple weight function \code{1/2**i} where 
+  i is the distance from the center of the window, calculated as 
+  \code{1/2**abs(-halfWindowSize:halfWindowSize)} in R and normalized to the 
+  total sum of the weights.
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}
