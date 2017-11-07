@@ -2,7 +2,7 @@
 setMethod(f="smoothIntensity",
           signature=signature(object="MassSpectrum"),
           definition=function(object,
-                              method=c("SavitzkyGolay", "MovingAverage"),
+                              method=c("SavitzkyGolay", "MovingAverage","MovingWeightedAverage"),
                               halfWindowSize, ...) {
   ## empty spectrum?
   if (.isEmptyWarning(object)) {
