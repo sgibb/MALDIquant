@@ -72,7 +72,7 @@ s <- smoothIntensity(fiedler2009subset, method="MovingAverage",
                      halfWindowSize=2)
 ## or
 s <- smoothIntensity(fiedler2009subset, method="MovingAverage",
-                     halfWindowSize=2, weights=TRUE)
+                     halfWindowSize=2, weighted=TRUE)
 ## or
 s <- smoothIntensity(fiedler2009subset, method="SavitzkyGolay",
                      halfWindowSize=10)
