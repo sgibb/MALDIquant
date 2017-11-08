@@ -32,7 +32,7 @@ This method smoothes the intensity values of a
     \code{FALSE}) to indicate if the average should be equal weight (default) or
     if it should have weights depending on the distance from the center as 
     calculated as \code{1/2^abs(-halfWindowSize:halfWindowSize)} with the sum 
-    of all weigths normalized to 1.
+    of all weigths normalized to 1.}
 }
 \details{
   \code{halfWindowSize}: Depends on the selected \code{method}.
