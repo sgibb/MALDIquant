@@ -3,18 +3,14 @@ context("smoothingFilters")
 test_that(".movingAverage", {
   values <- c(rep(3, 3), 4:7, rep(8, 3))
   expect_equal(MALDIquant:::.movingAverage(1:10, halfWindowSize=2), values)
+  expect_equal(MALDIquant:::.movingAverage(1:10, halfWindowSize=2, 
+    weighted=TRUE), values)
 
   values <- c(rep(4, 4), 5:6, rep(7, 4))
   expect_equal(MALDIquant:::.movingAverage(1:10, 3), values)
+  expect_equal(MALDIquant:::.movingAverage(1:10, 3, weighted=TRUE), values)
 })
 
-test_that(".movingWeightedAverage", {
-  values <- c(rep(3,3),4:7,rep(8,3))
-  expect_equal(MALDIquant:::.movingWeightedAverage(1:10, halfWindowSize=2), values)
-
-  values <- c(rep(4, 4), 5:6, rep(7, 4))
-  expect_equal(MALDIquant:::.movingWeightedAverage(1:10, 3), values)
-})
 
 test_that(".movingAverage throws errors", {
   expect_error(MALDIquant:::.movingAverage(1:10, halfWindowSize=0),

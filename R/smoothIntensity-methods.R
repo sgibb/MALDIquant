@@ -2,7 +2,7 @@
 setMethod(f="smoothIntensity",
           signature=signature(object="MassSpectrum"),
           definition=function(object,
-                              method=c("SavitzkyGolay", "MovingAverage","MovingWeightedAverage"),
+                              method=c("SavitzkyGolay", "MovingAverage"),
                               halfWindowSize, ...) {
   ## empty spectrum?
   if (.isEmptyWarning(object)) {
@@ -23,12 +23,6 @@ setMethod(f="smoothIntensity",
                     halfWindowSize <- 2L
                   }
                   .movingAverage
-                },
-                "MovingWeightedAverage" = {
-                  if (missing(halfWindowSize)) {
-                    halfWindowSize <- 2L
-                  }
-                  .movingWeightedAverage
                 }
   )
 
