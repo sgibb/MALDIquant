@@ -27,7 +27,7 @@ This method smoothes the intensity values of a
     selected \code{method}.}
   \item{\dots}{arguments to be passed to \code{method}. \code{SavitzkyGolay} has
     an additional \code{polynomialOrder} argument (default: \code{3}) to control
-    the order of the filter. Unused for \code{MovingAverage}. 
+    the order of the filter.  
     \code{MovingAverage} has an additional \code{weighted} argument (default: 
     \code{FALSE}) to indicate if the average should be equal weight (default) or
     if it should have weights depending on the distance from the center as 

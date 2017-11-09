@@ -17,7 +17,7 @@
     weights <- rep.int(1L, windowSize)
   }
   .filter(y, hws=halfWindowSize,
-          coef=matrix(weights/sum(weights), nrow=windowSize, ncol=windowSize, byrow=TRUE))
+          coef=matrix(weights / sum(weights), nrow=windowSize, ncol=windowSize, byrow=TRUE))
 }
 
 
