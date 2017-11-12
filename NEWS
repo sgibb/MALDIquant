@@ -1,10 +1,14 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
-CHANGES IN MALDIquant VERSION 1.17:
---------------------------------------------------
-IMPROVEMENTS
 
-* Added weighted moving average as an option in moving average smoothing of spectra
+CHANGES IN MALDIquant VERSION 1.17 [2017-11-12]:
+------------------------------------------------
+
+NEW FEATURES
+
+* `smoothIntensity` gains a new argument "weighted" (default: `FALSE`) for
+  `method="MovingAverage"`. If `TRUE` a weighted moving average is applied.
+  Added Sigurdur Smarason.
 
 
 CHANGES IN MALDIquant VERSION 1.16.4 [2017-08-27]:
