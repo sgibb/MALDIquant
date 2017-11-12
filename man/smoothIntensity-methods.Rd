@@ -10,8 +10,7 @@ This method smoothes the intensity values of a
 }
 \usage{
 \S4method{smoothIntensity}{MassSpectrum}(object,
-  method=c("SavitzkyGolay", "MovingAverage"),
-  halfWindowSize,
+  method=c("SavitzkyGolay", "MovingAverage"), halfWindowSize,
   \dots)
 }
 \arguments{
@@ -23,15 +22,14 @@ This method smoothes the intensity values of a
     window reaches from \code{mass[currentIndex-halfWindowSize]} to
     \code{mass[currentIndex+halfWindowSize]} (window size is
     \code{2*halfWindowSize+1}).
-    The best size differs depending on the
-    selected \code{method}.}
+    The best size differs depending on the selected \code{method}.}
   \item{\dots}{arguments to be passed to \code{method}. \code{SavitzkyGolay} has
     an additional \code{polynomialOrder} argument (default: \code{3}) to control
-    the order of the filter.  
-    \code{MovingAverage} has an additional \code{weighted} argument (default: 
+    the order of the filter.
+    \code{MovingAverage} has an additional \code{weighted} argument (default:
     \code{FALSE}) to indicate if the average should be equal weight (default) or
-    if it should have weights depending on the distance from the center as 
-    calculated as \code{1/2^abs(-halfWindowSize:halfWindowSize)} with the sum 
+    if it should have weights depending on the distance from the center as
+    calculated as \code{1/2^abs(-halfWindowSize:halfWindowSize)} with the sum
     of all weigths normalized to 1.}
 }
 \details{
@@ -44,7 +42,8 @@ This method smoothes the intensity values of a
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}
-Sigurdur Smarason (WeightedAverage smoothing)
+
+Weighted moving average: Sigurdur Smarason
 }
 \references{
 A. Savitzky and M. J. Golay. 1964.
