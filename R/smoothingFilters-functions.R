@@ -1,20 +1,25 @@
-
 ## .movingAverage
 ##  runs a simple 2-side moving average.
 ##
 ## params:
 ##  y: double, intensity values
-##  halfWindowSize integer, half window size.
-##
+##  halfWindowSize integer, half window size
+##  weighted boolean, if TRUE then applies weighted average, otherwise unweighted average.
 ## returns:
 ##  double
 ##
-.movingAverage <- function(y, halfWindowSize=2L) {
+.movingAverage <- function(y, halfWindowSize=2L, weighted=FALSE) {
   .stopIfNotIsValidHalfWindowSize(halfWindowSize, n=length(y))
   windowSize <- 2L * halfWindowSize + 1L
+  if (weighted) {
+    weights <- 1 / 2^abs(-halfWindowSize:halfWindowSize)
+  } else {
+    weights <- rep.int(1L, windowSize)
+  }
   .filter(y, hws=halfWindowSize,
-          coef=matrix(1L / windowSize, nrow=windowSize, ncol=windowSize))
+          coef=matrix(weights / sum(weights), nrow=windowSize, ncol=windowSize, byrow=TRUE))
 }
+
 
 ## .savitzkyGolay
 ##  runs a savitzky golay filter
