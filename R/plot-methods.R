@@ -12,8 +12,7 @@ setMethod(f="plot",
                                                max(x@intensity, na.rm=TRUE),
                                                1L)),
                               main=x@metaData$name, sub=x@metaData$file,
-                              cex.sub=0.75, col.sub="#808080",
-                              abline.col="#808080", ...) {
+                              cex.sub=0.75, col.sub="#808080", ...) {
 
   if (all(sub == x@metaData$file) && length(x@metaData$file) > 1L) {
     sub <- paste0(ifelse(isMassSpectrum(x),
@@ -26,5 +25,4 @@ setMethod(f="plot",
   plot(x=x@mass, y=x@intensity, col=col, type=type, xlab=xlab, ylab=ylab,
        xlim=xlim, ylim=ylim, main=main, sub=sub, cex.sub=cex.sub,
        col.sub=col.sub, ...)
-  abline(h=0L, col=abline.col)
 })

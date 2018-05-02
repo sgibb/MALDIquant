@@ -1,6 +1,17 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION 1.18 [2018-05-02]:
+------------------------------------------------
+
+REMOVED ARGUMENT
+
+* `plot` now doesn't draw a horizontal line at `y == 0` anymore. The argument
+  "abline.col" was removed as well. To get the old behaviour call
+  `plot(spectrum); abline(h=0, col="#808080")`;
+  Suggested by Jimmy Lawrence <jimmymisc@gmail.com>.
+
+
 CHANGES IN MALDIquant VERSION 1.17 [2017-11-12]:
 ------------------------------------------------
 

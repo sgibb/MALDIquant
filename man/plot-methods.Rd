@@ -15,8 +15,7 @@ This is an overloaded method to allow plotting of an
       ifelse(length(x@mass), max(x@mass, na.rm=TRUE), 1)),
    ylim=c(0, ifelse(length(x@intensity), max(x@intensity, na.rm=TRUE), 1)),
    main=x@metaData$name, sub=x@metaData$file,
-   cex.sub=0.75, col.sub="#808080",
-   abline.col="#808080", \dots)
+   cex.sub=0.75, col.sub="#808080", \dots)
 }
 \arguments{
   \item{x}{\code{\linkS4class{MassSpectrum}} object.}
@@ -32,7 +31,6 @@ This is an overloaded method to allow plotting of an
   \item{sub}{sub title for the plot, see \code{\link[graphics]{title}}.}
   \item{cex.sub}{sub title font size, see \code{\link[graphics]{par}}.}
   \item{col.sub}{sub title color, see \code{\link[graphics]{par}}.}
-  \item{abline.col}{colour for horizontal line at y=0.}
   \item{\dots}{arguments to be passed to \code{\link[graphics]{plot}}.}
 }
 \author{
