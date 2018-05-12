@@ -33,7 +33,8 @@ alignSpectra(spectra, halfWindowSize=20, noiseMethod="MAD", SNR=2,
   }
   \item{tolerance}{
     \code{double}, maximal relative deviation of a peak position (mass) to be
-    considered as identical; see
+    considered as identical. Must be multiplied by \code{10^-6} for ppm,
+    e.g. use \code{tolerance=5e-6} for 5 ppm; see
     \code{\link[MALDIquant]{determineWarpingFunctions}}.
   }
   \item{warpingMethod}{

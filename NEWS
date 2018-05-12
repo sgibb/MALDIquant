@@ -4,6 +4,13 @@ RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 CHANGES IN MALDIquant VERSION 1.18 [2018-05-02]:
 ------------------------------------------------
 
+IMPROVEMENTS
+
+* The manual pages of `alingSpectra`, `binPeaks`, `determineWarpingFunctions`
+  and `referencePeaks` gain a sentence for use of the "tolerance" argument in
+  ppm; see issue #56 for details;
+  Suggested by Jimmy Lawrence <jimmymisc@gmail.com>.
+
 REMOVED ARGUMENT
 
 * `plot` now doesn't draw a horizontal line at `y == 0` anymore. The argument

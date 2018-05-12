@@ -28,7 +28,8 @@ referencePeaks(l, method=c("strict", "relaxed"), minFrequency=0.9,
   }
   \item{tolerance}{
     \code{double}, maximal relative deviation of a peak position (mass) to be
-    considered as identical.
+    considered as identical. Must be multiplied by \code{10^-6} for ppm,
+    e.g. use \code{tolerance=5e-6} for 5 ppm.
   }
 }
 \value{
