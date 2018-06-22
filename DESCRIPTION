@@ -3,8 +3,8 @@ Version: 1.18
 Date: 2018-05-02
 Title: Quantitative Analysis of Mass Spectrometry Data
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
-        email="mail@sebastiangibb.de"), person("Korbinian", "Strimmer",
-        role="ths"))
+        email="mail@sebastiangibb.de", comment=c(ORCID="0000-0001-7406-4443")),
+        person("Korbinian", "Strimmer", role="ths"))
 Depends: R (>= 3.2.0), methods
 Imports: parallel
 Suggests: knitr, testthat (>= 0.8)
