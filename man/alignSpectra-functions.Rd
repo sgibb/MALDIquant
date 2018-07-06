@@ -9,7 +9,8 @@ This function aligns a list of \code{\linkS4class{MassSpectrum}} objects
 }
 \usage{
 alignSpectra(spectra, halfWindowSize=20, noiseMethod="MAD", SNR=2,
-  reference, tolerance=0.002, warpingMethod="lowess", \dots)
+  reference, tolerance=0.002, warpingMethod="lowess",
+  allowNoMatches=FALSE, emptyNoMatches=FALSE, \dots)
 }
 \arguments{
   \item{spectra}{
@@ -40,6 +41,19 @@ alignSpectra(spectra, halfWindowSize=20, noiseMethod="MAD", SNR=2,
   \item{warpingMethod}{
     used basic warping function; see
     \code{\link[MALDIquant]{determineWarpingFunctions}}.
+  }
+  \item{allowNoMatches}{
+    \code{logical}, don't throw an error if an \code{\linkS4class{MassPeaks}}
+    object could not match to the \code{reference}; see
+    \code{\link[MALDIquant]{determineWarpingFunctions}}.
+  }
+  \item{emptyNoMatches}{
+    \code{logical}, if \code{TRUE} (default: \code{FALSE})
+    the intensity values of
+    \code{\linkS4class{MassSpectrum}} or
+    \code{\linkS4class{MassPeaks}} objects with missing (\code{NA})
+    warping functions are set to zero; see
+    \code{\link[MALDIquant]{warpMassSpectra}}.
   }
   \item{\dots}{arguments to be passed to
     \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}}.}

@@ -8,7 +8,7 @@
 ##  tolerance: double, maximal deviation of a peak position to be
 ##             considered as same peak
 ##  method: choose type of base warping function
-##  allowNoMatch: logical, don't throw an error if a single MassPeaks object
+##  allowNoMatches: logical, don't throw an error if a single MassPeaks object
 ##                can't match to the reference.
 ##  plot: logical, plots warping function
 ##
@@ -18,7 +18,7 @@
 determineWarpingFunctions <- function(l, reference, tolerance=0.002,
                                       method=c("lowess", "linear", "quadratic",
                                                "cubic"),
-                                      allowNoMatch=FALSE,
+                                      allowNoMatches=FALSE,
                                       plot=FALSE, plotInteractive=FALSE, ...) {
 
   ## test arguments
@@ -28,7 +28,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
 
   method <- match.arg(method)
 
-  if (allowNoMatch) {
+  if (allowNoMatches) {
       nomatchReporter <- warning
   } else {
       nomatchReporter <- stop

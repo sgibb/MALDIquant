@@ -6,8 +6,8 @@ CHANGES IN MALDIquant VERSION 1.19 [2018-07-06]:
 
 IMPROVEMENTS
 
-* `determineWarpingFunctions` gains an `allowNoMatch` argument. If
-  `allowNoMatch` is `TRUE` a warning is thrown instead of an error and the
+* `determineWarpingFunctions` gains an `allowNoMatches` argument. If
+  `allowNoMatches` is `TRUE` a warning is thrown instead of an error and the
   resulting list of warping functions will contain `NA` at the specific index;
   see #57.
   Suggested by Melanie Föll (@foellmelanie).
@@ -15,6 +15,9 @@ IMPROVEMENTS
   `emptyNoMatches` is `TRUE` the intensity values of
   `MassPeaks`/`MassSpectra` objects with missing warping functions are set to
   zero; see #57 for details.
+  Suggested by Melanie Föll (@foellmelanie).
+* `alignSpectra` gain two new arguments: `allowNoMatches` and
+  `emptyNoMatches`; see #57 for details.
   Suggested by Melanie Föll (@foellmelanie).
 
 

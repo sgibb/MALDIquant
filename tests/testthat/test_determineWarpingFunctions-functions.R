@@ -27,7 +27,7 @@ test_that("determineWarpingFunctions throws warnings", {
                paste0(".*plot.* is .*TRUE.* but no interactive device is ",
                       "available. Using dev.new.* to create a default one."))
   expect_warning(determineWarpingFunctions(list(p, createMassPeaks(11, 11)),
-                                           reference=r, allowNoMatch=TRUE),
+                                           reference=r, allowNoMatches=TRUE),
                  "Could not match any peak in spectrum 2 to a reference peak")
 })
 
@@ -43,10 +43,10 @@ test_that("determineWarpingFunctions works with list of MassPeaks objects", {
   expect_equal(list(r, r), wp)
 })
 
-test_that("determineWarpingFunctions supports allowNoMatch argument", {
+test_that("determineWarpingFunctions supports allowNoMatches argument", {
   suppressWarnings(
     w <- determineWarpingFunctions(
-        list(p, createMassPeaks(11, 11), p), reference=r, allowNoMatch=TRUE)
+        list(p, createMassPeaks(11, 11), p), reference=r, allowNoMatches=TRUE)
   )
   expect_equal(sapply(w, is.function), c(TRUE, FALSE, TRUE))
   expect_equal(is.na(w), c(FALSE, TRUE, FALSE))

@@ -11,6 +11,9 @@
 ##  tolerance: double, maximal deviation of a peak position to be
 ##             considered as same peak
 ##  warpingMethod: choose type of base warping function
+##  allowNoMatches: logical, don't throw an error if a single MassPeaks object
+##                  could not match to the reference.
+##  emptyNoMatches: logical, if TRUE mismatches (warping function NA)
 ##
 ## returns:
 ##  a list of aligned MassSpectrum objects
@@ -20,7 +23,7 @@ alignSpectra <- function(spectra,
                          halfWindowSize=20, noiseMethod="MAD", SNR=2,
                          ## warping
                          reference, tolerance=0.002, warpingMethod="lowess",
-                         ...) {
+                         allowNoMatches=FALSE, emptyNoMatches=FALSE, ...) {
 
   ## test arguments
   .stopIfNotIsMassSpectrumList(spectra)
@@ -28,6 +31,7 @@ alignSpectra <- function(spectra,
   peaks <- detectPeaks(spectra, halfWindowSize=halfWindowSize,
                        method=noiseMethod, SNR=SNR, ...)
   wf <- determineWarpingFunctions(peaks, reference=reference,
-                                  tolerance=tolerance, method=warpingMethod)
-  warpMassSpectra(spectra, wf)
+                                  tolerance=tolerance, method=warpingMethod,
+                                  allowNoMatches=allowNoMatches)
+  warpMassSpectra(spectra, wf, emptyNoMatches=emptyNoMatches)
 }

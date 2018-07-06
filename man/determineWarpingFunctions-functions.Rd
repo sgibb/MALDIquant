@@ -11,6 +11,7 @@ This function determines a warping function for a list of
 \usage{
 determineWarpingFunctions(l, reference, tolerance=0.002,
                           method=c("lowess", "linear", "quadratic", "cubic"),
+                          allowNoMatches=FALSE,
                           plot=FALSE, plotInteractive=FALSE, \dots)
 }
 \arguments{
@@ -30,9 +31,10 @@ determineWarpingFunctions(l, reference, tolerance=0.002,
   \item{method}{
     used basic warping function.
   }
-  \item{allowNoMatch}{
+  \item{allowNoMatches}{
     \code{logical}, don't throw an error if an \code{\linkS4class{MassPeaks}}
     object could not match to the \code{reference}.
+  }
   \item{plot}{
     \code{logical}, if \code{TRUE} a warping plot is drawn for each sample.
   }
@@ -50,7 +52,7 @@ determineWarpingFunctions(l, reference, tolerance=0.002,
   the current sample. To calculate the differences each reference peak would
   match with the highest sample peak in the nearer neighborhood
   (defined by \code{mass of reference peak*tolerance}). \cr
-  \code{allowNoMatch}: If \code{allowNoMatch} is \code{TRUE} a warning instead
+  \code{allowNoMatches}: If \code{allowNoMatches} is \code{TRUE} a warning instead
   of an error is thrown if an \code{\linkS4class{MassPeaks}}
   object could not match to the \code{reference}. The returned list of warping
   functions will contain \code{NA} for this object (same index in the list).
@@ -156,7 +158,5 @@ par(mfrow=c(4, 1))
 w <- determineWarpingFunctions(peaks, reference=refPeaks, method="quadratic",
                                plot=TRUE, plotInteractive=TRUE)
 par(mfrow=c(1, 1))
-
 }
 \keyword{methods}
-

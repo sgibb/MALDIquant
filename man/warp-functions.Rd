@@ -10,9 +10,9 @@ These functions run warping functions on
 (warping is also known as \emph{phase correction}).
 }
 \usage{
-warpMassPeaks(l, w)
+warpMassPeaks(l, w, emptyNoMatches=FALSE)
 
-warpMassSpectra(l, w)
+warpMassSpectra(l, w, emptyNoMatches=FALSE)
 }
 \arguments{
   \item{l}{
