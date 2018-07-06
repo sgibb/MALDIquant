@@ -50,6 +50,6 @@ test_that("determineWarpingFunctions supports allowNoMatch argument", {
   )
   expect_equal(sapply(w, is.function), c(TRUE, FALSE, TRUE))
   expect_equal(is.na(w), c(FALSE, TRUE, FALSE))
-  wp <- warpMassPeaks(list(p, createMassPeaks(11, 11), p), w)
-  expect_equal(list(r, r), wp)
+  wp <- warpMassPeaks(list(p, createMassPeaks(11, 11), p), w, emptyNoMatches=TRUE)
+  expect_equal(list(r, createMassPeaks(11, 0), r), wp)
 })

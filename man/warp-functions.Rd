@@ -24,6 +24,13 @@ warpMassSpectra(l, w)
     \code{\link[MALDIquant]{determineWarpingFunctions}}. Has to be of the
     same length as \code{l}.
   }
+  \item{emptyNoMatches}{
+    \code{logical}, if \code{TRUE} (default: \code{FALSE})
+    the intensity values of
+    \code{\linkS4class{MassSpectrum}} or
+    \code{\linkS4class{MassPeaks}} objects with missing (\code{NA})
+    warping functions are set to zero.
+  }
 }
 \details{
 The warping function \code{w} is called in the following way:
@@ -59,6 +66,12 @@ w <- warpMassPeaks(list(p), list(simpleWarp))[[1]]
 
 ## compare results
 all(mass(w) == mass(p)+1) # TRUE
+
+## no warping (MassPeaks object is not changed)
+warpMassPeaks(list(p), list(NA))
+
+## no warping (intensity values of MassPeaks object are set to zero)
+warpMassPeaks(list(p), list(NA), emptyNoMatches=TRUE)
 }
 \keyword{methods}
 

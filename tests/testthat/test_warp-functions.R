@@ -32,6 +32,16 @@ test_that("warpMassPeaks", {
                list(createMassPeaks(mass=2:11, intensity=1:10, snr=1:10),
                     createMassPeaks(mass=seq(3, 21, by=2), intensity=1:10,
                                     snr=1:10)))
+  expect_equal(
+    warpMassPeaks(
+      list(p, p, p), list(function(x)1, NA, function(x)x+1), emptyNoMatches=TRUE
+    ),
+    list(
+      createMassPeaks(mass=2:11, intensity=1:10, snr=1:10),
+      createMassPeaks(mass=1:10, intensity=rep(0, 10), snr=1:10),
+      createMassPeaks(mass=seq(3, 21, by=2), intensity=1:10, snr=1:10)
+    )
+  )
 })
 
 test_that(".warp", {
@@ -39,4 +49,14 @@ test_that(".warp", {
                                   list(function(x)1, function(x)x+1)),
                list(createMassSpectrum(mass=2:11, intensity=1:10),
                     createMassSpectrum(mass=seq(3, 21, by=2), intensity=1:10)))
+  expect_equal(
+    MALDIquant:::.warp(
+      list(p, p, p), list(function(x)1, NA, function(x)x+1), emptyNoMatches=TRUE
+    ),
+    list(
+      createMassPeaks(mass=2:11, intensity=1:10, snr=1:10),
+      createMassPeaks(mass=1:10, intensity=rep(0, 10), snr=1:10),
+      createMassPeaks(mass=seq(3, 21, by=2), intensity=1:10, snr=1:10)
+    )
+  )
 })
