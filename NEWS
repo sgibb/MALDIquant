@@ -1,7 +1,7 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
-CHANGES IN MALDIquant VERSION 1.19 [2018-07-06]:
+CHANGES IN MALDIquant VERSION 1.18 [2018-07-06]:
 ------------------------------------------------
 
 IMPROVEMENTS
@@ -19,13 +19,6 @@ IMPROVEMENTS
 * `alignSpectra` gain two new arguments: `allowNoMatches` and
   `emptyNoMatches`; see #57 for details.
   Suggested by Melanie Föll (@foellmelanie).
-
-
-CHANGES IN MALDIquant VERSION 1.18 [2018-05-02]:
-------------------------------------------------
-
-IMPROVEMENTS
-
 * The manual pages of `alingSpectra`, `binPeaks`, `determineWarpingFunctions`
   and `referencePeaks` gain a sentence for use of the "tolerance" argument in
   ppm; see issue #56 for details;
