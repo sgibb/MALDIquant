@@ -30,6 +30,9 @@ determineWarpingFunctions(l, reference, tolerance=0.002,
   \item{method}{
     used basic warping function.
   }
+  \item{allowNoMatch}{
+    \code{logical}, don't throw an error if an \code{\linkS4class{MassPeaks}}
+    object could not match to the \code{reference}.
   \item{plot}{
     \code{logical}, if \code{TRUE} a warping plot is drawn for each sample.
   }
@@ -47,6 +50,10 @@ determineWarpingFunctions(l, reference, tolerance=0.002,
   the current sample. To calculate the differences each reference peak would
   match with the highest sample peak in the nearer neighborhood
   (defined by \code{mass of reference peak*tolerance}). \cr
+  \code{allowNoMatch}: If \code{allowNoMatch} is \code{TRUE} a warning instead
+  of an error is thrown if an \code{\linkS4class{MassPeaks}}
+  object could not match to the \code{reference}. The returned list of warping
+  functions will contain \code{NA} for this object (same index in the list).
   \code{plotInteractive}: If \code{plot} is \code{TRUE} a lot of output is
   created (each sample in \code{l} gets its own plot).
   That's why an non-interactive devices is recommended:

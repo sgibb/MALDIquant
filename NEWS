@@ -1,6 +1,17 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION 1.19 [2018-07-06]:
+------------------------------------------------
+
+IMPROVEMENTS
+
+* `determineWarpingFunctions` gains an `allowNoMatch` argument. If
+  `allowNoMatch` is `TRUE` a warning is thrown instead of an error and the
+  resulting list of warping functions will contain `NA` at the specific index;
+  see #57; Suggested by Melanie Föll (@foellmelanie).
+
+
 CHANGES IN MALDIquant VERSION 1.18 [2018-05-02]:
 ------------------------------------------------
 

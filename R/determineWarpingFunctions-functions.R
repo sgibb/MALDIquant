@@ -8,6 +8,8 @@
 ##  tolerance: double, maximal deviation of a peak position to be
 ##             considered as same peak
 ##  method: choose type of base warping function
+##  allowNoMatch: logical, don't throw an error if a single MassPeaks object
+##                can't match to the reference.
 ##  plot: logical, plots warping function
 ##
 ## returns:
@@ -16,6 +18,7 @@
 determineWarpingFunctions <- function(l, reference, tolerance=0.002,
                                       method=c("lowess", "linear", "quadratic",
                                                "cubic"),
+                                      allowNoMatch=FALSE,
                                       plot=FALSE, plotInteractive=FALSE, ...) {
 
   ## test arguments
@@ -25,6 +28,14 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
 
   method <- match.arg(method)
 
+  if (allowNoMatch) {
+      nomatchReporter <- warning
+  } else {
+      nomatchReporter <- stop
+  }
+
+  minPeaks <- 2L
+
   warpingFunction <- switch(method,
     "lowess" = {
       .warpingFunctionLowess
@@ -33,9 +44,11 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
       .warpingFunctionLinear
     },
     "quadratic" = {
+      minPeaks <- 3L
       .warpingFunctionQuadratic
     },
     "cubic" = {
+      minPeaks <- 4L
       .warpingFunctionCubic
     }
   )
@@ -121,11 +134,18 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
     arguments$d <- d[i][notNA]  ## difference to reference
 
     if (!length(arguments$x)) {
-      stop("Could not match any peak in spectrum ", samples[i[1L]] - 1L,
-           " to a reference peak.")
+      nomatchReporter("Could not match any peak in spectrum ",
+                      samples[i[1L]] - 1L, " to a reference peak.")
+      NA
+    } else if (length(arguments$x) < minPeaks) {
+      nomatchReporter("Could not match enough peaks in spectrum",
+                      samples[i[1L]] - 1L, "to the reference peaks.\n",
+                      minPeaks, " matches required, just ",
+                      length(arguments$x), " found.")
+      NA
+    } else {
+      do.call(warpingFunction, arguments)
     }
-
-    do.call(warpingFunction, arguments)
   })
 
   ## clean misleading names (names == idx+1 because reference is idx == 1)
