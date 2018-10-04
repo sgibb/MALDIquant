@@ -1,6 +1,14 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION 1.18.1 [2018-10-04]:
+--------------------------------------------------
+
+INTERNAL CHANGES
+
+* `determineWarpingFunctions`, change handling of minimal necessary peaks for
+  each warping method.
+
 CHANGES IN MALDIquant VERSION 1.18 [2018-07-06]:
 ------------------------------------------------
 

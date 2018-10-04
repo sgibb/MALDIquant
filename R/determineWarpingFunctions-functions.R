@@ -34,8 +34,6 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
       nomatchReporter <- stop
   }
 
-  minPeaks <- 2L
-
   warpingFunction <- switch(method,
     "lowess" = {
       .warpingFunctionLowess
@@ -44,13 +42,18 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
       .warpingFunctionLinear
     },
     "quadratic" = {
-      minPeaks <- 3L
       .warpingFunctionQuadratic
     },
     "cubic" = {
-      minPeaks <- 4L
       .warpingFunctionCubic
     }
+  )
+
+  minPeaks <- switch(method,
+    "lowess" = 2L,
+    "linear" = 2L,
+    "quadratic" = 3L,
+    "cubic" = 4L
   )
 
   optArgs <- list(...)
