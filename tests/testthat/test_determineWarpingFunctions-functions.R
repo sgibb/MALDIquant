@@ -33,12 +33,14 @@ test_that("determineWarpingFunctions throws warnings", {
 
 test_that("determineWarpingFunctions works with single MassPeaks object", {
   w <- determineWarpingFunctions(p, reference=r, method="linear")
+  expect_equal(attr(w, "nmatch"), 6)
   wp <- warpMassPeaks(list(p), w)[[1]]
   expect_equal(r, wp)
 })
 
 test_that("determineWarpingFunctions works with list of MassPeaks objects", {
-  w <- determineWarpingFunctions(list(p, p), reference=r, method="linear")
+  w <- determineWarpingFunctions(list(a=p, b=p), reference=r, method="linear")
+  expect_equal(attr(w, "nmatch"), c(a=6, b=6))
   wp <- warpMassPeaks(list(p, p), w)
   expect_equal(list(r, r), wp)
 })
@@ -50,6 +52,7 @@ test_that("determineWarpingFunctions supports allowNoMatches argument", {
   )
   expect_equal(sapply(w, is.function), c(TRUE, FALSE, TRUE))
   expect_equal(is.na(w), c(FALSE, TRUE, FALSE))
+  expect_equal(attr(w, "nmatch"), c(6, 0, 6))
   wp <- warpMassPeaks(list(p, createMassPeaks(11, 11), p), w, emptyNoMatches=TRUE)
   expect_equal(list(r, createMassPeaks(11, 0), r), wp)
 })

@@ -69,7 +69,9 @@ dev.off()
   }
 }
 \value{
-Returns a \code{list} of individual warping functions.
+Returns a \code{list} of individual warping functions. The attribute
+\code{nmatch} contains the number of matches of each
+\code{\linkS4class{MassPeaks}} element in \code{l} against \code{reference}.
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}
@@ -103,6 +105,9 @@ par(mfrow=c(2, 1))
 w <- determineWarpingFunctions(p, tolerance=0.02, method="linear",
                                plot=TRUE, plotInteractive=TRUE)
 par(mfrow=c(1, 1))
+
+## access number of matches
+attr(w, "nmatch")
 
 ## w contains the individual warping functions
 warpedPeaks <- warpMassPeaks(p, w)

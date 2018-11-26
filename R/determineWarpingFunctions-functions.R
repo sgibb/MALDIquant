@@ -154,6 +154,13 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
   ## clean misleading names (names == idx+1 because reference is idx == 1)
   names(warpingFunctions) <- NULL
 
+  ## number of matched peaks
+  nmatch <-  vapply(split(d, samples)[-1L], function(dd) {
+      sum(!is.na(dd), na.rm=TRUE)
+  }, NA_real_, USE.NAMES=FALSE)
+  names(nmatch) <- names(l)
+  attr(warpingFunctions, "nmatch") <- nmatch
+
   ## debug plot
   if (plot) {
     ## non interactive device (pdf, png, ...) available?

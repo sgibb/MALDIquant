@@ -1,6 +1,17 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION 1.19 [2018-11-26]:
+------------------------------------------------
+
+IMPROVEMENTS:
+
+* `determineWarpingFunctions`'s return value gains a new argument `nmatch`
+  storing the number of matches of the given peaks against the reference; see
+  #59.
+  Suggested by Melanie Föll (@foellmelanie).
+
+
 CHANGES IN MALDIquant VERSION 1.18.1 [2018-10-04]:
 --------------------------------------------------
 
