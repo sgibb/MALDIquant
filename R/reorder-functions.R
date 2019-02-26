@@ -9,13 +9,14 @@
 ##  an AbstractMass object
 ##
 .reorder <- function(object, warn=TRUE) {
-  if (is.unsorted(object@mass)) {
+       tmpMass <- mass(object)
+  if (is.unsorted(tmpMass)) {
     if (warn) {
       warning("Mass and intensity values are reordered.")
     }
-    i <- sort.int(object@mass, index.return=TRUE)
-    object@mass <- i$x
-    object@intensity <- object@intensity[i$ix]
+    i <- sort.int(tmpMass, index.return=TRUE)
+    mass(object) <- i$x
+    intensity(object) <- intensity(object)[i$ix]
   }
   object
 }

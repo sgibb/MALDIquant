@@ -54,11 +54,12 @@ warpMassPeaks <- function(l, w, emptyNoMatches=FALSE) {
   }
 
   l[notNa] <- .mapply(function(m, wf) {
-           m@mass <- m@mass + wf(m@mass)
+           massOfm <- mass(m)
+           mass(m) <- massOfm + wf(massOfm)
            m
   }, m=ml, wf=wl)
   if (emptyNoMatches) {
-      l[!notNa] <- lapply(l[!notNa], function(m) { m@intensity[] <- 0; m })
+      l[!notNa] <- lapply(l[!notNa], function(m) { intensity(m) <- 0; m })
   }
   l
 }

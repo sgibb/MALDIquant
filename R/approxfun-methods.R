@@ -6,7 +6,20 @@ setMethod(f="approxfun",
   if (isEmpty(x)) {
     function(x)rep.int(NA, length(x))
   } else {
-    approxfun(x=x@mass, y=x@intensity, method=method,
+    approxfun(x=mass(x), y=intensity(x), method=method,
               yleft=yleft, yright=yright, rule=rule, f=f, ties=ties)
   }
 })
+
+## MassSpectrumOnDisk
+setMethod(f="approxfun",
+          signature=signature(x="MassSpectrumOnDisk"),
+          definition=function(x, y=NULL, method="linear", yleft, yright,
+                              rule=1L,  f=0L, ties=mean) {
+                 if (isEmpty(x)) {
+                        function(x)rep.int(NA, length(x))
+                 } else {
+                        approxfun(x=mass(x), y=intensity(x), method=method,
+                                  yleft=yleft, yright=yright, rule=rule, f=f, ties=ties)
+                 }
+          })

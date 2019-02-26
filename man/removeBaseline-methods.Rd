@@ -2,23 +2,26 @@
 \docType{methods}
 \alias{removeBaseline}
 \alias{removeBaseline,MassSpectrum-method}
+\alias{removeBaseline,MassSpectrumOnDisk-method}
 \alias{removeBaseline,list-method}
 \title{Removes the baseline of a MassSpectrum object.}
 \description{
 This method removes the baseline of mass spectrometry data
-(represented by a \code{\linkS4class{MassSpectrum}} object).\cr
-The intensity of the mass spectrometry data would be reduced by
+(represented by a \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object).
+The intensity of the mass spectrometry \cr data would be reduced by
 \code{baseline}.
 }
 \usage{
 \S4method{removeBaseline}{MassSpectrum}(object,
   method=c("SNIP", "TopHat", "ConvexHull", "median"),
   \dots)
+\S4method{removeBaseline}{MassSpectrumOnDisk}(object,
+  method=c("SNIP", "TopHat", "ConvexHull", "median"),
+  \dots)
 \S4method{removeBaseline}{list}(object, \dots)
 }
 \arguments{
-  \item{object}{\code{\linkS4class{MassSpectrum}} object or a \code{list} of
-    \code{\linkS4class{MassSpectrum}} objects.}
+  \item{object}{\code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object or a \code{list} thereof.}
 
   \item{method}{used baseline estimation method, one of
     \code{"SNIP"}, \code{"TopHat"}, \code{"ConvexHull"} or \code{"median"}. See
@@ -29,7 +32,7 @@ The intensity of the mass spectrometry data would be reduced by
     \code{object} is a \code{list} \code{mc.cores} is also supported.}
 }
 \value{
-  Returns a modified \code{\linkS4class{MassSpectrum}} object with reduced
+  Returns a modified \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object with reduced
   intensities.
 }
 \author{

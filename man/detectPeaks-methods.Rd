@@ -2,38 +2,41 @@
 \docType{methods}
 \alias{detectPeaks}
 \alias{detectPeaks,MassSpectrum-method}
+\alias{detectPeaks,MassSpectrumOnDisk-method}
 \alias{detectPeaks,list-method}
 \title{Detects peaks in a MassSpectrum object.}
 \description{
 This method looks for peaks in mass spectrometry data
-(represented by a \code{\linkS4class{MassSpectrum}} object).\cr
+(represented by a \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object).\cr
 A peak is a local maximum above a user defined noise threshold.
 }
 \usage{
 \S4method{detectPeaks}{MassSpectrum}(object,
   halfWindowSize=20, method=c("MAD", "SuperSmoother"), SNR=2,
   \dots)
+\S4method{detectPeaks}{MassSpectrumOnDisk}(object,
+  halfWindowSize=20, method=c("MAD", "SuperSmoother"), SNR=2,
+  \dots)
 \S4method{detectPeaks}{list}(object, \dots)
 }
 \arguments{
-  \item{object}{\code{\linkS4class{MassSpectrum}} object or a \code{list} of
-    \code{\linkS4class{MassSpectrum}} objects.}
+  \item{object}{\code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object or a \code{list} thereof. }
   \item{halfWindowSize}{\code{numeric}, half window size. \cr
     The resulting window reaches from \code{mass[currentIndex-halfWindowSize]}
     to \code{mass[currentIndex+halfWindowSize]}. A local maximum have to be
     the highest one in the given window to be recognized as peak.}
   \item{method}{a noise estimation function; see
-    \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}}.
+    \code{\link[MALDIquant]{estimateNoise}}.
   }
   \item{SNR}{single numeric value. \code{SNR} is an abbreviation for
     \emph{s}ignal-to-\emph{n}oise-\emph{r}atio. A local maximum has to
     be higher than \code{SNR*noise} to be recognize as peak.}
   \item{\dots}{arguments to be passed to
-    \code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}}. If
+    \code{\link[MALDIquant]{estimateNoise}}. If
     \code{object} is a \code{list} \code{mc.cores} is also supported.}
 }
 \value{
-Returns a \code{\linkS4class{MassPeaks}} object.
+Returns a \code{\linkS4class{MassPeaks}} object or a \code{list} thereof.
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}
@@ -41,7 +44,8 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \seealso{
 \code{\linkS4class{MassPeaks}},
 \code{\linkS4class{MassSpectrum}},
-\code{\link[MALDIquant]{estimateNoise,MassSpectrum-method}}
+\code{\linkS4class{MassSpectrumOnDisk}},
+\code{\link[MALDIquant]{estimateNoise}}
 
 \code{demo("peaks")}
 

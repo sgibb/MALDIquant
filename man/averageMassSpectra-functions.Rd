@@ -1,21 +1,21 @@
 \name{averageMassSpectra}
 \alias{averageMassSpectra}
 \title{
-Averages \code{\linkS4class{MassSpectrum}} objects.
+Averages \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} objects.
 }
 \description{
-This function averages \code{\linkS4class{MassSpectrum}} objects.
+This function averages \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} objects. If \code{MassSpectrumOnDisk} objects are supplied, the result will be of \code{MassSpectrum} type. 
 }
 \usage{
 averageMassSpectra(l, labels, method=c("mean", "median", "sum"), \dots)
 }
 \arguments{
   \item{l}{
-    \code{list}, list of \code{\linkS4class{MassSpectrum}} objects.
+    \code{list}, list of \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} objects.
   }
   \item{labels}{
     \code{list}, list of \code{\link{factor}}s (one for each
-    \code{\linkS4class{MassSpectrum}} object) to do groupwise averaging.
+    \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object) to do groupwise averaging.
   }
   \item{method}{used aggregation function.}
   \item{\dots}{arguments to be passed to underlying functions (currently only
@@ -24,7 +24,7 @@ averageMassSpectra(l, labels, method=c("mean", "median", "sum"), \dots)
 \details{
 The mass of the averaged \code{\linkS4class{MassSpectrum}} object
 will be the mass of the first non-empty
-\code{\linkS4class{MassSpectrum}} object (of each group).
+\code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object (of each group).
 }
 \value{
 Returns a single (no \code{labels} given) or a \code{\link{list}}
@@ -35,6 +35,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{MassSpectrum}},
+\code{\linkS4class{MassSpectrumOnDisk}},
 \code{\link[MALDIquant]{mergeMassPeaks}}
 
 Website: \url{http://strimmerlab.org/software/maldiquant/}

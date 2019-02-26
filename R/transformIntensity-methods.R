@@ -37,12 +37,12 @@ setMethod(f=".transformIntensity",
   if (!isEmpty(object)) {
     fun <- match.fun(fun)
 
-    object@intensity <- fun(object@intensity, ...)
+    intensity(object) <- fun(intensity(object), ...)
 
     if (na.rm) {
-      naIdx <- which(!is.na(object@intensity))
-      object@intensity <- object@intensity[naIdx]
-      object@mass <- object@mass[naIdx]
+      naIdx <- which(!is.na(intensity(object)))
+      intensity(object) <- intensity(object)[naIdx]
+      mass(object) <- mass(object)[naIdx]
     }
 
     object <- .replaceNegativeIntensityValues(object)

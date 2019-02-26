@@ -6,6 +6,14 @@ setMethod(f="isEmpty",
   !sum(as.double(x@intensity), na.rm=TRUE)
 })
 
+## MassSpectrumOnDisk
+setMethod(f="isEmpty",
+          signature=signature(x="MassSpectrumOnDisk"),
+          definition=function(x) {
+                 
+                 !sum(as.double(x@intensity[]), na.rm=TRUE)
+          })
+
 setMethod(f=".isEmptyWarning",
           signature=signature(x="AbstractMassObject"),
           definition=function(x) {

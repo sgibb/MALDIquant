@@ -16,6 +16,42 @@ createMassSpectrum <- function(mass, intensity, metaData=list()) {
   .reorder(object)
 }
 
+
+## MassSpectrumOnDisk
+
+## createMassSpectrumOnDisk
+##  default constructor: MassSpectrumOnDisk class
+##
+## params:
+##  mass: matter_vec, spectrum mass
+##  intensity: matter_vec, spectrum intensities
+##  metaData: list, metadata
+##
+## returns:
+##  a MassSpectrumOnDisk object
+##
+createMassSpectrumOnDisk <- function(mass, intensity, metaData=list()) {
+       
+       onDiskMass <- matter::matter_vec(data=mass, datamode="double", filemode="rb+", 
+                                        paths=paste(tempfile("spectrum"), "mass", sep="."))
+       onDiskIntensity <- matter::matter_vec(data=intensity, datamode="double", filemode="rb+", 
+                                             paths=paste(tempfile("spectrum"), "intensity", sep="."))
+       
+       object <- new(Class="MassSpectrumOnDisk", 
+                     mass=onDiskMass, 
+                     intensity=onDiskIntensity, 
+                     metaData=metaData,
+                     path=setNames(
+                            c(onDiskMass@paths, onDiskIntensity@paths), 
+                            c("mass", "intensity")
+                            ))
+       
+       
+       .reorder(object)
+       
+}
+
+
 ## end of MassSpectrum
 
 ## MassPeaks

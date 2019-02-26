@@ -6,7 +6,7 @@ Creates a MassPeaks object.
 \description{
 This function creates a \code{\linkS4class{MassPeaks}} object. Normally it
 shouldn't called by the user. Try
-\code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}} instead.
+\code{\link[MALDIquant]{detectPeaks},MassSpectrum/MassSpectrumOnDisk-method} instead.
 }
 \usage{
 createMassPeaks(mass, intensity, snr=rep.int(NA_real_, length(intensity)),
@@ -33,7 +33,7 @@ Returns a \code{\linkS4class{MassPeaks}} object.
 Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
-\code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}},
+\code{\link[MALDIquant]{detectPeaks},MassSpectrum/MassSpectrumOnDisk-method},
 \code{\linkS4class{MassPeaks}}
 
 Website: \url{http://strimmerlab.org/software/maldiquant/}

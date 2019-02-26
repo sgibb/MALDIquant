@@ -1,11 +1,11 @@
 \name{alignSpectra}
 \alias{alignSpectra}
 \title{
-Align MassSpectrum objects.
+Align MassSpectrum/MassSpectrumOnDisk objects.
 }
 \description{
-This function aligns a list of \code{\linkS4class{MassSpectrum}} objects
-(spectra alignment is also known as \emph{warping/phase correction}). \cr
+This function aligns a list of \code{\linkS4class{MassSpectrum}}/\code{\linkS4class{MassSpectrumOnDisk}} 
+objects (spectra alignment is also known as \emph{warping/phase correction}). \cr
 }
 \usage{
 alignSpectra(spectra, halfWindowSize=20, noiseMethod="MAD", SNR=2,
@@ -14,7 +14,7 @@ alignSpectra(spectra, halfWindowSize=20, noiseMethod="MAD", SNR=2,
 }
 \arguments{
   \item{spectra}{
-    \code{list}, list of \code{\linkS4class{MassSpectrum}} objects.
+    \code{list}, list of \code{\linkS4class{MassSpectrum}}/\code{\linkS4class{MassSpectrumOnDisk}} objects.
   }
   \item{halfWindowSize}{\code{numeric}, half window size; see
     \code{\link[MALDIquant]{detectPeaks}}.
@@ -50,14 +50,14 @@ alignSpectra(spectra, halfWindowSize=20, noiseMethod="MAD", SNR=2,
   \item{emptyNoMatches}{
     \code{logical}, if \code{TRUE} (default: \code{FALSE})
     the intensity values of
-    \code{\linkS4class{MassSpectrum}} or
+    \code{\linkS4class{MassSpectrum}}, \code{\linkS4class{MassSpectrumOnDisk}} or
     \code{\linkS4class{MassPeaks}} objects with missing (\code{NA})
     warping functions are set to zero; see
     \code{\link[MALDIquant]{warpMassSpectra}}.
   }
   \item{\dots}{arguments to be passed to
-    \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}}.}
-}
+    \code{\link[MALDIquant]{detectPeaks}.}
+}}
 \details{
   \code{alignSpectra} is a wrapper function around
   \code{\link[MALDIquant]{detectPeaks}},
@@ -66,7 +66,7 @@ alignSpectra(spectra, halfWindowSize=20, noiseMethod="MAD", SNR=2,
   manually if you need finer control (e.g. plotting of warping functions).
 }
 \value{
-Returns a \code{list} of aligned \code{\linkS4class{MassSpectrum}} objects.
+Returns a \code{list} of aligned \code{\linkS4class{MassSpectrum}}/\code{\linkS4class{MassSpectrumOnDisk}} objects.
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}
@@ -76,7 +76,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \code{\link[MALDIquant]{determineWarpingFunctions}},
 \code{\link[MALDIquant]{referencePeaks}},
 \code{\link[MALDIquant]{warpMassSpectra}},
-\code{\linkS4class{MassSpectrum}}
+\code{\linkS4class{MassSpectrum/MassSpectrumOnDisk}}
 
 \code{demo("warping")}
 

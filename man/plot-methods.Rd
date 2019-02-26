@@ -18,7 +18,7 @@ This is an overloaded method to allow plotting of an
    cex.sub=0.75, col.sub="#808080", \dots)
 }
 \arguments{
-  \item{x}{\code{\linkS4class{MassSpectrum}} object.}
+  \item{x}{\code{\linkS4class{AbstractMassObject}} object.}
   \item{col}{line colour, see \code{\link[graphics]{par}}.}
   \item{xlab}{title for the x-axis, see \code{\link[graphics]{title}}.}
   \item{ylab}{title for the y-axis, see \code{\link[graphics]{title}}.}

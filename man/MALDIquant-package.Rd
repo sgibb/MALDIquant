@@ -34,6 +34,7 @@ Main classes:
   \item \code{\linkS4class{MassPeaks}}: Represents a peak list of a single
   spectrum.
   \item \code{\linkS4class{MassSpectrum}}: Represents a single spectrum.
+  \item \code{\linkS4class{MassSpectrumOnDisk}}: Represents a single spectrum and used for direct on-disk manipulation.
 }
 
 The accompanying website (see below) provides example R scripts to illustrate
