@@ -10,8 +10,8 @@
 .as.matrix.MassObjectList <- function(l) {
   .stopIfNotIsMassObjectList(l)
 
-  mass <- .unlist(lapply(l, function(x)x@mass))
-  intensity <- .unlist(lapply(l, function(x)x@intensity))
+  mass <- .unlist(lapply(l, function(x)mass(x)))
+  intensity <- .unlist(lapply(l, function(x)intensity(x)))
   uniqueMass <- sort.int(unique(mass))
   n <- lengths(l)
   r <- rep.int(seq_along(l), n)

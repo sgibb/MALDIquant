@@ -25,7 +25,8 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{AbstractMassObject}},
-\code{\linkS4class{MassSpectrum}}
+\code{\linkS4class{MassSpectrum}},
+\code{\linkS4class{MassSpectrumOnDisk}},
 
 Website: \url{http://strimmerlab.org/software/maldiquant/}
 }

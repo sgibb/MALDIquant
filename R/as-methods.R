@@ -4,6 +4,6 @@
 ##  a MassSpectrum object
 
 setAs(from="MassPeaks", to="MassSpectrum",
-      function (from)createMassSpectrum(mass=from@mass,
-                                        intensity=from@intensity,
-                                        metaData=from@metaData))
+      function (from)createMassSpectrum(mass=mass(from),
+                                        intensity=intensity(from),
+                                        metaData=metaData(from)))

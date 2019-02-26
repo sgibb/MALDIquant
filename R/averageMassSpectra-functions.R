@@ -49,7 +49,7 @@ averageMassSpectra <- function(l, labels, method=c("mean", "median", "sum"),
 
   ## merge metaData
   if (mergeMetaData) {
-    metaData <- .mergeMetaData(lapply(l, function(x)x@metaData))
+    metaData <- .mergeMetaData(lapply(l, function(x)metaData(x)))
   } else {
     metaData <- list()
   }
@@ -57,7 +57,7 @@ averageMassSpectra <- function(l, labels, method=c("mean", "median", "sum"),
   ## use the first non empty spectrum as reference
   i <- which(!vapply(l, isEmpty, logical(1L)))[1L]
   if (!is.na(i)) {
-    mass <- l[[i]]@mass
+    mass <- mass(l[[i]])
   } else {
     mass <- NA_real_
   }

@@ -7,7 +7,9 @@
 \title{Trim an AbstractMassObject object.}
 \description{
 This method trims an \code{\linkS4class{AbstractMassObject}} object.
-That is useful if some mass ranges should be excluded from further analysis.
+That is useful if some mass ranges should be excluded from further analysis. Note that
+when trimming \code{\linkS4class{MassSpectrumOnDisk}} objects, new in-memory trimmed 
+\code{\linkS4class{MassSpectrum}} objects are returned.  
 }
 \usage{
 \S4method{trim}{AbstractMassObject,numeric}(object, range)
@@ -30,7 +32,8 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \seealso{
 \code{\linkS4class{AbstractMassObject}},
 \code{\linkS4class{MassPeaks}},
-\code{\linkS4class{MassSpectrum}}
+\code{\linkS4class{MassSpectrum}},
+\code{\linkS4class{MassSpectrumOnDisk}},
 
 Website: \url{http://strimmerlab.org/software/maldiquant/}
 }

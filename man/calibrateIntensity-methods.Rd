@@ -2,22 +2,25 @@
 \docType{methods}
 \alias{calibrateIntensity}
 \alias{calibrateIntensity,MassSpectrum-method}
+\alias{calibrateIntensity,MassSpectrumOnDisk-method}
 \alias{calibrateIntensity,list-method}
 \title{Calibrates intensities of a MassSpectrum object.}
 \description{
 This function calibrates (normalize) intensities of
-\code{\linkS4class{MassSpectrum}} objects.
+\code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} objects.
 }
 
 \usage{
 \S4method{calibrateIntensity}{MassSpectrum}(object,
   method=c("TIC", "PQN", "median"), range, \dots)
+\S4method{calibrateIntensity}{MassSpectrumOnDisk}(object,
+  method=c("TIC", "PQN", "median"), range, \dots)
 \S4method{calibrateIntensity}{list}(object,
   method=c("TIC", "PQN", "median"), range, \dots)
 }
 \arguments{
-  \item{object}{\code{\linkS4class{MassSpectrum}} object or a \code{list} of
-    \code{\linkS4class{MassSpectrum}} objects.}
+  \item{object}{\code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object or a \code{list} of
+    \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} objects.}
   \item{method}{the calibration method to be used. This should be one of
     \code{"TIC"}, \code{"PQN"} or \code{"median"}.
     See \sQuote{Details} section.}
@@ -31,7 +34,7 @@ This function calibrates (normalize) intensities of
   A number of different calibration methods are provided:
   \describe{
     \item{\code{"TIC"}:}{The TIC (\emph{T}otal \emph{I}on \emph{C}urrent) of a
-      \code{\linkS4class{MassSpectrum}} object is set to one. If \code{range} is
+      \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object is set to one. If \code{range} is
       given the \emph{TIC} is only calculated for the intensities in the
       specified mass range.}
     \item{\code{"PQN"}:}{The PQN (\emph{P}robabilistic \emph{Q}uotient
@@ -48,11 +51,11 @@ This function calibrates (normalize) intensities of
       }
     }
     \item{\code{"median"}:}{The median of intensities of a
-      \code{\linkS4class{MassSpectrum}} object is set to one.}
+      \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object is set to one.}
   }
 }
 \value{
-Returns a modified \code{\linkS4class{MassSpectrum}} object with calibrated
+Returns a modified \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object with calibrated
 intensities.
 }
 \references{
@@ -65,7 +68,8 @@ Analytical Chemistry 78(13): 4281-4290.
 Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
-\code{\linkS4class{MassSpectrum}}
+\code{\linkS4class{MassSpectrum}},
+\code{\linkS4class{MassSpectrumOnDisk}}
 
 Website: \url{http://strimmerlab.org/software/maldiquant/}
 }

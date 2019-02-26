@@ -2,6 +2,7 @@
 \docType{methods}
 \alias{estimateBaseline}
 \alias{estimateBaseline,MassSpectrum-method}
+\alias{estimateBaseline,MassSpectrumOnDisk-method}
 \title{Estimates the baseline of a MassSpectrum object.}
 \description{
 This method estimates the baseline of mass spectrometry data
@@ -11,9 +12,12 @@ This method estimates the baseline of mass spectrometry data
 \S4method{estimateBaseline}{MassSpectrum}(object,
   method=c("SNIP", "TopHat", "ConvexHull", "median"),
   \dots)
+\S4method{estimateBaseline}{MassSpectrumOnDisk}(object,
+  method=c("SNIP", "TopHat", "ConvexHull", "median"),
+  \dots)
 }
 \arguments{
-  \item{object}{\code{\linkS4class{MassSpectrum}} object}
+  \item{object}{\code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk} object}}
   \item{method}{used baseline estimation method, one of
     \code{"SNIP"}, \code{"TopHat"}, \code{"ConvexHull"} or \code{"median"}.
   }
@@ -64,6 +68,7 @@ This method estimates the baseline of mass spectrometry data
     }
   }
 }
+
 \value{
 Returns a two column matrix (first column: mass, second column: intensity)
 of the estimated baseline.
@@ -103,7 +108,7 @@ Information Processing Letters, 9(5), 216-219.
 }
 \seealso{
 \code{\linkS4class{MassSpectrum}},
-\code{\link[MALDIquant]{removeBaseline,MassSpectrum-method}}
+\code{\link[MALDIquant]{removeBaseline}}
 
 \code{demo("baseline")}
 

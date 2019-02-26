@@ -130,6 +130,60 @@ if (is.null(getGeneric("totalIonCurrent"))) {
 }
 ## end of MassSpectrum
 
+## MassSpectrumOnDisk
+if (is.null(getGeneric("approxfun"))) {
+       setGeneric("approxfun",
+                  function(x, y=NULL, method="linear", yleft, yright, rule=1, f=0,
+                           ties=mean)
+                         standardGeneric("approxfun"))
+}
+if (is.null(getGeneric("calibrateIntensity"))) {
+       setGeneric("calibrateIntensity",
+                  function(object, ...) standardGeneric("calibrateIntensity"))
+}
+if (is.null(getGeneric("detectPeaks"))) {
+       setGeneric("detectPeaks",
+                  function(object, ...) standardGeneric("detectPeaks"))
+}
+if (is.null(getGeneric("estimateBaseline"))) {
+       setGeneric("estimateBaseline",
+                  function(object, method=c("SNIP", "ConvexHull", "Median"), ...)
+                         standardGeneric("estimateBaseline"))
+}
+if (is.null(getGeneric("estimateNoise"))) {
+       setGeneric("estimateNoise",
+                  function(object, ...) standardGeneric("estimateNoise"))
+}
+if (is.null(getGeneric(".findLocalMaxima"))) {
+       setGeneric(".findLocalMaxima",
+                  function(object, halfWindowSize=20L)
+                         standardGeneric(".findLocalMaxima"))
+}
+if (is.null(getGeneric(".findLocalMaximaLogical"))) {
+       setGeneric(".findLocalMaximaLogical",
+                  function(object, halfWindowSize=20L)
+                         standardGeneric(".findLocalMaximaLogical"))
+}
+if (is.null(getGeneric("isRegular"))) {
+       setGeneric("isRegular",
+                  function(object, ...) standardGeneric("isRegular"))
+}
+if (is.null(getGeneric("removeBaseline"))) {
+       setGeneric("removeBaseline",
+                  function(object, ...) standardGeneric("removeBaseline"))
+}
+if (is.null(getGeneric("smoothIntensity"))) {
+       setGeneric("smoothIntensity",
+                  function(object, ...)
+                         standardGeneric("smoothIntensity"))
+}
+if (is.null(getGeneric("totalIonCurrent"))) {
+       setGeneric("totalIonCurrent",
+                  function(object) standardGeneric("totalIonCurrent"))
+}
+## end of MassSpectrumOnDisk
+
+
 ## MassPeaks
 if (is.null(getGeneric("labelPeaks"))) {
   setGeneric("labelPeaks", function(object, ...) standardGeneric("labelPeaks"))

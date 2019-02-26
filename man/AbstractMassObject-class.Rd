@@ -39,13 +39,14 @@
 \title{Class "AbstractMassObject"}
 \description{
 \code{\linkS4class{AbstractMassObject}} is an abstract (means pure virtual)
-class. It is the parent class of \code{\linkS4class{MassSpectrum}} and
-\code{\linkS4class{MassPeaks}}.
+class. It is the parent class of \code{\linkS4class{MassSpectrum}},  
+\code{\linkS4class{MassSpectrumOnDisk}} and \code{\linkS4class{MassPeaks}}.
 It shouldn't create or handle by the user because it is for internal use only.
 }
 \section{Derived classes}{
 \code{\linkS4class{MassPeaks}},
-\code{\linkS4class{MassSpectrum}}
+\code{\linkS4class{MassSpectrum}},
+\code{\linkS4class{MassSpectrumOnDisk}}
 }
 \section{Slots}{
 \describe{
@@ -124,6 +125,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \seealso{
 \code{\linkS4class{MassPeaks}},
 \code{\linkS4class{MassSpectrum}},
+\code{\linkS4class{MassSpectrumOnDisk}},
 \code{\link[MALDIquant]{plot,AbstractMassObject,missing-method}},
 \code{\link[MALDIquant]{transformIntensity,AbstractMassObject-method}},
 \code{\link[MALDIquant]{trim,AbstractMassObject,numeric-method}}

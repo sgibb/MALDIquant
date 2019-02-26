@@ -15,7 +15,7 @@ intensityMatrix(peaks, spectra)
     \code{list}, list of \code{\linkS4class{MassPeaks}} objects.
   }
   \item{spectra}{
-    \code{list}, list of \code{\linkS4class{MassSpectrum}} objects. If a peak
+    \code{list}, list of \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} objects. If a peak
     is missing the corresponding intensity value of the spectrum is used. If
     \code{spectra} is missing \code{NA} is used instead.
   }
@@ -39,7 +39,8 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \seealso{
 \code{\link[MALDIquant]{binPeaks}},
 \code{\linkS4class{MassPeaks}},
-\code{\linkS4class{MassSpectrum}}
+\code{\linkS4class{MassSpectrum}},
+\code{\linkS4class{MassSpectrumOnDisk}}
 
 Website: \url{http://strimmerlab.org/software/maldiquant/}
 }

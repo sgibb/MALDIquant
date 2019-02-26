@@ -2,10 +2,10 @@
 \alias{isMassSpectrum}
 \alias{isMassPeaks}
 \title{
-Tests for MassSpectrum or MassPeaks object.
+Tests for MassSpectrum/MassSpectrumOnDisk or MassPeaks object.
 }
 \description{
-These functions test for a \code{\linkS4class{MassSpectrum}} or
+These functions test for a \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} or
 \code{\linkS4class{MassPeaks}} object.
 }
 \usage{
@@ -20,7 +20,7 @@ isMassPeaks(x)
 }
 \value{
 Returns \code{\link{TRUE}} or \code{\link{FALSE}} depending on whether its
-argument is an \code{\linkS4class{MassSpectrum}} or
+argument is an \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} or
 \code{\linkS4class{MassPeaks}} object.
 }
 \author{
@@ -29,6 +29,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \seealso{
 \code{\linkS4class{MassPeaks}},
 \code{\linkS4class{MassSpectrum}},
+\code{\linkS4class{MassSpectrumOnDisk}},
 \code{\linkS4class{AbstractMassObject}}
 
 Website: \url{http://strimmerlab.org/software/maldiquant/}

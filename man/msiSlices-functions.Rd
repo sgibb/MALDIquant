@@ -13,7 +13,7 @@ msiSlices(x, center, tolerance, method=c("sum", "mean", "median"), adjust=TRUE)
 
 }
 \arguments{
-  \item{x}{a \code{list} of \code{\linkS4class{MassSpectrum}}/
+  \item{x}{a \code{list} of \code{\linkS4class{MassSpectrum}}/\code{\linkS4class{MassSpectrumOnDisk}}/
     \code{\linkS4class{MassPeaks}} objects.}
   \item{center}{\code{double}, the \code{center} mas value of each slice.}
   \item{tolerance}{\code{double}, specifies the thickness of the slices
@@ -24,8 +24,7 @@ msiSlices(x, center, tolerance, method=c("sum", "mean", "median"), adjust=TRUE)
     \code{NA} values at the borders.}
 }
 \details{
-Each \code{\linkS4class{MassSpectrum}}/\code{\linkS4class{MassPeaks}} object in
-\code{x} must contain a \code{list} named \code{imaging} with an element
+Each \code{\linkS4class{MassSpectrum}}/\code{\linkS4class{MassSpectrumOnDisk}}/\code{\linkS4class{MassPeaks}} object in \code{x} must contain a \code{list} named \code{imaging} with an element
 \code{pos} that stores the \code{x} and \code{y} value of the spectrum, e.g.:
 \preformatted{
 > metaData(spectra[[1]])$imaging$pos
@@ -47,6 +46,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \code{\linkS4class{AbstractMassObject}},
 \code{\linkS4class{MassSpectrum}},
 \code{\linkS4class{MassPeaks}},
+\code{\linkS4class{MassSpectrumOnDisk}},
 \code{\link[MALDIquant]{coordinates,AbstractMassObject-method}},
 \code{\link[MALDIquant]{plotMsiSlice,list-method}}
 

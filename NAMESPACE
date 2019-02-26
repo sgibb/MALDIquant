@@ -47,15 +47,24 @@ importFrom("utils",
               "relist",
               "tail")
 
+importFrom("matter",
+              "matter_vec", 
+              "matter_fc")
+
+importClassesFrom("matter",
+                     "matter_vec", 
+                     "matter_fc")
 
 exportClasses("MassPeaks",
-              "MassSpectrum")
+              "MassSpectrum",
+              "MassSpectrumOnDisk")
 
 export("alignSpectra",
        "averageMassSpectra",
        "binPeaks",
        "createMassPeaks",
        "createMassSpectrum",
+       "createMassSpectrumOnDisk",
        "determineWarpingFunctions",
        "filterPeaks",
        "findEmptyMassObjects",

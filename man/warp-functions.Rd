@@ -17,7 +17,7 @@ warpMassSpectra(l, w, emptyNoMatches=FALSE)
 \arguments{
   \item{l}{
     \code{list}, list of \code{\linkS4class{MassPeaks}} or
-    \code{\linkS4class{MassSpectrum}} objects.
+    \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} objects.
   }
   \item{w}{
     a \code{list} of warping functions determined by
@@ -27,7 +27,7 @@ warpMassSpectra(l, w, emptyNoMatches=FALSE)
   \item{emptyNoMatches}{
     \code{logical}, if \code{TRUE} (default: \code{FALSE})
     the intensity values of
-    \code{\linkS4class{MassSpectrum}} or
+    \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} or
     \code{\linkS4class{MassPeaks}} objects with missing (\code{NA})
     warping functions are set to zero.
   }
@@ -38,7 +38,7 @@ The warping function \code{w} is called in the following way:
 }
 \value{
 Returns a \code{list} of warped \code{\linkS4class{MassPeaks}} or
-\code{\linkS4class{MassSpectrum}} objects.
+\code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} objects.
 }
 \author{
 Sebastian Gibb \email{mail@sebastiangibb.de}
@@ -46,7 +46,8 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \seealso{
 \code{\link[MALDIquant]{determineWarpingFunctions}},
 \code{\linkS4class{MassPeaks}},
-\code{\linkS4class{MassSpectrum}}
+\code{\linkS4class{MassSpectrum}},
+\code{\linkS4class{MassSpectrumOnDisk}}
 
 Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
@@ -74,4 +75,3 @@ warpMassPeaks(list(p), list(NA))
 warpMassPeaks(list(p), list(NA), emptyNoMatches=TRUE)
 }
 \keyword{methods}
-

@@ -2,18 +2,22 @@
 \docType{methods}
 \alias{estimateNoise}
 \alias{estimateNoise,MassSpectrum-method}
+\alias{estimateNoise,MassSpectrumOnDisk-method}
 \title{Estimates the noise of a MassSpectrum object.}
 \description{
 This method estimates the noise of mass spectrometry data
-(represented by a \code{\linkS4class{MassSpectrum}} object).\cr
+(represented by a \code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object).\cr
 }
 \usage{
 \S4method{estimateNoise}{MassSpectrum}(object,
   method=c("MAD", "SuperSmoother"),
   \dots)
+\S4method{estimateNoise}{MassSpectrumOnDisk}(object,
+  method=c("MAD", "SuperSmoother"),
+  \dots)
 }
 \arguments{
-  \item{object}{\code{\linkS4class{MassSpectrum}} object}
+  \item{object}{\code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object}
   \item{method}{used noise estimation method, one of
     \code{"MAD"} or \code{"SuperSmoother"}.
   }
@@ -42,7 +46,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \seealso{
 \code{\linkS4class{MassSpectrum}},
-\code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}},
+\code{\link[MALDIquant]{detectPeaks}},
 \code{\link[stats]{mad}},
 \code{\link[stats]{supsmu}}
 

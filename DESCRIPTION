@@ -1,13 +1,14 @@
 Package: MALDIquant
-Version: 1.19
+Version: 1.19.50
 Date: 2018-11-26
 Title: Quantitative Analysis of Mass Spectrometry Data
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
         email="mail@sebastiangibb.de",
         comment=c(ORCID="0000-0001-7406-4443")), person("Korbinian",
         "Strimmer", role="ths"))
+biocViews:
 Depends: R (>= 3.2.0), methods
-Imports: parallel
+Imports: parallel, matter (>= 1.8.0)
 Suggests: knitr, testthat (>= 0.8)
 Description: A complete analysis pipeline for matrix-assisted laser
         desorption/ionization-time-of-flight (MALDI-TOF) and other

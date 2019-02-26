@@ -2,14 +2,18 @@
 \docType{methods}
 \alias{smoothIntensity}
 \alias{smoothIntensity,MassSpectrum-method}
+\alias{smoothIntensity,MassSpectrumOnDisk-method}
 \alias{smoothIntensity,list-method}
 \title{Smoothes intensities of a MassSpectrum object.}
 \description{
 This method smoothes the intensity values of a
-\code{\linkS4class{MassSpectrum}} object.
+\code{\linkS4class{MassSpectrum}/\linkS4class{MassSpectrumOnDisk}} object.
 }
 \usage{
 \S4method{smoothIntensity}{MassSpectrum}(object,
+  method=c("SavitzkyGolay", "MovingAverage"), halfWindowSize,
+  \dots)
+\S4method{smoothIntensity}{MassSpectrumOnDisk}(object,
   method=c("SavitzkyGolay", "MovingAverage"), halfWindowSize,
   \dots)
 }
@@ -55,7 +59,8 @@ Application hints for Savitzky-Golay digital smoothing filters.
 Analytical Chemistry, 53(11), 1583-1586.
 }
 \seealso{
-\code{\linkS4class{MassSpectrum}}
+\code{\linkS4class{MassSpectrum}},
+\code{\linkS4class{MassSpectrumOnDisk}},
 
 Website: \url{http://strimmerlab.org/software/maldiquant/}
 }
