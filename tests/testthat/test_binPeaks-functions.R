@@ -46,3 +46,12 @@ test_that("binPeaks bins peaks releaxed", {
   expect_true(all(b[[2]]@snr == 1:2))
   expect_true(all(b[[3]]@snr == 1:2))
 })
+
+test_that("binPeaks don't introduce new peaks; issue 61", {
+    p1 <- createMassPeaks(1:5, 1:5, metaData=list(name="foo"))
+    p0 <- createMassPeaks(numeric(), numeric(), metaData=list(name="bar"))
+    expect_equal(binPeaks(list(p1, p0)), list(p1, p0))
+    expect_equal(binPeaks(list(p0, p1)), list(p0, p1))
+    expect_equal(binPeaks(list(p0, p0, p1)), list(p0, p0, p1))
+    expect_equal(binPeaks(list(p0, p1, p1)), list(p0, p1, p1))
+})

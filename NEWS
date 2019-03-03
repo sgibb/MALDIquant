@@ -1,6 +1,16 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+
+CHANGES IN MALDIquant VERSION 1.19.2 [2019-03-13]:
+--------------------------------------------------
+
+BUGFIXES
+
+* `binPeaks` propagated values to empty MassPeaks objects; see #61.
+  Thanks to Chase Clark (@chasemc) for reporting.
+
+
 CHANGES IN MALDIquant VERSION 1.19.1 [2019-03-03]:
 --------------------------------------------------
 
@@ -28,6 +38,7 @@ INTERNAL CHANGES
 
 * `determineWarpingFunctions`, change handling of minimal necessary peaks for
   each warping method.
+
 
 CHANGES IN MALDIquant VERSION 1.18 [2018-07-06]:
 ------------------------------------------------
