@@ -35,7 +35,7 @@ setMethod(f="calibrateIntensity",
   switch(method,
     "TIC" = ,
     "median" = {
-      lapply(object, calibrateIntensity, method=method, range=range, ...)
+      .lapply(object, calibrateIntensity, method=method, range=range, ...)
     },
     "PQN" = {
       .calibrateProbabilisticQuotientNormalization(object, range=range)

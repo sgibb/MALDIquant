@@ -1,6 +1,15 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION 1.19.1 [2019-03-03]:
+--------------------------------------------------
+
+BUGFIXES
+
+* `calibratyIntensity` ignored the `mc.cores` argument.
+  Thanks to @dsammour for reporting.
+
+
 CHANGES IN MALDIquant VERSION 1.19 [2018-11-26]:
 ------------------------------------------------
 
