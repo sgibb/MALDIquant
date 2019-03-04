@@ -35,7 +35,7 @@ createMassSpectrumOnDisk <- function(mass, intensity, metaData=list()) {
        onDiskMass <- matter::matter_vec(data=mass, datamode="double", filemode="rb+", 
                                         paths=tempfile("spectrum", fileext=".mass")
        onDiskIntensity <- matter::matter_vec(data=intensity, datamode="double", filemode="rb+", 
-                                             paths=paste(tempfile("spectrum"), "intensity", sep="."))
+                                             paths=tempfile("spectrum", fileext=".intensity")
        
        object <- new(Class="MassSpectrumOnDisk", 
                      mass=onDiskMass, 
