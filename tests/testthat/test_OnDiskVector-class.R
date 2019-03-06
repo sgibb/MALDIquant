@@ -10,8 +10,8 @@ test_that(".valid.OnDiskVector.path", {
 })
 
 test_that(".valid.OnDiskVector.modification", {
-    expect_null(.valid.OnDiskVector.n(1))
-    expect_match(.valid.OnDiskVector.n(1:2), "length 1")
+    expect_null(.valid.OnDiskVector.modification(1))
+    expect_match(.valid.OnDiskVector.modification(1:2), "length 1")
 })
 
 test_that(".valid.OnDiskVector.n", {
