@@ -101,7 +101,7 @@ setMethod(f="[",
             seek(f, where=x@offset + (i - 1L) * x@size, rw="read")
         .readBin(f, n=1L, size=x@size)
     } else if (length(i) == 2) {
-        if (x@offset || i > 1L)
+        if (x@offset || i[1L] > 1L)
             seek(f, where=x@offset + (i[1L] - 1L) * x@size, rw="read")
         y <- .readBin(f, n=1L, size=x@size)
             seek(f, where=x@offset + (i[2L] - 1L) * x@size, rw="read")
