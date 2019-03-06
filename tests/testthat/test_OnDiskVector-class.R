@@ -83,4 +83,6 @@ test_that("[", {
     expect_equal(odv2[1:3], 11:13)
     expect_equal(odv2[], 11:20)
     expect_equal((odv2[] <- 21:30)[1:10], 21:30)
+
+    expect_error(odv2[] <- 1:30, "Length")
 })
