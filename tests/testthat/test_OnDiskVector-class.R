@@ -37,6 +37,16 @@ test_that("validity", {
     expect_error(validObject(odv), ">= 0")
 })
 
+test_that(".isModified.OnDiskVector", {
+    odv1 <- OnDiskVector(1:3)
+    odv2 <- odv1
+    odv2[] <- 4:6
+    expect_error(odv1[1], "was modified")
+    expect_error(odv1[], "was modified")
+    expect_equal(odv2[1], 4)
+    expect_equal(odv2[], 4:6)
+})
+
 test_that("constructor", {
     expect_error(OnDiskVector(), "necessary")
 })
