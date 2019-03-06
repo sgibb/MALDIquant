@@ -13,6 +13,8 @@ NULL
 #' data are just loaded into memory when they have to be processed.
 #'
 #' @slot path file path
+#' @slot mpath file path to the modification counter file
+#' @slot modification counter, to detect modification after `odv2 <- odv`
 #' @slot n length of the vector
 #' @slot offset offset of the data in the file
 #' @slot size size of one vector element in the file
@@ -23,12 +25,19 @@ NULL
 setClass("OnDiskVector",
     slots=list(
         path="character",
+        mpath="character",
+        modification="integer",
         n="numeric",
         offset="numeric",
         size="integer"
     ),
     prototype=list(
-        path=character(), n=numeric(), offset=numeric(), size=integer()
+        path=character(),
+        mpath=character(),
+        modification=0L,
+        n=numeric(),
+        offset=numeric(),
+        size=integer()
     )
 )
 
@@ -40,7 +49,9 @@ OnDiskVector <- function(x, path, n=length(x), offset=0L, size=8L) {
             path <- tempfile()
         writeBin(as.double(x), con=path, size=size, endian="little")
     }
-    new("OnDiskVector", path=path, n=n, offset=offset, size=size)
+    mpath <- paste(path, "mod", sep=".")
+    writeBin(0L, mpath, size=NA_integer_, endian="little")
+    new("OnDiskVector", path=path, mpath=mpath, n=n, offset=offset, size=size)
 }
 
 .valid.OnDiskVector.path <- function(x) {
@@ -48,6 +59,12 @@ OnDiskVector <- function(x, path, n=length(x), offset=0L, size=8L) {
         return("'path' has to be a 'character' of length 1.")
     if (!file.exists(x))
         return(paste0("File '", x, "' doesn't exists!"))
+    NULL
+}
+
+.valid.OnDiskVector.modification <- function(x) {
+    if (length(x) != 1L)
+        return("'modification' has to be a 'numeric' of length 1.")
     NULL
 }
 
@@ -73,9 +90,18 @@ OnDiskVector <- function(x, path, n=length(x), offset=0L, size=8L) {
     NULL
 }
 
+.isModified.OnDiskVector <- function(x) {
+    m <- readBin(x@mpath, integer(), n=1L, size=NA_integer_, endian="little")
+    if (m != x@modification)
+        stop(x@path, " was modified by a different object.")
+    FALSE
+}
+
 setValidity("OnDiskVector", function(object) {
     msg <- c(
         .valid.OnDiskVector.path(object@path),
+        .valid.OnDiskVector.path(object@mpath),
+        .valid.OnDiskVector.modification(object@n),
         .valid.OnDiskVector.n(object@n),
         .valid.OnDiskVector.offset(object@offset),
         .valid.OnDiskVector.size(object@size)
@@ -93,6 +119,7 @@ setMethod(f="[",
     if (any(i < 1) || any (i > x@n))
         stop("Index out of boundaries.")
 
+    .isModified.OnDiskVector(x)
     f <- file(x@path, "rb")
     on.exit(close(f))
 
@@ -118,6 +145,7 @@ setMethod(f="[",
 setMethod(f="[",
     signature=signature(x="OnDiskVector", i="missing", j="missing"),
     definition=function(x, i, j, ..., drop=FALSE) {
+    .isModified.OnDiskVector(x)
     f <- file(x@path, "rb")
     on.exit(close(f))
     if (x@offset)
@@ -133,6 +161,8 @@ setReplaceMethod(f="[",
         stop("Length of 'value' doesn't match length of 'x'.")
     }
     writeBin(as.double(value), x@path, size=x@size, endian="little")
+    x@modification <- x@modification + 1L
+    writeBin(x@modification, x@mpath, size=NA_integer_, endian="little")
     x
 })
 
