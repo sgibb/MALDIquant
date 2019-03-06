@@ -9,6 +9,11 @@ test_that(".valid.OnDiskVector.path", {
     expect_match(.valid.OnDiskVector.path(tempfile()), "exists")
 })
 
+test_that(".valid.OnDiskVector.modification", {
+    expect_null(.valid.OnDiskVector.n(1))
+    expect_match(.valid.OnDiskVector.n(1:2), "length 1")
+})
+
 test_that(".valid.OnDiskVector.n", {
     expect_null(.valid.OnDiskVector.n(1))
     expect_match(.valid.OnDiskVector.n(1:2), "length 1")
@@ -73,5 +78,9 @@ test_that("[", {
     on.exit(unlink(fn))
 
     odv2 <- OnDiskVector(path=fn, offset=4L * 10L, n=10L, size=4L)
+    expect_equal(odv2[1], 11)
+    expect_equal(odv2[c(1, 10)], c(11, 20))
     expect_equal(odv2[1:3], 11:13)
+    expect_equal(odv2[], 11:20)
+    expect_equal((odv2[] <- 21:30)[1:10], 21:30)
 })

@@ -160,7 +160,13 @@ setReplaceMethod(f="[",
     if (length(value) != x@n) {
         stop("Length of 'value' doesn't match length of 'x'.")
     }
-    writeBin(as.double(value), x@path, size=x@size, endian="little")
+    f <- file(x@path, "wb")
+    on.exit(close(f))
+
+    if (x@offset)
+        seek(f, where=x@offset, rw="write")
+    writeBin(as.double(value), f, size=x@size, endian="little")
+
     x@modification <- x@modification + 1L
     writeBin(x@modification, x@mpath, size=NA_integer_, endian="little")
     x
