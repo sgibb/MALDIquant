@@ -5,7 +5,7 @@ Title: Quantitative Analysis of Mass Spectrometry Data
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
         email="mail@sebastiangibb.de",
         comment=c(ORCID="0000-0001-7406-4443")), person("Korbinian",
-        "Strimmer", role="ths"))
+        "Strimmer", role="ths", comment=c(ORCID="0000-0001-7917-2056")))
 Depends: R (>= 3.2.0), methods
 Imports: parallel
 Suggests: knitr, testthat (>= 0.8)
