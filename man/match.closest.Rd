@@ -65,4 +65,3 @@ im[, match.closest(ref, attr(im, "mass"), tolerance=0.25, nomatch=0)]
 \seealso{
 \code{\link{match}}
 }
-

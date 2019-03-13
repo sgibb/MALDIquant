@@ -1,6 +1,15 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION 1.19.2 [2019-05-12]:
+--------------------------------------------------
+
+BUGFIXES
+
+* `approxfun`: remove wrong generic.
+  Thanks to Martin Mächler for reporting.
+* Remove useless generics for `as.matrix`, `length`, `lines`, `points`, `plot`.
+
 
 CHANGES IN MALDIquant VERSION 1.19.2 [2019-03-13]:
 --------------------------------------------------

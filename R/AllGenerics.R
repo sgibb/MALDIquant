@@ -1,21 +1,6 @@
 ## AbstractMassObject
-if (is.null(getGeneric("as.matrix"))) {
-  setGeneric("as.matrix", function(x, ...) standardGeneric("as.matrix"))
-}
-if (is.null(getGeneric("length"))) {
-  setGeneric("length", function(x) standardGeneric("length"))
-}
-if (is.null(getGeneric("lines"))) {
-  setGeneric("lines", function(x, ...) standardGeneric("lines"))
-}
-if (is.null(getGeneric("plot"))) {
-  setGeneric("plot", function(x, y, ...) standardGeneric("plot"))
-}
 if (is.null(getGeneric("plotMsiSlice"))) {
   setGeneric("plotMsiSlice", function(x, ...) standardGeneric("plotMsiSlice"))
-}
-if (is.null(getGeneric("points"))) {
-  setGeneric("points", function(x, ...) standardGeneric("points"))
 }
 if (is.null(getGeneric(".prepareShow"))) {
   setGeneric(".prepareShow", function(object) standardGeneric(".prepareShow"))
@@ -78,12 +63,6 @@ if (is.null(getGeneric("coordinates<-"))) {
 ## end of AbstractMassObject
 
 ## MassSpectrum
-if (is.null(getGeneric("approxfun"))) {
-  setGeneric("approxfun",
-             function(x, y=NULL, method="linear", yleft, yright, rule=1, f=0,
-                      ties=mean)
-               standardGeneric("approxfun"))
-}
 if (is.null(getGeneric("calibrateIntensity"))) {
   setGeneric("calibrateIntensity",
              function(object, ...) standardGeneric("calibrateIntensity"))

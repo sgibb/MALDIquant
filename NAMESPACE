@@ -29,6 +29,7 @@ importFrom("grDevices",
               "rgb")
 
 importFrom("stats",
+              "approxfun",
               "coef",
               "dpois",
               "filter",
