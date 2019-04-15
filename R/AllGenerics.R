@@ -77,7 +77,7 @@ if (is.null(getGeneric("coordinates<-"))) {
 
 ## end of AbstractMassObject
 
-## MassSpectrum
+## MassSpectrum/MassSpectrumOnDisk i.e. AbstractMassSpectrum
 if (is.null(getGeneric("approxfun"))) {
   setGeneric("approxfun",
              function(x, y=NULL, method="linear", yleft, yright, rule=1, f=0,
@@ -128,7 +128,7 @@ if (is.null(getGeneric("totalIonCurrent"))) {
   setGeneric("totalIonCurrent",
              function(object) standardGeneric("totalIonCurrent"))
 }
-## end of MassSpectrum
+## end of MassSpectrum/MassSpectrumOnDisk
 
 ## MassPeaks
 if (is.null(getGeneric("labelPeaks"))) {

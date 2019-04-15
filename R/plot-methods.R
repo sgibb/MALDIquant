@@ -22,7 +22,7 @@ setMethod(f="plot",
                   " objects")
   }
 
-  plot(x=x@mass, y=x@intensity, col=col, type=type, xlab=xlab, ylab=ylab,
+  plot(x=mass(x), y=intensity(x), col=col, type=type, xlab=xlab, ylab=ylab,
        xlim=xlim, ylim=ylim, main=main, sub=sub, cex.sub=cex.sub,
        col.sub=col.sub, ...)
 })

@@ -1,6 +1,6 @@
 ## MassSpectrum
 setMethod(f="calibrateIntensity",
-          signature=signature(object="MassSpectrum"),
+          signature=signature(object="AbstractMassSpectrum"),
           definition=function(object,
                               method=c("TIC", "PQN", "median"),
                               range, ...) {

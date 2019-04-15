@@ -2,7 +2,7 @@
 ##  wrapper around detectPeaks, determineWarpingFunctions and warpMassSpectra
 ##
 ## params:
-##  spectra: list, list of MassSpectrum objects
+##  spectra: list, list of AbstractMassSpectrum objects
 ##  halfWindowSize: numeric, half window size.
 ##  noiseMethod: character, noise estimation method
 ##  SNR: double, signal-to-noise ratio
@@ -16,7 +16,7 @@
 ##  emptyNoMatches: logical, if TRUE mismatches (warping function NA)
 ##
 ## returns:
-##  a list of aligned MassSpectrum objects
+##  a list of aligned AbstractMassSpectrum objects
 ##
 alignSpectra <- function(spectra,
                          ## peak detection

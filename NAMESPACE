@@ -49,13 +49,16 @@ importFrom("utils",
 
 
 exportClasses("MassPeaks",
-              "MassSpectrum")
+              "MassSpectrum"
+              "MassSpectrumOnDisk",
+              "OnDiskVector")
 
 export("alignSpectra",
        "averageMassSpectra",
        "binPeaks",
        "createMassPeaks",
        "createMassSpectrum",
+       "createMassSpectrumOnDisk",
        "determineWarpingFunctions",
        "filterPeaks",
        "findEmptyMassObjects",

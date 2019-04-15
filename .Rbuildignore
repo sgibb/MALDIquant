@@ -7,3 +7,5 @@
 ^hooks$
 ^playground$
 ^revdep$
+^.*\.Rproj$
+^\.Rproj\.user$

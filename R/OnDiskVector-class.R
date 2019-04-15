@@ -172,6 +172,12 @@ setReplaceMethod(f="[",
     x
 })
 
+#' @rdname hidden_aliases
+setMethod("min", "OnDiskVector", function(x)min(x[]))
+
+#' @rdname hidden_aliases
+setMethod("max", "OnDiskVector", function(x)max(x[]))
+
 .readBin <- function(x, n, size) {
     readBin(x, double(), n=n, size=size, signed=TRUE, endian="little")
 }
