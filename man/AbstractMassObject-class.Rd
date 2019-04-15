@@ -39,18 +39,18 @@
 \title{Class "AbstractMassObject"}
 \description{
 \code{\linkS4class{AbstractMassObject}} is an abstract (means pure virtual)
-class. It is the parent class of \code{\linkS4class{MassSpectrum}} and
+class. It is the parent class of \code{\linkS4class{AbstractMassSpectrum}} and
 \code{\linkS4class{MassPeaks}}.
 It shouldn't create or handle by the user because it is for internal use only.
 }
 \section{Derived classes}{
 \code{\linkS4class{MassPeaks}},
-\code{\linkS4class{MassSpectrum}}
+\code{\linkS4class{AbstractMassSpectrum}}
 }
 \section{Slots}{
 \describe{
-  \item{\code{mass}:}{\code{numeric}, mass or mass-to-charge ratio}
-  \item{\code{intensity}:}{\code{numeric}, intensities for measured
+  \item{\code{mass}:}{\code{numeric/OnDiskVector}, mass or mass-to-charge ratio}
+  \item{\code{intensity}:}{\code{numeric/OnDiskVector}, intensities for measured
     mass-to-charge ratios}
   \item{\code{metaData}:}{\code{list}, some metadata to describe the
     spectrum}

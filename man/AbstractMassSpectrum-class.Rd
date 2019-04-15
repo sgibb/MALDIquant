@@ -1,26 +1,25 @@
-\name{MassSpectrum-class}
+\name{AbstractMassSpectrum-class}
 \Rdversion{1.1}
 \docType{class}
-\alias{MassSpectrum}
+\alias{AbstractMassSpectrum}
 \alias{MassSpectrum-class}
-\alias{isRegular}
-\alias{isRegular,MassSpectrum-method}
-\alias{totalIonCurrent}
-\alias{totalIonCurrent,MassSpectrum-method}
 
-\title{Class "MassSpectrum"}
+
+\title{Class "AbstractMassSpectrum"}
 \description{
-\code{\linkS4class{MassSpectrum}} represents a single spectrum of a MALDI-TOF
-mass spectrometry measurement. It provides an easy framework for doing
-some preprocessing steps like peak detection, baseline correction and
-much more. \cr
+\code{\linkS4class{AbstractMassSpectrum}} is an abstract (means pure virtual)
+class representing a single spectrum of a MALDI-TOF
+mass spectrometry measurement. It is the parent class of \code{\linkS4class{MassSpectrum}} and
+\code{\linkS4class{MassSpectrumOnDisk}}. It shouldn't be created or handled by the user because it is for internal use only.. \cr
 }
-\section{Objects from the Class}{
-\code{\link[MALDIquant]{createMassSpectrum}}: Creates a
-\code{\linkS4class{MassSpectrum}} object.
-}
+
 \section{Extends}{
-Class \code{\linkS4class{AbstractMassSpectrum}}, directly.
+Class \code{\linkS4class{AbstractMassObject}}, directly.
+}
+
+\section{Derived classes}{
+\code{\linkS4class{MassSpectrum}},
+\code{\linkS4class{MassSpectrumOnDisk}}
 }
 \section{Methods}{
 \describe{

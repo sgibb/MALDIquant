@@ -49,7 +49,7 @@ importFrom("utils",
 
 
 exportClasses("MassPeaks",
-              "MassSpectrum"
+              "MassSpectrum",
               "MassSpectrumOnDisk",
               "OnDiskVector")
 
