@@ -105,8 +105,7 @@ setMethod(f="show",
           signature=signature(object="OnDiskVector"),
           definition=function(object) {
                  
-                 #l <- .prepareShow(object)
-                 
+
                  groups <- c("S4 class type",
                              "Vector length",
                              "Vector range",
@@ -119,10 +118,8 @@ setMethod(f="show",
                  
                  values <- c(class(object)[1L],
                              length(object),
-                             paste0(format(min(object), digits=4L,
-                                           scientific=TRUE), " - ",
-                                    format(max(object), digits=4L,
-                                           scientific=TRUE)),
+                             paste0(format(range(object), digits=4L,
+                                           scientific=TRUE), collapse = " - "),
                              object@path,
                              object@mpath,
                              .memoryUsageStr(object@path, FALSE),

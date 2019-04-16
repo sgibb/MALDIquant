@@ -22,6 +22,7 @@ NULL
 #' @author Sebastian Gibb <mail@@sebastiangibb.de>
 #'
 #' @noRd
+
 setClass("OnDiskVector",
     slots=list(
         path="character",
@@ -90,12 +91,12 @@ OnDiskVector <- function(x, path, n=length(x), offset=0L, size=8L) {
     NULL
 }
 
-.isModified.OnDiskVector <- function(x) {
-    m <- readBin(x@mpath, integer(), n=1L, size=NA_integer_, endian="little")
-    if (m != x@modification)
-        stop(x@path, " was modified by a different object.")
-    FALSE
-}
+# .isModified.OnDiskVector <- function(x) {
+#     m <- readBin(x@mpath, integer(), n=1L, size=NA_integer_, endian="little")
+#     if (m != x@modification)
+#         stop(x@path, " was modified by a different object.")
+#     FALSE
+# }
 
 setValidity("OnDiskVector", function(object) {
     msg <- c(
@@ -119,7 +120,7 @@ setMethod(f="[",
     if (any(i < 1) || any (i > x@n))
         stop("Index out of boundaries.")
 
-    .isModified.OnDiskVector(x)
+    #.isModified.OnDiskVector(x)
     f <- file(x@path, "rb")
     on.exit(close(f))
 
@@ -145,7 +146,7 @@ setMethod(f="[",
 setMethod(f="[",
     signature=signature(x="OnDiskVector", i="missing", j="missing"),
     definition=function(x, i, j, ..., drop=FALSE) {
-    .isModified.OnDiskVector(x)
+    #.isModified.OnDiskVector(x)
     f <- file(x@path, "rb")
     on.exit(close(f))
     if (x@offset)
@@ -160,15 +161,17 @@ setReplaceMethod(f="[",
     if (length(value) != x@n) {
         stop("Length of 'value' doesn't match length of 'x'.")
     }
-    f <- file(x@path, "wb")
+    f <- file(x@path, "r+b") # unpredictable behaviour with "wb" 
     on.exit(close(f))
 
     if (x@offset)
         seek(f, where=x@offset, rw="write")
-    writeBin(as.double(value), f, size=x@size, endian="little")
+    writeBin(as.double(value), f, size=x@size, endian="little", useBytes = TRUE)
 
     x@modification <- x@modification + 1L
     writeBin(x@modification, x@mpath, size=NA_integer_, endian="little")
+    # warning("The OnDiskVector has been modified by the following call:\n", 
+    #         deparse(match.call(definition = sys.function(sys.parent(n=5)))), "\n")
     x
 })
 
@@ -177,6 +180,9 @@ setMethod("min", "OnDiskVector", function(x)min(x[]))
 
 #' @rdname hidden_aliases
 setMethod("max", "OnDiskVector", function(x)max(x[]))
+
+#' @rdname hidden_aliases
+setMethod("range", "OnDiskVector", function(x)range(x[]))
 
 .readBin <- function(x, n, size) {
     readBin(x, double(), n=n, size=size, signed=TRUE, endian="little")
