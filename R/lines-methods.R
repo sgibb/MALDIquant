@@ -5,5 +5,5 @@ setMethod(f="lines",
         type=ifelse(isMassPeaks(x), "h", "l"),
         ...) {
 
-    lines(x=mass(x), y=intensity(y), type, ...)
+    lines(x=mass(x), y=intensity(x), type, ...)
 })
