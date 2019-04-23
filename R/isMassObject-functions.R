@@ -3,7 +3,7 @@
 }
 
 isMassSpectrum <- function(x) {
-  is(object=x, class2="MassSpectrum")
+  is(object=x, class2="AbstractMassSpectrum")
 }
 
 isMassPeaks <- function(x) {

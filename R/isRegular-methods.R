@@ -1,8 +1,8 @@
 ## MassSpectrum
 setMethod(f="isRegular",
-          signature=signature(object="MassSpectrum"),
+          signature=signature(object="AbstractMassSpectrum"),
           definition=function(object, threshold=1e-3) {
 
-  s <- .irregularScore(object@mass) <= threshold
+  s <- .irregularScore(mass(object)) <= threshold
   !is.na(s) & s
 })

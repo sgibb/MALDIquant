@@ -27,7 +27,7 @@ isMassSpectrumList <- function(x) {
   if (!isMassSpectrumList(x)) {
     parentCall <- deparse(sys.call(-1L))
     stop(parentCall, " : ", sQuote(deparse(substitute(x))),
-         " is no list of MALDIquant::MassSpectrum objects!", call.=FALSE)
+         " is no list of MALDIquant::MassSpectrum/MassSpectrumOnDisk objects!", call.=FALSE)
   }
   TRUE
 }

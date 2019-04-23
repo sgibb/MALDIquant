@@ -1,6 +1,6 @@
 ## AbstractMassObject
 setMethod(f="smoothIntensity",
-          signature=signature(object="MassSpectrum"),
+          signature=signature(object="AbstractMassSpectrum"),
           definition=function(object,
                               method=c("SavitzkyGolay", "MovingAverage"),
                               halfWindowSize, ...) {

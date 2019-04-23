@@ -1,6 +1,6 @@
 ## MassSpectrum
 setMethod(f="estimateBaseline",
-          signature=signature(object="MassSpectrum"),
+          signature=signature(object="AbstractMassSpectrum"),
           definition=function(object, method=c("SNIP", "TopHat", "ConvexHull",
                                                "median"),
                               ...) {
@@ -8,7 +8,7 @@ setMethod(f="estimateBaseline",
     return(NA)
   }
 
-  cbind(mass=object@mass,
-        intensity=.estimateBaseline(x=object@mass, y=object@intensity,
+  cbind(mass=mass(object),
+        intensity=.estimateBaseline(x=mass(object), y=intensity(object),
                                     method=method, ...))
 })

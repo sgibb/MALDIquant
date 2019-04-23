@@ -13,8 +13,8 @@
   .stopIfNotIsMassObjectList(l)
 
   ## mass values are already sorted
-  leftMass <- .unlist(lapply(l, function(x)x@mass[1L]))
-  rightMass <- .unlist(lapply(l, function(x)x@mass[length(x@mass)]))
+  leftMass <- .unlist(lapply(l, function(x)mass(x)[1L]))
+  rightMass <- .unlist(lapply(l, function(x)mass(x)[length(x@mass)]))
 
   if (length(rightMass)) {
     r <- c(max(leftMass, na.rm=TRUE), min(rightMass, na.rm=TRUE))
