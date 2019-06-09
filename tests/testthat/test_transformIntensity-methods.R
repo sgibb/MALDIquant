@@ -30,7 +30,7 @@ test_that(".transformIntensity throws errors", {
 })
 
 test_that(".transformIntensity shows warnings", {
-  expect_warning(.transformIntensity(s, fun=function(x)return(-x)),
+  expect_warning(.transformIntensity(s, fun=function(x)-x),
                  "Negative intensity values are replaced by zeros.")
 })
 
@@ -42,7 +42,7 @@ test_that(".transformIntensity", {
                         function(x)as.double(filter(x, rep(1, 5)/5, sides=2)))),
                6)
   expect_equal(intensity(suppressWarnings(
-                 .transformIntensity(s, fun=function(x)return(-x)))),
+                 .transformIntensity(s, fun=function(x)-x))),
                rep(0, 10))
 })
 
@@ -53,4 +53,13 @@ test_that(".transformIntensity works with list of AbstractMassObject objects", {
                "no list of MALDIquant::AbstractMassObject objects"))
   r <- createMassSpectrum(mass=1:10, intensity=1:10)
   expect_equal(.transformIntensity(list(s, s), fun=sqrt), list(r, r))
+})
+
+test_that(".transformIntensity works with negative intensities", {
+    on.exit(options(MALDIquant=NULL))
+    options(MALDIquant=list(allowNegativeIntensities=TRUE))
+    expect_equal(
+        .transformIntensity(s, fun=function(x)-x),
+        createMassSpectrum(mass=1:10, intensity=-(1:10)^2)
+    )
 })

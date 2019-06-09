@@ -27,14 +27,11 @@ smoothing, \dots. The default value is \code{FALSE}}
 }
 }
 \examples{
-# save old options
-opt <- options()
-
 # set MALDIquant options
 options(MALDIquant=list(allowNegativeIntensities=FALSE))
 
 MALDIquantOptions()
 
-# reset old options
-options(opt)
+# reset options
+options(MALDIquant=NULL)
 }

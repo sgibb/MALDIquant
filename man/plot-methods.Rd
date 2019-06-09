@@ -13,7 +13,9 @@ This is an overloaded method to allow plotting of an
    type=ifelse(isMassPeaks(x), "h", "l"),
    xlim=c(ifelse(length(x@mass), min(x@mass, na.rm=TRUE), 0),
       ifelse(length(x@mass), max(x@mass, na.rm=TRUE), 1)),
-   ylim=c(0, ifelse(length(x@intensity), max(x@intensity, na.rm=TRUE), 1)),
+   ylim=c(ifelse(.negativeIntensitiesAllowed(),
+                min(x@intensity, na.rm=TRUE), 0L),
+      ifelse(length(x@intensity), max(x@intensity, na.rm=TRUE), 1)),
    main=x@metaData$name, sub=x@metaData$file,
    cex.sub=0.75, col.sub="#808080", \dots)
 }

@@ -1,8 +1,7 @@
 context("options")
 
 test_that("options", {
-    opt <- options()
-    on.exit(options(opt))
+    on.exit(options(MALDIquant=NULL))
 
     options(MALDIquant=NULL)
     expect_false(MALDIquant:::.negativeIntensitiesAllowed())

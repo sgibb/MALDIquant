@@ -45,7 +45,9 @@ setMethod(f=".transformIntensity",
       object@mass <- object@mass[naIdx]
     }
 
-    object <- .replaceNegativeIntensityValues(object)
+    if (!.negativeIntensitiesAllowed()) {
+        object <- .replaceNegativeIntensityValues(object)
+    }
   }
 
   object

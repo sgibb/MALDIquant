@@ -12,6 +12,7 @@
   }
   if (is.numeric(object@intensity) &&
       !isEmpty(object) &&
+      !.negativeIntensitiesAllowed() &&
       any(object@intensity < 0L)) {
     warning("Negative intensity values found.")
   }

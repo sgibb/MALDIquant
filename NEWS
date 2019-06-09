@@ -1,6 +1,16 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION 1.19.4 [2019-06-09]:
+--------------------------------------------------
+
+IMPROVEMENTS:
+
+* Add possibility to allow negative intensity values and not automatically
+  replace them with zeros (which is the default). See `?MALDIquantOptions` how
+  to enable this feature.
+  Suggested by Fernando Pineda <fpineda2@jhu.edu>.
+
 CHANGES IN MALDIquant VERSION 1.19.3 [2019-05-12]:
 --------------------------------------------------
 
