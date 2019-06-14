@@ -76,4 +76,3 @@ setGeneric(
     function(object, ...) standardGeneric("monoisotopicPeaks")
 )
 setGeneric("snr", function(object) standardGeneric("snr"))
-## end of MassPeaks

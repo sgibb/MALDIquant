@@ -42,7 +42,7 @@ BugReports: https://github.com/sgibb/MALDIquant/issues/
 LazyLoad: yes
 VignetteBuilder: knitr
 RoxygenNote: 7.2.3
-Collate: 
+Collate:
     'AllClasses.R'
     'AllGenerics.R'
     'Deprecated.R'
