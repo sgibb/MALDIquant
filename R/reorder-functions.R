@@ -13,9 +13,9 @@
     if (warn) {
       warning("Mass and intensity values are reordered.")
     }
-    i <- sort.int(object@mass, index.return=TRUE)
-    object@mass <- i$x
-    object@intensity <- object@intensity[i$ix]
+    i <- sort.int(mass(object), index.return=TRUE)
+    object@mass[] <- i$x
+    object@intensity[] <- object@intensity[i$ix]
   }
   object
 }

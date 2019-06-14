@@ -1,6 +1,6 @@
 ## MassSpectrum
 setMethod(f="removeBaseline",
-          signature=signature(object="MassSpectrum"),
+          signature=signature(object="MassSpectra"),
           definition=function(object,
                               method=c("SNIP", "TopHat", "ConvexHull",
                                        "median"),
@@ -10,12 +10,13 @@ setMethod(f="removeBaseline",
     return(object)
   }
 
+  i <- intensity(object)
+
   ## estimate baseline
-  baseline <- .estimateBaseline(x=object@mass, y=object@intensity,
-                                method=method, ...)
+  baseline <- .estimateBaseline(x=mass(object), y=i, method=method, ...)
 
   ## substract baseline
-  object@intensity <- object@intensity - baseline
+  object@intensity[] <- i - baseline
 
   object
 })
@@ -26,7 +27,7 @@ setMethod(f="removeBaseline",
           definition=function(object, ...) {
 
   ## test arguments
-  .stopIfNotIsMassSpectrumList(object)
+  .stopIfNotIsMassSpectraList(object)
 
   .mapply(removeBaseline, object, ...)
 })

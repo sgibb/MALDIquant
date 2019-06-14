@@ -31,13 +31,13 @@ setMethod(f=".prepareShow",
   if (isEmpty(object)) {
     values <- c(values, 0L, NA, NA)
   } else {
+    i <- intensity(object)
     values <- c(values,
                 length(object@mass),
-                paste0(round(range(object@mass), digits=3L), collapse=" - "),
-                paste0(format(min(object@intensity), digits=4L,
-                              scientific=TRUE), " - ",
-                       format(max(object@intensity), digits=4L,
-                              scientific=TRUE)))
+                paste0(round(object@mass[c(1L, length(object@mass))],
+                       digits=3L), collapse=" - "),
+                paste0(format(min(i), digits=4L, scientific=TRUE), " - ",
+                       format(max(i), digits=4L, scientific=TRUE)))
   }
   values <- c(values, .memoryUsageStr(object))
 

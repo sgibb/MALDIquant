@@ -1,46 +1,6 @@
 #' @include hidden_aliases.R
 NULL
 
-#' @title OnDiskVector class
-#'
-#' @name OnDiskVector
-#'
-#' @aliases OnDiskVector-class
-#'
-#' @description
-#'
-#' [OnDiskVector-class] objects support the storage of numeric data on-disk. The
-#' data are just loaded into memory when they have to be processed.
-#'
-#' @slot path file path
-#' @slot mpath file path to the modification counter file
-#' @slot modification counter, to detect modification after `odv2 <- odv`
-#' @slot n length of the vector
-#' @slot offset offset of the data in the file
-#' @slot size size of one vector element in the file
-#'
-#' @author Sebastian Gibb <mail@@sebastiangibb.de>
-#'
-#' @noRd
-setClass("OnDiskVector",
-    slots=list(
-        path="character",
-        mpath="character",
-        modification="integer",
-        n="numeric",
-        offset="numeric",
-        size="integer"
-    ),
-    prototype=list(
-        path=character(),
-        mpath=character(),
-        modification=0L,
-        n=numeric(),
-        offset=numeric(),
-        size=integer()
-    )
-)
-
 OnDiskVector <- function(x, path, n=length(x), offset=0L, size=8L) {
     if (missing(x) && missing(path))
         stop("'x' or 'path' are necessary.")
@@ -116,8 +76,10 @@ setMethod("length", "OnDiskVector", function(x)x@n)
 setMethod(f="[",
     signature=signature(x="OnDiskVector", i="numeric", j="missing"),
     definition=function(x, i, j, ..., drop=FALSE) {
-    if (any(i < 1) || any (i > x@n))
+    if (any(i > x@n) || any(i == 0))
         stop("Index out of boundaries.")
+    if (any(i < 0L))
+        i <- seq_along(x)[i]
 
     .isModified.OnDiskVector(x)
     f <- file(x@path, "rb")

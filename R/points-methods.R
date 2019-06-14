@@ -3,5 +3,5 @@ setMethod(f="points",
           signature=signature(x="AbstractMassObject"),
           definition=function(x, ...) {
 
-  points(x=x@mass, y=x@intensity, ...)
+  points(x=mass(x), y=intensity(x), ...)
 })

@@ -9,11 +9,13 @@
 ##  an AbstractMass object
 ##
 .replaceNegativeIntensityValues <- function(object, warn=TRUE) {
-  if (any(object@intensity < 0L, na.rm=TRUE) && !isEmpty(object)) {
+  i <- intensity(object)
+  if (any(i < 0L, na.rm=TRUE) && !isEmpty(object)) {
     if (warn) {
       warning("Negative intensity values are replaced by zeros.")
     }
-    object@intensity[which(object@intensity < 0L)] <- 0L
+    i[i < 0L] <- 0L
+    object@intensity[] <- i
   }
   object
 }

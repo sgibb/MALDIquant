@@ -1,6 +1,6 @@
 ## MassSpectrum
 setMethod(f=".findLocalMaxima",
-          signature=signature(object="MassSpectrum"),
+          signature=signature(object="MassSpectra"),
           definition=function(object, halfWindowSize=20L) {
 
   if (.isEmptyWarning(object)) {
@@ -9,11 +9,11 @@ setMethod(f=".findLocalMaxima",
 
   localMaxima <- .findLocalMaximaLogical(object, halfWindowSize=halfWindowSize)
 
-  cbind(mass=object@mass, intensity=object@intensity)[localMaxima,]
+  cbind(mass=mass(object), intensity=intensity(object))[localMaxima,]
 })
 
 setMethod(f=".findLocalMaximaLogical",
-          signature=signature(object="MassSpectrum"),
+          signature=signature(object="MassSpectra"),
           definition=function(object, halfWindowSize=20L) {
 
   if (.isEmptyWarning(object)) {
@@ -23,5 +23,5 @@ setMethod(f=".findLocalMaximaLogical",
   .stopIfNotIsValidHalfWindowSize(halfWindowSize=halfWindowSize,
                                   n=length(object))
 
-  .localMaxima(object@intensity, halfWindowSize=halfWindowSize)
+  .localMaxima(intensity(object), halfWindowSize=halfWindowSize)
 })

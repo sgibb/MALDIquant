@@ -2,6 +2,7 @@
 \docType{methods}
 \alias{detectPeaks}
 \alias{detectPeaks,MassSpectrum-method}
+\alias{detectPeaks,MassSpectra-method}
 \alias{detectPeaks,list-method}
 \title{Detects peaks in a MassSpectrum object.}
 \description{

@@ -13,7 +13,7 @@ averageMassSpectra <- function(l, labels, method=c("mean", "median", "sum"),
                                ...) {
 
   ## test parameters
-  .stopIfNotIsMassSpectrumList(l)
+  .stopIfNotIsMassSpectraList(l)
 
   method <- match.arg(method)
 
@@ -57,7 +57,7 @@ averageMassSpectra <- function(l, labels, method=c("mean", "median", "sum"),
   ## use the first non empty spectrum as reference
   i <- which(!vapply(l, isEmpty, logical(1L)))[1L]
   if (!is.na(i)) {
-    mass <- l[[i]]@mass
+    mass <- mass(l[[i]])
   } else {
     mass <- NA_real_
   }

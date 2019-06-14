@@ -22,7 +22,7 @@
       totalIonCurrent(object)
     },
     "median" = {
-      median(object@intensity)
+      median(intensity(object))
     }
   )
 }
@@ -85,7 +85,7 @@
 
   lapply(l, function(x) {
     ## 3. quotient calculation
-    q <- approxfun(x)(reference@mass) / reference@intensity
+    q <- approxfun(x)(mass(reference)) / intensity(reference)
     ## 4. median
     m <- median(q, na.rm=TRUE)
     ## 5. divide by median

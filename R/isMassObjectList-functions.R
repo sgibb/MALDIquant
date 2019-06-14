@@ -32,6 +32,32 @@ isMassSpectrumList <- function(x) {
   TRUE
 }
 
+isMassSpectrumOnDiskList <- function(x) {
+  if (!is.list(x)) {
+    return(FALSE)
+  }
+
+  length(x) && all(unname(vapply(x, isMassSpectrumOnDisk, logical(1L))))
+}
+
+.stopIfNotIsMassSpectrumOnDiskList <- function(x) {
+  if (!isMassSpectrumOnDiskList(x)) {
+    parentCall <- deparse(sys.call(-1L))
+    stop(parentCall, " : ", sQuote(deparse(substitute(x))),
+         " is no list of MALDIquant::MassSpectrum objects!", call.=FALSE)
+  }
+  TRUE
+}
+
+.stopIfNotIsMassSpectraList <- function(x) {
+  if (!isMassSpectrumList(x) && !isMassSpectrumOnDiskList(x)) {
+    parentCall <- deparse(sys.call(-1L))
+    stop(parentCall, " : ", sQuote(deparse(substitute(x))),
+         " is no list of MALDIquant::MassSpectrum objects!", call.=FALSE)
+  }
+  TRUE
+}
+
 isMassPeaksList <- function(x) {
   if (!is.list(x)) {
     return(FALSE)

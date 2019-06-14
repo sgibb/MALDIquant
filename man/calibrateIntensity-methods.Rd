@@ -2,6 +2,7 @@
 \docType{methods}
 \alias{calibrateIntensity}
 \alias{calibrateIntensity,MassSpectrum-method}
+\alias{calibrateIntensity,MassSpectra-method}
 \alias{calibrateIntensity,list-method}
 \title{Calibrates intensities of a MassSpectrum object.}
 \description{

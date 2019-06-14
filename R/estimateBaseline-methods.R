@@ -8,7 +8,7 @@ setMethod(f="estimateBaseline",
     return(NA)
   }
 
-  cbind(mass=object@mass,
-        intensity=.estimateBaseline(x=object@mass, y=object@intensity,
-                                    method=method, ...))
+  m <- mass(object)
+  cbind(mass=m, intensity=.estimateBaseline(x=m, y=intensity(object),
+                                            method=method, ...))
 })

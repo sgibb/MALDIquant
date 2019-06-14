@@ -2,6 +2,7 @@
 \docType{methods}
 \alias{smoothIntensity}
 \alias{smoothIntensity,MassSpectrum-method}
+\alias{smoothIntensity,MassSpectra-method}
 \alias{smoothIntensity,list-method}
 \title{Smoothes intensities of a MassSpectrum object.}
 \description{

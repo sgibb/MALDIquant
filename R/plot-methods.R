@@ -4,12 +4,11 @@ setMethod(f="plot",
           definition=function(x, col="black",
                               xlab=expression(italic(m/z)), ylab="intensity",
                               type=ifelse(isMassPeaks(x), "h", "l"),
-                              xlim=c(ifelse(length(x@mass),
-                                            min(x@mass, na.rm=TRUE), 0L),
+                              xlim=c(ifelse(length(x@mass), x@mass[1L], 0L),
                                      ifelse(length(x@mass),
-                                            max(x@mass, na.rm=TRUE), 1L)),
+                                            x@mass[length(x@mass)], 1L)),
                               ylim=c(0, ifelse(length(x@intensity),
-                                               max(x@intensity, na.rm=TRUE),
+                                               max(intensity(x), na.rm=TRUE),
                                                1L)),
                               main=x@metaData$name, sub=x@metaData$file,
                               cex.sub=0.75, col.sub="#808080", ...) {
@@ -22,7 +21,7 @@ setMethod(f="plot",
                   " objects")
   }
 
-  plot(x=x@mass, y=x@intensity, col=col, type=type, xlab=xlab, ylab=ylab,
+  plot(x=mass(x), y=intensity(x), col=col, type=type, xlab=xlab, ylab=ylab,
        xlim=xlim, ylim=ylim, main=main, sub=sub, cex.sub=cex.sub,
        col.sub=col.sub, ...)
 })

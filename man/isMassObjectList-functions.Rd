@@ -1,16 +1,19 @@
 \name{isMassSpectrumList}
 \alias{isMassSpectrumList}
+\alias{isMassSpectrumOnDiskList}
 \alias{isMassPeaksList}
 \title{
 Tests a list of MassSpectrum or MassPeaks objects.
 }
 \description{
 These functions test a \code{\link{list}} whether containing
-\code{\linkS4class{MassSpectrum}} or \code{\linkS4class{MassSpectrum}}
-objects.
+\code{\linkS4class{MassSpectrum}}, \code{\linkS4class{MassSpectrum}}
+or \code{\linkS4class{MassSpectrumOnDisk}} objects.
 }
 \usage{
 isMassSpectrumList(x)
+
+isMassSpectrumOnDiskList(x)
 
 isMassPeaksList(x)
 }
@@ -30,6 +33,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \seealso{
 \code{\linkS4class{MassPeaks}},
 \code{\linkS4class{MassSpectrum}},
+\code{\linkS4class{MassSpectrumOnDisk}},
 \code{\linkS4class{AbstractMassObject}}
 
 Website: \url{https://strimmerlab.github.io/software/maldiquant/}

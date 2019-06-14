@@ -2,6 +2,7 @@
 \docType{methods}
 \alias{removeBaseline}
 \alias{removeBaseline,MassSpectrum-method}
+\alias{removeBaseline,MassSpectra-method}
 \alias{removeBaseline,list-method}
 \title{Removes the baseline of a MassSpectrum object.}
 \description{

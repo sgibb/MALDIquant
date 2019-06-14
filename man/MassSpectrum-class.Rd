@@ -5,8 +5,10 @@
 \alias{MassSpectrum-class}
 \alias{isRegular}
 \alias{isRegular,MassSpectrum-method}
+\alias{isRegular,MassSpectra-method}
 \alias{totalIonCurrent}
 \alias{totalIonCurrent,MassSpectrum-method}
+\alias{totalIonCurrent,MassSpectra-method}
 
 \title{Class "MassSpectrum"}
 \description{

@@ -1,30 +1,33 @@
 ## MassSpectrum
 setMethod(f="detectPeaks",
-          signature=signature(object="MassSpectrum"),
+          signature=signature(object="MassSpectra"),
           definition=function(object, halfWindowSize=20L,
                               method=c("MAD", "SuperSmoother"), SNR=2L, ...) {
 
   ## empty spectrum?
   if (.isEmptyWarning(object)) {
-    return(createMassPeaks(mass=object@mass, intensity=object@intensity,
+    return(createMassPeaks(mass=mass(object), intensity=intensity(object),
                            metaData=object@metaData))
   }
 
+  m <- mass(object)
+  i <- intensity(object)
+
   ## estimate noise
-  noise <- .estimateNoise(x=object@mass, y=object@intensity, method=method, ...)
+  noise <- .estimateNoise(x=m, y=i, method=method, ...)
 
   ## find local maxima
   isLocalMaxima <- .findLocalMaximaLogical(object,
                                            halfWindowSize=halfWindowSize)
 
   ## include only local maxima which are above the noise
-  isAboveNoise <- object@intensity > (SNR * noise)
+  isAboveNoise <- i > (SNR * noise)
 
   peakIdx <- which(isAboveNoise & isLocalMaxima)
 
-  createMassPeaks(mass=object@mass[peakIdx],
-                  intensity=object@intensity[peakIdx],
-                  snr=object@intensity[peakIdx] / noise[peakIdx],
+  createMassPeaks(mass=m[peakIdx],
+                  intensity=i[peakIdx],
+                  snr=i[peakIdx] / noise[peakIdx],
                   metaData=object@metaData)
 })
 
@@ -34,7 +37,7 @@ setMethod(f="detectPeaks",
           definition=function(object, ...) {
 
   ## test arguments
-  .stopIfNotIsMassSpectrumList(object)
+  .stopIfNotIsMassSpectraList(object)
 
   .mapply(detectPeaks, object, ...)
 })

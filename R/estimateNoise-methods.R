@@ -7,7 +7,7 @@ setMethod(f="estimateNoise",
     return(0L)
   }
 
-  cbind(mass=object@mass,
-        intensity=.estimateNoise(x=object@mass, y=object@intensity,
-                                 method=method, ...))
+  m <- mass(object)
+  cbind(mass=m, intensity=.estimateNoise(x=m, y=intensity(object),
+                                         method=method, ...))
 })

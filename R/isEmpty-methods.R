@@ -3,7 +3,7 @@ setMethod(f="isEmpty",
           signature=signature(x="AbstractMassObject"),
           definition=function(x) {
 
-  !sum(as.double(x@intensity), na.rm=TRUE)
+  !sum(as.double(intensity(x)), na.rm=TRUE)
 })
 
 setMethod(f=".isEmptyWarning",

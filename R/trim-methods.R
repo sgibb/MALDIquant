@@ -8,7 +8,7 @@ setMethod("trim",
 
   range <- .reorderRange(range)
 
-  sel <- which(findInterval(object@mass, range, rightmost.closed=TRUE) == 1L)
+  sel <- which(findInterval(mass(object), range, rightmost.closed=TRUE) == 1L)
 
   if (!length(sel)) {
     warning("The mass range (", paste0(range, collapse=":"),

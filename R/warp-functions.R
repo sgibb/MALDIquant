@@ -10,7 +10,7 @@
 ##  a list of warped MassSpectrum objects
 ##
 warpMassSpectra <- function(l, w, emptyNoMatches=FALSE) {
-  .stopIfNotIsMassSpectrumList(l)
+  .stopIfNotIsMassSpectraList(l)
 
   .warp(l, w, emptyNoMatches=emptyNoMatches)
 }
@@ -54,7 +54,7 @@ warpMassPeaks <- function(l, w, emptyNoMatches=FALSE) {
   }
 
   l[notNa] <- .mapply(function(m, wf) {
-           m@mass <- m@mass + wf(m@mass)
+           m@mass[] <- mass(m) + wf(mass(m))
            m
   }, m=ml, wf=wl)
   if (emptyNoMatches) {

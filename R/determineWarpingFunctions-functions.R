@@ -94,10 +94,10 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
 
   ## same procedure as in binPeaks
   ## fetch all mass
-  mass <- unname(.unlist(lapply(tmpPeakList, function(x)x@mass)))
+  mass <- unname(.unlist(lapply(tmpPeakList, mass)))
 
   ## fetch all intensities
-  intensities <- .unlist(lapply(tmpPeakList, function(x)x@intensity))
+  intensities <- .unlist(lapply(tmpPeakList, intensity))
 
   ## store original mass sample number/id
   samples <- rep.int(seq_along(tmpPeakList), lengths(tmpPeakList))
@@ -216,7 +216,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
       }
 
       ## plot reference vs sample
-      plotArgs$x <- l[[i]]@mass[notNA]
+      plotArgs$x <- mass(l[[i]])[notNA]
       plotArgs$y <- d[lIdx[[i + 1L]]][notNA]
       do.call(plot.default, plotArgs)
 

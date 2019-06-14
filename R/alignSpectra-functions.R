@@ -26,7 +26,7 @@ alignSpectra <- function(spectra,
                          allowNoMatches=FALSE, emptyNoMatches=FALSE, ...) {
 
   ## test arguments
-  .stopIfNotIsMassSpectrumList(spectra)
+  .stopIfNotIsMassSpectraList(spectra)
 
   peaks <- detectPeaks(spectra, halfWindowSize=halfWindowSize,
                        method=noiseMethod, SNR=SNR, ...)

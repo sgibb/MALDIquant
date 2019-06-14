@@ -11,9 +11,9 @@ This is an overloaded method to allow plotting of an
 \S4method{plot}{AbstractMassObject,missing}(x, col="black",
    xlab=expression(italic(m/z)), ylab="intensity",
    type=ifelse(isMassPeaks(x), "h", "l"),
-   xlim=c(ifelse(length(x@mass), min(x@mass, na.rm=TRUE), 0),
-      ifelse(length(x@mass), max(x@mass, na.rm=TRUE), 1)),
-   ylim=c(0, ifelse(length(x@intensity), max(x@intensity, na.rm=TRUE), 1)),
+   xlim=c(ifelse(length(x@mass), x@mass[1L], 0),
+      ifelse(length(x@mass), x@mass[length(x@mass)], 1)),
+   ylim=c(0, ifelse(length(x@intensity), max(intensity(x), na.rm=TRUE), 1)),
    main=x@metaData$name, sub=x@metaData$file,
    cex.sub=0.75, col.sub="#808080", \dots)
 }

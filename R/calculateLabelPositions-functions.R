@@ -50,8 +50,8 @@
   r <- pi / 180L * c(90, as.vector(rbind(seq(80L, 40L, by=-10L),
                                          seq(100L, 140L, by=10L))))
 
-  testrects <- rbind(matrix(c(object@mass, rep(0L, length(object)),
-                              object@mass, object@intensity), ncol=4L),
+  testrects <- rbind(matrix(c(mass(object), rep(0L, length(object)),
+                              mass(object), intensity(object)), ncol=4L),
                        rects[seq_len(currentIndex - 1L),
                              c("x0", "y0", "x1", "y1")])
 

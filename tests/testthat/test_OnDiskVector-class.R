@@ -66,6 +66,7 @@ test_that("[", {
     expect_error(odv[0], "out of boundaries")
     expect_error(odv[11], "out of boundaries")
     expect_equal(odv[3], 3)
+    expect_equal(odv[-1], 2:10)
     expect_equal(odv[c(1, 10)], c(1, 10))
     expect_equal(odv[c(1, 2, 10)], c(1, 2, 10))
     expect_equal(odv[], 1:10)

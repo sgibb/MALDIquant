@@ -1,6 +1,6 @@
 ## MassSpectrum
 setMethod(f="calibrateIntensity",
-          signature=signature(object="MassSpectrum"),
+          signature=signature(object="MassSpectra"),
           definition=function(object,
                               method=c("TIC", "PQN", "median"),
                               range, ...) {
@@ -28,7 +28,7 @@ setMethod(f="calibrateIntensity",
                               method=c("TIC", "PQN", "median"), range, ...) {
 
   ## test arguments
-  .stopIfNotIsMassSpectrumList(object)
+  .stopIfNotIsMassSpectraList(object)
 
   method <- match.arg(method)
 
