@@ -1,6 +1,14 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION 1.19.4 [2019-08-08]:
+--------------------------------------------------
+
+BUGFIXES
+
+* Use `data(fiedler2009subset)` in manual page to avoid WARNING on R-devel.
+
+
 CHANGES IN MALDIquant VERSION 1.19.3 [2019-05-12]:
 --------------------------------------------------
 

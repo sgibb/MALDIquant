@@ -7,7 +7,7 @@
 This dataset contains 16 example mass spectra.
 It is used to demonstrate the usage of \code{\link{MALDIquant-package}}.
 }
-\usage{fiedler2009subset}
+\usage{data(fiedler2009subset)}
 \format{
 A list containing 16 \code{\link[MALDIquant]{MassSpectrum-class}}
 objects.}
