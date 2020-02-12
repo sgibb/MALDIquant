@@ -1,7 +1,8 @@
 #' @include hidden_aliases.R
 NULL
 
-OnDiskVector <- function(x, path, n=length(x), offset=0L, size=8L) {
+OnDiskVector <- function(x, path, mpath = paste(path, "mod", sep = "."),
+                         n=length(x), offset=0L, size=8L) {
     if (missing(x) && missing(path))
         stop("'x' or 'path' are necessary.")
     if (!missing(x)) {
@@ -9,7 +10,6 @@ OnDiskVector <- function(x, path, n=length(x), offset=0L, size=8L) {
             path <- tempfile()
         writeBin(as.double(x), con=path, size=size, endian="little")
     }
-    mpath <- paste(path, "mod", sep=".")
     writeBin(0L, mpath, size=NA_integer_, endian="little")
     new("OnDiskVector", path=path, mpath=mpath, n=n, offset=offset, size=size)
 }

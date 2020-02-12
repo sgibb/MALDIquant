@@ -61,6 +61,14 @@ test_that("length", {
     expect_length(odv, 10)
 })
 
+test_that("mpath", {
+    odv <- OnDiskVector(1:3)
+    expect_equal(odv@mpath, paste(odv@path, "mod", sep = "."))
+    mf <- paste(tempfile("mod"), "mod", sep = ".")
+    odv <- OnDiskVector(1:3, mpath = mf)
+    expect_equal(odv@mpath, mf)
+})
+
 test_that("[", {
     odv <- OnDiskVector(1:10)
     expect_error(odv[0], "out of boundaries")
