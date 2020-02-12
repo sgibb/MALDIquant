@@ -94,4 +94,16 @@ test_that("[", {
     expect_equal((odv2[] <- 21:30)[1:10], 21:30)
 
     expect_error(odv2[] <- 1:30, "Length")
+
+    f <- file(fn, "wb")
+    writeBin(as.double(1:30), f, size=4L, endian="little")
+    close(f)
+
+    odv3 <- OnDiskVector(path=fn, offset=4L * 10L, n=10L, size=4L)
+    expect_equal(odv3[], 11:20)
+    odv3[] <- -(11:20)
+    f <- file(fn, "rb")
+    fc <- readBin(fn, what="double", size=4L, endian="little", n=30)
+    close(f)
+    expect_equal(fc, c(1:10, -(11:20), 21:30))
 })
