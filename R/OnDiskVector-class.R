@@ -122,7 +122,7 @@ setReplaceMethod(f="[",
     if (length(value) != x@n) {
         stop("Length of 'value' doesn't match length of 'x'.")
     }
-    f <- file(x@path, "wb")
+    f <- file(x@path, "r+b")
     on.exit(close(f))
 
     if (x@offset)
