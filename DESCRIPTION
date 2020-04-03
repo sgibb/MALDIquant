@@ -7,7 +7,7 @@ Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
         comment=c(ORCID="0000-0001-7406-4443")), person("Korbinian",
         "Strimmer", role="ths",
         comment=c(ORCID="0000-0001-7917-2056")))
-Depends: R (>= 3.2.0), methods
+Depends: R (>= 4.0.0), methods
 Imports: parallel
 Suggests: knitr, testthat (>= 0.8)
 Description: A complete analysis pipeline for matrix-assisted laser
