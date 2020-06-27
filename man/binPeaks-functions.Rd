@@ -16,7 +16,7 @@ binPeaks(l, method=c("strict", "relaxed"), tolerance=0.002)
   }
   \item{method}{
     bin creation rule. \code{"strict"} creates bins never containing two
-    or more peaks of the sampe sample. \code{"relaxed"} allows multiple
+    or more peaks of the same sample. \code{"relaxed"} allows multiple
     peaks of the same sample in one bin.}
   \item{tolerance}{
     \code{double}, maximal relative deviation of a peak position (mass) to be
