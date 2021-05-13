@@ -39,9 +39,12 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
+      - uses: r-lib/actions/setup-pandoc@v1
+
       - uses: r-lib/actions/setup-tinytex@master
 
-      - uses: r-lib/actions/setup-pandoc@v1
+      - name: Install TikZ
+        run: tlmgr install pgf
 
       - name: Query dependencies
         run: |
