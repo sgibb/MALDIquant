@@ -3,7 +3,7 @@
 ^\.git$
 ^\.gitignore$
 ^\.lintr$
-^\.travis.yml$
 ^hooks$
 ^playground$
 ^revdep$
+^\.github$
