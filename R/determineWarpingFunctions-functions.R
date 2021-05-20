@@ -113,7 +113,7 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
   ## sample peaks
   binnedMass <- .binPeaks(mass=mass, intensities=intensities, samples=samples,
                           tolerance=tolerance,
-                          grouper=.grouperRelaxedHighestAtReference)
+                          grouper=.grouperRelaxedHighestAtReference, nomatch=0L)
 
   ## group mass/intensities by sample ids
   lIdx <- split(seq_along(binnedMass), samples)

@@ -83,19 +83,21 @@
 ##  samples: double, corresponding sample id numbers (1==reference)
 ##  tolerance: double, maximal deviation of a peak position to be
 ##             considered as same peak
+##  nomatch: return value if no reference peak found, mass for original mass, 0L
+##           for `determineWarpingFunctions`
 ##
 ## returns:
 ##  NA if further splitting is needed
 ##  meanMass (double) if all criteria are matched else 0
 ##
 .grouperRelaxedHighestAtReference <- function(mass, intensities, samples,
-                                              tolerance) {
+                                              tolerance, nomatch=mass) {
   ## any reference peaks in current samples?
   ref <- samples == 1L
   nRef <- sum(ref)
   if (nRef == 0L) {
     ## no reference peak
-    return(0L)
+    return(nomatch)
   } else if (nRef > 1L) {
     ## too many reference peaks => further splitting needed
     return(NA)
@@ -112,12 +114,13 @@
   ## choose highest peak in duplicates
   if (anyDuplicated(samples)) {
     s <- sort.int(intensities, decreasing=TRUE, index.return=TRUE)
-    sSamples <- samples[s$ix]
+    samples <- samples[s$ix]
+    noDup <- !duplicated(samples)
+    noDup[s$ix] <- noDup
 
-    noDup <- !duplicated(sSamples)
-    sMass <- double(length(sSamples))
-    sMass[noDup] <- meanMass
-    mass[s$ix] <- sMass
+    ## replace mass corresponding to highest intensity
+    mass[] <- nomatch
+    mass[noDup] <- meanMass
 
     return(mass)
   }

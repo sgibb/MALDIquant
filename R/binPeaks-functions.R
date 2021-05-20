@@ -6,14 +6,16 @@
 ## params:
 ##  l: list of MassPeaks objects
 ##  method: character, grouper to used (strict: don't allow multiple peaks of
-##          the same sample in the same bin, relaxed: allow them)
+##          the same sample in the same bin, relaxed: allow them, reference:
+##          group to reference sample == the first one)
 ##  tolerance: double, maximal deviation of a peak position to be
 ##             considered as same peak
 ##
 ## returns:
 ##  a list of adjusted MassPeaks objects
 ##
-binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
+binPeaks <- function(l, method=c("strict", "relaxed", "reference"),
+                     tolerance=0.002) {
 
   ## test arguments
   .stopIfNotIsMassPeaksList(l)
@@ -49,6 +51,9 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
             },
             "relaxed" = {
               .grouperRelaxed
+            },
+            "reference" = {
+              .grouperRelaxedHighestAtReference
             }
   )
 
@@ -56,8 +61,8 @@ binPeaks <- function(l, method=c("strict", "relaxed"), tolerance=0.002) {
   mass <- .binPeaks(mass=mass, intensities=intensities, samples=samples,
                     tolerance=tolerance, grouper=grouper)
 
-  ## resort mass (order could change if "relaxed" is used)
-  if (method == "relaxed") {
+  ## resort mass (order could change if "relaxed"/"reference" is used)
+  if (method != "strict") {
     s <- sort.int(mass, index.return=TRUE)
     mass <- s$x
     intensities <- intensities[s$ix]

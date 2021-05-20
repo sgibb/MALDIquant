@@ -17,6 +17,8 @@ referencePeaks <- function(l, method=c("strict", "relaxed"), minFrequency=0.9,
 
   .stopIfNotIsMassPeaksList(l)
 
+  method <- match.arg(method)
+
   ## find reference peaks by binning and filtering
   referencePeaks <- filterPeaks(binPeaks(l, method=method,
                                          tolerance=tolerance),

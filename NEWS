@@ -1,6 +1,16 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION 1.19.99 [2021-05-20]:
+--------------------------------------------------
+
+NEW FEATURES
+
+* `binPeaks` gains a new method `"reference"` to bin to the first given
+  `MassPeaks` object; see #69.
+  Thanks to Alexander Bartel (@ndevln) for the suggestion.
+
+
 CHANGES IN MALDIquant VERSION 1.19.5 [2020-04-02]:
 --------------------------------------------------
 

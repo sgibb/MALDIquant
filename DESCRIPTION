@@ -1,5 +1,5 @@
 Package: MALDIquant
-Version: 1.19.5
+Version: 1.19.99
 Date: 2020-04-02
 Title: Quantitative Analysis of Mass Spectrometry Data
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
@@ -26,4 +26,4 @@ URL: http://strimmerlab.org/software/maldiquant/
 BugReports: https://github.com/sgibb/MALDIquant/issues/
 LazyLoad: yes
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
