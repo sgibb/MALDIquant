@@ -1,14 +1,19 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
-CHANGES IN MALDIquant VERSION 1.19.99 [2021-05-20]:
---------------------------------------------------
+CHANGES IN MALDIquant VERSION 1.20 [2021-07-28]:
+------------------------------------------------
 
 NEW FEATURES
 
 * `binPeaks` gains a new method `"reference"` to bin to the first given
   `MassPeaks` object; see #69.
   Thanks to Alexander Bartel (@ndevln) for the suggestion.
+
+MODIFICATIONS
+
+* Don't run example in `MALDIquant-parallel` manual page to avoid long example
+  runtime WARNING in R CMD check.
 
 
 CHANGES IN MALDIquant VERSION 1.19.5 [2020-04-02]:
