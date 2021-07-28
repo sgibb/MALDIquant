@@ -41,6 +41,7 @@
   \code{\link[parallel]{mcmapply}}
 }
 \examples{
+\dontrun{
 ## load package
 library("MALDIquant")
 
@@ -83,6 +84,6 @@ if(.Platform$OS.type == "unix") {
   ))
   stopifnot(all.equal(p1, p2))
 }
-
+}
 }
 \keyword{misc}
