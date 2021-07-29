@@ -3,3 +3,4 @@
 *.o
 *.rds
 CRAN-RELEASE
+docs
