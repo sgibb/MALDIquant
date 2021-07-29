@@ -128,7 +128,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \code{\link[MALDIquant]{transformIntensity,AbstractMassObject-method}},
 \code{\link[MALDIquant]{trim,AbstractMassObject,numeric-method}}
 
-Website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

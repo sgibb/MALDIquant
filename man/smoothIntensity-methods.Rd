@@ -57,7 +57,7 @@ Analytical Chemistry, 53(11), 1583-1586.
 \seealso{
 \code{\linkS4class{MassSpectrum}}
 
-Website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

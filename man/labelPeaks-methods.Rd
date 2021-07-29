@@ -52,7 +52,7 @@ of the peaks stored in a \code{\linkS4class{MassPeaks}} object to a plot.
   \code{\linkS4class{MassPeaks}},
   \code{\link[MALDIquant]{plot,AbstractMassObject,missing-method}}
 
-Website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

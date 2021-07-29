@@ -57,7 +57,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \code{\link[MALDIquant]{intensityMatrix}},
 \code{\linkS4class{MassPeaks}}
 
-Website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

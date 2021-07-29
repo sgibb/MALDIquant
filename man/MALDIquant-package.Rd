@@ -25,7 +25,7 @@ For a first overview see
 \tabular{ll}{
 Package: \tab MALDIquant\cr
 License: \tab GPL (>= 3)\cr
-URL: \tab http://strimmerlab.org/software/maldiquant/\cr
+URL: \tab https://www.strimmerlab.org/software/maldiquant/\cr
 }
 
 Main classes:
@@ -48,9 +48,9 @@ Maintainer: Sebastian Gibb \email{mail@sebastiangibb.de}
 S. Gibb and K. Strimmer. 2012.
 MALDIquant: a versatile R package for the analysis of mass spectrometry data.
 Bioinformatics 28: 2270-2271.
-\url{http://bioinformatics.oxfordjournals.org/content/28/17/2270.abstract}
+\url{https://academic.oup.com/bioinformatics/article-abstract/28/17/2270/246552}
 
-Website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.org/software/maldiquant/}
 }
 \seealso{
   \itemize{
@@ -58,7 +58,7 @@ Website: \url{http://strimmerlab.org/software/maldiquant/}
       \code{vignette("MALDIquant-intro", package="MALDIquant")}.
     \item Run demo files: \code{demo("MALDIquant")}.
     \item List all available manual pages: \code{library(help="MALDIquant")}.
-    \item MALDIquant website: \url{http://strimmerlab.org/software/maldiquant/}.
+    \item MALDIquant website: \url{https://www.strimmerlab.org/software/maldiquant/}.
     \item more MALDIquant examples and complete analyses:
     \url{https://github.com/sgibb/MALDIquantExamples/}.
   }

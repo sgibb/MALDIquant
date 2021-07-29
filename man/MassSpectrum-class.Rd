@@ -75,7 +75,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \code{\link[MALDIquant]{smoothIntensity,MassSpectrum-method}},
 \code{\linkS4class{AbstractMassObject}}
 
-Website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

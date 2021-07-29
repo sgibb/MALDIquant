@@ -41,7 +41,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \code{\linkS4class{MassPeaks}},
 \code{\linkS4class{MassSpectrum}}
 
-Website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package

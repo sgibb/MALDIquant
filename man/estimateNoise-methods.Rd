@@ -46,7 +46,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \code{\link[stats]{mad}},
 \code{\link[stats]{supsmu}}
 
-Website: \url{http://strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.org/software/maldiquant/}
 }
 \examples{
 ## load package
