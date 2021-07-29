@@ -1,6 +1,6 @@
 Package: MALDIquant
 Version: 1.20
-Date: 2021-07-28
+Date: 2021-07-29
 Title: Quantitative Analysis of Mass Spectrometry Data
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
         email="mail@sebastiangibb.de",
@@ -21,7 +21,7 @@ Description: A complete analysis pipeline for matrix-assisted laser
         measurements as well as allowing spectra with different
         resolutions.
 License: GPL (>= 3)
-URL: http://strimmerlab.org/software/maldiquant/
+URL: https://www.strimmerlab.org/software/maldiquant/
         https://github.com/sgibb/MALDIquant/
 BugReports: https://github.com/sgibb/MALDIquant/issues/
 LazyLoad: yes
