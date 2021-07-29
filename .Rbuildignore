@@ -6,4 +6,6 @@
 ^hooks$
 ^playground$
 ^revdep$
+^CRAN-RELEASE$
+^cran-comments.md$
 ^\.github$
