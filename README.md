@@ -1,13 +1,13 @@
 # MALDIquant
 
 <!-- badges: start -->
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/sgibb/MALDIquant/workflows/R-CMD-check/badge.svg)](https://github.com/sgibb/MALDIquant/actions)
-[![codecov.io](http://codecov.io/github/sgibb/MALDIquant/coverage.svg?branch=master)](http://codecov.io/github/sgibb/MALDIquant?branch=master)
-[![license](http://img.shields.io/badge/license-GPL%20%28%3E=%203%29-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
+[![codecov.io](https://codecov.io/github/sgibb/MALDIquant/coverage.svg?branch=master)](https://codecov.io/github/sgibb/MALDIquant?branch=master)
+[![license](https://img.shields.io/badge/license-GPL%20%28%3E=%203%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-3.0.html)
 [![cran checks](https://cranchecks.info/badges/worst/MALDIquant)](https://cran.r-project.org/web/checks/check_results_MALDIquant.html)
-[![metacran version](http://www.r-pkg.org/badges/version/MALDIquant)](http://cran.r-project.org/web/packages/MALDIquant/index.html)
-[![metacran downloads](http://cranlogs.r-pkg.org/badges/MALDIquant?color=brightgreen)](http://cran.r-project.org/web/packages/MALDIquant/index.html)
+[![metacran version](https://www.r-pkg.org/badges/version/MALDIquant)](https://cran.r-project.org/web/packages/MALDIquant/index.html)
+[![metacran downloads](https://cranlogs.r-pkg.org/badges/MALDIquant?color=brightgreen)](https://cran.r-project.org/web/packages/MALDIquant/index.html)
   <!-- badges: end -->
 
 Quantitative Analysis of Mass Spectrometry Data
@@ -26,7 +26,7 @@ statistics-sensitive non-linear iterative peak-clipping algorithm
 (SNIP), peak alignment using warping functions, handling of replicated
 measurements as well as allowing spectra with different resolutions.
 
-Please visit: http://strimmerlab.org/software/maldiquant/
+Please visit: https://www.strimmerlab.org/software/maldiquant/
 
 
 ## Contact
@@ -41,7 +41,7 @@ You are welcome to:
 ## Install
 
 You can install the latest release directly from
-[CRAN](http://cran.r-project.org/web/packages/MALDIquant/index.html).
+[CRAN](https://cran.r-project.org/web/packages/MALDIquant/index.html).
 
 ```r
 install.packages("MALDIquant")
@@ -51,7 +51,7 @@ install.packages("MALDIquant")
 
 [GitHub](https://github.com) is not directly supported by the basic
 `install.packages` command. You could use the
-[devtools](http://cran.r-project.org/web/packages/devtools/index.html) package
+[devtools](https://cran.r-project.org/web/packages/devtools/index.html) package
 to install the development version of MALDIquant
 (you will need a complete development environment to compile the some c code).
 
