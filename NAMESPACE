@@ -1,5 +1,12 @@
 import("methods")
 
+importFrom("Matrix",
+              "t",
+              "Matrix",
+              "sparseMatrix",
+               "colSums",
+               "colMeans")
+
 importFrom("parallel",
               "mclapply",
               "mcmapply")
@@ -9,7 +16,7 @@ importFrom("graphics",
               "arrows",
               "lines",
               "par",
-              "plot.default",           
+              "plot.default",
               "points",
               "rasterImage",
               "rect",
