@@ -8,7 +8,7 @@ Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
         "Strimmer", role="ths",
         comment=c(ORCID="0000-0001-7917-2056")))
 Depends: R (>= 4.0.0), methods
-Imports: parallel
+Imports: parallel, Matrix
 Suggests: knitr, testthat (>= 0.8)
 Description: A complete analysis pipeline for matrix-assisted laser
         desorption/ionization-time-of-flight (MALDI-TOF) and other
