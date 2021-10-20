@@ -23,7 +23,11 @@ intensityMatrix <- function(peaks, spectra) {
       stop("Incompatible number of spectra!")
     }
 
-    isNa <- is.na(m)
+    if (is(m, "sparseMatrix")) {
+      isNa <- as.matrix(m == 0)
+    } else {
+      isNa <- is.na(m)
+    }
     uniqueMass <- as.double(colnames(m))
 
     approxSpectra <- lapply(spectra, approxfun, yleft=0L, yright=0L)
@@ -31,7 +35,9 @@ intensityMatrix <- function(peaks, spectra) {
     for (i in seq_along(approxSpectra)) {
       m[i, isNa[i, ]] <- approxSpectra[[i]](uniqueMass[isNa[i, ]])
     }
+    
+    attr(m, "mass") <- uniqueMass
   }
-
+  
   m
 }

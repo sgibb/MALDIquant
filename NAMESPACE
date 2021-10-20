@@ -1,11 +1,15 @@
 import("methods")
 
+import("Rcpp")
+
 importFrom("Matrix",
               "t",
               "Matrix",
               "sparseMatrix",
-               "colSums",
-               "colMeans")
+              "rowSums",
+              "rowMeans",
+              "colSums",
+              "colMeans")
 
 importFrom("parallel",
               "mclapply",
@@ -110,4 +114,6 @@ exportMethods("as.matrix",
               "transformIntensity",
               "trim")
 
-useDynLib("MALDIquant")
+useDynLib("MALDIquant", .registration=TRUE)
+importFrom(Rcpp, evalCpp)
+exportPattern("^[[:alpha:]]+")

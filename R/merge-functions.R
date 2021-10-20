@@ -19,7 +19,7 @@ mergeMassPeaks <- function(l, labels, method=c("mean", "median", "sum"),
 
   fun <- switch(method,
               "mean" = {
-                colMeans
+                .colMeans
               },
               "median" = {
                 .colMedians
@@ -43,36 +43,46 @@ mergeMassPeaks <- function(l, labels, method=c("mean", "median", "sum"),
 ## returns:
 ##  a new MassPeaks object
 ##
-.mergeMassPeaks <- function(l, fun=colMeans, ignore.na=TRUE) {
+.mergeMassPeaks <- function(l, fun=.colMeans, ignore.na=TRUE) {
 
   fun <- match.fun(fun)
 
   ## create a matrix which could merged
   m <- .as.matrix.MassObjectList(l)
-
+  
   mass <- attr(m, "mass")
+  
+  if (!ignore.na) {
+    m[m == 0] <- .Machine$double.xmin
+  }
 
   ## avoid named intensity/snr slot
   colnames(m) <- NULL
-
-  isNA <- is.na(m)
-  if (!ignore.na) {
-    m[isNA] <- 0L
-  }
 
   ## merge intensities
   intensity <- fun(m, na.rm=TRUE)
 
   ## merge snr
-  for (i in seq_along(l)) {
-    m[i, !isNA[i, ]] <- l[[i]]@snr
+  ij <- lapply(1:nrow(m), function(r) {
+    cbind(r, which(m[r, ] > .Machine$double.xmin))
+  })
+  ij <- Reduce(rbind, ij)
+  
+  if (ignore.na) {
+    m <- sparseMatrixNA(i=ij[, 1], j=ij[, 2], unlist(lapply(l, function(z) z@snr)), 
+                        dims=dim(m), keep.zeros=TRUE)
+  } else {
+    m <- sparseMatrix(i=ij[, 1], j=ij[, 2], x=unlist(lapply(l, function(z) z@snr)),
+                      dims=dim(m))
+    m[m == 0] <- .Machine$double.xmin
   }
-  snr <- fun(m, na.rm=TRUE)
+
+  snr <- fun(m, na.rm = TRUE)
 
   ## merge metaData
   metaData <- .mergeMetaData(lapply(l, function(x)x@metaData))
 
-  createMassPeaks(mass=mass, intensity=intensity, snr=snr, metaData=metaData)
+  createMassPeaks(mass=mass, intensity=as.numeric(intensity), snr=as.numeric(snr), metaData=metaData)
 }
 
 ## merge different metaData by equal list names

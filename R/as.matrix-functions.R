@@ -17,10 +17,9 @@
   r <- rep.int(seq_along(l), n)
 
   i <- findInterval(mass, uniqueMass)
-
-  m <- sparseMatrix(i = r, j = i, x = intensity,
-                    dims = c(length(l), length(uniqueMass)),
-                    dimnames = list(NULL, uniqueMass))
+  
+  m <- sparseMatrixNA(r, i, intensity, c(length(l), length(uniqueMass)),
+                      list(NULL, uniqueMass))
   attr(m, "mass") <- uniqueMass
   m
 }
@@ -35,8 +34,15 @@
 ##  a binary matrix
 .as.binary.matrix <- function(m) {
   stopifnot(is.matrix(m) | is(m, 'sparseMatrix'))
-  mass <- attr(m, 'mass')
-  m[m != 0] <- 1
-  attr(m, 'mass') <- mass
+  if (is(m, 'sparseMatrix')) {
+    mass <- attr(m, 'mass')
+    m[m != 0] <- 1
+    attr(m, 'mass') <- mass
+  } else {
+    stopifnot(is.matrix(m))
+    isNA <- which(is.na(m))
+    m[] <- 1L
+    m[isNA] <- 0L
+  }
   m
 }

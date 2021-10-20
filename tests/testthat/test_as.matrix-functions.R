@@ -7,11 +7,14 @@ s <- list(createMassSpectrum(mass=1:5, intensity=11:15),
 
 mp <- matrix(c(11:14, NA_real_, NA_real_, 22:25), byrow=TRUE, ncol=5, nrow=2,
              dimnames=list(NULL, 1:5))
+mp <- as.sparseMatrixNA(mp)
 ms <- matrix(as.double(c(11:15, 21:25)), byrow=TRUE, ncol=5, nrow=2,
              dimnames=list(NULL, 1:5))
+ms <- as.sparseMatrixNA(ms)
 
 mb <- matrix(c(rep(1L, 4), 0L, 0L, rep(1L, 4)), byrow=TRUE, ncol=5, nrow=2,
              dimnames=list(NULL, 1:5))
+mb <- as(mb, 'sparseMatrix')
 attr(mp, "mass") <- attr(ms, "mass") <- attr(mb, "mass") <- 1:5
 
 test_that(".as.matrix.MassObjectsList throws errors", {
