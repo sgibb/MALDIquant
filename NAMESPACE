@@ -1,5 +1,16 @@
 import("methods")
 
+import("Rcpp")
+
+importFrom("Matrix",
+              "t",
+              "Matrix",
+              "sparseMatrix",
+              "rowSums",
+              "rowMeans",
+              "colSums",
+              "colMeans")
+
 importFrom("parallel",
               "mclapply",
               "mcmapply")
@@ -9,7 +20,7 @@ importFrom("graphics",
               "arrows",
               "lines",
               "par",
-              "plot.default",           
+              "plot.default",
               "points",
               "rasterImage",
               "rect",
@@ -103,4 +114,6 @@ exportMethods("as.matrix",
               "transformIntensity",
               "trim")
 
-useDynLib("MALDIquant")
+useDynLib("MALDIquant", .registration=TRUE)
+importFrom(Rcpp, evalCpp)
+exportPattern("^[[:alpha:]]+")

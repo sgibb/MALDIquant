@@ -23,24 +23,24 @@
 #include <Rinternals.h>
 #include <R_ext/Rdynload.h>
 
-static const R_CallMethodDef callMethods[] = {
-    {"C_colMedians", (DL_FUNC) &C_colMedians, 2},
-    {"C_snip", (DL_FUNC) &C_snip, 3},
-    {"C_lowerConvexHull", (DL_FUNC) &C_lowerConvexHull, 2},
-    {"C_dilation", (DL_FUNC) &C_dilation, 2},
-    {"C_erosion", (DL_FUNC) &C_erosion, 2},
-    {"C_localMaxima", (DL_FUNC) &C_localMaxima, 2},
-    { NULL, NULL, 0 } /* mark last element */
-};
+// static const R_CallMethodDef callMethods[] = {
+//     {"C_colMedians", (DL_FUNC) &C_colMedians, 2},
+//     {"C_snip", (DL_FUNC) &C_snip, 3},
+//     {"C_lowerConvexHull", (DL_FUNC) &C_lowerConvexHull, 2},
+//     {"C_dilation", (DL_FUNC) &C_dilation, 2},
+//     {"C_erosion", (DL_FUNC) &C_erosion, 2},
+//     {"C_localMaxima", (DL_FUNC) &C_localMaxima, 2},
+//     { NULL, NULL, 0 } /* mark last element */
+// };
 
-void
-#ifdef HAVE_VISIBILITY_ATTRIBUTE
-__attribute__ ((visibility ("default")))
-#endif
-R_init_MALDIquant(DllInfo *dll)
-{
-    /* no .C, .Fortran, or .External routines => NULL */
-    R_registerRoutines(dll, NULL, callMethods, NULL, NULL);
-    R_useDynamicSymbols(dll, FALSE);
-    R_forceSymbols(dll, TRUE);
-}
+// void
+// #ifdef HAVE_VISIBILITY_ATTRIBUTE
+// __attribute__ ((visibility ("default")))
+// #endif
+// R_init_MALDIquant(DllInfo *dll)
+// {
+//     /* no .C, .Fortran, or .External routines => NULL */
+//     R_registerRoutines(dll, NULL, callMethods, NULL, NULL);
+//     R_useDynamicSymbols(dll, FALSE);
+//     R_forceSymbols(dll, TRUE);
+// }

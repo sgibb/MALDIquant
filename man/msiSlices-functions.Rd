@@ -70,7 +70,7 @@ data("fiedler2009subset", package="MALDIquant")
 coordinates(fiedler2009subset) <- cbind(x=rep(1:4, 2), y=rep(1:2, each=4))
 
 slices <- msiSlices(fiedler2009subset, center=c(5864.49, 8936.97),
-                    tolerance=0.25)
+                    tolerance=0.25, method="mean")
 
 slices
 }

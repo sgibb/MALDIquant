@@ -28,12 +28,22 @@ test_that(".colMaxs", {
   ## even nrow
   m <- matrix(rnorm(1e5), ncol=1e2)
   expect_equal(MALDIquant:::.colMaxs(m), colMaxs(m))
+  ## sparse
+  m[sample(round(length(m) * 0.3))] <- 0
+  m <- as(m, "sparseMatrix")
+  expect_equal(MALDIquant:::.colMaxs(m), colMaxs(m))
 })
 
 test_that(".colCors", {
   colCors <- function(x, y, use="everything") {
     z <- double(ncol(x))
     for (i in 1:ncol(x)) {
+      if (is(x, 'sparseMatrix')) {
+        x[x[, i] == 0, i] <- NA
+      }
+      if (is(y, 'sparseMatrix')) {
+        y[y[, i] == 0, i] <- NA
+      }
       z[i] <- stats::cor(x[,i], y[,i], use=use)
     }
     z
@@ -45,9 +55,29 @@ test_that(".colCors", {
   nna <- n
   mna[sample(1e5, 1e3)] <- NA
   nna[sample(1e5, 1e3)] <- NA
-  expect_equal(MALDIquant:::.colCors(m, n), colCors(m, n))
-  expect_equal(MALDIquant:::.colCors(mna, nna), colCors(mna, nna))
+  expect_equal(MALDIquant:::.colCors(m, n), colCors(m, n), tolerance=testthat_tolerance())
+  expect_equal(MALDIquant:::.colCors(mna, nna), colCors(mna, nna), tolerance=testthat_tolerance())
   expect_equal(MALDIquant:::.colCors(mna, nna, na.rm=TRUE),
-               colCors(mna, nna, use="na.or.complete"))
+               colCors(mna, nna, use="na.or.complete"), tolerance=testthat_tolerance())
+  ## sparse
+  mna <- as.sparseMatrixNA(mna)
+  nna <- as.sparseMatrixNA(nna)
+  expect_equal(MALDIquant:::.colCors(mna, nna), colCors(mna, nna), tolerance=testthat_tolerance())
+  expect_equal(MALDIquant:::.colCors(mna, nna, na.rm=TRUE),
+               colCors(mna, nna, use="na.or.complete"), tolerance=testthat_tolerance())
+  
+  mna[mna == 0] <- NA
+  mna <- as.matrix(mna)
+  expect_equal(MALDIquant:::.colCors(mna, nna), colCors(mna, nna), tolerance=testthat_tolerance())
+  expect_equal(MALDIquant:::.colCors(mna, nna, na.rm=TRUE),
+               colCors(mna, nna, use="na.or.complete"), tolerance=testthat_tolerance())
+  
+  mna[is.na(mna)] <- 0
+  mna <- as(mna, 'sparseMatrix')
+  nna[nna == 0] <- NA
+  nna <- as.matrix(nna)
+  expect_equal(MALDIquant:::.colCors(mna, nna), colCors(mna, nna), tolerance=testthat_tolerance())
+  expect_equal(MALDIquant:::.colCors(mna, nna, na.rm=TRUE),
+               colCors(mna, nna, use="na.or.complete"), tolerance=testthat_tolerance())
 })
 

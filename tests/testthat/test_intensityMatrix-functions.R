@@ -7,8 +7,10 @@ s <- list(createMassSpectrum(mass=1:5, intensity=11:15),
 
 m <- matrix(c(11:14, NA_real_, NA_real_, 22:25), byrow=TRUE, ncol=5, nrow=2,
             dimnames=list(NULL, 1:5))
+m <- as.sparseMatrixNA(m, keep.zeros = TRUE)
 e <- matrix(c(11:15, 21:25), byrow=TRUE, ncol=5, nrow=2,
             dimnames=list(NULL, 1:5))
+e <- as.sparseMatrixNA(e, keep.zeros = TRUE)
 attr(m, "mass") <- attr(e, "mass") <- 1:5
 
 test_that("intensityMatrix throws errors", {

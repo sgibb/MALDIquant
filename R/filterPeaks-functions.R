@@ -55,7 +55,7 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   m <- .as.binary.matrix(.as.matrix.MassObjectList(l))
 
   ## whitelist
-  w <- matrix(0L, nrow=nrow(m), ncol=ncol(m))
+  w <- Matrix(nrow = nrow(m), ncol = ncol(m), data = 0, sparse = TRUE)
 
   ## group indices by labels
   idx <- lapply(ll, function(x)which(labels == x))
@@ -131,5 +131,5 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   ## calculate minimal number of peaks
   minPeakNumber <- max(minFrequency * length(rows), minNumber, na.rm=TRUE)
 
-  colSums(m[rows, , drop=FALSE]) >= minPeakNumber
+  colSums(m[rows, , drop = FALSE]) >= minPeakNumber
 }
