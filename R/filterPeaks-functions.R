@@ -63,7 +63,7 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   
   for (i in seq_along(idx)) {
     
-    wl <- .whitelist.list(o, idx[[i]], minFrequency=minFrequency[i], minNumber=minNumber[i])
+    wl <- .whitelistoccur(o, idx[[i]], minFrequency=minFrequency[i], minNumber=minNumber[i])
     
     if (sum(wl)) {
       if (mergeWhitelists) {
@@ -76,15 +76,17 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
     } else {
       warning("Empty peak whitelist for level ", sQuote(ll[i]), ".")
     }
+    
   }
   
   ## turn matrix back into MassPeaks objects
   
   for (i in seq_along(idx)) {
     for (j in idx[[i]]) {
-      l[[j]]@mass <- l[[j]]@mass[w[i, o$i[o$r == j]]]
-      l[[j]]@intensity <- l[[j]]@intensity[w[i, o$i[o$r == j]]]
-      l[[j]]@snr <- l[[j]]@snr[w[i, o$i[o$r == j]]]
+      wmask <- w[i, o$i[o$r == j]]
+      l[[j]]@mass <- l[[j]]@mass[wmask]
+      l[[j]]@intensity <- l[[j]]@intensity[wmask]
+      l[[j]]@snr <- l[[j]]@snr[wmask]
     }
   }
   
@@ -134,41 +136,46 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
 }
 
 
-.whitelist.list <- function(l, rows, minFrequency, minNumber) {
-  
+.whitelistoccur <- function(l, rows, minFrequency, minNumber) {
+
   ## test arguments
   if (is.na(minFrequency) && is.na(minNumber)) {
     stop(sQuote(minFrequency), " or ", sQuote(minNumber),
          " has to be a meaningful number!")
   }
-  
+
   if (!is.na(minFrequency) && minFrequency < 0L) {
     minFrequency <- 0L
     warning(sQuote("minFrequency"),
             " < 0 does not make sense! Using 0 instead.")
   }
-  
+
   if (!is.na(minNumber) && minNumber < 0L) {
     minNumber <- 0L
     warning(sQuote("minNumber"), " < 0 does not make sense! Using 0 instead.")
   }
-  
+
   if (!is.na(minFrequency) && !is.na(minNumber)) {
     warning(sQuote("minFrequency"), " and ", sQuote("minNumber"),
             " arguments are given. Choosing the higher one.")
   }
-  
+
   ## calculate minimal number of peaks
-  
+
   keep.rows <- (l$r %in% rows)
   l$r <- l$r[keep.rows]
   l$i <- l$i[keep.rows]
-  
+  l$i <- split(l$i, factor(l$i))
+
   minPeakNumber <- max(minFrequency * length(unique(l$r)), minNumber, na.rm=TRUE)
-  
-  return(
-    sapply(seq_along(l$masses), function(m) {
-    sum(l$i == m) >= minPeakNumber
-  }))
-  
+
+  above.min <- function(x) { length(x) >= minPeakNumber }
+  wl.vals <- unlist(lapply(l$i, above.min))
+
+  wl <- array(FALSE, length(l$masses))
+  wl[as.numeric(names(l$i))] <- wl.vals
+
+  return(c(wl))
+
 }
+
