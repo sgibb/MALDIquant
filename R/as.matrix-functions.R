@@ -63,4 +63,5 @@
   i <- findInterval(mass, uniqueMass)
   
   return(list(r = as.integer(r), i = as.integer(i), masses = uniqueMass))
+  
 }
