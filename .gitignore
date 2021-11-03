@@ -4,3 +4,4 @@
 *.rds
 CRAN-RELEASE
 .Rproj.user
+.Rproj
