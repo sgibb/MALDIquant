@@ -1,6 +1,16 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION 1.20.0.9999 [unreleased]:
+-------------------------------------------------------
+
+INTERNAL CHANGES
+
+* Remove `is.null(getGeneric(...))` tests before setting generics for
+  S4 methods to avoid errors in package loading (especially with
+  `pkgload::load_all()`).
+
+
 CHANGES IN MALDIquant VERSION 1.20 [2021-07-29]:
 ------------------------------------------------
 
