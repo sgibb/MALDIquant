@@ -58,13 +58,13 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   idx <- lapply(ll, function(x)which(labels == x))
 
   ## collect whitelists
-  
-  w <- matrix(FALSE, nrow = nl, ncol = length(o$masses))
-  
+
+  w <- matrix(FALSE, nrow = nl, ncol = length(o$mass))
+
   for (i in seq_along(idx)) {
-    
+
     wl <- .whitelistoccur(o, idx[[i]], minFrequency=minFrequency[i], minNumber=minNumber[i])
-    
+
     if (sum(wl)) {
       if (mergeWhitelists) {
         ## R uses columnwise recycling
@@ -76,20 +76,20 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
     } else {
       warning("Empty peak whitelist for level ", sQuote(ll[i]), ".")
     }
-    
+
   }
-  
+
   ## turn matrix back into MassPeaks objects
-  
+
   for (i in seq_along(idx)) {
     for (j in idx[[i]]) {
-      wmask <- w[i, o$i[o$r == j]]
+      wmask <- w[i, o$i[o$sample == j]]
       l[[j]]@mass <- l[[j]]@mass[wmask]
       l[[j]]@intensity <- l[[j]]@intensity[wmask]
       l[[j]]@snr <- l[[j]]@snr[wmask]
     }
   }
-  
+
   l
 }
 
@@ -162,17 +162,17 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
 
   ## calculate minimal number of peaks
 
-  keep.rows <- (l$r %in% rows)
-  l$r <- l$r[keep.rows]
+  keep.rows <- (l$sample %in% rows)
+  l$sample <- l$sample[keep.rows]
   l$i <- l$i[keep.rows]
   l$i <- split(l$i, factor(l$i))
 
-  minPeakNumber <- max(minFrequency * length(unique(l$r)), minNumber, na.rm=TRUE)
+  minPeakNumber <- max(minFrequency * length(unique(l$sample)), minNumber, na.rm=TRUE)
 
   above.min <- function(x) { length(x) >= minPeakNumber }
   wl.vals <- unlist(lapply(l$i, above.min))
 
-  wl <- array(FALSE, length(l$masses))
+  wl <- array(FALSE, length(l$mass))
   wl[as.numeric(names(l$i))] <- wl.vals
 
   return(c(wl))
