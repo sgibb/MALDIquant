@@ -52,7 +52,7 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   mergeWhitelists <- mergeWhitelists[1]
 
   ## use peaks occurrence list
-  o <- .as.occurrence.list(l)
+  o <- .as.occurrence.list.MassObjectList(l)
 
  # group indices by labels
   idx <- lapply(ll, function(x)which(labels == x))

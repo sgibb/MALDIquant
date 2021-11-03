@@ -6,8 +6,7 @@
 ##
 ## returns:
 ##  a list
-.as.occurrence.list <- function(l) {
-
+.as.occurrence.list.MassObjectList <- function(l) {
   .stopIfNotIsMassObjectList(l)
 
   mass <- .unlist(lapply(l, function(x)x@mass))
