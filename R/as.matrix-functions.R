@@ -31,10 +31,9 @@
 ## returns:
 ##  a binary matrix
 .as.binary.matrix <- function(m) {
-  stopifnot(is.matrix(m))
-  isNA <- which(is.na(m))
-  m[] <- 1L
-  m[isNA] <- 0L
-  mode(m) <- "integer"
-  m
+    if (!is.matrix(m))
+        stop("'x' has to be a matrix!")
+    m[] <- !is.na(m)
+    mode(m) <- "integer"
+    m
 }
