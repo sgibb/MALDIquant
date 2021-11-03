@@ -49,7 +49,7 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   ## recycle arguments if needed
   minFrequency <- rep_len(minFrequency, nl)
   minNumber <- rep_len(minNumber, nl)
-  mergeWhitelists <- mergeWhitelists[1]
+  mergeWhitelists <- isTRUE(mergeWhitelists)
 
   ## use peaks occurrence list
   o <- .as.occurrence.list.MassObjectList(l)
@@ -80,7 +80,6 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   }
 
   ## turn matrix back into MassPeaks objects
-
   for (i in seq_along(idx)) {
     for (j in idx[[i]]) {
       wmask <- w[i, o$i[o$sample == j]]
