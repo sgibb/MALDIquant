@@ -129,21 +129,8 @@ filterPeaks <- function(l, minFrequency, minNumber, labels,
   }
 
   ## calculate minimal number of peaks
+  minPeakNumber <-
+      max(minFrequency * length(rows), minNumber, na.rm=TRUE)
 
-  keep.rows <- (l$sample %in% rows)
-  l$sample <- l$sample[keep.rows]
-  l$i <- l$i[keep.rows]
-  l$i <- split(l$i, factor(l$i))
-
-  minPeakNumber <- max(minFrequency * length(unique(l$sample)), minNumber, na.rm=TRUE)
-
-  above.min <- function(x) { length(x) >= minPeakNumber }
-  wl.vals <- unlist(lapply(l$i, above.min))
-
-  wl <- array(FALSE, length(l$mass))
-  wl[as.numeric(names(l$i))] <- wl.vals
-
-  return(c(wl))
-
+  tabulate(l$i[l$sample %in% rows], nbins = length(l$mass)) >= minPeakNumber
 }
-
