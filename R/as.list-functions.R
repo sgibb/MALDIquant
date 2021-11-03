@@ -5,17 +5,18 @@
 ##  l: list of AbstractMassObject objects
 ##
 ## returns:
-##  a list
+##  a list, where sample is the sample id, i is the index of the uniqueMass,
+##  and mass is the unique mass vector
 .as.occurrence.list.MassObjectList <- function(l) {
-  .stopIfNotIsMassObjectList(l)
+    .stopIfNotIsMassObjectList(l)
 
-  mass <- .unlist(lapply(l, function(x)x@mass))
-  uniqueMass <- sort.int(unique(mass))
-  n <- lengths(l)
-  r <- rep.int(seq_along(l), n)
+    mass <- .unlist(lapply(l, function(x)x@mass))
+    uniqueMass <- sort.int(unique(mass))
+    n <- lengths(l)
 
-  i <- findInterval(mass, uniqueMass)
-
-  return(list(r = as.integer(r), i = as.integer(i), masses = uniqueMass))
-
+    list(
+        sample = rep.int(seq_along(l), lengths(l)),
+        i = findInterval(mass, uniqueMass),
+        mass = uniqueMass
+    )
 }
