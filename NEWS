@@ -1,6 +1,23 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION 1.20.0.9999 [unreleased]:
+-------------------------------------------------------
+
+MODIFICATIONS
+
+* Reduce memory requirement for `filterPeaks`, especially for very sparse peak
+  lists by rewriting `filterPeaks` and `.as.matrix.MassObjectList` to use a
+  `list` internally instead of a `matrix`; see #71.
+  Contributed by Paolo Inglese <p.inglese@outlook.com> (@paoloinglese).
+
+INTERNAL CHANGES
+
+* Remove `is.null(getGeneric(...))` tests before setting generics for
+  S4 methods to avoid errors in package loading (especially with
+  `pkgload::load_all()`).
+
+
 CHANGES IN MALDIquant VERSION 1.20 [2021-07-29]:
 ------------------------------------------------
 

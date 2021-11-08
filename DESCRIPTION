@@ -1,12 +1,27 @@
 Package: MALDIquant
-Version: 1.20
+Version: 1.20.0.9999
 Date: 2021-07-29
 Title: Quantitative Analysis of Mass Spectrometry Data
-Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
+Authors@R: c(
+    person(
+        given = "Sebastian", family = "Gibb",
         email="mail@sebastiangibb.de",
-        comment=c(ORCID="0000-0001-7406-4443")), person("Korbinian",
-        "Strimmer", role="ths",
-        comment=c(ORCID="0000-0001-7917-2056")))
+        comment=c(ORCID="0000-0001-7406-4443"),
+        role = c("aut", "cre")
+    ),
+    person(
+        given = "Korbinian", family = "Strimmer",
+        comment=c(ORCID="0000-0001-7917-2056"),
+        role="ths"
+    ),
+    person(given = "Sigurdur", family = "Smarason", role = "ctb"),
+    person(
+        given = "Laurent", family = "Gatto",
+        email = "laurent.gatto@uclouvain.be",
+        comment = c(ORCID = "0000-0002-1520-2268"),
+        role = "ctb"
+    ),
+    person(given = "Paolo", "family = Inglese", role = "ctb"))
 Depends: R (>= 4.0.0), methods
 Imports: parallel
 Suggests: knitr, testthat (>= 0.8)
@@ -26,4 +41,4 @@ URL: https://www.strimmerlab.org/software/maldiquant/
 BugReports: https://github.com/sgibb/MALDIquant/issues/
 LazyLoad: yes
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2

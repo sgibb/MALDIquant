@@ -9,3 +9,5 @@
 ^CRAN-RELEASE$
 ^cran-comments.md$
 ^\.github$
+^.*\.Rproj$
+^\.Rproj\.user$

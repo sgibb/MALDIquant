@@ -8,21 +8,18 @@
 ## returns:
 ##  a matrix
 .as.matrix.MassObjectList <- function(l) {
-  .stopIfNotIsMassObjectList(l)
+    .stopIfNotIsMassObjectList(l)
 
-  mass <- .unlist(lapply(l, function(x)x@mass))
-  intensity <- .unlist(lapply(l, function(x)x@intensity))
-  uniqueMass <- sort.int(unique(mass))
-  n <- lengths(l)
-  r <- rep.int(seq_along(l), n)
+    intensity <- .unlist(lapply(l, function(x)x@intensity))
+    o <- .as.occurrence.list.MassObjectList(l)
 
-  i <- findInterval(mass, uniqueMass)
-
-  m <- matrix(NA_real_, nrow=length(l), ncol=length(uniqueMass),
-              dimnames=list(NULL, uniqueMass))
-  m[cbind(r, i)] <- intensity
-  attr(m, "mass") <- uniqueMass
-  m
+    m <- matrix(
+        NA_real_, nrow=length(l), ncol=length(o$mass),
+        dimnames=list(NULL, o$mass)
+    )
+    m[cbind(o$sample, o$i)] <- intensity
+    attr(m, "mass") <- o$mass
+    m
 }
 
 ## .as.binary.matrix
@@ -34,10 +31,9 @@
 ## returns:
 ##  a binary matrix
 .as.binary.matrix <- function(m) {
-  stopifnot(is.matrix(m))
-  isNA <- which(is.na(m))
-  m[] <- 1L
-  m[isNA] <- 0L
-  mode(m) <- "integer"
-  m
+    if (!is.matrix(m))
+        stop("'x' has to be a matrix!")
+    m[] <- !is.na(m)
+    mode(m) <- "integer"
+    m
 }
