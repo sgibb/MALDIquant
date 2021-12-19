@@ -1,0 +1,150 @@
+{
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "MALDIquant",
+  "description": "A complete analysis pipeline for matrix-assisted laser desorption/ionization-time-of-flight (MALDI-TOF) and other two-dimensional mass spectrometry data. In addition to commonly used plotting and processing methods it includes distinctive features, namely baseline subtraction methods such as morphological filters (TopHat) or the statistics-sensitive non-linear iterative peak-clipping algorithm (SNIP), peak alignment using warping functions, handling of replicated measurements as well as allowing spectra with different resolutions.",
+  "name": "MALDIquant: Quantitative Analysis of Mass Spectrometry Data",
+  "codeRepository": "https://github.com/sgibb/MALDIquant/",
+  "relatedLink": "https://www.strimmerlab.github.io/software/maldiquant/",
+  "issueTracker": "https://github.com/sgibb/MALDIquant/issues/",
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "version": "1.21",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.0.4 (2021-02-15)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Sebastian",
+      "familyName": "Gibb",
+      "email": "mail@sebastiangibb.de",
+      "@id": "https://orcid.org/0000-0001-7406-4443"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Sigurdur",
+      "familyName": "Smarason"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Laurent",
+      "familyName": "Gatto",
+      "email": "laurent.gatto@uclouvain.be",
+      "@id": "https://orcid.org/0000-0002-1520-2268"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Paolo",
+      "familyName": "family = Inglese"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Korbinian",
+      "familyName": "Strimmer",
+      "@id": "https://orcid.org/0000-0001-7917-2056"
+    }
+  ],
+  "copyrightHolder": {},
+  "funder": {},
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Sebastian",
+      "familyName": "Gibb",
+      "email": "mail@sebastiangibb.de",
+      "@id": "https://orcid.org/0000-0001-7406-4443"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 0.8",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 4.0.0"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "methods",
+      "name": "methods"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "parallel",
+      "name": "parallel"
+    }
+  ],
+  "releaseNotes": "https://github.com/sgibb/MALDIquant/blob/master/NEWS",
+  "readme": "https://github.com/sgibb/MALDIquant/blob/master/README.md",
+  "fileSize": "1389.943KB",
+  "contIntegration": ["https://github.com/sgibb/MALDIquant/actions", "https://codecov.io/github/sgibb/MALDIquant?branch=master"],
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "keywords": ["r", "maldi", "mass-spectrometry"],
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2012",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Sebastian",
+          "familyName": "Gibb",
+          "email": "mail@sebastiangibb.de"
+        }
+      ],
+      "name": "{MALDI}quant: a versatile {R} package for the analysis of mass spectrometry data",
+      "identifier": "10.1093/bioinformatics/bts447",
+      "url": "https://academic.oup.com/bioinformatics/article-abstract/28/17/2270/246552",
+      "pagination": "2270--2271",
+      "@id": "https://doi.org/10.1093/bioinformatics/bts447",
+      "sameAs": "https://doi.org/10.1093/bioinformatics/bts447",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "issueNumber": "17",
+        "datePublished": "2012",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "volumeNumber": "28",
+          "name": "Bioinformatics"
+        }
+      }
+    }
+  ]
+}
