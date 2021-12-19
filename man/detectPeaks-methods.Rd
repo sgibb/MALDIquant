@@ -45,7 +45,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 
 \code{demo("peaks")}
 
-Website: \url{https://www.strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.github.io/software/maldiquant/}
 }
 \examples{
 ## load package

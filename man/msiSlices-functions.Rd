@@ -52,7 +52,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 
 Please find real examples on:
 
-Website: \url{https://www.strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.github.io/software/maldiquant/}
 
 Vignette: \url{https://github.com/sgibb/MALDIquantExamples/raw/master/inst/doc/nyakas2013.pdf}
 

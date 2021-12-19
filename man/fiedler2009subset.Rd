@@ -49,6 +49,6 @@ ISSN 1557-3265; doi:10.1158/1078-0432.CCR-08-2701 \cr
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}}
 
-Website: \url{https://www.strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.github.io/software/maldiquant/}
 }
 \keyword{datasets}

@@ -59,7 +59,7 @@ Electrophoresis 21: 2243-2251.
 \code{\linkS4class{MassPeaks}},
 \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}}
 
-Website: \url{https://www.strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.github.io/software/maldiquant/}
 }
 \examples{
 ## load package

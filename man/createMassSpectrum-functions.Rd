@@ -29,7 +29,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \seealso{
 \code{\linkS4class{MassSpectrum}}
 
-Website: \url{https://www.strimmerlab.org/software/maldiquant/}
+Website: \url{https://www.strimmerlab.github.io/software/maldiquant/}
 }
 \examples{
 ## load package

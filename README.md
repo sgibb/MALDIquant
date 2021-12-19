@@ -26,7 +26,7 @@ statistics-sensitive non-linear iterative peak-clipping algorithm
 (SNIP), peak alignment using warping functions, handling of replicated
 measurements as well as allowing spectra with different resolutions.
 
-Please visit: https://www.strimmerlab.org/software/maldiquant/
+Please visit: https://www.strimmerlab.github.io/software/maldiquant/
 
 
 ## Contact

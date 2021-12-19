@@ -94,7 +94,7 @@ If you use it, please support the project by citing it in publications:
 
 If you have any questions, bugs, or suggestions do not hesitate to contact
 me (\email{mail@sebastiangibb.de}). \\
-Please visit \url{http://strimmerlab.org/software/maldiquant/}.
+Please visit \url{http://strimmerlab.github.io/software/maldiquant/}.
 
 \section{Introduction}
 
@@ -322,7 +322,7 @@ parameters which could/need adjust to your data (e.g. \Robject{halfWindowSize},
 user to read the manual pages of theses functions carefully.\\
 We also provide more examples in the demo directory and at:
 \begin{quote}
-\url{http://strimmerlab.org/software/maldiquant/}
+\url{http://strimmerlab.github.io/software/maldiquant/}
 \end{quote}
 Please do not hesitate to contact me (\email{mail@sebastiangibb.de}) if you have
 any questions.
