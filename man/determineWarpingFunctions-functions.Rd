@@ -84,7 +84,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 
 \code{demo("warping")}
 
-Website: \url{https://www.strimmerlab.github.io/software/maldiquant/}
+Website: \url{https://strimmerlab.github.io/software/maldiquant/}
 }
 \examples{
 ## load package

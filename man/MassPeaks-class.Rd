@@ -45,7 +45,7 @@ Sebastian Gibb \email{mail@sebastiangibb.de}
 \code{\link[MALDIquant]{labelPeaks,MassPeaks-method}},
 \code{\linkS4class{AbstractMassObject}}
 
-Website: \url{https://www.strimmerlab.github.io/software/maldiquant/}
+Website: \url{https://strimmerlab.github.io/software/maldiquant/}
 }
 %\examples{
 %## load package

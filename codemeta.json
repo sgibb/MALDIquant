@@ -5,7 +5,7 @@
   "description": "A complete analysis pipeline for matrix-assisted laser desorption/ionization-time-of-flight (MALDI-TOF) and other two-dimensional mass spectrometry data. In addition to commonly used plotting and processing methods it includes distinctive features, namely baseline subtraction methods such as morphological filters (TopHat) or the statistics-sensitive non-linear iterative peak-clipping algorithm (SNIP), peak alignment using warping functions, handling of replicated measurements as well as allowing spectra with different resolutions.",
   "name": "MALDIquant: Quantitative Analysis of Mass Spectrometry Data",
   "codeRepository": "https://github.com/sgibb/MALDIquant/",
-  "relatedLink": "https://www.strimmerlab.github.io/software/maldiquant/",
+  "relatedLink": "https://strimmerlab.github.io/software/maldiquant/",
   "issueTracker": "https://github.com/sgibb/MALDIquant/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "1.21",

@@ -36,7 +36,7 @@ Description: A complete analysis pipeline for matrix-assisted laser
         measurements as well as allowing spectra with different
         resolutions.
 License: GPL (>= 3)
-URL: https://www.strimmerlab.github.io/software/maldiquant/
+URL: https://strimmerlab.github.io/software/maldiquant/
         https://github.com/sgibb/MALDIquant/
 BugReports: https://github.com/sgibb/MALDIquant/issues/
 LazyLoad: yes

@@ -107,7 +107,7 @@ Information Processing Letters, 9(5), 216-219.
 
 \code{demo("baseline")}
 
-Website: \url{https://www.strimmerlab.github.io/software/maldiquant/}
+Website: \url{https://strimmerlab.github.io/software/maldiquant/}
 }
 \examples{
 ## load package
