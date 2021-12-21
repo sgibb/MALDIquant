@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "MALDIquant",
   "description": "A complete analysis pipeline for matrix-assisted laser desorption/ionization-time-of-flight (MALDI-TOF) and other two-dimensional mass spectrometry data. In addition to commonly used plotting and processing methods it includes distinctive features, namely baseline subtraction methods such as morphological filters (TopHat) or the statistics-sensitive non-linear iterative peak-clipping algorithm (SNIP), peak alignment using warping functions, handling of replicated measurements as well as allowing spectra with different resolutions.",
@@ -14,7 +17,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.4 (2021-02-15)",
+  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -113,10 +116,14 @@
   ],
   "releaseNotes": "https://github.com/sgibb/MALDIquant/blob/master/NEWS",
   "readme": "https://github.com/sgibb/MALDIquant/blob/master/README.md",
-  "fileSize": "1389.943KB",
+  "fileSize": "1389.803KB",
   "contIntegration": ["https://github.com/sgibb/MALDIquant/actions", "https://codecov.io/github/sgibb/MALDIquant?branch=master"],
   "developmentStatus": "https://www.repostatus.org/#active",
-  "keywords": ["r", "maldi", "mass-spectrometry"],
+  "keywords": [
+    "r",
+    "maldi",
+    "mass-spectrometry"
+  ],
   "citation": [
     {
       "@type": "ScholarlyArticle",
