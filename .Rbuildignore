@@ -13,3 +13,4 @@
 ^\.Rproj\.user$
 ^CRAN-SUBMISSION$
 ^codemeta\.json$
+^CITATION\.cff$
