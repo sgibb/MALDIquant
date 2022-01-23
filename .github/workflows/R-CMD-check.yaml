@@ -35,7 +35,7 @@ jobs:
 
       - name: Install additional LaTeX packages
         run: |
-          tlmgr install tikz
+          tlmgr install pgf
 
       - uses: r-lib/actions/setup-r@v1
         with:
