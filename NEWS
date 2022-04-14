@@ -1,6 +1,13 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION development
+-----------------------------------------
+
+MODIFICATIONS
+
+* Fix Paolo's family name in `DESCRIPTION` file.
+
 CHANGES IN MALDIquant VERSION 1.21 [2021-12-19]
 -----------------------------------------------
 
