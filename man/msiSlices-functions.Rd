@@ -15,7 +15,7 @@ msiSlices(x, center, tolerance, method=c("sum", "mean", "median"), adjust=TRUE)
 \arguments{
   \item{x}{a \code{list} of \code{\linkS4class{MassSpectrum}}/
     \code{\linkS4class{MassPeaks}} objects.}
-  \item{center}{\code{double}, the \code{center} mas value of each slice.}
+  \item{center}{\code{double}, the \code{center} mass value of each slice.}
   \item{tolerance}{\code{double}, specifies the thickness of the slices
     (\code{center + c(-tolerance, tolerance)}).}
   \item{method}{used aggregation function.}
