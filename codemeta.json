@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/sgibb/MALDIquant/",
   "issueTracker": "https://github.com/sgibb/MALDIquant/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.21.0.99",
+  "version": "1.22",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.3 (2022-03-10)",
+  "runtimePlatform": "R version 4.2.2 (2022-10-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -110,7 +110,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1289.422KB",
+  "fileSize": "1390.939KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

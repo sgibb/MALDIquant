@@ -1,5 +1,5 @@
 # -----------------------------------------------------------
-# CITATION file created with {cffr} R package, v0.2.1
+# CITATION file created with {cffr} R package, v0.3.0
 # See also: https://docs.ropensci.org/cffr/
 # -----------------------------------------------------------
  
@@ -8,7 +8,7 @@ message: 'To cite package "MALDIquant" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'MALDIquant: Quantitative Analysis of Mass Spectrometry Data'
-version: '1.21'
+version: '1.22'
 doi: 10.1093/bioinformatics/bts447
 abstract: A complete analysis pipeline for matrix-assisted laser desorption/ionization-time-of-flight
   (MALDI-TOF) and other two-dimensional mass spectrometry data. In addition to commonly
@@ -46,7 +46,7 @@ preferred-citation:
 repository: https://CRAN.R-project.org/package=MALDIquant
 repository-code: https://github.com/sgibb/MALDIquant/issues/
 url: https://strimmerlab.github.io/software/maldiquant/
-date-released: '2021-12-21'
+date-released: '2022-11-10'
 contact:
 - family-names: Gibb
   given-names: Sebastian
