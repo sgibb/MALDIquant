@@ -1,15 +1,23 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
-CHANGES IN MALDIquant VERSION development
------------------------------------------
+
+CHANGES IN MALDIquant VERSION 1.22 [2022-11-10]:
+------------------------------------------------
+
+BUGFIXES
+
+* Fix merging metadata with `NA` values; affected functions:
+  `mergeMassSpectra`, `mergeMassPeaks`, `averageSpectra`.
+  Thanks to Petr Hasler <petr.hasler@upol.cz> for reporting.
 
 MODIFICATIONS
 
 * Fix Paolo's family name in `DESCRIPTION` file.
 
-CHANGES IN MALDIquant VERSION 1.21 [2021-12-19]
------------------------------------------------
+
+CHANGES IN MALDIquant VERSION 1.21 [2021-12-19]:
+------------------------------------------------
 
 MODIFICATIONS
 

@@ -43,6 +43,28 @@ test_that("averageMassSpectra works with empty spectra", {
   expect_equal(unname(averageMassSpectra(list(e, e))), e)
 })
 
+test_that("averageMassSpectra works with NA in metaData", {
+  s1 <- createMassSpectrum(
+                mass=1:3, intensity=1:3, metaData=list(foo=1:3, bar=c(1, NA, 2))
+  )
+  expect_equal(
+    unname(averageMassSpectra(list(s1, s1), labels = 1:2)), list(s1, s1)
+  )
+  expect_equal(
+    unname(averageMassSpectra(list(s1, s1), labels = c(1, 1))), list(s1)
+  )
+  s2 <- createMassSpectrum(
+                mass=1:3, intensity=1:3, metaData=list(foo=1:3, bar=c(NA, 1, 2))
+  )
+  expect_equal(
+        unname(averageMassSpectra(list(s1, s2), labels = c(1, 1))),
+        list(createMassSpectrum(
+            mass=1:3, intensity=1:3,
+            metaData=list(foo=1:3, bar=c(1, NA, 2, NA, 1, 2))
+        ))
+  )
+})
+
 test_that(".averageMassSpectra", {
   expect_equal(MALDIquant:::.averageMassSpectra(s), meanS)
   expect_equal(MALDIquant:::.averageMassSpectra(s, fun=colSums), sumS)

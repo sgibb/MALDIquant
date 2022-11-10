@@ -94,14 +94,16 @@ mergeMassPeaks <- function(l, labels, method=c("mean", "median", "sum"),
     all <- lapply(m, "[[", n)
     len <- lengths(all)
 
-    if (!all(length(cur) == len) ||
-        !all(.flat(cur) == .flat(all))) {
-      if (!is.list(cur)) {
-        all <- unlist(all)
-      }
-      return(unname(all))
-    } else {
-      return(cur)
+    if (all(length(cur) == len)) {
+        fcur <- .flat(cur)
+        fall <- .flat(all)
+        if (all(is.na(fcur) == is.na(fall)) && all(fcur == fall, na.rm=TRUE))
+            return(cur)
     }
+
+    if (!is.list(cur)) {
+        all <- unlist(all)
+    }
+    unname(all)
   })
 }

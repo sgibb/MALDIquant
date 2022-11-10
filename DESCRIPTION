@@ -1,6 +1,6 @@
 Package: MALDIquant
-Version: 1.21.0.99
-Date: 2021-12-21
+Version: 1.22
+Date: 2022-11-10
 Title: Quantitative Analysis of Mass Spectrometry Data
 Authors@R: c(
     person(
