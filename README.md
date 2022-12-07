@@ -5,7 +5,7 @@
 [![R-CMD-check](https://github.com/sgibb/MALDIquant/workflows/R-CMD-check/badge.svg)](https://github.com/sgibb/MALDIquant/actions)
 [![codecov.io](https://codecov.io/github/sgibb/MALDIquant/coverage.svg?branch=master)](https://codecov.io/github/sgibb/MALDIquant?branch=master)
 [![license](https://img.shields.io/badge/license-GPL%20%28%3E=%203%29-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/gpl-3.0.html)
-[![cran checks](https://cranchecks.info/badges/worst/MALDIquant)](https://cran.r-project.org/web/checks/check_results_MALDIquant.html)
+[![cran checks](https://badges.cranchecks.info/worst/MALDIquant.svg)](https://cran.r-project.org/web/checks/check_results_MALDIquant.html)
 [![metacran version](https://www.r-pkg.org/badges/version/MALDIquant)](https://cran.r-project.org/web/packages/MALDIquant/index.html)
 [![metacran downloads](https://cranlogs.r-pkg.org/badges/MALDIquant?color=brightgreen)](https://cran.r-project.org/web/packages/MALDIquant/index.html)
   <!-- badges: end -->
