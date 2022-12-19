@@ -45,7 +45,7 @@
 ##  numeric, estimated baseline (y)
 ##
 .estimateBaselineConvexHull <- function(x, y) {
-  .Call("C_lowerConvexHull", x, y)
+  .Call(C_lowerConvexHull, x, y)
 }
 
 ## estimateBaselineMedian
@@ -96,7 +96,7 @@
 ##  numeric, estimated baseline (y)
 ##
 .estimateBaselineSnip <- function(x, y, iterations=100L, decreasing=TRUE) {
-  .Call("C_snip", y, iterations, decreasing)
+  .Call(C_snip, y, iterations, decreasing)
 }
 
 ## estimateBaselineTopHat

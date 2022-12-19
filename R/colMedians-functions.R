@@ -1,6 +1,6 @@
 .colMedians <- function(x, na.rm=FALSE) {
   stopifnot(is.matrix(x), is.logical(na.rm))
-  .Call("C_colMedians", x, na.rm)
+  .Call(C_colMedians, x, na.rm)
 }
 
 #' .colMaxs

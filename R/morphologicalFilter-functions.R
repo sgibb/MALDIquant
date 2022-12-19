@@ -16,7 +16,7 @@
 ##  moving max
 ##
 .dilation <- function(x, halfWindowSize) {
-  .Call("C_dilation", x, halfWindowSize)
+  .Call(C_dilation, x, halfWindowSize)
 }
 
 ## erosion
@@ -37,5 +37,5 @@
 ##  moving min
 ##
 .erosion <- function(x, halfWindowSize) {
-  .Call("C_erosion", x, halfWindowSize)
+  .Call(C_erosion, x, halfWindowSize)
 }
