@@ -9,7 +9,7 @@ importFrom("graphics",
               "arrows",
               "lines",
               "par",
-              "plot.default",           
+              "plot.default",
               "points",
               "rasterImage",
               "rect",
@@ -103,4 +103,4 @@ exportMethods("as.matrix",
               "transformIntensity",
               "trim")
 
-useDynLib("MALDIquant")
+useDynLib(MALDIquant, .registration = TRUE)
