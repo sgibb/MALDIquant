@@ -110,7 +110,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1391.178KB",
+  "fileSize": "1290.642KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -142,8 +142,6 @@
     }
   ],
   "releaseNotes": "https://github.com/sgibb/MALDIquant/blob/master/NEWS",
-  "readme": "https://github.com/sgibb/MALDIquant/blob/master/README.md",
   "contIntegration": ["https://github.com/sgibb/MALDIquant/actions", "https://codecov.io/github/sgibb/MALDIquant?branch=master"],
-  "developmentStatus": "https://www.repostatus.org/#active",
-  "keywords": ["r", "maldi", "mass-spectrometry", "r-package", "cran", "maldi-tof-ms", "maldi-ims"]
+  "developmentStatus": "https://www.repostatus.org/#active"
 }
