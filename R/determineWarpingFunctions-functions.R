@@ -141,8 +141,8 @@ determineWarpingFunctions <- function(l, reference, tolerance=0.002,
                       samples[i[1L]] - 1L, " to a reference peak.")
       NA
     } else if (length(arguments$x) < minPeaks) {
-      nomatchReporter("Could not match enough peaks in spectrum",
-                      samples[i[1L]] - 1L, "to the reference peaks.\n",
+      nomatchReporter("Could not match enough peaks in spectrum ",
+                      samples[i[1L]] - 1L, " to the reference peaks.\n",
                       minPeaks, " matches required, just ",
                       length(arguments$x), " found.")
       NA

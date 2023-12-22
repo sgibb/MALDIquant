@@ -2,6 +2,11 @@ RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
 
+CHANGES IN MALDIquant development:
+----------------------------------
+
+* Fix spaces in error message of `determineWarpingFunctions`.
+
 CHANGES IN MALDIquant VERSION 1.22.1 [2023-03-20]:
 --------------------------------------------------
 
