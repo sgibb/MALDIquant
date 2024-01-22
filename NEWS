@@ -2,10 +2,14 @@ RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
 
-CHANGES IN MALDIquant development:
-----------------------------------
+CHANGES IN MALDIquant VERSION 1.22.2 [2024-01-22]:
+--------------------------------------------------
+
+INTERNAL CHANGES
 
 * Fix spaces in error message of `determineWarpingFunctions`.
+* Fix VignetteEngine NOTE.
+
 
 CHANGES IN MALDIquant VERSION 1.22.1 [2023-03-20]:
 --------------------------------------------------

@@ -1,4 +1,4 @@
-%\VignetteEngine{knitr}
+%\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{MALDIquant: Quantitative Analysis of Mass Spectrometry Data}
 %\VignetteKeywords{Bioinformatics, Proteomics, Mass Spectrometry}
 %\VignettePackage{MALDIquant}

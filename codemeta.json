@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/sgibb/MALDIquant/",
   "issueTracker": "https://github.com/sgibb/MALDIquant/issues/",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "1.22.1",
+  "version": "1.22.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.3 (2023-03-15)",
+  "runtimePlatform": "R Under development (unstable) (2024-01-22 r85820)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -110,7 +110,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1290.642KB",
+  "fileSize": "1391.416KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -142,6 +142,8 @@
     }
   ],
   "releaseNotes": "https://github.com/sgibb/MALDIquant/blob/master/NEWS",
+  "readme": "https://github.com/sgibb/MALDIquant/blob/master/README.md",
   "contIntegration": ["https://github.com/sgibb/MALDIquant/actions", "https://codecov.io/github/sgibb/MALDIquant?branch=master"],
-  "developmentStatus": "https://www.repostatus.org/#active"
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "keywords": ["r", "maldi", "mass-spectrometry", "r-package", "cran", "maldi-tof-ms", "maldi-ims"]
 }
