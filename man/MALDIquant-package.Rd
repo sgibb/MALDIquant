@@ -45,10 +45,10 @@ Sebastian Gibb
 Maintainer: Sebastian Gibb \email{mail@sebastiangibb.de}
 }
 \references{
-S. Gibb and K. Strimmer. 2012.
-MALDIquant: a versatile R package for the analysis of mass spectrometry data.
-Bioinformatics 28: 2270-2271.
-\url{https://academic.oup.com/bioinformatics/article-abstract/28/17/2270/246552}
+S. Gibb and K. Strimmer. 2012. \cr
+MALDIquant: a versatile R package for the analysis of mass spectrometry data. \cr
+Bioinformatics 28: 2270-2271. \cr
+\doi{10.1093/bioinformatics/bts447} \cr
 
 Website: \url{https://strimmerlab.github.io/software/maldiquant/}
 }

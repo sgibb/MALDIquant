@@ -110,7 +110,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1391.717KB",
+  "fileSize": "1391.22KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -125,7 +125,6 @@
       ],
       "name": "{MALDI}quant: a versatile {R} package for the analysis of mass spectrometry data",
       "identifier": "10.1093/bioinformatics/bts447",
-      "url": "https://academic.oup.com/bioinformatics/article-abstract/28/17/2270/246552",
       "pagination": "2270--2271",
       "@id": "https://doi.org/10.1093/bioinformatics/bts447",
       "sameAs": "https://doi.org/10.1093/bioinformatics/bts447",

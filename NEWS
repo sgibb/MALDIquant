@@ -10,6 +10,11 @@ INTERNAL CHANGES
   `src/lowerConvexHull.c`, respectively, to reflect changes in the R API and
   fullfil STRICT_R_HEADERS check.
 
+DOCUMENTATION
+
+* Drop journal URLs for `fiedler2009subset` and `MALDIquant` in favour of DOI
+  (and to avoid R CMD check warnings of possible invalid URLs).
+
 
 CHANGES IN MALDIquant VERSION 1.22.2 [2024-01-22]:
 --------------------------------------------------

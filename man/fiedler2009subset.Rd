@@ -43,8 +43,7 @@ and J. Thiery
 \dQuote{Serum Peptidome Profiling Revealed Platelet Factor 4 as a Potential
 Discriminating Peptide Associated with Pancreatic Cancer} \cr
 Clinical Cancer Research, 11(15): 3812-3819, 2009 \cr
-ISSN 1557-3265; \doi{10.1158/1078-0432.CCR-08-2701} \cr
-\url{https://aacrjournals.org/clincancerres/article/15/11/3812/73573/Serum-Peptidome-Profiling-Revealed-Platelet-Factor}
+ISSN 1557-3265; \doi{10.1158/1078-0432.CCR-08-2701}
 }
 \seealso{
 \code{\link[MALDIquant]{MassSpectrum-class}}
