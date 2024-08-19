@@ -1,6 +1,15 @@
 RELEASE HISTORY OF THE "MALDIquant" PACKAGE
 ===========================================
 
+CHANGES IN MALDIquant VERSION 1.22.3 [2024-08-19]:
+--------------------------------------------------
+
+INTERNAL CHANGES
+
+* Use `R_Calloc` and `R_Free` instead of `Calloc` and `Free` in
+  `src/lowerConvexHull.c`, respectively, to reflect changes in the R API and
+  fullfil STRICT_R_HEADERS check.
+
 
 CHANGES IN MALDIquant VERSION 1.22.2 [2024-01-22]:
 --------------------------------------------------
