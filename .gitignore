@@ -1,7 +1,0 @@
-*.swp
-*.so
-*.o
-*.rds
-CRAN-RELEASE
-.Rproj.user
-.Rproj
